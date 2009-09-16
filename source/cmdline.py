@@ -77,9 +77,13 @@ def parseArgs(opts, args):
     fromUnit = None
     if args:
         fromUnit = getUnit(data, options, args.pop(0))
+        if not fromUnit and quiet:
+            return
     toUnit = None
     if args:
         toUnit = getUnit(data, options, args[0])
+        if not toUnit and quiet:
+            return
     while True:
         while not fromUnit:
             fromText = raw_input('Enter from unit -> ')
