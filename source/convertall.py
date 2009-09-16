@@ -49,7 +49,10 @@ if __name__ == '__main__':
         except getopt.GetoptError:
             cmdline.printUsage()
             sys.exit(2)
-        cmdline.parseArgs(opts, args[1:])
+        try:
+            cmdline.parseArgs(opts, args[1:])
+        except KeyboardInterrupt:
+            pass
     else:
         import signal
         from PyQt4 import QtGui
