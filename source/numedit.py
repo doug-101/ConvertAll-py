@@ -69,7 +69,7 @@ class NumEdit(QtGui.QLineEdit):
             self.status.setText('Set units')
             self.label.setTitle('No Unit Set')
         self.setEnabled(False)
-        self.emit(QtCore.SIGNAL('convertNum(QString &)'), QtCore.QString())
+        self.emit(QtCore.SIGNAL('convertNum'), '')
 
     def convert(self):
         """Do conversion with self primary"""
@@ -78,18 +78,18 @@ class NumEdit(QtGui.QLineEdit):
         try:
             num = float(eval(str(self.text())))
         except:
-            self.emit(QtCore.SIGNAL('convertNum(QString &)'), '')
+            self.emit(QtCore.SIGNAL('convertNum'), '')
             return
         try:
             numText = self.thisUnit.convertStr(num, self.otherUnit)
-            self.emit(QtCore.SIGNAL('convertNum(QString &)'), numText)
+            self.emit(QtCore.SIGNAL('convertNum'), numText)
         except unitdata.UnitDataError, text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
                                       'Error in unit data - %s' % text)
 
     def setNum(self, numText):
         """Set text based on conversion from other number editor"""
-        if numText.isNull():
+        if not numText:
             self.setEnabled(False)
         else:
             self.primary = False

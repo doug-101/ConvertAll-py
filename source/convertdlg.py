@@ -135,9 +135,9 @@ class ConvertDlg(QtGui.QWidget):
         self.connect(self.toUnitEdit, QtCore.SIGNAL('unitChanged'),
                      self.toNumEdit.unitUpdate)
         self.toNumEdit.setEnabled(False)
-        self.connect(self.fromNumEdit, QtCore.SIGNAL('convertNum(QString &)'),
+        self.connect(self.fromNumEdit, QtCore.SIGNAL('convertNum'),
                      self.toNumEdit.setNum)
-        self.connect(self.toNumEdit, QtCore.SIGNAL('convertNum(QString &)'),
+        self.connect(self.toNumEdit, QtCore.SIGNAL('convertNum'),
                      self.fromNumEdit.setNum)
         self.connect(self.fromNumEdit, QtCore.SIGNAL('convertRqd'),
                      self.toNumEdit.convert)
