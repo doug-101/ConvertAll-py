@@ -57,11 +57,11 @@ class NumEdit(QtGui.QLineEdit):
                     return
                 if self.onLeft:
                     self.status.setText('Units are not compatible '\
-                               '(%s  vs.  %s)' % (self.thisUnit.compatStr(),
+                              u'(%s  vs.  %s)' % (self.thisUnit.compatStr(),
                                                   self.otherUnit.compatStr()))
                 else:
                     self.status.setText('Units are not compatible '\
-                               '(%s  vs.  %s)' % (self.otherUnit.compatStr(),
+                              u'(%s  vs.  %s)' % (self.otherUnit.compatStr(),
                                                   self.thisUnit.compatStr()))
             else:
                 self.status.setText('Set units')
@@ -76,7 +76,7 @@ class NumEdit(QtGui.QLineEdit):
         self.primary = True
         self.setEnabled(True)
         try:
-            num = float(eval(str(self.text())))
+            num = float(eval(unicode(self.text())))
         except:
             self.emit(QtCore.SIGNAL('convertNum'), '')
             return
@@ -105,6 +105,6 @@ class FloatExprValidator(QtGui.QValidator):
 
     def validate(self, inputStr, pos):
         """Check for valid characters in entry"""
-        if FloatExprValidator.invalidRe.search(str(inputStr)):  # invalid char
+        if FloatExprValidator.invalidRe.search(unicode(inputStr)):
             return (QtGui.QValidator.Invalid, pos)
         return (QtGui.QValidator.Acceptable, pos)

@@ -94,7 +94,7 @@ class UnitGroup(object):
             self.completePartial()
             prevExp = self.unitList[self.currentNum].exp
             self.currentNum += 1
-            self.unitList.insert(self.currentNum, UnitAtom(''))
+            self.unitList.insert(self.currentNum, UnitAtom(u''))
             if (not mult and prevExp > 0) or (mult and prevExp < 0):
                 self.unitList[self.currentNum].exp = -1
 
@@ -163,9 +163,9 @@ class UnitGroup(object):
             for unit in unitList[1:]:
                 if (numerator and unit.exp > 0) \
                    or (not numerator and unit.exp < 0):
-                    fullText = '%s * %s' % (fullText, unit.unitText(1))
+                    fullText = u'%s * %s' % (fullText, unit.unitText(1))
                 else:
-                    fullText = '%s / %s' % (fullText, unit.unitText(1))
+                    fullText = u'%s / %s' % (fullText, unit.unitText(1))
                     numerator = not numerator
         return fullText
 
@@ -214,7 +214,7 @@ class UnitGroup(object):
             else:
                 self.reducedList.append(unit)
         self.reducedList = [unit for unit in self.reducedList if
-                            unit.name != 'unit' and unit.exp != 0]
+                            unit.name != u'unit' and unit.exp != 0]
 
     def categoryMatch(self, otherGroup):
         """Return True if unit types are equivalent"""
@@ -284,10 +284,10 @@ class UnitGroup(object):
         """Return num string formatted per options"""
         decPlcs = self.option.intData('DecimalPlaces', 0, UnitGroup.maxDecPlcs)
         if self.option.boolData('SciNotation'):
-            return ('%%0.%dE' % decPlcs) % num
+            return (u'%%0.%dE' % decPlcs) % num
         if self.option.boolData('FixedDecimals'):
-            return ('%%0.%df' % decPlcs) % num
-        return ('%%0.%dG' % decPlcs) % num
+            return (u'%%0.%df' % decPlcs) % num
+        return (u'%%0.%dG' % decPlcs) % num
 
 
 if __name__ == '__main__':
@@ -305,15 +305,15 @@ if __name__ == '__main__':
     toText = raw_input('Enter to unit -> ')
     toUnit = UnitGroup(data, options)
     toUnit.update(toText)
-    print '%s   TO   %s' % (fromUnit.unitString(), toUnit.unitString())
+    print u'%s   TO   %s' % (fromUnit.unitString(), toUnit.unitString())
     fromUnit.reduceGroup()
     toUnit.reduceGroup()
-    print '%s   TO   %s' % (fromUnit.unitString(fromUnit.reducedList),
-                            toUnit.unitString(toUnit.reducedList))
+    print u'%s   TO   %s' % (fromUnit.unitString(fromUnit.reducedList),
+                             toUnit.unitString(toUnit.reducedList))
     if not fromUnit.categoryMatch(toUnit):
         print 'NO MATCH'
     else:
         print 'MATCH'
         numText = raw_input('Enter value -> ')
         num = float(numText)
-        print '%f   IS  %f' % (num, fromUnit.convert(num, toUnit))
+        print u'%f   IS  %f' % (num, fromUnit.convert(num, toUnit))

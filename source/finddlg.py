@@ -118,8 +118,8 @@ class FindDlg(QtGui.QWidget):
         types = convertdlg.ConvertDlg.unitData.typeList[:]
         types.sort()
         self.filterCombo.clear()
-        self.filterCombo.addItem('[All]')
-        prevName = ''
+        self.filterCombo.addItem(u'[All]')
+        prevName = u''
         for name in types:
             if name != prevName:
                 self.filterCombo.addItem(name)
@@ -133,13 +133,13 @@ class FindDlg(QtGui.QWidget):
 
     def changeType(self, newType):
         """Change current unit type setting"""
-        self.currentType = str(newType)
-        if self.currentType == '[All]':
-            self.currentType = ''
+        self.currentType = unicode(newType)
+        if self.currentType == u'[All]':
+            self.currentType = u''
         self.loadUnits()
 
     def changeSearch(self, newStr):
-        self.currentSearch = str(newStr)
+        self.currentSearch = unicode(newStr)
         self.loadUnits()
 
     def fromRepl(self):

@@ -40,15 +40,15 @@ class UnitEdit(QtGui.QLineEdit):
 
     def updateGroup(self):
         """Update unit based on edit text change (except spacing change)"""
-        if str(self.text()).replace(' ', '') \
-           != self.unitGroup.unitString().replace(' ', ''):
-            self.unitGroup.update(str(self.text()), self.cursorPosition())
+        if unicode(self.text()).replace(' ', '') \
+                   != self.unitGroup.unitString().replace(' ', ''):
+            self.unitGroup.update(unicode(self.text()), self.cursorPosition())
             self.emit(QtCore.SIGNAL('currentChanged'))  # update listView
             self.unitUpdate()   # replace text with formatted text
 
     def updateCurrentUnit(self):
         """Change current unit based on cursor movement"""
-        self.unitGroup.updateCurrentUnit(str(self.text()),
+        self.unitGroup.updateCurrentUnit(unicode(self.text()),
                                          self.cursorPosition())
         self.emit(QtCore.SIGNAL('currentChanged'))  # update listView
 

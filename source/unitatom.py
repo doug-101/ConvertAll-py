@@ -54,7 +54,7 @@ class UnitAtom(object):
                     except:
                         pass
         self.comments = [comm.strip() for comm in dataList]
-        self.comments.extend([''] * (2 - len(self.comments)))
+        self.comments.extend([u''] * (2 - len(self.comments)))
         self.exp = 1
         self.viewLink = [None, None]
         self.typeName = ''
@@ -62,7 +62,7 @@ class UnitAtom(object):
     def description(self):
         """Return name and 1st comment (usu. full name) if applicable"""
         if self.comments[0]:
-            return '%s  (%s)' % (self.name, self.comments[0])
+            return u'%s  (%s)' % (self.name, self.comments[0])
         return self.name
 
     def unitValid(self):
@@ -80,16 +80,16 @@ class UnitAtom(object):
         if exp == 1:
             return self.name
         if -UnitAtom.partialExp < exp < UnitAtom.partialExp:
-            return '%s^%d' % (self.name, exp)
+            return u'%s^%d' % (self.name, exp)
         if exp > 1:
-            return '%s^' % self.name
+            return u'%s^' % self.name
         else:
-            return '%s^-' % self.name
+            return u'%s^-' % self.name
 
     def matchWords(self, wordList):
         """Return True if unit name and comments match word list"""
-        dataStr = ' '.join((self.name, self.comments[0],
-                            self.comments[1])).lower()
+        dataStr = u' '.join((self.name, self.comments[0],
+                             self.comments[1])).lower()
         for word in wordList:
             if dataStr.find(word) == -1:
                 return False

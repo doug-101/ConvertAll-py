@@ -14,6 +14,7 @@
 
 import sys
 import os.path
+import codecs
 try:
     from __main__ import dataFilePath
 except ImportError:
@@ -37,7 +38,7 @@ class UnitData(dict):
         """Search paths for file, return line list or None"""
         for path in pathList:
             try:
-                f = file(os.path.join(path, 'units.dat'), 'r')
+                f = codecs.open(os.path.join(path, 'units.dat'), 'r', 'utf-8')
                 lineList = f.readlines()
                 f.close()
                 return lineList
@@ -56,8 +57,8 @@ class UnitData(dict):
         for i in range(len(lines)):     # join continuation lines
             delta = 1
             while lines[i].rstrip().endswith('\\'):
-                lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+delta]])
-                lines[i+delta] = ''
+                lines[i] = u''.join([lines[i].rstrip()[:-1], lines[i+delta]])
+                lines[i+delta] = u''
                 delta += 1
         units = [unitatom.UnitAtom(line) for line in lines if
                  line.split('#', 1)[0].strip()]   # remove comment lines

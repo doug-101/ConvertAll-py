@@ -64,16 +64,16 @@ def parseArgs(opts, args):
     try:
         data.readData()
     except unitdata.UnitDataError, text:
-        print 'Error in unit data - %s' % text
+        print u'Error in unit data - %s' % text
         sys.exit(1)
-    numStr = '1.0'
+    numStr = u'1.0'
     if args:
         numStr = args[0]
         try:
             float(numStr)
             del args[0]
         except (ValueError):
-            numStr = '1.0'
+            numStr = u'1.0'
     fromUnit = None
     if args:
         fromUnit = getUnit(data, options, args.pop(0))
@@ -99,7 +99,7 @@ def parseArgs(opts, args):
             badEntry = False
             while True:
                 if not badEntry:
-                    print '%s %s = %s %s' % (numStr, fromUnit.unitString(),
+                    print u'%s %s = %s %s' % (numStr, fromUnit.unitString(),
                                              fromUnit.convertStr(float(numStr),
                                                                  toUnit),
                                              toUnit.unitString())
@@ -114,7 +114,7 @@ def parseArgs(opts, args):
                 elif rep[0] in ('n', 'N'):
                     fromUnit = None
                     toUnit = None
-                    numStr = '1.0'
+                    numStr = u'1.0'
                     print
                     break
                 else:
@@ -124,7 +124,7 @@ def parseArgs(opts, args):
                     except ValueError:
                         badEntry = True
         else:
-            print 'Units %s and %s are not compatible' % \
+            print u'Units %s and %s are not compatible' % \
                          (fromUnit.unitString(), toUnit.unitString())
             if quiet:
                 return
@@ -139,7 +139,7 @@ def getUnit(data, options, text):
     if unit.groupValid():
         unit.reduceGroup()
         return unit
-    print '%s is not a valid unit' % text
+    print u'%s is not a valid unit' % text
     return None
 
 def printUsage():
