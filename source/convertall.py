@@ -20,28 +20,85 @@ __author__ = 'Doug Bell'
 dataFilePath = None    # modified by install script if required
 helpFilePath = None    # modified by install script if required
 iconPath = None        # modified by install script if required
+translationPath = 'translations'
 
 import sys
+import os.path
+import locale
+import getopt
+import signal
+import __builtin__
+from PyQt4 import QtGui
 
-def hasCmdLineArgs():
-    """Return True if command line should be used"""
-    if len(sys.argv) <= 1:
+def loadTranslator(fileName, app):
+    """Load and install qt translator, return True if sucessful"""
+    translator = QtCore.QTranslator(app)
+    modPath = unicode(os.path.abspath(sys.path[0]),
+                      sys.getfilesystemencoding())
+    if modPath.endswith('.zip'):  # for py2exe
+        modPath = os.path.dirname(modPath)
+    path = os.path.join(modPath, translationPath)
+    result = translator.load(fileName, path)
+    if not result:
+        path = os.path.join(modPath, '..', translationPath)
+        result = translator.load(fileName, path)
+    if not result:
+        path = os.path.join(modPath, '..', 'i18n', translationPath)
+        result = translator.load(fileName, path)
+    if result:
+        QtCore.QCoreApplication.installTranslator(translator)
+        return True
+    else:
+        print 'Warning: translation file "%s" could not be loaded' % fileName
         return False
-    qtOpts = ['-style', '-stylesheet', '-session', '-widgetcount', '-reverse',
-              '-direct3d', '-display', '-geometry', '-fn', '-font', '-bg',
-              '-background', '-fg', '-foreground', '-btn', '-button', '-name',
-              '-title', '-visual', '-ncols', '-cmap', '-im', '-noxim',
-              '-inputstyle']
-    for arg in sys.argv[1:]:
-        for opt in qtOpts:
-            if arg.startswith(opt):
-                return False
-    return True
+
+def setupTranslator(app):
+    """Set language, load translators and setup translator function"""
+    try:
+        locale.setlocale(locale.LC_ALL, '')
+    except locale.Error:
+        pass
+    lang = os.environ.get('LC_MESSAGES', '')
+    if not lang:
+        lang = os.environ.get('LANG', '')
+        if not lang:
+            try:
+                lang = locale.getdefaultlocale()[0]
+            except ValueError:
+                pass
+            if not lang:
+                lang = ''
+    numTranslators = 0
+    if lang and lang[:2] not in ['C', 'en']:
+        numTranslators += loadTranslator('qt_%s' % lang, app)
+        numTranslators += loadTranslator('convertall_%s' % lang, app)
+
+    def translate(text, comment=''):
+        """Translation function that sets context to calling module's
+           filename"""
+        try:
+            frame = sys._getframe(1)
+            fileName = frame.f_code.co_filename
+        finally:
+            del frame
+        context = os.path.basename(os.path.splitext(fileName)[0])
+        return unicode(QtCore.QCoreApplication.translate(context, text,
+                                                         comment))
+
+    def markNoTranslate(text, comment=''):
+        return text
+
+    if numTranslators:
+        __builtin__._ = translate
+    else:
+        __builtin__._ = markNoTranslate
 
 
 if __name__ == '__main__':
-    if hasCmdLineArgs():
-        import getopt
+    userStyle = '-style' in ' '.join(sys.argv)
+    app = QtGui.QApplication(sys.argv)
+    setupTranslator(app)  # must be before importing any convertall modules
+    if len(sys.argv) > 1:
         import cmdline
         try:
             opts, args = getopt.gnu_getopt(sys.argv, cmdline.availOptions,
@@ -54,11 +111,7 @@ if __name__ == '__main__':
         except KeyboardInterrupt:
             pass
     else:
-        import signal
-        from PyQt4 import QtGui
         import convertdlg
-        userStyle = '-style' in ' '.join(sys.argv)
-        app = QtGui.QApplication(sys.argv)
         if not userStyle and not sys.platform.startswith('win'):
             QtGui.QApplication.setStyle('plastique')
         win = convertdlg.ConvertDlg()

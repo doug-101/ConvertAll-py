@@ -40,11 +40,8 @@ class HelpView(QtGui.QMainWindow):
                      QtCore.SIGNAL('highlighted(const QString&)'),
                      self.showLink)
 
-        backAct = QtGui.QAction('&Back', self)
-        try:
-            backAct.setIcon(icons['helpback'])
-        except KeyError:
-            pass
+        backAct = QtGui.QAction(_('&Back'), self)
+        backAct.setIcon(icons['helpback'])
         tools.addAction(backAct)
         self.menu.addAction(backAct)
         self.connect(backAct, QtCore.SIGNAL('triggered()'),
@@ -53,11 +50,8 @@ class HelpView(QtGui.QMainWindow):
         self.connect(self.textView, QtCore.SIGNAL('backwardAvailable(bool)'),
                      backAct, QtCore.SLOT('setEnabled(bool)'))
 
-        forwardAct = QtGui.QAction('&Forward', self)
-        try:
-            forwardAct.setIcon(icons['helpforward'])
-        except KeyError:
-            pass
+        forwardAct = QtGui.QAction(_('&Forward'), self)
+        forwardAct.setIcon(icons['helpforward'])
         tools.addAction(forwardAct)
         self.menu.addAction(forwardAct)
         self.connect(forwardAct, QtCore.SIGNAL('triggered()'),
@@ -66,11 +60,8 @@ class HelpView(QtGui.QMainWindow):
         self.connect(self.textView, QtCore.SIGNAL('forwardAvailable(bool)'),
                      forwardAct, QtCore.SLOT('setEnabled(bool)'))
 
-        homeAct = QtGui.QAction('&Home', self)
-        try:
-            homeAct.setIcon(icons['helphome'])
-        except KeyError:
-            pass
+        homeAct = QtGui.QAction(_('&Home'), self)
+        homeAct.setIcon(icons['helphome'])
         tools.addAction(homeAct)
         self.menu.addAction(homeAct)
         self.connect(homeAct, QtCore.SIGNAL('triggered()'),

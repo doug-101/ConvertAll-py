@@ -34,11 +34,11 @@ class OptionDlg(QtGui.QDialog):
         ctrlLayout = QtGui.QHBoxLayout()
         topLayout.addLayout(ctrlLayout)
         ctrlLayout.addStretch(0)
-        okButton = QtGui.QPushButton('&OK', self)
+        okButton = QtGui.QPushButton(_('&OK'), self)
         ctrlLayout.addWidget(okButton)
         self.connect(okButton, QtCore.SIGNAL('clicked()'), self,
                      QtCore.SLOT('accept()'))
-        cancelButton = QtGui.QPushButton('&Cancel', self)
+        cancelButton = QtGui.QPushButton(_('&Cancel'), self)
         ctrlLayout.addWidget(cancelButton)
         self.connect(cancelButton, QtCore.SIGNAL('clicked()'), self,
                      QtCore.SLOT('reject()'))
