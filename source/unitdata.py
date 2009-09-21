@@ -44,7 +44,7 @@ class UnitData(dict):
                 return lineList
             except IOError:
                 pass
-        raise UnitDataError, 'Can not read "units.dat" file'
+        raise UnitDataError, _('Can not read "units.dat" file')
 
     def readData(self):
         """Read all unit data from file, return number loaded"""
@@ -74,7 +74,7 @@ class UnitData(dict):
         self.sortedKeys = self.keys()
         self.sortedKeys.sort()
         if len(self.sortedKeys) < len(units):
-            raise UnitDataError, 'Duplicate unit names found'
+            raise UnitDataError, _('Duplicate unit names found')
         return len(units)
 
     def findPartialMatch(self, text):

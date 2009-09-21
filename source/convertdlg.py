@@ -58,10 +58,10 @@ class ConvertDlg(QtGui.QWidget):
         self.option.loadAll(optiondefaults.defaultList)
         try:
             num = ConvertDlg.unitData.readData()
-            print '%d units loaded' % num
+            print _('%d units loaded') % num
         except unitdata.UnitDataError, text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                      'Error in unit data - %s' % text)
+                                      _('Error in unit data - %s') % text)
             sys.exit(1)
         self.fromGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
@@ -75,7 +75,7 @@ class ConvertDlg(QtGui.QWidget):
         unitLayout = QtGui.QHBoxLayout()       # unit selection
         mainLayout.addLayout(unitLayout)
 
-        fromBox = QtGui.QGroupBox('From Unit')
+        fromBox = QtGui.QGroupBox(_('From Unit'))
         unitLayout.addWidget(fromBox)
         fromLayout = QtGui.QVBoxLayout(fromBox)
         fromLayout.setSpacing(3)
@@ -91,7 +91,7 @@ class ConvertDlg(QtGui.QWidget):
         self.fromUnitListView.setFocusProxy(self.fromUnitEdit)
         self.addButtons(self.fromGroup, self.fromUnitListView, fromLayout)
 
-        toBox = QtGui.QGroupBox('To Unit')
+        toBox = QtGui.QGroupBox(_('To Unit'))
         unitLayout.addWidget(toBox)
         toLayout = QtGui.QVBoxLayout(toBox)
         toLayout.setSpacing(3)
@@ -109,11 +109,11 @@ class ConvertDlg(QtGui.QWidget):
 
         numberLayout = QtGui.QHBoxLayout()
         mainLayout.addLayout(numberLayout)
-        statusLabel = QtGui.QLabel('Set units')
+        statusLabel = QtGui.QLabel(_('Set units'))
         statusLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
         mainLayout.addWidget(statusLabel)
 
-        fromNumBox = QtGui.QGroupBox('No Unit Set')
+        fromNumBox = QtGui.QGroupBox(_('No Unit Set'))
         numberLayout.addWidget(fromNumBox)
         fromNumLayout = QtGui.QVBoxLayout(fromNumBox)
         self.fromNumEdit = numedit.NumEdit(self.fromGroup, self.toGroup,
@@ -126,7 +126,7 @@ class ConvertDlg(QtGui.QWidget):
         equalsLabel.setFont(QtGui.QFont(self.font().family(), 30))
         numberLayout.addWidget(equalsLabel)
 
-        toNumBox = QtGui.QGroupBox('No Unit Set')
+        toNumBox = QtGui.QGroupBox(_('No Unit Set'))
         numberLayout.addWidget(toNumBox)
         toNumLayout = QtGui.QVBoxLayout(toNumBox)
         self.toNumEdit = numedit.NumEdit(self.toGroup, self.fromGroup,
@@ -146,24 +146,24 @@ class ConvertDlg(QtGui.QWidget):
 
         buttonLayout = QtGui.QVBoxLayout()     # major buttons
         topLayout.addLayout(buttonLayout)
-        closeButton = QtGui.QPushButton('&Close')
+        closeButton = QtGui.QPushButton(_('&Close'))
         buttonLayout.addWidget(closeButton)
         closeButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.connect(closeButton, QtCore.SIGNAL('clicked()'), self.close)
-        finderButton = QtGui.QPushButton('&Unit Finder...')
+        finderButton = QtGui.QPushButton(_('&Unit Finder...'))
         buttonLayout.addWidget(finderButton)
         finderButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.connect(finderButton, QtCore.SIGNAL('clicked()'), self.showFinder)
-        optionsButton = QtGui.QPushButton('&Options...')
+        optionsButton = QtGui.QPushButton(_('&Options...'))
         buttonLayout.addWidget(optionsButton)
         optionsButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.connect(optionsButton, QtCore.SIGNAL('clicked()'),
                      self.changeOptions)
-        helpButton = QtGui.QPushButton('&Help...')
+        helpButton = QtGui.QPushButton(_('&Help...'))
         buttonLayout.addWidget(helpButton)
         helpButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.connect(helpButton, QtCore.SIGNAL('clicked()'), self.help)
-        aboutButton = QtGui.QPushButton('&About...')
+        aboutButton = QtGui.QPushButton(_('&About...'))
         buttonLayout.addWidget(aboutButton)
         aboutButton.setFocusPolicy(QtCore.Qt.NoFocus)
         self.connect(aboutButton, QtCore.SIGNAL('clicked()'), self.about)
@@ -188,7 +188,7 @@ class ConvertDlg(QtGui.QWidget):
         for button in buttons:
             buttonLayout.addWidget(button)
         listView.buttonList = buttons[:]
-        buttons.append(ModButton(unitGroup.clearUnit, None, 'Clear Unit'))
+        buttons.append(ModButton(unitGroup.clearUnit, None, _('Clear Unit')))
         upperLayout.addWidget(buttons[-1])
         for but in buttons:
             self.connect(but, QtCore.SIGNAL('stateChg'), listView.relayChange)
@@ -219,19 +219,21 @@ class ConvertDlg(QtGui.QWidget):
         origBackground = self.getOptionColor('Background')
         origForeground = self.getOptionColor('Foreground')
         dlg = optiondlg.OptionDlg(self.option, self)
-        dlg.startGroupBox('Result Display')
-        optiondlg.OptionDlgInt(dlg, 'DecimalPlaces', 'Decimal places',
+        dlg.startGroupBox(_('Result Display'))
+        optiondlg.OptionDlgInt(dlg, 'DecimalPlaces', _('Decimal places'),
                                0, UnitGroup.maxDecPlcs)
-        optiondlg.OptionDlgBool(dlg, 'SciNotation', 'Use scientific notation')
+        optiondlg.OptionDlgBool(dlg, 'SciNotation',
+                                _('Use scientific notation'))
         optiondlg.OptionDlgBool(dlg, 'FixedDecimals',
-                                'Use fixed decimal places')
-        dlg.startGroupBox('Buttons')
-        optiondlg.OptionDlgBool(dlg, 'ShowOpButtons', 'Show operator buttons')
-        dlg.startGroupBox('Colors')
+                                _('Use fixed decimal places'))
+        dlg.startGroupBox(_('Buttons')
+        optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
+                                _('Show operator buttons'))
+        dlg.startGroupBox(_('Colors')
         optiondlg.OptionDlgBool(dlg, 'UseDefaultColors',
-                                'Use default system colors')
-        optiondlg.OptionDlgPush(dlg, 'Set background color', self.backColor)
-        optiondlg.OptionDlgPush(dlg, 'Set text color', self.textColor)
+                                _('Use default system colors'))
+        optiondlg.OptionDlgPush(dlg, _('Set background color'), self.backColor)
+        optiondlg.OptionDlgPush(dlg, _('Set text color'), self.textColor)
         if dlg.exec_() == QtGui.QDialog.Accepted:
             self.option.writeChanges()
             self.updateColors()
@@ -300,16 +302,16 @@ class ConvertDlg(QtGui.QWidget):
             path = self.findHelpFile()
             if not path:
                 QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                          'Read Me file not found')
+                                          _('Read Me file not found'))
                 return
-            self.helpView = helpview.HelpView(path, 'ConvertAll README File',
+            self.helpView = helpview.HelpView(path, _('ConvertAll README File'),
                                               self.icons)
         self.helpView.show()
 
     def about(self):
         """Show about info"""
         QtGui.QMessageBox.about(self, 'ConvertAll',
-                                'ConvertAll Version %s\nby %s' %
+                                _('ConvertAll Version %s\nby %s') %
                                 (__version__, __author__))
 
     def closeEvent(self, event):

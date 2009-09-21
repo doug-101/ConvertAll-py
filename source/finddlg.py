@@ -24,25 +24,25 @@ class FindDlg(QtGui.QWidget):
         QtGui.QWidget.__init__(self, parent)
         self.setAttribute(QtCore.Qt.WA_QuitOnClose, False)
         self.mainDlg = mainDlg
-        self.setWindowTitle('Unit Finder')
+        self.setWindowTitle(_('Unit Finder'))
         self.currentType = ''
         self.currentSearch = ''
 
         mainLayout = QtGui.QVBoxLayout(self)
         upperLayout = QtGui.QHBoxLayout()
         mainLayout.addLayout(upperLayout)
-        filterBox = QtGui.QGroupBox('&Filter Unit Types')
+        filterBox = QtGui.QGroupBox(_('&Filter Unit Types'))
         upperLayout.addWidget(filterBox)
         filterLayout = QtGui.QHBoxLayout(filterBox)
         self.filterCombo = QtGui.QComboBox()
         filterLayout.addWidget(self.filterCombo)
 
-        searchBox = QtGui.QGroupBox('&Search String')
+        searchBox = QtGui.QGroupBox(_('&Search String'))
         mainLayout.addWidget(searchBox)
         searchLayout = QtGui.QHBoxLayout(searchBox)
         self.searchEdit = QtGui.QLineEdit()
         searchLayout.addWidget(self.searchEdit)
-        clearButton = QtGui.QPushButton('C&lear')
+        clearButton = QtGui.QPushButton(_('C&lear'))
         searchLayout.addWidget(clearButton)
         clearButton.setFocusPolicy(QtCore.Qt.NoFocus)
 
@@ -51,30 +51,30 @@ class FindDlg(QtGui.QWidget):
 
         lowerLayout = QtGui.QHBoxLayout()
         mainLayout.addLayout(lowerLayout)
-        fromBox = QtGui.QGroupBox('From Unit')
+        fromBox = QtGui.QGroupBox(_('From Unit'))
         lowerLayout.addWidget(fromBox)
         fromLayout = QtGui.QVBoxLayout(fromBox)
-        fromReplaceButton = QtGui.QPushButton('&Replace')
+        fromReplaceButton = QtGui.QPushButton(_('&Replace'))
         fromLayout.addWidget(fromReplaceButton)
         self.connect(fromReplaceButton, QtCore.SIGNAL('clicked()'),
                      self.fromRepl)
-        fromInsertButton = QtGui.QPushButton('&Insert')
+        fromInsertButton = QtGui.QPushButton(_('&Insert'))
         fromLayout.addWidget(fromInsertButton)
         self.connect(fromInsertButton, QtCore.SIGNAL('clicked()'),
                      self.fromIns)
-        toBox = QtGui.QGroupBox('To Unit')
+        toBox = QtGui.QGroupBox(_('To Unit'))
         lowerLayout.addWidget(toBox)
         toLayout = QtGui.QVBoxLayout(toBox)
-        toReplaceButton = QtGui.QPushButton('Replac&e')
+        toReplaceButton = QtGui.QPushButton(_('Replac&e'))
         toLayout.addWidget(toReplaceButton)
         self.connect(toReplaceButton, QtCore.SIGNAL('clicked()'), self.toRepl)
-        toInsertButton = QtGui.QPushButton('Inser&t')
+        toInsertButton = QtGui.QPushButton(_('Inser&t'))
         toLayout.addWidget(toInsertButton)
         self.connect(toInsertButton, QtCore.SIGNAL('clicked()'), self.toIns)
         self.buttonList = [fromReplaceButton, fromInsertButton,
                            toReplaceButton, toInsertButton]
 
-        closeButton = QtGui.QPushButton('&Close')
+        closeButton = QtGui.QPushButton(_('&Close'))
         upperLayout.addWidget(closeButton)
         self.connect(closeButton, QtCore.SIGNAL('clicked()'), self.close)
 
@@ -118,7 +118,7 @@ class FindDlg(QtGui.QWidget):
         types = convertdlg.ConvertDlg.unitData.typeList[:]
         types.sort()
         self.filterCombo.clear()
-        self.filterCombo.addItem(u'[All]')
+        self.filterCombo.addItem(_(u'[All]'))
         prevName = u''
         for name in types:
             if name != prevName:
@@ -134,7 +134,7 @@ class FindDlg(QtGui.QWidget):
     def changeType(self, newType):
         """Change current unit type setting"""
         self.currentType = unicode(newType)
-        if self.currentType == u'[All]':
+        if self.currentType == _(u'[All]'):
             self.currentType = u''
         self.loadUnits()
 
@@ -187,7 +187,7 @@ class FindUnitListView(QtGui.QTreeWidget):
         QtGui.QTreeWidget.__init__(self, parent)
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
-        self.setHeaderLabels(['Unit Name', 'Unit Type', 'Comments'])
+        self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
         self.header().setStretchLastSection(False)
         self.setSortingEnabled(True)
 

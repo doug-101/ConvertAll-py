@@ -42,7 +42,7 @@ class UnitAtom(object):
                     self.fromEqn = self.fromEqn.strip()
                 except AttributeError:
                     raise unitdata.UnitDataError, \
-                          'Bad equation for "%s"' % self.name
+                          _('Bad equation for "%s"') % self.name
             else:                # split factor and equiv unit for linear
                 parts = self.equiv.split(None, 1)
                 if len(parts) > 1 and \
@@ -96,7 +96,7 @@ class UnitAtom(object):
         return True
 
     def copy(self):
-        """Retrun a copy of the unit so the exponent can be changed"""
+        """Return a copy of the unit so the exponent can be changed"""
         return copy.copy(self)
 
     def __cmp__(self, other):

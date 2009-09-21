@@ -42,7 +42,7 @@ class OptionDlg(QtGui.QDialog):
         ctrlLayout.addWidget(cancelButton)
         self.connect(cancelButton, QtCore.SIGNAL('clicked()'), self,
                      QtCore.SLOT('reject()'))
-        self.setWindowTitle('Preferences')
+        self.setWindowTitle(_('Preferences'))
         self.itemList = []
         self.curGroup = None
 

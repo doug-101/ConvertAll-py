@@ -25,7 +25,7 @@ class UnitListView(QtGui.QTreeWidget):
         self.buttonList = []
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
-        self.setHeaderLabels(['Unit Name', 'Unit Type', 'Comments'])
+        self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
         self.header().setStretchLastSection(False)
         self.connect(self, QtCore.SIGNAL('itemSelectionChanged()'),
                      self.replaceUnit)

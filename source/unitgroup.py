@@ -190,13 +190,13 @@ class UnitGroup(object):
         while tmpList:
             count += 1
             if count > 5000:
-                raise unitdata.UnitDataError, 'Circular unit definition'
+                raise unitdata.UnitDataError, _('Circular unit definition')
             unit = tmpList.pop(0)
             if unit.equiv == '!':
                 self.reducedList.append(unit.copy())
             elif not unit.equiv:
                 raise unitdata.UnitDataError, \
-                      'Invalid conversion for "%s"' % unit.name
+                      _('Invalid conversion for "%s"') % unit.name
             else:
                 if unit.fromEqn:
                     self.linear = False
@@ -235,7 +235,7 @@ class UnitGroup(object):
         """Return string with reduced unit or linear compatability problem"""
         if self.checkLinear():
             return self.unitString(self.reducedList)
-        return 'Cannot combine non-linear units'
+        return _('Cannot combine non-linear units')
 
     def convert(self, num, toGroup):
         """Return num of this group converted to toGroup"""
@@ -274,7 +274,7 @@ class UnitGroup(object):
             return 1e9999
         except:
             raise unitdata.UnitDataError, \
-                  'Bad equation for %s' % self.unitList[0].name
+                  _('Bad equation for %s') % self.unitList[0].name
 
     def convertStr(self, num, toGroup):
         """Return formatted string of converted number"""

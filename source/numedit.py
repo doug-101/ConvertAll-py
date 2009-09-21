@@ -46,28 +46,29 @@ class NumEdit(QtGui.QLineEdit):
                     self.otherUnit.reduceGroup()
                 except unitdata.UnitDataError, text:
                     QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                              'Error in unit data - %s' % text)
+                                              _('Error in unit data - %s')
+                                              % text)
                     return
                 if self.thisUnit.categoryMatch(self.otherUnit):
-                    self.status.setText('Converting...')
+                    self.status.setText(_('Converting...'))
                     if self.primary:
                         self.convert()
                     else:
                         self.emit(QtCore.SIGNAL('convertRqd'))
                     return
                 if self.onLeft:
-                    self.status.setText('Units are not compatible '\
-                              u'(%s  vs.  %s)' % (self.thisUnit.compatStr(),
+                    self.status.setText(_(u'Units are not compatible '\
+                              '(%s  vs.  %s)') % (self.thisUnit.compatStr(),
                                                   self.otherUnit.compatStr()))
                 else:
-                    self.status.setText('Units are not compatible '\
-                              u'(%s  vs.  %s)' % (self.otherUnit.compatStr(),
+                    self.status.setText(_('Units are not compatible '\
+                              '(%s  vs.  %s)') % (self.otherUnit.compatStr(),
                                                   self.thisUnit.compatStr()))
             else:
-                self.status.setText('Set units')
+                self.status.setText(_('Set units'))
         else:
-            self.status.setText('Set units')
-            self.label.setTitle('No Unit Set')
+            self.status.setText(_('Set units'))
+            self.label.setTitle(_('No Unit Set'))
         self.setEnabled(False)
         self.emit(QtCore.SIGNAL('convertNum'), '')
 
@@ -85,7 +86,7 @@ class NumEdit(QtGui.QLineEdit):
             self.emit(QtCore.SIGNAL('convertNum'), numText)
         except unitdata.UnitDataError, text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                      'Error in unit data - %s' % text)
+                                      _('Error in unit data - %s') % text)
 
     def setNum(self, numText):
         """Set text based on conversion from other number editor"""
