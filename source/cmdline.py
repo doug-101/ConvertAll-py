@@ -18,20 +18,32 @@ import optiondefaults
 import unitdata
 import unitgroup
 
-usage = ['',
-         'usage:  convertall [<qt-options>]',
-         '   or:  convertall [<options>] [<number>] <from_unit> <to_unit>',
-         '   or:  convertall -i [<options>]',
+usage = [_('Usage:'),
          '',
-         'units with spaces must be "quoted"',
+         '   convertall [%s]' % _('qt-options'),
          '',
-         'options:',
-         '   -d, --decimals=<num>  set number of decimals to show',
-         '   -f, --fixed-decimals  show set number of decimals, even if zeros',
-         '   -h, --help            display this message and exit',
-         '   -i, --interactive     interactive command line mode (non-GUI)',
-         '   -q, --quiet           convert without further prompts',
-         '   -s, --sci-notation    show results in scientific notation',
+         _('-or- (non-GUI):'),
+         '   convertall [%s] [%s] %s [%s]' % (_('options'), _('number'),
+                                              _('from_unit'), _('to_unit')),
+         '',
+         _('-or- (non-GUI):'),
+         '   convertall -i [%s]' % _('options'),
+         '',
+         _('Units with spaces must be "quoted"'),
+         '',
+         _('Options:'),
+         '   -d, --decimals=%-6s %s' %
+             (_('num'), _('set number of decimals to show')),
+         '   -f, --fixed-decimals  %s' %
+             _('show set number of decimals, even if zeros'),
+         '   -h, --help            %s' %
+             _('display this message and exit'),
+         '   -i, --interactive     %s' %
+             _('interactive command line mode (non-GUI)'),
+         '   -q, --quiet           %s' %
+             _('convert without further prompts'),
+         '   -s, --sci-notation    %s' %
+             _('show results in scientific notation'),
          '']
 
 availOptions = 'd:fhiqs'
@@ -75,23 +87,27 @@ def parseArgs(opts, args):
         except (ValueError):
             numStr = u'1.0'
     fromUnit = None
-    if args:
+    try:
         fromUnit = getUnit(data, options, args.pop(0))
-        if not fromUnit and quiet:
-            return
+    except IndexError:
+        pass
+    if not fromUnit and quiet:
+        return
     toUnit = None
-    if args:
+    try:
         toUnit = getUnit(data, options, args[0])
-        if not toUnit and quiet:
-            return
+    except IndexError:
+        pass
+    if not toUnit and quiet:
+        return
     while True:
         while not fromUnit:
-            fromText = raw_input('Enter from unit -> ')
+            fromText = raw_input(_('Enter from unit -> '))
             if not fromText:
                 return
             fromUnit = getUnit(data, options, fromText)
         while not toUnit:
-            toText = raw_input('Enter to unit -> ')
+            toText = raw_input(_('Enter to unit -> '))
             if not toText:
                 return
             toUnit = getUnit(data, options, toText)
@@ -106,7 +122,8 @@ def parseArgs(opts, args):
                     if quiet:
                         return
                 badEntry = False
-                rep = raw_input('Enter number, [n]ew, [r]everse or [q]uit -> ')
+                rep = raw_input(_('Enter number, [n]ew, '
+                                  '[r]everse or [q]uit -> '))
                 if not rep or rep[0] in ('q', 'Q'):
                     return
                 if rep[0] in ('r', 'R'):
@@ -124,7 +141,7 @@ def parseArgs(opts, args):
                     except ValueError:
                         badEntry = True
         else:
-            print u'Units %s and %s are not compatible' % \
+            print _(u'Units %s and %s are not compatible') % \
                          (fromUnit.unitString(), toUnit.unitString())
             if quiet:
                 return
@@ -139,7 +156,7 @@ def getUnit(data, options, text):
     if unit.groupValid():
         unit.reduceGroup()
         return unit
-    print u'%s is not a valid unit' % text
+    print _(u'%s is not a valid unit') % text
     return None
 
 def printUsage():
