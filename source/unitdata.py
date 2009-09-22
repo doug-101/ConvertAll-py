@@ -16,9 +16,10 @@ import sys
 import os.path
 import codecs
 try:
-    from __main__ import dataFilePath
+    from __main__ import dataFilePath, lang
 except ImportError:
     dataFilePath = None
+    lang = ''
 import unitatom
 
 
@@ -34,26 +35,29 @@ class UnitData(dict):
         self.sortedKeys = []
         self.typeList = []
 
-    def findDataFile(self, pathList):
-        """Search paths for file, return line list or None"""
-        for path in pathList:
-            try:
-                f = codecs.open(os.path.join(path, 'units.dat'), 'r', 'utf-8')
-                lineList = f.readlines()
-                f.close()
-                return lineList
-            except IOError:
-                pass
+    def findDataFile(self):
+        """Search for data file, return line list or None"""
+        modPath = os.path.abspath(sys.path[0])
+        if modPath.endswith('.zip'):  # for py2exe
+            modPath = os.path.dirname(modPath)
+        pathList = [dataFilePath, os.path.join(modPath, '../data/'), modPath]
+        fileList = ['units.dat']
+        if lang and lang != 'C':
+            fileList[0:0] = ['units_%s.dat' % lang, 'units_%s.dat' % lang[:2]]
+        for path in filter(None, pathList):
+            for fileName in fileList:
+                try:
+                    f = codecs.open(os.path.join(path, fileName), 'r', 'utf-8')
+                    lineList = f.readlines()
+                    f.close()
+                    return lineList
+                except IOError:
+                    pass
         raise UnitDataError, _('Can not read "units.dat" file')
 
     def readData(self):
         """Read all unit data from file, return number loaded"""
-        modPath = os.path.abspath(sys.path[0])
-        if modPath.endswith('.zip'):  # for py2exe
-            modPath = os.path.dirname(modPath)
-        pathList = [dataFilePath, os.path.join(modPath, '../data/'),
-                    modPath]
-        lines = self.findDataFile(filter(None, pathList))
+        lines = self.findDataFile()
         for i in range(len(lines)):     # join continuation lines
             delta = 1
             while lines[i].rstrip().endswith('\\'):

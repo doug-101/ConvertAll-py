@@ -16,11 +16,12 @@ import sys
 import os.path
 from PyQt4 import QtCore, QtGui
 try:
-    from __main__ import __version__, __author__, helpFilePath, iconPath
+    from __main__ import __version__, __author__, helpFilePath, iconPath, lang
 except ImportError:
     __version__ = __author__ = '??'
     helpFilePath = None
     iconPath = None
+    lang = ''
 import unitdata
 from unitgroup import UnitGroup
 from option import Option
@@ -226,10 +227,10 @@ class ConvertDlg(QtGui.QWidget):
                                 _('Use scientific notation'))
         optiondlg.OptionDlgBool(dlg, 'FixedDecimals',
                                 _('Use fixed decimal places'))
-        dlg.startGroupBox(_('Buttons')
+        dlg.startGroupBox(_('Buttons'))
         optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
                                 _('Show operator buttons'))
-        dlg.startGroupBox(_('Colors')
+        dlg.startGroupBox(_('Colors'))
         optiondlg.OptionDlgBool(dlg, 'UseDefaultColors',
                                 _('Use default system colors'))
         optiondlg.OptionDlgPush(dlg, _('Set background color'), self.backColor)
@@ -285,15 +286,16 @@ class ConvertDlg(QtGui.QWidget):
         if modPath.endswith('.zip'):  # for py2exe
             modPath = os.path.dirname(modPath)
         pathList = [helpFilePath, os.path.join(modPath, '../doc/'),
-                    modPath, 'doc/']
+                    modPath, os.path.join(modPath, 'doc/')]
+        fileList = ['README.html']
+        if lang and lang != 'C':
+            fileList[0:0] = ['README_%s.html' % lang,
+                             'README_%s.html' % lang[:2]]
         for path in filter(None, pathList):
-            try:
-                fullPath = os.path.join(path, 'README.html')
-                f = file(fullPath, 'r')
-                f.close()
-                return fullPath
-            except IOError:
-                pass
+            for fileName in fileList:
+                fullPath = os.path.join(path, fileName)
+                if os.access(fullPath, os.R_OK):
+                    return fullPath
         return ''
 
     def help(self):

@@ -21,6 +21,7 @@ dataFilePath = None    # modified by install script if required
 helpFilePath = None    # modified by install script if required
 iconPath = None        # modified by install script if required
 translationPath = 'translations'
+lang = ''
 
 import sys
 import os.path
@@ -28,7 +29,7 @@ import locale
 import getopt
 import signal
 import __builtin__
-from PyQt4 import QtGui
+from PyQt4 import QtCore, QtGui
 
 def loadTranslator(fileName, app):
     """Load and install qt translator, return True if sucessful"""
@@ -58,6 +59,7 @@ def setupTranslator(app):
         locale.setlocale(locale.LC_ALL, '')
     except locale.Error:
         pass
+    global lang
     lang = os.environ.get('LC_MESSAGES', '')
     if not lang:
         lang = os.environ.get('LANG', '')
