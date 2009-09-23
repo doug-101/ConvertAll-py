@@ -3,7 +3,7 @@
 ; Created       : 2004-03-09
 ; By            : Doug Bell
 ; License       : Free to use, modify and distribute, but with no warranty.
-; Last modified : 2008-05-28
+; Last modified : 2009-09-24
 
 ; ConvertAll is a versatile unit conversion program
 ; Please check the website for details and updates <http://www.bellz.org/>.
@@ -16,7 +16,7 @@
 ; The name of the installer
 
 !define NAME "ConvertAll"
-!define VERSION "0.4.2"
+!define VERSION "0.4.3"
 
 ; Uncomment next line to include pyQt libraries in the installer
 !define PYQT
@@ -123,12 +123,13 @@ SectionEnd
 		File ".\lib\_ssl.pyd"
                 File ".\lib\bz2.pyd"
                 File ".\lib\mingwm10.dll"
+                File ".\lib\msvcp71.dll"
                 File ".\lib\MSVCR71.dll"
+                File ".\lib\PyQt4.QtCore.pyd"
+                File ".\lib\PyQt4.QtGui.pyd"
 		File ".\lib\python25.dll"
                 File ".\lib\QtCore4.dll"
-                File ".\lib\QtCore.pyd"
                 File ".\lib\QtGui4.dll"
-                File ".\lib\QtGui.pyd"
                 File ".\lib\select.pyd"
                 File ".\lib\sip.pyd"
                 File ".\lib\unicodedata.pyd"
@@ -250,29 +251,32 @@ Section "Uninstall"
         Delete "$INSTDIR\icons\helpforward.png"
         Delete "$INSTDIR\icons\helphome.png"
 
-        Delete "$INSTDIR\lib\_qt.pyd"
 	Delete "$INSTDIR\lib\_socket.pyd"
 	Delete "$INSTDIR\lib\_ssl.pyd"
         Delete "$INSTDIR\lib\bz2.pyd"
         Delete "$INSTDIR\lib\mingwm10.dll"
+        Delete "$INSTDIR\lib\msvcp71.dll"
         Delete "$INSTDIR\lib\MSVCR71.dll"
+        Delete "$INSTDIR\lib\PyQt4.QtCore.pyd"
+        Delete "$INSTDIR\lib\PyQt4.QtGui.pyd"
 	Delete "$INSTDIR\lib\python24.dll"
 	Delete "$INSTDIR\lib\python25.dll"
         Delete "$INSTDIR\lib\QtCore4.dll"
-        Delete "$INSTDIR\lib\QtCore.pyd"
         Delete "$INSTDIR\lib\QtGui4.dll"
-        Delete "$INSTDIR\lib\QtGui.pyd"
         Delete "$INSTDIR\lib\sip.pyd"
         Delete "$INSTDIR\lib\unicodedata.pyd"
         Delete "$INSTDIR\lib\w9xpopen.exe"
         Delete "$INSTDIR\lib\zlib.pyd"
 
+        Delete "$INSTDIR\lib\_qt.pyd"
         Delete "$INSTDIR\lib\_sre.pyd"
         Delete "$INSTDIR\lib\libqtc.pyd"
         Delete "$INSTDIR\lib\libsip.dll"
         Delete "$INSTDIR\lib\python23.dll"
         Delete "$INSTDIR\lib\qt.pyd"
         Delete "$INSTDIR\lib\qt-mt230nc.dll"
+        Delete "$INSTDIR\lib\QtCore.pyd"
+        Delete "$INSTDIR\lib\QtGui.pyd"
 
 	Delete "$INSTDIR\source\convertall.nsi"
 	Delete "$INSTDIR\source\install.ico"
