@@ -276,6 +276,42 @@ command line.</p>
 
 <h2><a name="revs"></a>Revision History</h2>
 
+<h3>September 24, 2009 - Release 0.4.3</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Prepared ConvertAll for translation efforts by properly handling Unicode
+  characters in unit data and by marking internal program strings for
+  translation.  Volunteers for translating ConvertAll into other languages
+  are welcome.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added solar mass and pennyweight mass units.</li>
+
+  <li>Added therm and thermie energy units.</li>
+
+  <li>Added gauss and maxwell magnetic units.</li>
+
+  <li>Added the US survey foot length unit.</li>
+
+  <li>Added the mpg imp mileage unit.</li>
+
+  <li>Changed the value of the point unit from the old American point to the
+  more modern desktop publishing point.</li>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>A critical QString conversion bug that caused ConvertAll to not run with
+  the latest version of PyQt (4.5.4) was fixed.</li>
+
+  <li>Command line quiet mode was fixed to avoid an interactive prompt when
+  bad unit data is entered.</li>
+
+</ul>
+
 <h3>May 28, 2008 - Release 0.4.2</h3>
 
 <ul><b>Updates:</b>
