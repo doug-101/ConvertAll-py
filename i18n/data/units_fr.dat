@@ -72,8 +72,8 @@ livre troy        = 5760 grain
 lb troy           = livre troy         # livre troy
 ounce troy        = 1/12.0 lb troy
 oz troy           = ounce troy         # ounce troy
-tonne               = 2000 lb            # # imperiale
-kilotonne           = 1000 tonne           # # imperiale
+ton               = 2000 lb            # # imperiale
+kiloton           = 1000 tonne           # # imperiale
 slug              = lbf*s^2/ft
 stone             = 14 lb
 grain             = 1/7000.0 lb
@@ -86,7 +86,7 @@ masse solaire        = 1.9891e30 kg
 #
 [length]
 m                    = !              # metre
-metre                = m
+meter                = m
 metre                = m
 decimetre            = 0.1 m
 cm                   = 0.01 m         # centimetre
@@ -489,7 +489,7 @@ circular mil  = 1/4.0 pi*mil^2  # # cercle d'un mille de surface
 [volume]
 cc                   = cm^3                 # centimètre cube
 cubic centimetre     = cc
-litre                = 1000 cc
+liter                = 1000 cc
 l                    = litre                # litre
 litre                = litre
 decilitre            = 0.1 litre
