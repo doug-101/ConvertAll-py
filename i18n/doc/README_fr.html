@@ -1,0 +1,190 @@
+<html>
+<head>
+<title>ConvertAll ReadMe</title>
+</head>
+<body>
+<center>
+<h1>Fichier ReadMe de ConvertAll</h1>
+<h2>un logiciel de conversion d'unit&eacute;s</h2>
+
+<p>&eacute;crit par Doug Bell<br>
+Version 0.4.3<br>
+24 Septembre 2009</p>
+</center>
+
+<h2>Contenus</h2>
+
+<ul>
+<li><a href="#background">Fondement</a></li>
+<li><a href="#features">Capacit&eacute;s</a></li>
+<li><a href="#legal">Dispositions l&eacute;gales</a>
+<li><a href="#sysreq">Minimum syst&egrave;me</a>
+  <ul><li><a href="#linux-sys">Linux</a></li>
+  <li><a href="#win-sys">Windows</a></li></ul></li>
+<li><a href="#install">Installation</a>
+  <ul><li><a href="#linux-inst">Linux</a></li>
+  <li><a href="#win-inst">Windows</a></li></ul></li>
+<li><a href="#using">Utiliser ConvertAll</a>
+  <ul><li><a href="#basics">Bases</a></li>
+  <li><a href="#combine">Combiner des unit&eacute;s</a></li>
+  <li><a href="#shortcut">Raccourcis</a></li>
+  <li><a href="#finder">Trouver une unit&eacute;</a></li>
+  <li><a href="#options">Options</a></li>
+  <li><a href="#nonlinear">Conversions non lin&eacute;aires</a></li>
+  <li><a href="#cmdline">Utilisation de la ligne de commande</a></li></ul></li>
+<li><a href="#revs">Historique</a></li>
+<li><a href="#contact">Questions, Commentaires, Critiques?</a></li>
+</ul>
+
+<h2><a name="background"></a>Fondement</h2>
+
+<p>Pourquoi &eacute;crire un autre convertisseur d'unit&eacute;s? Eh bien, je n'en avais trouv&eacute; aucun qui &eacute;tait comme je le voulais.</p>
+
+<p>Avec ConvertAll, vous pouvez combiner les unit&eacute;s comme vous le voulez. Si vous voulez convertir des pouces en kilom&egrave;tre, ca fonctionne! Les unit&eacute;s n'ont pas &agrave; avoir de sens pour personne d'autres que vous.</p>
+
+<p>Comme je ne suis pas dans l'industrie du logiciel, je fais ce programme librement, je le distribue librement et j'autorise n'importe qui &agrave; le copier ou le modifier tant qu'il ne se retrouve pas dans un logiciel propri&eacute;taire. Si vous aimez ce logiciel, sentez-vous libre d'en parler. Aussi, donnez-moi des commentaires par courriel - mon adresse est doug101 AT bellz.org</p>
+
+<h2><a name="features"></a>Capacit&eacute;s</h2>
+
+<ul>
+
+  <li>L'unit&eacute; &agrave; convertir peut &ecirc;tre &eacute;crite (avec auto compl&eacute;tion) ou choisie dans une liste.</li>
+
+  <li>Vous pouvez utiliser les abr&eacute;viations ou les unit&eacute;s au long.</li>
+
+  <li>Les unit&eacute;s peuvent &ecirc;tre combin&eacute;es avec les op&eacute;rateurs "*" et "/".</li>
+
+  <li>Le symbole "^" peut &ecirc;tre utilis&eacute; pour les exposants.</li>
+
+  <li>Les unit&eacute;s non linaires (comme la temp&eacute;rature) peuvent &ecirc;tre converties.</li>
+
+  <li>Une liste d'unit&eacute; peut &ecirc;tre filtr&eacute;e et cherch&eacute;e</li>
+
+  <li>Les nombres peuvent &ecirc;tre &eacute;crits et convertis dans les deux directions.</li>
+
+  <li>Des expressions math&eacute;matiques de bases peuvent &ecirc;tre &eacute;crites &agrave; la place de nombres.</li>
+
+  <li>Le menu Options contr&ocirc;le le formatage des r&eacute;sultats num&eacute;riques.</li>
+
+  <li>Vous trouverez au-del&agrave; de 400 unit&eacute;s.</li>
+
+  <li>Le format du fichier de donn&eacute;es est facilement modifiable pour ajouter de nouvelles unit&eacute;s.</li>
+
+  <li>La version en lignes de commandes peut &ecirc;tre utilis&eacute;e.</li>
+
+</ul>
+
+<h2><a name="legal"></a>Dispositions l&eacute;gales</h2>
+
+<p>ConvertAll est un logiciel libre; vous pouvez le redistribuer et/ou le modifier sous les termes de la licence GNU GPL (GNU General Public License) comme publi&eacute;e par la Free Software Foundation; la version 2 de cette license ou (comme vous le voulez) une version plus r&eacute;cente.</p>
+
+<p>Ce programme est distribu&eacute; dans l'espoir d'&ecirc;tre utile, mais SANS AUCUNE GARANTIE. Voyez le fichier <tt>LICENSE</tt> fourni avec ce programme pour plus d'information.</p>
+
+<h2><a name="sysreq"></a>Minimum syst&egrave;me</h2>
+
+<h3><a name="linux-sys"></a>Linux</h3>
+
+<p>ConvertAll requiert les librairies suivantes :
+<ul>
+  <li>Qt (Version 4.1 or higher - voyez <a
+    href="http://www.trolltech.com">Trolltech</a> pour plus d'information)</li>
+  <li>Python (Version 2.3 or higher)</li>
+  <li>PyQt (Version 4.0 or higher - voyez <a
+    href="http://www.riverbankcomputing.co.uk">Riverbank</a>
+    pour plus d'information)</li>
+</ul></p>
+
+<p>Ces librairies sont relativement nouvelles. Des paquets n'existent peut-&ecirc;tre pas pour votre distribution. Dans ce cas, une version ant&eacute;rieure de ConvertAll (0.3.2) est toujours disponible.</p>
+
+<h3><a name="win-sys"></a>Windows</h3>
+
+<p>En utilisant les binaires de ConvertAll, n'importe quel PC utilsant Win 95, 98, NT, 2000, or XP devrait fonctionner.</p>
+
+<h2><a name="install"></a>Installation</h2>
+
+<h3><a name="linux-inst"></a>Linux</h3>
+
+<p>Extraire les sources du fichier tar de convertall. Ensuite, allez dans le dossier <tt>ConvertAll</tt>. Pour une utilisation de base, tapez la commande suivante en mode super utilisateur (root) : <tt>python install.py</tt></p>
+
+<p>Pour les options, utilisez: <tt>python install.py -h</tt></p>
+
+<p>Pour installer ConvertAll avec un prefix diff&eacute;rent (par d&eacute;faut c'est
+<tt>/usr/local</tt>), utilisez:  <tt>python install.py -p
+  /prefix/path</tt></p>
+
+<h3><a name="win-inst"></a>Windows</h3>
+
+<p>Simplement utiliser le fichier t&eacute;l&eacute;charg&eacute; (<tt>convertall-x.x.x-install.exe</tt>).  Cela installera les fichiers n&eacute;cessaires, fera les associations et cr&eacute;era les raccourcis.</p>
+
+<p>Si vous avez d&eacute;j&agrave; une version pr&eacute;c&eacute;dente de ConvertAll, utilisez
+<tt>convertall-x.x.x-upgrade.exe</tt> pour mettre &agrave; jour votre version ant&eacute;rieure.</p>
+
+<p>Si vous souhaitez modifier le code source ou &eacute;crire vos propres programmes PyQt pour Windows, n'utilisez pas les proc&eacute;dures ci-haut. &Agrave; la place, vous devez installer <a href="http://www.python.org">Python</a> et les fichiers binaires pour <a href="http://www.riverbankcomputing.co.uk">PyQt</a>. Ensuite, extraire le code source et les fichiers de donn&eacute;es de la version Linux (fichier tar convertall) dans un dossier de votre choix et ex&eacute;cuter <tt>convertall.py</tt></p>
+
+<h2><a name="using"></a>Utiliser ConvertAll</h2>
+
+<h3><a name="basics"></a>Bases</h3>
+
+<p>Simplement &eacute;crire le nom d'une unit&eacute; dans le champ "de l'unit&eacute;". Au fur que vous &eacute;crivez, une liste appara&icirc;tra et vous pourrez s&eacute;lectionner la bonne. Tapez l'abr&eacute;viation compl&egrave;te, le nom complet ou s&eacute;lectionn&eacute; en un dans la liste et taper retour. Cliquer avec la souris fonctionne &eacute;galement tout comme les fl&egrave;ches haut et bas.</p>
+
+<p>Refaire les m&ecirc;mes &eacute;tapes dans le champ "vers l'unit&eacute;". Quand vous aurez termin&eacute;, si les unit&eacute;s sont compatibles, vous verrez un champ pour entrer des valeurs num&eacute;riques sous les listes. Entrer un nombre dans un champ et vous verrez le r&eacute;sultat de la conversion dans l'autre champ.</p>
+
+<h3><a name="combine"></a>Combiner les unit&eacute;s</h3>
+
+<p>La force de ConvertAll repose dans son habilet&eacute; &agrave; combiner plusieurs unit&eacute;s. &Eacute;crivez simplement le nom de deux unit&eacute;s avec un "*" ou un "/" entre eux. Ainsi, cela permet les km/h ou les j/s. Le symbole "^" peut &ecirc;tre utilis&eacute; pour des m?? "m^2". M&ecirc;me les exposants n&eacute;gatifs "sec^-1" sont possibles, mais le symbole de la division appara&icirc;tra. ("m*sec^-2" deviendra "m/sec^2")</p>
+
+<p>Dans ConvertAll, la multiplication passe avant la division. Donc "m/sec*h" veut dire "m/(sec*h)". Donc, "m/sec/h" revient au m&ecirc;me que "m*h/sec". Faites donc attention aux priorit&eacute;s.</p>
+
+<p>Les boutons sous les listes d'unit&eacute;s ('X', '/', '^2', '^3') placeront l'op&eacute;rateur sur l'unit&eacute; le plus pr&egrave;s du curseur.</p>
+
+<p>Aussi, cliquer sur une unit&eacute; dans la liste remplace g&eacute;n&eacute;ralement l'unit&eacute; la plus pr&egrave;s du curseur.</p>
+
+<p>Le bouton "Effacer l'unit&eacute;" sous les op&eacute;rateurs peu &ecirc;tre utilis&eacute; pour nettoyer le champ et ainsi laissez de la place pour une nouvelle unit&eacute;.</p>
+
+<h3><a name="shortcut"></a>Raccouris</h3>
+
+<p>Quand vous tapez le nom d'une unit&eacute;, les espaces seront ignor&eacute;s. Ils peuvent donc &ecirc;tre saut&eacute;s. Le pluriel aussi est ignor&eacute;. Quand vous avez entr&eacute; un nom partiel d'unit&eacute;, si vous tapez retour, le nom s'&eacute;crira au complet. Si vous utilisez la touche TAB, le curseur ira au champ suivant en plus.</p>
+
+<p>Le nombre devant &ecirc;tre converti peut &ecirc;tre entr&eacute; dans le champ "De" ou "Vers" sans probl&egrave;me. La notation d&eacute;cimale et scientifique peuvent &ecirc;tre utilis&eacute;s tout comme les expressions usuelles en math&eacute;matique (+, -, *, /, **).</p>
+
+<h3><a name="finder"></a>Trouver une unit&eacute;</h3>
+
+<p>Le chercheur d'unit&eacute; peut &ecirc;tre utilis&eacute; pour filtrer les unit&eacute;s par type et/ou pour chercher des unit&eacute;s en utilisant une cha&icirc;ne de caract&egrave;res. Cela fera appara&icirc;tre une liste s&eacute;par&eacute;e dans une nouvelle fen&ecirc;tre. Cette liste sera ensuite mise &agrave; jour en fonction des filtres utilis&eacute;s.</p>
+
+<p>Les boutons pr&egrave;s du bas de la fen&ecirc;tre du chercheur ajoutent l'unit&eacute; s&eacute;lectionn&eacute;e dans la fen&ecirc;tre principale. Le bouton "Remplacer" remplace toutes les unit&eacute;s combin&eacute;es par la s&eacute;lection. Le bouton "Insertion" remplace seulement la partie active des unit&eacute;s.</p>
+
+<h3><a name="options"></a>Options</h3>
+
+<p>Le bouton "Options..." permet de changer les param&egrave;tres par d&eacute;faut. Les nouveaux param&egrave;tres sont enregistr&eacute;s automatiquement, donc &agrave; la prochaine utilisation de ConvertAll, vos param&egrave;tres modifi&eacute;s seront encore pr&eacute;sents.</p>
+
+<p>Les premi&egrave;res options contr&ocirc;lent l'affichage de r&eacute;sultats num&eacute;riques, incluant l'utilisation de notation scientifique et le nombre de d&eacute;cimales. Faites attention si vous mettez un tr&egrave;s petit nombre de d&eacute;cimal, car tout deviendrait moins pr&eacute;cis. Six d&eacute;cimales ou plus sont recommand&eacute;es (par d&eacute;faut c'est huit).</p>
+
+<p>Il y a une option pour cacher les boutons des op&eacute;rateurs (x, /,
+^2, ^3 and Clear Unit). Ils peuvent &ecirc;tre cach&eacute;s pour sauver de l'espace si le clavier est utilis&eacute; pour entrer ces op&eacute;rateurs.</p>
+
+<p>Des boutons sont aussi disponibles pour changer la couleur des champs de texte.</p>
+
+<h3><a name="nonlinear"></a>Conversion non lin&eacute;aire</h3>
+
+<p>La conversion de quelques unit&eacute;s est non lin&eacute;aire (non proportionnel). La conversion de la temp&eacute;rature des Fahrenheit et des Celsius est un exemple de conversion non lin&eacute;aire. Les unit&eacute;s non lin&eacute;aires sont identifi&eacute;es dans les commentaires (&agrave; droite de la colonne "Type").</p>
+
+<p>Ces unit&eacute;s ne peuvent &ecirc;tre converties que lorsqu'ils sont utilis&eacute;s seuls et sans exposants. Sinon la conversion ne sera pas juste.</p>
+
+<h3><a name="cmdline"></a>Utilisation de la ligne de commande</h3>
+
+<p>Les conversions peuvent &ecirc;tre faites &agrave; partir de la ligne de commande (dans un terminal Linux ou DOS). Entrer la commande ("convertall"), le nombre, l'unit&eacute; &agrave; partir de et l'unit&eacute; vers (le tout s&eacute;par&eacute; par des espaces) pour faire une conversion. Les unit&eacute;s dont le nom comporte des espaces doit &ecirc;tre entour&eacute;es de guillemets. Encore, si vous voulez qu'on vous demande les entr&eacute;es, utilisez "convertall -i" en ligne de commande.</p>
+
+<p>Une fois la conversion termin&eacute;e, ConvertAll vous demandera pour un nouveau nombre pour faire la m&ecirc;me conversion. Vous pourrez soit utiliser "r" pour faire la conversion inverse ou "q" pour quitter.</p>
+
+<p>Pour la liste compl&egrave;te des options, entrer "convertall -h" &agrave; l'invite.</p>
+
+<h2><a name="revs"></a>Historique</h2>
+
+<p>L'historique complet du logiciel peut &ecirc;tre trouv&eacute; dans la version anglaise du fichier README.</p>
+
+<h2><a name="contact"></a>Questions, Commentaires, Critiques?</h2>
+
+<p>Vous pouvez me contacter par email &agrave; l'adresse : doug101 AT bellz.org<br> Tous les commentaires sont les bienvenus incluant les rapports de bogues. Aussi, v&eacute;rifi&eacute; p&eacute;riodiquement au <a href="http://www.bellz.org">www.bellz.org</a> pour les mises &agrave; jour.</p>
+
+</body>
+</html>
