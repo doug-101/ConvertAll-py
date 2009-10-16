@@ -39,7 +39,7 @@
 #
 # mass units
 #
-[mass]
+[masse]
 kg                = !                  # kilogramme
 kilogramme          = kg
 key               = kg                 # # jargon de drogue
@@ -52,8 +52,8 @@ centigramme         = 0.01 gramme
 milligramme         = 0.001 gramme
 mg                = milligramme          # milligramme
 microgramme         = 0.001 mg
-tonne             = 1000 kg            # # metrique
-metrique tonne        = tonne
+tonne             = 1000 kg            # # metriqu
+tonne metrique        = tonne
 megagramme          = tonne
 kilotonne         = 1000 tonne         # # metrique
 gigagramme          = 1e9 gramme
@@ -65,15 +65,15 @@ masse atomique  = amu
 livre             = 0.45359237 kg
 lb                = livre              # livres
 lbm               = livre              # livres
-ounce             = 1/16.0 livre
-oz                = ounce              # once
-lid               = ounce              # # jargon de drogue
+once             = 1/16.0 livre
+oz                = once              # once
+lid               = once              # # jargon de drogue
 livre troy        = 5760 grain
 lb troy           = livre troy         # livre troy
-ounce troy        = 1/12.0 lb troy
+once troy        = 1/12.0 lb troy
 oz troy           = ounce troy         # ounce troy
 ton               = 2000 lb            # # imperiale
-kiloton           = 1000 tonne           # # imperiale
+kiloton           = 1000 ton           # # imperiale
 slug              = lbf*s^2/ft
 stone             = 14 lb
 grain             = 1/7000.0 lb
@@ -84,7 +84,7 @@ masse solaire        = 1.9891e30 kg
 #
 # length / distance units
 #
-[length]
+[longueur]
 m                    = !              # metre
 meter                = m
 metre                = m
@@ -114,8 +114,8 @@ pied                 = 12 pouce
 ft                   = pied           # pied
 feet                 = pied
 pied US survey       = 1200/3937.0 m
-yard                 = 3 ft
-yd                   = yard           # verge
+verge                 = 3 ft
+yd                   = verge           # verge
 mile                 = 5280 ft
 mi                   = mile           # mille
 nautical mile        = 1852 m
@@ -130,14 +130,14 @@ cubit                = 21.8 pouce      # # coudée biblique
 point                = 1/72.0 pouce      # # point de caractère
 pica                 = 12 point
 caliber              = 0.01 pouce      # # calibre d'une arme
-football field       = 100 yd
+terrain de football  = 100 yd
 marathon             = 46145 yd
 mil Swedish          = 10 km
 au                   = 1.49597870691e11 m   # unité astronomique
-astronomical unit    = au
-light year           = 365.25 light speed * day
-light minute         = light speed * min
-light second         = light speed * s
+unite astronomique    = au
+annee lumiere           = 365.25 vitesse lumiere * jour
+minute lumiere         = vitesse lumiere * min
+seconde lumiere        = vitesse lumiere * s
 parsec               = 3.0856775813e16 m
 kiloparsec           = 1000 parsec
 megaparsec           = 1000 kiloparsec
@@ -169,36 +169,36 @@ shoe size womens     = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
 #
 # unités de temps
 #
-[time]
+[temps]
 s             = !                 # seconde
 sec           = s                 # seconde
-second        = s
+seconde        = s
 ms            = 0.001 s           # milliseconde
-millisecond   = ms
-microsecond   = 1e-6 s
+milliseconde   = ms
+microseconde   = 1e-6 s
 ns            = 1e-9 s            # nanoseconde
-nanosecond    = ns
+nanoseconde    = ns
 minute        = 60 s
 min           = minute            # minute
-hour          = 60 min
-hr            = hour              # heure
+heure          = 60 min
+hr            = heure              # heure
 bell          = 30 min            #  # définition nautique
 watch         = 4 hour
 watches       = watch
-day           = 24 hr
-week          = 7 day
-wk            = week              # semaine
-fortnight     = 14 day
-month         = 1/12.0 year
-year          = 365.242198781 day
-yr            = year              # année
-calendar year = 365 day
-decade        = 10 year
-century       = 100 year
-centuries     = century
-millennium    = 1000 year
-millennia     = millennium
-[scheduling]
+jour           = 24 hr
+semaine          = 7 jour
+wk            = semaine              # semaine
+fortnight     = 14 jour
+mois         = 1/12.0 annee
+annee          = 365.242198781 jour
+yr            = annee              # année
+annee calendrier = 365 jour
+decennie        = 10 annee
+siecle       = 100 annee
+siecles     = secle
+millenaire    = 1000 annee
+millennia     = millenaire
+[horaire]
 man hour      = 168/40.0 hour
 man week      = 40 man hour
 man month     = 1/12.0 man year
@@ -237,7 +237,7 @@ Fahrenheit degree = F deg
 #
 # electrical units
 #
-[current]
+[intensité du courrant]
 A              = !              # ampère
 ampere         = A
 amp            = A
@@ -249,10 +249,10 @@ kiloampere     = 1000 A
 kA             = kiloampere     # kiloampère
 [charge]
 coulomb        = A*s
-amp hour       = A*hr
+amp heure       = A*hr
 mAh            = 0.001 amp hour # miliampère-heure
-milliamp hour  = mAh
-[potential]
+milliamp heure  = mAh
+[voltage]
 volt           = W/A
 V              = volt           # volt
 millivolt      = 0.001 volt
@@ -266,13 +266,13 @@ microhm        = 0.001 milliohm
 kilohm         = 1000 ohm
 [conductance]
 siemens        = A/V
-[capacitance]
+[capacité]
 farad          = coulomb/V
 millifarad     = 0.001 farad
 microfarad     = 0.001 millifarad
 nanofarad      = 1e-9 farad
 picofarad      = 1e-12 farad
-[magn. flux]
+[flux mag.]
 weber          = V*s
 Wb             = weber          # weber
 maxwell        = 1e-8 Wb
@@ -282,7 +282,7 @@ H              = henry          # henry
 millihenry     = 0.001 henry
 mH             = millihenry     # millihenry
 microhenry     = 0.001 mH
-[flux density]
+[flux de densité]
 tesla          = Wb/m^2
 T              = tesla          # tesla
 gauss          = maxwell/cm^2
@@ -291,7 +291,7 @@ gauss          = maxwell/cm^2
 #
 # molecular units
 #
-[molecular qty]
+[quantité moléculaire]
 mol          = !           # mole       # masse molaire
 mole         = mol         #            # masse molaire
 gramme mole    = mol
@@ -299,7 +299,7 @@ kilomole     = 1000 mol
 kmol         = kilomole    # kilomole
 livre mole   = mol*lbm/gramme
 lbmol        = livre mole  # mole-livres
-[size of a mol]
+[nombre d'atomes]
 avogadro     = gramme/amu*mol
 
 
@@ -310,7 +310,7 @@ avogadro     = gramme/amu*mol
 cd          = !          # candela
 candela     = cd
 
-[luminous flux]
+[flux lumineux]
 lumen        = cd * sr
 lm           = lumen     # lumen
 
@@ -331,20 +331,20 @@ footlambert  = cd/pi*ft^2
 [angle]
 radian      = !
 rad         = radian         # radian
-circle      = 2 pi*radian
-turn        = circle
-revolution  = circle
+cercle      = 2 pi*radian
+tour        = cercle
+revolution  = cercle
 rev         = revolution     # tour
-degree      = 1/360.0 circle
-deg         = degree         # degré
+degre      = 1/360.0 cercle
+deg         = degre         # degré
 arc min     = 1/60.0 degree  # minute
 arc minute  = arc min
 min arc     = arc min        # minute
 minute arc  = arc min
 arc sec     = 1/60.0 arc min # seconde
-arc second  = arc sec
+arc seconde  = arc sec
 sec arc     = arc sec        # seconde
-second arc  = arc sec
+seconde arc  = arc sec
 quadrant    = 1/4.0 circle
 right angle = quadrant
 gradian     = 0.01 quadrant
@@ -353,7 +353,7 @@ gradian     = 0.01 quadrant
 #
 # solid angle units
 #
-[solid angle]
+[angle dans les solides]
 sr         = !      # stéradian
 steradian  = sr
 sphere     = 4 pi*sr
@@ -363,7 +363,7 @@ hemisphere = 1/2.0 sphere
 #
 # information units
 #
-[data]
+[données informatiques]
 bit              = !
 kilobit          = 1000 bit          #                  # en base 10
 megabit          = 1000 kilobit      #                  # en base 10
@@ -402,7 +402,7 @@ TiB              = tebibyte          # tebibyte
 pebibyte         = 1024 TiB
 PiB              = pebibyte          # pebibyte
 
-[data transfer]
+[transfert de donnée]
 bps              = bit/sec           # bits / seconde
 kbps             = 1000 bps          # kilobits / sec.  # en base 10
 
@@ -410,35 +410,35 @@ kbps             = 1000 bps          # kilobits / sec.  # en base 10
 #
 # Unitless numbers
 #
-[quantity]
-unit               = !
-1                  = unit            # unité
-pi                 = 3.14159265358979323846 unit
-pair               = 2 unit
-hat trick          = 3 unit          # # sports
-dozen              = 12 unit
-doz                = dozen           # douzen
-bakers dozen       = 13 unit
-score              = 20 unit
-gross              = 144 unit
-great gross        = 12 gross
-ream               = 500 unit
-percent            = 0.01 unit
-%                  = percent
-mill               = 0.001 unit
-[interest rate]
-APR                = [unit] log(1 + x/100) ;  (exp(x) - 1)*100 \
+[quantitée]
+unite               = !
+1                  = unite            # unité
+pi                 = 3.14159265358979323846 unite
+paire               = 2 unite
+tour du chapeau          = 3 unite          # # sports
+douzaine              = 12 unite
+doz                = dozaine           # douzaine
+trieze à la douzaine       = 13 unite
+score              = 20 unite
+grosse              = 144 unite
+grande grosse        = 12 grosse
+ream               = 500 unite
+pourcent            = 0.01 unite
+%                  = pourcent
+millieme               = 0.001 unite
+[taux d'intérêt]
+APR                = [unite] log(1 + x/100) ;  (exp(x) - 1)*100 \
                      # annual % rate # based on continuous comlivreing
 [concentration]
-proof              = 1/200.0 unit    # # contenant d'alcool
-ppm                = 1e-6 unit       # parties par million
-parts per million  = ppm
-ppb                = 1e-9 unit       # parties par milliard
-parts per billion  = ppb
-ppt                = 1e-12 unit      # parties par billion
-parts per trillion = ppt
-karat              = 1/24.0 unit     # # pureté de l'or
-carat gold         = karat           # # pureté de l'or
+proof              = 1/200.0 unite    # # contenant d'alcool
+ppm                = 1e-6 unite       # parties par million
+partie par million  = ppm
+ppb                = 1e-9 unite       # parties par milliard
+partie par milliard  = ppb
+ppt                = 1e-12 unite      # parties par billion
+partie par billion = ppt
+karat              = 1/24.0 unite     # # pureté de l'or
+carat d'or         = karat           # # pureté de l'or
 
 
 #
@@ -460,14 +460,14 @@ gramme force     = g * gravity
 livre force    = lbm * gravity
 lbf            = livre force     # livres-force
 tonne force      = tonne * gravity
-ounce force    = ounce * gravity
-ozf            = ounce force     # once-force
+once force    = once * gravity
+ozf            = once force     # once-force
 
 
 #
 # area units
 #
-[area]
+[aire]
 barn          = 1e-28 m^2       # # physique des particules
 are           = 100 m^2
 decare        = 10 are
@@ -488,10 +488,10 @@ circular mil  = 1/4.0 pi*mil^2  # # cercle d'un mille de surface
 #
 [volume]
 cc                   = cm^3                 # centimètre cube
-cubic centimetre     = cc
-liter                = 1000 cc
+centimetre cube     = cc
+litre                = 1000 cc
 l                    = litre                # litre
-litre                = litre
+liter                = litre
 decilitre            = 0.1 litre
 centilitre           = 0.01 litre
 millilitre           = cc
@@ -507,9 +507,8 @@ quart                = 1/4.0 gallon         #             # US liquide
 qt                   = quart                # litre       # US liquide
 pint                 = 1/2.0 quart          #             # US liquide
 pt                   = pint                 # pinte        # US liquide
-fluid ounce          = 1/16.0 pint          #             # US
-fl oz                = fluid ounce          # once liquide # US
-ounce fluid          = fluid ounce          #             # US
+once liquide          = 1/16.0 pint          #             # US
+fl oz                = once liquide          # once liquide # US
 imperial gallon      = 4.54609 litre
 imp gal              = imperial gallon      # gallon impérial
 gallon imperial      = imperial gallon
@@ -519,20 +518,20 @@ quart imperial       = imperial quart
 imperial pint        = 1/8.0 imp gal
 imp pt               = imperial pint        # pinte impériale
 pint imperial        = imperial pint
-imperial fluid ounce = 1/160.0 imp gal
-imp fl oz            = imperial fluid ounce # once liquide impériale
-cup                  = 8 fl oz
-tablespoon           = 1/16.0 cup
-tbsp                 = tablespoon           # cuillère à table
-teaspoon             = 1/3.0 tbsp
-tsp                  = teaspoon             # cuillère à thé
-barrel               = 42 gallon
-bbl                  = barrel               # baril
+once liquide impériale = 1/160.0 imp gal
+imp fl oz            = once liquide impériale # once liquide impériale
+tasse                  = 8 fl oz
+cuillier a table           = 1/16.0 tasse
+c-a-t                 = cuillier a table	# cuillère à table
+cuillier a the             = 1/3.0 c-a-t
+tsp                  = cuillier a the             # cuillère à thé
+baril               = 42 gallon
+bbl                  = baril               # baril
 shot                 = 1.5 fl oz
 fifth                = 1/5.0 gallon         #             # alcool
-wine bottle          = 750 ml
+bouteille de vin          = 750 ml
 magnum               = 1.5 litre            #             # alcool
-keg                  = 15.5 gallon          #             # bière
+tonneau                  = 15.5 gallon          #             # bière
 hogshead wine        = 63 gal
 hogshead beer        = 54 gal
 bushel               = 2150.42 in^3
@@ -545,28 +544,28 @@ board feet           = board foot
 #
 # velocity units
 #
-[velocity]
-knot        = nmi/hr
-kt          = knot             # noeud
-light speed = 2.99792458e8 m/s
+[vitesse]
+noeud        = nmi/hr
+kt          = noeud             # noeud
+vitesse lumiere = 2.99792458e8 m/s
 mph         = mi/hr            # milles/heure
 kph         = km/hr            # kilomètres/heure
 mach        = 340.29 m/s       # # mur du son
-[rot. velocity]
-rpm         = rev/min          # tour/min
-rps         = rev/sec          # tour/sec
+[vitesse de rotation]
+rpm         = tour/min          # tour/min
+rps         = tour/sec          # tour/sec
 
 
 #
 # flow rate units
 #
-[fluid flow]
+[flux de fluide]
 gph         = gal/hr           # gallons/heure
 gpm         = gal/min          # gallons/minute
 cfs         = ft^3/sec         # pieds cubes/seconde
 cfm         = ft^3/min         # pieds cubes/minute
 lpm         = l/min            # litre/min
-[gas flow]
+[flux de gaz]
 sccm        = atm*cc/min       # TPN cc/min      # pression * flux
 sccs        = atm*cc/sec       # TPN cc/sec      # pression * flux
 slpm        = atm*l/min        # TPN litre/min   # pression * flux
@@ -578,7 +577,7 @@ scfm        = atm*ft^3/min     # TPN pied cube/min   # pression * flux
 #
 # pressure units
 #
-[pressure]
+[pression]
 Pa                    = N/m^2                    # Pascal
 pascal                = Pa
 hPa                   = 100 Pa                   # hectoPascal
@@ -599,13 +598,13 @@ decibar               = 0.1 bar
 kilobar               = 1000 bar
 megabar               = 1000 kilobar
 mm Hg                 = mm*density Hg*gravity
-millimetre of Hg      = mm Hg
+millimetre de Hg      = mm Hg
 torr                  = mm Hg
 in Hg                 = in*density Hg*gravity    # mm de Hg
-pouce of Hg            = in Hg
+pouce de Hg            = in Hg
 m water               = m*density water*gravity  # metre de H2O
 m H2O                 = m water                  # metre de H2O
-metre of water        = m water
+metre de water        = m water
 in water              = in*density water*gravity # pouce de H2O
 in H2O                = in water                 # pouce de H2O
 inch of water         = in water
@@ -615,36 +614,36 @@ feet of water         = ft water
 foot of head          = ft water
 ft hd                 = ft water                 # foot of head
 psi                   = lbf/in^2                 # livre / pouce carré
-livre per sq pouce     = psi
+livre par pouce carre    = psi
 ksi                   = 1000 psi                 # 1000 lb / pouce carré
 
 
 #
 # density units
 #
-[density]
-density water         = gramme/cm^3
-density sea water     = 1.025 gramme/cm^3
-density Hg            = 13.5950981 gramme/cm^3
-density air           = 1.293 kg/m^3          # # a TPN
-density steel         = 0.283 lb/in^3         # # acier carbone
-density aluminum      = 0.098 lb/in^3
-density zinc          = 0.230 lb/in^3
-density brass         = 0.310 lb/in^3         # # 80Cu-20Zn
-density copper        = 0.295 lb/in^3
-density iron          = 0.260 lb/in^3         # # fonte
-density nickel        = 0.308 lb/in^3
-density tin           = 0.275 lb/in^3
-density titanium      = 0.170 lb/in^3
-density silver        = 0.379 lb/in^3
-density nylon         = 0.045 lb/in^3
-density polycarbonate = 0.045 lb/in^3
+[densite]
+densite eau         = gramme/cm^3
+densite eau salee     = 1.025 gramme/cm^3
+densite Hg            = 13.5950981 gramme/cm^3
+densite air           = 1.293 kg/m^3          # # a TPN
+densite acier         = 0.283 lb/in^3         # # acier carbone
+densite aluminum      = 0.098 lb/in^3
+densite zinc          = 0.230 lb/in^3
+densite cuivre-zinc         = 0.310 lb/in^3         # # 80Cu-20Zn
+densite cuivre        = 0.295 lb/in^3
+densite fonte          = 0.260 lb/in^3         # # fonte
+densite nickel        = 0.308 lb/in^3
+densite tin           = 0.275 lb/in^3
+densite titane     = 0.170 lb/in^3
+densite argent        = 0.379 lb/in^3
+densite nylon         = 0.045 lb/in^3
+densite polycarbonate = 0.045 lb/in^3
 
 
 #
 # energy units
 #
-[energy]
+[energie]
 joule                = N*m
 J                    = joule             # joule
 kilojoule            = 1000 joule
@@ -673,7 +672,7 @@ tonne TNT              = 4.184e9 J
 #
 # power units
 #
-[power]
+[puissance]
 watt              = J/s
 W                 = watt            # watt
 kilowatt          = 1000 W
@@ -685,13 +684,13 @@ GW                = gigawatt        # gigawatt
 milliwatt         = 0.001 W
 horsepower        = 550 ft*lbf/sec
 hp                = horsepower      # chevaux-vapeur
-metric horsepower = 75 kgf*m/s
+horsepower metrique = 75 kgf*m/s
 
 
 #
 # frequency
 #
-[frequency]
+[frequence]
 hertz       = unit/sec
 Hz          = hertz      # hertz
 millihertz  = 0.001 Hz
@@ -706,13 +705,13 @@ GHz         = gigahertz  # gigahertz
 #
 # radioactivity
 #
-[radioactivity]
+[radioactivite]
 becquerel       = unit/sec
 Bq              = becquerel     # becquerel
 curie           = 3.7e10 Bq
 millicurie      = 0.001 curie
 roentgen        = 2.58e-4 coulomb/kg
-[radiation dose]
+[dose de radiation]
 gray            = J/kg
 Gy              = gray          # gray
 rad. abs. dose  = 0.001 Gy      # # rad commun
@@ -726,13 +725,13 @@ millirem        = 0.001 rem     # # roentgen equiv mammal
 #
 # viscosity
 #
-[dyn viscosity]
+[viscosite]
 poise        = g/cm*s
 P            = poise       # poise
 centipoise   = 0.01 poise
 cP           = centipoise  # centipoise
 
-[kin viscosity]
+[viscosite]
 stokes       = cm^2/s
 St           = stokes      # stokes
 centistokes  = 0.01 stokes
@@ -743,13 +742,13 @@ cSt          = centistokes # centistokes
 # misc. units
 #
 [acceleration]
-gravity                = 9.80665 m/s^2
-[constant]
-gravity constant       = 6.673e-11 N*m^2/kg^2
-gas constant           = 8.314472 J/mol*K     # R
-[fuel consumpt.]
+acceleration gravitationnelle                = 9.80665 m/s^2
+[constante]
+constante de gravite       = 6.673e-11 N*m^2/kg^2
+constante des gaz           = 8.314472 J/mol*K     # R
+[consommation d'essence]
 mpg                    = mi/gal               # milles/gallon
 mpg imp                = mi/gallon imperial   # milles/gallon imp.
-litre per 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
+litre par 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
                          3.785411784 / (x * 0.01609344) # # non linéaire
 
