@@ -21,7 +21,8 @@ import unitdata
 class UnitGroup(object):
     """Stores, updates and converts a group of units"""
     maxDecPlcs = 12
-    operRegEx = re.compile(r'([\*/])')
+    operRegEx = re.compile(r'[\*/]')
+    operGroupRegEx = re.compile(r'(\(.*\)|\(.*$|[\*/])')
     def __init__(self, unitData, option):
         self.unitData = unitData
         self.option = option
@@ -30,6 +31,14 @@ class UnitGroup(object):
         self.factor = 1.0
         self.reducedList = []
         self.linear = True
+
+    def flatUnitList(self):
+        """Return the units with sub-groups flattened"""
+        result = self.unitList[:]
+        for i in range(len(result)):
+            while hasattr(result[i], 'unitList'):
+                result[i:i+1] = result[i].unitList
+        return result
 
     def update(self, text, cursorPos=None):
         """Decode user entered text into units"""
@@ -53,8 +62,8 @@ class UnitGroup(object):
         """Return unit with at least a partial match, o/w None"""
         if not self.unitList:
             return None
-        return self.unitData.findPartialMatch(self.unitList[self.currentNum]\
-                                              .name)
+        return self.unitData.findPartialMatch(self.unitList[self.currentNum].
+                                              name)
 
     def currentSortPos(self):
         """Return unit near current unit for sorting"""
@@ -118,15 +127,28 @@ class UnitGroup(object):
     def parseGroup(self, text):
         """Return list of units from text string"""
         unitList = []
-        parts = [part.strip() for part in UnitGroup.operRegEx.split(text)]
+        parts = [part.strip() for part in UnitGroup.operGroupRegEx.split(text)
+                 if part.strip()]
         numerator = True
         while parts:
-            unit = self.parseUnit(parts.pop(0))
-            if not numerator:
-                unit.exp = -unit.exp
+            part = parts.pop(0)
+            if part.startswith('('):
+                part = part[1:]
+                if part.endswith(')'):
+                    part = part[:-1]
+                group = UnitGroup(self.unitData, self.option)
+                group.update(part)
+                if not numerator:
+                    for unit in group.flatUnitList():
+                        unit.exp = -unit.exp
+                unitList.append(group)
+            else:
+                unit = self.parseUnit(part)
+                if not numerator:
+                    unit.exp = -unit.exp
+                unitList.append(unit)
             if parts and parts.pop(0) == '/':
                 numerator = not numerator
-            unitList.append(unit)
         return unitList
 
     def parseUnit(self, text):
