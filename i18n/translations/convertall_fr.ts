@@ -31,17 +31,17 @@
     <message>
         <location filename="cmdline.py" line="27"/>
         <source>from_unit</source>
-        <translation>de l&apos;unit??</translation>
+        <translation>de l&apos;unité</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="27"/>
         <source>to_unit</source>
-        <translation>?? l&apos;unit??</translation>
+        <translation>vers l&apos;unité</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="32"/>
         <source>Units with spaces must be &quot;quoted&quot;</source>
-        <translation>Unit?? avec des espaces doit ??tre &quot;entre guillemets&quot;</translation>
+        <translation>Les unités avec des espaces doivent être &quot;entre guillemets&quot;</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="34"/>
@@ -56,12 +56,12 @@
     <message>
         <location filename="cmdline.py" line="36"/>
         <source>set number of decimals to show</source>
-        <translation>nombre de d??cimals ?? montrer</translation>
+        <translation>nombre de décimals à montrer</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="38"/>
         <source>show set number of decimals, even if zeros</source>
-        <translation>montrer le nombre de d??cimals, m??me si nul</translation>
+        <translation>montrer le nombre de décimals, même si nul</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="40"/>
@@ -71,7 +71,7 @@
     <message>
         <location filename="cmdline.py" line="42"/>
         <source>interactive command line mode (non-GUI)</source>
-        <translation>Mode de ligne de commande int??ractif (sans-GUI)</translation>
+        <translation>Mode de ligne de commande intéractif (sans-GUI)</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="44"/>
@@ -81,17 +81,17 @@
     <message>
         <location filename="cmdline.py" line="46"/>
         <source>show results in scientific notation</source>
-        <translation>afficher les r??sultats en notation scientifique</translation>
+        <translation>afficher les résultats en notation scientifique</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="105"/>
         <source>Enter from unit -&gt; </source>
-        <translation>Entrer ?? partir de l&apos;unit?? -&gt; </translation>
+        <translation>Entrer à partir de l&apos;unité -&gt; </translation>
     </message>
     <message>
         <location filename="cmdline.py" line="110"/>
         <source>Enter to unit -&gt; </source>
-        <translation>Entrer l&apos;unit?? -&gt; </translation>
+        <translation>Entrer l&apos;unité -&gt; </translation>
     </message>
     <message>
         <location filename="cmdline.py" line="126"/>
@@ -104,32 +104,32 @@
     <message>
         <location filename="convertdlg.py" line="62"/>
         <source>%d units loaded</source>
-        <translation>%d unit??s charg??es</translation>
+        <translation>%d unités chargées</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="65"/>
         <source>Error in unit data - %s</source>
-        <translation>Erreur dans l&apos;unit?? - %s</translation>
+        <translation>Erreur dans l&apos;unité - %s</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="79"/>
         <source>From Unit</source>
-        <translation>de l&apos;unit??</translation>
+        <translation>De l&apos;unité</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="95"/>
         <source>To Unit</source>
-        <translation>?? l&apos;unit??</translation>
+        <translation>Vers l&apos;unité</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="113"/>
         <source>Set units</source>
-        <translation>Choisir les unit??s</translation>
+        <translation>Choisir les unités</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="130"/>
         <source>No Unit Set</source>
-        <translation>Aucune unit?? choisie</translation>
+        <translation>Aucune unité choisie</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="150"/>
@@ -139,7 +139,7 @@
     <message>
         <location filename="convertdlg.py" line="154"/>
         <source>&amp;Unit Finder...</source>
-        <translation>&amp;Trouver l&apos;unit??...</translation>
+        <translation>&amp;Trouver l&apos;unité...</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="158"/>
@@ -154,22 +154,22 @@
     <message>
         <location filename="convertdlg.py" line="167"/>
         <source>&amp;About...</source>
-        <translation>&amp;?? propos...</translation>
+        <translation>&amp;à propos...</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="192"/>
         <source>Clear Unit</source>
-        <translation>Vider l&apos;unit??</translation>
+        <translation>Effacer l&apos;unité</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="223"/>
         <source>Result Display</source>
-        <translation>Afficher le r??sultat</translation>
+        <translation>Afficher le résultat</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="224"/>
         <source>Decimal places</source>
-        <translation>D??cimal</translation>
+        <translation>Décimal</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="227"/>
@@ -179,7 +179,7 @@
     <message>
         <location filename="convertdlg.py" line="229"/>
         <source>Use fixed decimal places</source>
-        <translation>Utilis?? des d??cimales fixes</translation>
+        <translation>Utilisé des décimales fixes</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="230"/>
@@ -189,7 +189,7 @@
     <message>
         <location filename="convertdlg.py" line="232"/>
         <source>Show operator buttons</source>
-        <translation>Montrer les bouttons de l&apos;op??rateur</translation>
+        <translation>Montrer les bouttons de l&apos;opérateur</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="233"/>
@@ -199,7 +199,7 @@
     <message>
         <location filename="convertdlg.py" line="235"/>
         <source>Use default system colors</source>
-        <translation>Utiliser les couleurs par d??faut</translation>
+        <translation>Utiliser les couleurs par défaut</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="236"/>
@@ -214,7 +214,7 @@
     <message>
         <location filename="convertdlg.py" line="307"/>
         <source>Read Me file not found</source>
-        <translation>Fichier Read Me non trouv??</translation>
+        <translation>Fichier Read Me non trouvé</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="309"/>
@@ -234,17 +234,17 @@ by %s</translation>
     <message>
         <location filename="finddlg.py" line="27"/>
         <source>Unit Finder</source>
-        <translation>Chercheur d&apos;unit??</translation>
+        <translation>Chercheur d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="34"/>
         <source>&amp;Filter Unit Types</source>
-        <translation>&amp;Filtrer les types d&apos;unit??</translation>
+        <translation>&amp;Filtrer les types d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="40"/>
         <source>&amp;Search String</source>
-        <translation>&amp;Recherche de caract??re</translation>
+        <translation>&amp;Recherche de caractère</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="45"/>
@@ -254,7 +254,7 @@ by %s</translation>
     <message>
         <location filename="finddlg.py" line="54"/>
         <source>From Unit</source>
-        <translation>de l&apos;unit??</translation>
+        <translation>de l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="57"/>
@@ -264,12 +264,12 @@ by %s</translation>
     <message>
         <location filename="finddlg.py" line="61"/>
         <source>&amp;Insert</source>
-        <translation>&amp;Ins??rer</translation>
+        <translation>&amp;Insérer</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="65"/>
         <source>To Unit</source>
-        <translation>?? l&apos;unit??</translation>
+        <translation>Vers l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="68"/>
@@ -279,7 +279,7 @@ by %s</translation>
     <message>
         <location filename="finddlg.py" line="71"/>
         <source>Inser&amp;t</source>
-        <translation>Ins??r&amp;er</translation>
+        <translation>Insér&amp;er</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="77"/>
@@ -289,12 +289,12 @@ by %s</translation>
     <message>
         <location filename="finddlg.py" line="190"/>
         <source>Unit Name</source>
-        <translation>Nom de l&apos;unit??</translation>
+        <translation>Nom de l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="190"/>
         <source>Unit Type</source>
-        <translation>Type de l&apos;unit??</translation>
+        <translation>Type d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="190"/>
@@ -325,7 +325,7 @@ by %s</translation>
     <message>
         <location filename="numedit.py" line="89"/>
         <source>Error in unit data - %s</source>
-        <translation>Erreur dans l&apos;unit?? - %s</translation>
+        <translation>Erreur dans l&apos;unité - %s</translation>
     </message>
     <message>
         <location filename="numedit.py" line="53"/>
@@ -335,17 +335,17 @@ by %s</translation>
     <message>
         <location filename="numedit.py" line="65"/>
         <source>Units are not compatible (%s  vs.  %s)</source>
-        <translation>Les unit??s ne sont pas compatibles (%s  vs.  %s)</translation>
+        <translation>Les unités ne sont pas compatibles (%s  vs.  %s)</translation>
     </message>
     <message>
         <location filename="numedit.py" line="70"/>
         <source>Set units</source>
-        <translation>Choisir les unit??s</translation>
+        <translation>Choisir les unités</translation>
     </message>
     <message>
         <location filename="numedit.py" line="71"/>
         <source>No Unit Set</source>
-        <translation>Aucune unit?? choisie</translation>
+        <translation>Aucune unité choisie</translation>
     </message>
 </context>
 <context>
@@ -363,7 +363,7 @@ by %s</translation>
     <message>
         <location filename="optiondlg.py" line="45"/>
         <source>Preferences</source>
-        <translation>Pr??f??rences</translation>
+        <translation>Préférences</translation>
     </message>
 </context>
 <context>
@@ -371,7 +371,7 @@ by %s</translation>
     <message>
         <location filename="unitatom.py" line="45"/>
         <source>Bad equation for &quot;%s&quot;</source>
-        <translation>Mauvaise ??quation pour &quot;%s&quot;</translation>
+        <translation>Mauvaise équation pour &quot;%s&quot;</translation>
     </message>
 </context>
 <context>
@@ -384,7 +384,7 @@ by %s</translation>
     <message>
         <location filename="unitdata.py" line="82"/>
         <source>Duplicate unit names found</source>
-        <translation>Doublons dans les noms d&apos;unit??s trouv??s</translation>
+        <translation>Doublons dans les noms d&apos;unités trouvés</translation>
     </message>
 </context>
 <context>
@@ -392,7 +392,7 @@ by %s</translation>
     <message>
         <location filename="unitgroup.py" line="194"/>
         <source>Circular unit definition</source>
-        <translation>D??finition d&apos;unit?? circulaire</translation>
+        <translation>Définition d&apos;unité circulaire</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="199"/>
@@ -402,12 +402,12 @@ by %s</translation>
     <message>
         <location filename="unitgroup.py" line="240"/>
         <source>Cannot combine non-linear units</source>
-        <translation>On ne peut combiner des unit??s non lin??aires</translation>
+        <translation>On ne peut combiner des unités non linéaires</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="277"/>
         <source>Bad equation for %s</source>
-        <translation>Mauvaise ??quation pour %s</translation>
+        <translation>Mauvaise équation pour %s</translation>
     </message>
 </context>
 <context>
@@ -415,12 +415,12 @@ by %s</translation>
     <message>
         <location filename="unitlistview.py" line="28"/>
         <source>Unit Name</source>
-        <translation>Nom de l&apos;unit??</translation>
+        <translation>Nom de l&apos;unité</translation>
     </message>
     <message>
         <location filename="unitlistview.py" line="28"/>
         <source>Unit Type</source>
-        <translation>Type de l&apos;unit??</translation>
+        <translation>Type d&apos;unité</translation>
     </message>
     <message>
         <location filename="unitlistview.py" line="28"/>
