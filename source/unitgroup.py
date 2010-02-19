@@ -46,7 +46,7 @@ class UnitGroup(object):
         if cursorPos != None:
             self.updateCurrentUnit(text, cursorPos)
         else:
-            self.currentNum = len(self.unitList) - 1
+            self.currentNum = len(self.flatUnitList()) - 1
 
     def updateCurrentUnit(self, text, cursorPos):
         """Set current unit number"""
@@ -54,23 +54,25 @@ class UnitGroup(object):
 
     def currentUnit(self):
         """Return current unit if its a full match, o/w None"""
-        if self.unitList and self.unitList[self.currentNum].equiv:
-            return self.unitList[self.currentNum]
+        if self.unitList:
+            unit = self.flatUnitList()[self.currentNum]
+            if unit.equiv:
+                return unit
         return None
 
     def currentPartialUnit(self):
         """Return unit with at least a partial match, o/w None"""
         if not self.unitList:
             return None
-        return self.unitData.findPartialMatch(self.unitList[self.currentNum].
-                                              name)
+        unit = self.flatUnitList()[self.currentNum]
+        return self.unitData.findPartialMatch(unit.name)
 
     def currentSortPos(self):
         """Return unit near current unit for sorting"""
         if not self.unitList:
             return self.unitData[self.unitData.sortedKeys[0]]
-        return self.unitData.findSortPos(self.unitList[self.currentNum].
-                                         name)
+        unit = self.flatUnitList()[self.currentNum]
+        return self.unitData.findSortPos(unit.name)
 
     def replaceCurrent(self, unit):
         """Replace the current unit with unit"""
