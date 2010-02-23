@@ -34,11 +34,31 @@ class UnitGroup(object):
 
     def flatUnitList(self):
         """Return the units with sub-groups flattened"""
-        result = self.unitList[:]
-        for i in range(len(result)):
-            while hasattr(result[i], 'unitList'):
-                result[i:i+1] = result[i].unitList
+        result = []
+        for unit in self.unitList:
+            if hasattr(unit, 'flatUnitList'):
+                result.extend(unit.flatUnitList())
+            else:
+                result.append(unit)
         return result
+
+    def unitGroups(self):
+        """Return a list of this unit group and all sub-groups"""
+        result = [self]
+        for group in self.unitList:
+            if hasattr(group, 'unitGroups'):
+                result.extend(group.unitGroups())
+        return result
+
+    def currentGroupPos(self):
+        """Return a tuple of the group and position of the current unit"""
+        currentUnit = self.currentUnit()
+        if currentUnit:
+            for group in self.unitGroups():
+                for i in range(len(group.unitList)):
+                    if group.unitList[i] is currentUnit:
+                        return (group, i)
+        return (self, 0)
 
     def update(self, text, cursorPos=None):
         """Decode user entered text into units"""
@@ -53,43 +73,41 @@ class UnitGroup(object):
         self.currentNum = len(UnitGroup.operRegEx.findall(text[:cursorPos]))
 
     def currentUnit(self):
-        """Return current unit if its a full match, o/w None"""
+        """Return current unit if set, o/w None"""
         if self.unitList:
-            unit = self.flatUnitList()[self.currentNum]
-            if unit.equiv:
-                return unit
+            return self.flatUnitList()[self.currentNum]
         return None
 
     def currentPartialUnit(self):
         """Return unit with at least a partial match, o/w None"""
-        if not self.unitList:
+        currentUnit = self.currentUnit()
+        if not currentUnit:
             return None
-        unit = self.flatUnitList()[self.currentNum]
-        return self.unitData.findPartialMatch(unit.name)
+        return self.unitData.findPartialMatch(currentUnit.name)
 
     def currentSortPos(self):
         """Return unit near current unit for sorting"""
         if not self.unitList:
             return self.unitData[self.unitData.sortedKeys[0]]
-        unit = self.flatUnitList()[self.currentNum]
-        return self.unitData.findSortPos(unit.name)
+        return self.unitData.findSortPos(self.currentUnit().name)
 
-    def replaceCurrent(self, unit):
+    def replaceCurrent(self, newUnit):
         """Replace the current unit with unit"""
         if self.unitList:
-            exp = self.unitList[self.currentNum].exp
-            self.unitList[self.currentNum] = unit.copy()
-            self.unitList[self.currentNum].exp = exp
-        else:
-            self.unitList.append(unit.copy())
+            oldUnit = self.currentUnit()
+            group, pos = self.currentGroupPos()
+            group.unitList[pos] = newUnit.copy()
+            group.unitList[pos].exp = oldUnit.exp
+            return
+        self.unitList.append(newUnit.copy())
 
     def completePartial(self):
         """Replace a partial unit with a full one"""
-        if self.unitList and not self.unitList[self.currentNum].equiv:
-            text = self.unitList[self.currentNum].name
-            unit = self.unitData.findPartialMatch(text)
-            if unit:
-                self.replaceCurrent(unit)
+        partUnit = self.currentUnit()
+        if partUnit and not partUnit.equiv:
+            newUnit = self.unitData.findPartialMatch(partUnit.name)
+            if newUnit:
+                self.replaceCurrent(newUnit)
 
     def moveToNext(self, upward):
         """Replace unit with adjacent one based on match or sort position"""
@@ -103,20 +121,23 @@ class UnitGroup(object):
         """Add new operator & blank unit after current, * if mult is true"""
         if self.unitList:
             self.completePartial()
-            prevExp = self.unitList[self.currentNum].exp
+            prevExp = self.currentUnit().exp
+            group, pos = self.currentGroupPos()
             self.currentNum += 1
-            self.unitList.insert(self.currentNum, UnitAtom(u''))
+            group.unitList.insert(pos + 1, UnitAtom(u''))
+            # TODO:  Check if prevExp is required
             if (not mult and prevExp > 0) or (mult and prevExp < 0):
-                self.unitList[self.currentNum].exp = -1
+                self.currentUnit().exp = -1
 
     def changeExp(self, newExp):
         """Change the current unit's exponent"""
-        if self.unitList:
-            self.completePartial()
-            if self.unitList[self.currentNum].exp > 0:
-                self.unitList[self.currentNum].exp = newExp
+        self.completePartial()
+        currentUnit = self.currentUnit()
+        if self.currentUnit:
+            if self.currentUnit.exp > 0:
+                self.currentUnit.exp = newExp
             else:
-                self.unitList[self.currentNum].exp = -newExp
+                self.currentUnit.exp = -newExp
 
     def clearUnit(self):
         """Remove units"""
@@ -182,19 +203,19 @@ class UnitGroup(object):
             unitList = self.unitList
         fullText = ''
         if unitList:
-            fullText = unitList[0].unitText(0)
+            fullText = unitList[0].unitText(False)
             numerator = True
             for unit in unitList[1:]:
                 if (numerator and unit.exp > 0) \
                    or (not numerator and unit.exp < 0):
-                    fullText = u'%s * %s' % (fullText, unit.unitText(1))
+                    fullText = u'%s * %s' % (fullText, unit.unitText(True))
                 else:
-                    fullText = u'%s / %s' % (fullText, unit.unitText(1))
+                    fullText = u'%s / %s' % (fullText, unit.unitText(True))
                     numerator = not numerator
         return fullText
 
     def groupValid(self):
-        """Return True if all unitself.reducedLists are valid"""
+        """Return True if all units are valid"""
         if not self.unitList:
             return False
         for unit in self.unitList:

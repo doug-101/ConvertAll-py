@@ -52,7 +52,7 @@ class UnitListView(QtGui.QTreeWidget):
         self.enableButtons(True)
         self.clearSelection()
         unit = self.unitGroup.currentUnit()
-        if unit:
+        if unit and unit.eqiv:
             self.setCurrentItem(unit.viewLink[self.unitRefNum])
             self.setItemSelected(unit.viewLink[self.unitRefNum], True)
         else:
