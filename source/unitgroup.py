@@ -50,6 +50,15 @@ class UnitGroup(object):
                 result.extend(group.unitGroups())
         return result
 
+    def unitGroupExpSign(self):
+        """Return True if the first unit's exponent is positive"""
+        unitList = self.unitList
+        while unitList and not hasattr(unitList[0], 'exp'):
+            unitList = unitList[0].unitList
+        if unitList and unitList[0].exp < 0:
+            return False
+        return True
+
     def currentGroupPos(self):
         """Return a tuple of the group and position of the current unit"""
         currentUnit = self.currentUnit()
@@ -171,7 +180,7 @@ class UnitGroup(object):
                     unit.exp = -unit.exp
                 unitList.append(unit)
             if parts and parts.pop(0) == '/':
-                numerator = not numerator
+                numerator = False
         return unitList
 
     def parseUnit(self, text):
