@@ -83,9 +83,10 @@ class UnitGroup(object):
 
     def currentUnit(self):
         """Return current unit if set, o/w None"""
-        if self.unitList:
+        try:
             return self.flatUnitList()[self.currentNum]
-        return None
+        except IndexError:
+            return None
 
     def currentPartialUnit(self):
         """Return unit with at least a partial match, o/w None"""
@@ -96,9 +97,10 @@ class UnitGroup(object):
 
     def currentSortPos(self):
         """Return unit near current unit for sorting"""
-        if not self.unitList:
+        try:
+            return self.unitData.findSortPos(self.currentUnit().name)
+        except AttributeError:
             return self.unitData[self.unitData.sortedKeys[0]]
-        return self.unitData.findSortPos(self.currentUnit().name)
 
     def replaceCurrent(self, newUnit):
         """Replace the current unit with unit"""
@@ -206,21 +208,33 @@ class UnitGroup(object):
         unit.exp = exp
         return unit
 
-    def unitString(self, unitList=None):
+    def unitString(self, unitList=None, swapExpSign=False):
         """Return the full string for this group or a given group"""
         if unitList == None:
             unitList = self.unitList
         fullText = ''
         if unitList:
-            fullText = unitList[0].unitText(False)
-            numerator = True
-            for unit in unitList[1:]:
-                if (numerator and unit.exp > 0) \
-                   or (not numerator and unit.exp < 0):
-                    fullText = u'%s * %s' % (fullText, unit.unitText(True))
+            firstUnit = True
+            for unit in unitList:
+                if not firstUnit:
+                    if hasattr(unit, 'exp'):
+                        expSign = unit.exp > 0
+                    else:
+                        expSign = unit.unitGroupExpSign()
+                    if swapExpSign:
+                        expSign = not expSign
+                    fullText = u'%s %s ' % (fullText, expSign and '*' or '/')
+                if hasattr(unit, 'unitText'):
+                    fullText = u'%s%s' % (fullText,
+                                          unit.unitText(not firstUnit))
                 else:
-                    fullText = u'%s / %s' % (fullText, unit.unitText(True))
-                    numerator = not numerator
+                    if firstUnit:
+                        swap = False
+                    else:
+                        swap = not unit.unitGroupExpSign()
+                    fullText = u'%s(%s)' % (fullText,
+                                            unit.unitString(None, swap))
+                firstUnit = False
         return fullText
 
     def groupValid(self):
@@ -228,8 +242,12 @@ class UnitGroup(object):
         if not self.unitList:
             return False
         for unit in self.unitList:
-            if not unit.unitValid():
-                return False
+            if hasattr(unit, 'unitValid'):
+                if not unit.unitValid():
+                    return False
+            else:
+                if not unit.groupValid():
+                    return False
         return True
 
     def reduceGroup(self):
@@ -240,7 +258,7 @@ class UnitGroup(object):
         if not self.groupValid():
             return
         count = 0
-        tmpList = self.unitList[:]
+        tmpList = self.flatUnitList()
         while tmpList:
             count += 1
             if count > 5000:
@@ -281,7 +299,8 @@ class UnitGroup(object):
     def checkLinear(self):
         """Return True if linear or acceptable non-linear"""
         if not self.linear:
-            if len(self.unitList) > 1 or self.unitList[0].exp != 1:
+            flatList = self.flatUnitList()
+            if len(flatList) > 1 or flatList[0].exp != 1:
                 return False
         return True
 
@@ -305,11 +324,12 @@ class UnitGroup(object):
         """Return result of non-linear calculation"""
         x = num
         try:
-            if self.unitList[0].toEqn:      # regular equations
+            unit = self.flatUnitList()[0]
+            if unit.toEqn:      # regular equations
                 if isFrom:
-                    return float(eval(self.unitList[0].fromEqn))
-                return float(eval(self.unitList[0].toEqn))
-            data = list(eval(self.unitList[0].fromEqn))  # extrapolation list
+                    return float(eval(unit.fromEqn))
+                return float(eval(unit.toEqn))
+            data = list(eval(unit.fromEqn))  # extrapolation list
             if isFrom:
                 data = [(float(group[0]), float(group[1])) for group in data]
             else:
@@ -328,7 +348,7 @@ class UnitGroup(object):
             return 1e9999
         except:
             raise unitdata.UnitDataError, \
-                  _('Bad equation for %s') % self.unitList[0].name
+                  _('Bad equation for %s') % unit.name
 
     def convertStr(self, num, toGroup):
         """Return formatted string of converted number"""
