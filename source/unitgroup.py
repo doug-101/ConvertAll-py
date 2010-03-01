@@ -132,12 +132,10 @@ class UnitGroup(object):
         """Add new operator & blank unit after current, * if mult is true"""
         if self.unitList:
             self.completePartial()
-            prevExp = self.currentUnit().exp
             group, pos = self.currentGroupPos()
             self.currentNum += 1
             group.unitList.insert(pos + 1, UnitAtom(u''))
-            # TODO:  Check if prevExp is required
-            if (not mult and prevExp > 0) or (mult and prevExp < 0):
+            if not mult:
                 self.currentUnit().exp = -1
 
     def changeExp(self, newExp):
@@ -166,12 +164,17 @@ class UnitGroup(object):
         numerator = True
         while parts:
             part = parts.pop(0)
+            if part == '*' or part  == '/':
+                parts.insert(0, part)
+                part = u''      # add blank invalid unit if order wrong
             if part.startswith('('):
                 part = part[1:]
                 if part.endswith(')'):
                     part = part[:-1]
                 group = UnitGroup(self.unitData, self.option)
                 group.update(part)
+                if not group.unitList:
+                    group.unitList.append(group.parseUnit(''))
                 if not numerator:
                     for unit in group.flatUnitList():
                         unit.exp = -unit.exp
@@ -181,8 +184,14 @@ class UnitGroup(object):
                 if not numerator:
                     unit.exp = -unit.exp
                 unitList.append(unit)
-            if parts and parts.pop(0) == '/':
-                numerator = False
+            if parts:
+                oper = parts.pop(0)
+                if oper == '*' or oper == '/':
+                    numerator = oper == '*' and True or False
+                    if not parts:
+                        parts.insert(0, u'')  # add blank invalid unit at end
+                else:
+                    parts.insert(0, oper)  # put unit back if order wrong
         return unitList
 
     def parseUnit(self, text):
