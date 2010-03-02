@@ -31,6 +31,7 @@ class UnitGroup(object):
         self.factor = 1.0
         self.reducedList = []
         self.linear = True
+        self.parenthClosed = True
 
     def flatUnitList(self):
         """Return the units with sub-groups flattened"""
@@ -169,9 +170,11 @@ class UnitGroup(object):
                 part = u''      # add blank invalid unit if order wrong
             if part.startswith('('):
                 part = part[1:]
+                group = UnitGroup(self.unitData, self.option)
                 if part.endswith(')'):
                     part = part[:-1]
-                group = UnitGroup(self.unitData, self.option)
+                else:
+                    group.parenthClosed = False
                 group.update(part)
                 if not group.unitList:
                     group.unitList.append(group.parseUnit(''))
@@ -235,20 +238,22 @@ class UnitGroup(object):
                     fullText = u'%s %s ' % (fullText, expSign and '*' or '/')
                 if hasattr(unit, 'unitText'):
                     fullText = u'%s%s' % (fullText,
-                                          unit.unitText(not firstUnit))
+                                          unit.unitText(swapExpSign or
+                                                        not firstUnit))
                 else:
                     if firstUnit:
                         swap = False
                     else:
                         swap = not unit.unitGroupExpSign()
-                    fullText = u'%s(%s)' % (fullText,
-                                            unit.unitString(None, swap))
+                    fullText = u'%s(%s%s' % (fullText,
+                                             unit.unitString(None, swap),
+                                             unit.parenthClosed and ')' or '')
                 firstUnit = False
         return fullText
 
     def groupValid(self):
         """Return True if all units are valid"""
-        if not self.unitList:
+        if not self.unitList or not self.parenthClosed:
             return False
         for unit in self.unitList:
             if hasattr(unit, 'unitValid'):
