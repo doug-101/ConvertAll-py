@@ -215,7 +215,8 @@ class UnitGroup(object):
            self.unitData.findPartialMatch(unitText):   # check for plural
             unit = self.unitData.get(unitText[:-1], None)
         if not unit:
-            unit = UnitAtom(parts[0].strip())   # tmp invalid unit
+            unit = UnitAtom('')   # tmp invalid unit
+            unit.name = parts[0].strip()
         unit = unit.copy()
         unit.exp = exp
         return unit
@@ -241,7 +242,7 @@ class UnitGroup(object):
                                           unit.unitText(swapExpSign or
                                                         not firstUnit))
                 else:
-                    if firstUnit:
+                    if firstUnit and not swapExpSign:
                         swap = False
                     else:
                         swap = not unit.unitGroupExpSign()
