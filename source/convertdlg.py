@@ -190,12 +190,25 @@ class ConvertDlg(QtGui.QWidget):
             buttonLayout.addWidget(button)
         listView.buttonList = buttons[:]
         buttons.append(ModButton(unitGroup.clearUnit, None, _('Clear Unit')))
-        upperLayout.addWidget(buttons[-1])
+        extraLayout = QtGui.QHBoxLayout()
+        upperLayout.addLayout(extraLayout)
+        extraLayout.addWidget(buttons[-1])
         for but in buttons:
             self.connect(but, QtCore.SIGNAL('stateChg'), listView.relayChange)
             but.setEnabled(False)
             self.textButtons.append(but)
         buttons[-1].setEnabled(True)
+        recentButton = QtGui.QPushButton(_('Recent Unit'))
+        recentButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        recentButton.unitGroup = unitGroup
+        self.connect(recentButton, QtCore.SIGNAL('clicked()'), self.recentMenu)
+        extraLayout.addWidget(recentButton)
+        self.textButtons.append(recentButton)
+
+    def recentMenu(self):
+        """Show a menu with recently used units"""
+        button = self.sender()
+        print button.unitGroup
 
     def updateColors(self):
         """Adjust the colors to the current option settings"""
