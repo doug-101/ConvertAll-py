@@ -13,7 +13,7 @@
 #*****************************************************************************
 
 
-defaultList = [\
+defaultList = [
     "# Options for the ConvertAll unit conversion program",
     "#",
     "# All options are set from within the program,",
@@ -31,6 +31,7 @@ defaultList = [\
     "SciNotation         no",
     "FixedDecimals       no",
     "ShowOpButtons       yes",
+    "RecentUnits         8",
     "#",
     "MainDlgXSize        0",
     "MainDlgYSize        0",
@@ -39,4 +40,13 @@ defaultList = [\
     "FinderXSize         0",
     "FinderYSize         0",
     "FinderXPos          0",
-    "FinderYPos          0"]
+    "FinderYPos          0",
+    "#",
+    "RecentFile1          ",
+    "RecentFile2          ",
+    "RecentFile3          ",
+    "RecentFile4          ",
+    "RecentFile5          ",
+    "RecentFile6          ",
+    "RecentFile7          ",
+    "RecentFile8          "]
