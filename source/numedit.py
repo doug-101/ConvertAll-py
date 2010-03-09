@@ -22,13 +22,14 @@ import unitdata
 
 class NumEdit(QtGui.QLineEdit):
     """Number entry editor"""
-    def __init__(self, thisUnit, otherUnit, label, status, primary,
-                 parent=None):
+    def __init__(self, thisUnit, otherUnit, label, status, recentUnits,
+                 primary, parent=None):
         QtGui.QLineEdit.__init__(self, parent)
         self.thisUnit = thisUnit
         self.otherUnit = otherUnit
         self.label = label
         self.status = status
+        self.recentUnits = recentUnits
         self.primary = primary
         self.onLeft = primary
         self.setValidator(FloatExprValidator(self))
@@ -76,6 +77,8 @@ class NumEdit(QtGui.QLineEdit):
         """Do conversion with self primary"""
         self.primary = True
         self.setEnabled(True)
+        self.recentUnits.addEntry(self.thisUnit.unitString())
+        self.recentUnits.addEntry(self.otherUnit.unitString())
         try:
             num = float(eval(unicode(self.text())))
         except:

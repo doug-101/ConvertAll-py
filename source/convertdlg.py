@@ -25,6 +25,7 @@ except ImportError:
 import unitdata
 from unitgroup import UnitGroup
 from option import Option
+import recentunits
 import unitedit
 import unitlistview
 import numedit
@@ -57,6 +58,7 @@ class ConvertDlg(QtGui.QWidget):
         self.findDlg = None
         self.option = Option('convertall', 20)
         self.option.loadAll(optiondefaults.defaultList)
+        self.recentUnits = recentunits.RecentUnits(self.option)
         try:
             num = ConvertDlg.unitData.readData()
             print _('%d units loaded') % num
@@ -118,7 +120,8 @@ class ConvertDlg(QtGui.QWidget):
         numberLayout.addWidget(fromNumBox)
         fromNumLayout = QtGui.QVBoxLayout(fromNumBox)
         self.fromNumEdit = numedit.NumEdit(self.fromGroup, self.toGroup,
-                                           fromNumBox, statusLabel, True)
+                                           fromNumBox, statusLabel,
+                                           self.recentUnits, True)
         fromNumLayout.addWidget(self.fromNumEdit)
         self.connect(self.fromUnitEdit, QtCore.SIGNAL('unitChanged'),
                      self.fromNumEdit.unitUpdate)
@@ -131,7 +134,8 @@ class ConvertDlg(QtGui.QWidget):
         numberLayout.addWidget(toNumBox)
         toNumLayout = QtGui.QVBoxLayout(toNumBox)
         self.toNumEdit = numedit.NumEdit(self.toGroup, self.fromGroup,
-                                         toNumBox, statusLabel, False)
+                                         toNumBox, statusLabel,
+                                         self.recentUnits, False)
         toNumLayout.addWidget(self.toNumEdit)
         self.connect(self.toUnitEdit, QtCore.SIGNAL('unitChanged'),
                      self.toNumEdit.unitUpdate)
@@ -340,5 +344,6 @@ class ConvertDlg(QtGui.QWidget):
             self.option.changeData('FinderYSize', self.findDlg.height(), True)
             self.option.changeData('FinderXPos', self.findDlg.x(), True)
             self.option.changeData('FinderYPos', self.findDlg.y(), True)
+        self.recentUnits.writeList()
         self.option.writeChanges()
         event.accept()

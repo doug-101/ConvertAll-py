@@ -27,7 +27,7 @@ class RecentUnits(list):
         for num in range(self.numEntries):
             name = self.options.strData(self.optionTitle(num), True)
             if name:
-                slef.append(name)
+                self.append(name)
 
     def writeList(self):
         """Write list of paths to options"""
@@ -36,8 +36,8 @@ class RecentUnits(list):
                 name = self[num]
             except IndexError:
                 name = ''
-            options.changeData(self.optionTitle(num), name, True)
-        options.writeChanges()
+            self.options.changeData(self.optionTitle(num), name, True)
+        self.options.writeChanges()
 
     def addEntry(self, name):
         """Move name to start if found, otherwise add it"""
