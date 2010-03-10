@@ -71,6 +71,7 @@ class ConvertDlg(QtGui.QWidget):
         self.origPal = QtGui.QApplication.palette()
         self.updateColors()
         self.textButtons = []
+        self.recentButtons = []
 
         topLayout = QtGui.QHBoxLayout(self)    # divide main, buttons
         mainLayout = QtGui.QVBoxLayout()
@@ -144,6 +145,10 @@ class ConvertDlg(QtGui.QWidget):
                      self.toNumEdit.setNum)
         self.connect(self.toNumEdit, QtCore.SIGNAL('convertNum'),
                      self.fromNumEdit.setNum)
+        self.connect(self.fromNumEdit, QtCore.SIGNAL('convertNum'),
+                     self.setRecentAvail)
+        self.connect(self.toNumEdit, QtCore.SIGNAL('convertNum'),
+                     self.setRecentAvail)
         self.connect(self.fromNumEdit, QtCore.SIGNAL('convertRqd'),
                      self.toNumEdit.convert)
         self.connect(self.toNumEdit, QtCore.SIGNAL('convertRqd'),
@@ -208,21 +213,34 @@ class ConvertDlg(QtGui.QWidget):
         self.connect(recentButton, QtCore.SIGNAL('clicked()'), self.recentMenu)
         extraLayout.addWidget(recentButton)
         self.textButtons.append(recentButton)
+        self.recentButtons.append(recentButton)
+        self.setRecentAvail()
 
     def recentMenu(self):
         """Show a menu with recently used units"""
         button = self.sender()
-        # print button.unitGroup
-        menu = QtGui.QMenu(button)
+        menu = QtGui.QMenu()
         for unit in self.recentUnits:
-            menu.addAction(unit)
-        self.connect(menu, QtCore.SIGNAL('triggered(QAction*)'), self.insertRecent)
+            action = menu.addAction(unit)
+            action.unitGroup = button.unitGroup
+        self.connect(menu, QtCore.SIGNAL('triggered(QAction*)'),
+                     self.insertRecent)
         menu.exec_(button.mapToGlobal(QtCore.QPoint(0, 0)))
+
+    def setRecentAvail(self):
+        """Enable or disable recent unit button"""
+        for button in self.recentButtons:
+            button.setEnabled(len(self.recentUnits))
 
     def insertRecent(self, action):
         """Insert the recent unit from the given action"""
-        print action.text(), action.parent().parent()
-
+        action.unitGroup.update(unicode(action.text()))
+        if action.unitGroup is self.fromGroup:
+            self.fromUnitEdit.unitUpdate()
+            self.fromUnitListView.updateSelection()
+        else:
+            self.toUnitEdit.unitUpdate()
+            self.toUnitListView.updateSelection()
 
     def updateColors(self):
         """Adjust the colors to the current option settings"""
