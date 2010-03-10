@@ -212,7 +212,17 @@ class ConvertDlg(QtGui.QWidget):
     def recentMenu(self):
         """Show a menu with recently used units"""
         button = self.sender()
-        print button.unitGroup
+        # print button.unitGroup
+        menu = QtGui.QMenu(button)
+        for unit in self.recentUnits:
+            menu.addAction(unit)
+        self.connect(menu, QtCore.SIGNAL('triggered(QAction*)'), self.insertRecent)
+        menu.exec_(button.mapToGlobal(QtCore.QPoint(0, 0)))
+
+    def insertRecent(self, action):
+        """Insert the recent unit from the given action"""
+        print action.text(), action.parent().parent()
+
 
     def updateColors(self):
         """Adjust the colors to the current option settings"""
