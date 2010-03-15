@@ -302,7 +302,7 @@ kmol         = kilomole    # kilomole
 pound mole   = mol*lbm/gram
 lbmol        = pound mole  # pound mole
 [size of a mol]
-avogadro     = gram/amu*mol
+avogadro     = gram/(amu*mol)
 
 
 #
@@ -322,9 +322,9 @@ footcandle   = lumen/ft^2
 metercandle  = lumen/m^2
 
 [luminance]
-lambert      = cd/pi*cm^2
+lambert      = cd/(pi*cm^2)
 millilambert = 0.001 lambert
-footlambert  = cd/pi*ft^2
+footlambert  = cd/(pi*ft^2)
 
 
 #
@@ -661,7 +661,7 @@ kilocalorie          = 1000 cal
 kcal                 = kilocalorie       # kilocalorie
 calorie food         = kilocalorie
 thermie              = 1000 kcal
-Btu                  = cal*lb*R/g*K      # British thermal unit
+Btu                  = cal*lb*R/(g*K)    # British thermal unit
 British thermal unit = Btu
 therm                = 100000 Btu
 erg                  = cm*dyne
@@ -729,7 +729,7 @@ millirem        = 0.001 rem     # # roentgen equiv mammal
 # viscosity
 #
 [dyn viscosity]
-poise        = g/cm*s
+poise        = g/(cm*s)
 P            = poise       # poise
 centipoise   = 0.01 poise
 cP           = centipoise  # centipoise
@@ -748,7 +748,7 @@ cSt          = centistokes # centistokes
 gravity                = 9.80665 m/s^2
 [constant]
 gravity constant       = 6.673e-11 N*m^2/kg^2
-gas constant           = 8.314472 J/mol*K     # R
+gas constant           = 8.314472 J/(mol*K)   # R
 [fuel consumpt.]
 mpg                    = mi/gal               # miles/gallon
 mpg imp                = mi/gallon imperial   # miles/gallon imp

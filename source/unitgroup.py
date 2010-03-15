@@ -287,7 +287,9 @@ class UnitGroup(object):
             else:
                 if unit.fromEqn:
                     self.linear = False
-                newList = self.parseGroup(unit.equiv)
+                equivUnit = UnitGroup(self.unitData, self.option)
+                equivUnit.update(unit.equiv)
+                newList = equivUnit.flatUnitList()
                 for newUnit in newList:
                     newUnit.exp *= unit.exp
                 tmpList.extend(newList)
