@@ -464,6 +464,7 @@ lbf            = pound force     # pound force
 ton force      = ton * gravity
 ounce force    = ounce * gravity
 ozf            = ounce force     # ounce force
+tonne force    = tonne * gravity # # metric
 
 
 #
