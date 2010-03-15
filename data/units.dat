@@ -654,29 +654,31 @@ density polycarbonate = 0.045 lb/in^3
 # energy units
 #
 [energy]
-joule                = N*m
-J                    = joule             # joule
-kilojoule            = 1000 joule
-kJ                   = kilojoule         # kilojoule
-megajoule            = 1000 kilojoule
-gigajoule            = 1000 megajoule
-millijoule           = 0.001 joule
-mJ                   = millijoule        # millijoule
-calorie              = 4.1868 J
-cal                  = calorie           # calorie
-kilocalorie          = 1000 cal
-kcal                 = kilocalorie       # kilocalorie
-calorie food         = kilocalorie
-thermie              = 1000 kcal
-Btu                  = cal*lb*R/(g*K)    # British thermal unit
-British thermal unit = Btu
-therm                = 100000 Btu
-erg                  = cm*dyne
-electronvolt         = 1.602176462e-19 J
-eV                   = electronvolt      # electronvolt
-kWh                  = kW*hour           # kilowatt-hour
-kilowatt hour        = kWh
-ton TNT              = 4.184e9 J
+joule                 = N*m
+J                     = joule             # joule
+kilojoule             = 1000 joule
+kJ                    = kilojoule         # kilojoule
+megajoule             = 1000 kilojoule
+gigajoule             = 1000 megajoule
+millijoule            = 0.001 joule
+mJ                    = millijoule        # millijoule
+calorie               = 4.1868 J
+cal                   = calorie           # calorie
+kilocalorie           = 1000 cal
+kcal                  = kilocalorie       # kilocalorie
+calorie food          = kilocalorie
+thermie               = 1000 kcal
+Btu                   = cal*lb*R/(g*K)    # British thermal unit
+British thermal unit  = Btu
+therm                 = 100000 Btu
+erg                   = cm*dyne
+electronvolt          = 1.602176462e-19 J
+eV                    = electronvolt      # electronvolt
+kWh                   = kW*hour           # kilowatt-hour
+kilowatt hour         = kWh
+ton TNT               = 4.184e9 J
+tonne oil equivalent  = 41.868 gigajoule
+tonne coal equivalent = 7000000 kcal
 
 
 #
@@ -695,6 +697,7 @@ milliwatt         = 0.001 W
 horsepower        = 550 ft*lbf/sec
 hp                = horsepower      # horsepower
 metric horsepower = 75 kgf*m/s
+ton refrigeration = 12000 Btu/hr
 
 
 #
