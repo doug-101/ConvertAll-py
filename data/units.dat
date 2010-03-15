@@ -754,4 +754,7 @@ mpg                    = mi/gal               # miles/gallon
 mpg imp                = mi/gallon imperial   # miles/gallon imp
 liter per 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
                          3.785411784 / (x * 0.01609344) # # non-linear
+[permeability]
+darcy                  = 1 cm^2*centipoise/atm/s
+millidarcy             = 0.001 darcy
 
