@@ -87,85 +87,85 @@ solar mass          = 1.9891e30 kg
 # length / distance units
 #
 [length]
-m                    = !              # meter
-meter                = m
-metre                = m
-decimeter            = 0.1 m
-cm                   = 0.01 m         # centimeter
-centimeter           = cm
-mm                   = 0.001 m        # millimeter
-millimeter           = mm
-micrometer           = 1e-6 m
-micron               = micrometer
-nanometer            = 1e-9 m
-nm                   = nanometer      # nanometer
-dekameter            = 10 m
-hectometer           = 100 m
-km                   = 1000 m         # kilometer
-kilometer            = km
-megameter            = 1000 km
-angstrom             = 1e-10 m
-fermi                = 1e-15 m        # # nuclear sizes
-inch                 = 2.54 cm
-in                   = inch           # inch
-inches               = inch
-mil                  = 0.001 inch
-microinch            = 1e-6 inch
-microinches          = microinch
-foot                 = 12 inch
-ft                   = foot           # foot
-feet                 = foot
-foot US survey       = 1200/3937.0 m
-yard                 = 3 ft
-yd                   = yard           # yard
-mile                 = 5280 ft
-mi                   = mile           # mile
-nautical mile        = 1852 m
-nmi                  = nautical mile  # nautical mile
-league               = 3 mile
-chain                = 66 ft
-fathom               = 6 ft
-rod                  = 5.5 yard
-furlong              = 40 rod
-hand                 = 4 inch
-cubit                = 21.8 inch      # # biblical unit
-point                = 1/72.0 inch      # # desktop publishing point
-pica                 = 12 point
-caliber              = 0.01 inch      # # bullet sizes
-football field       = 100 yd
-marathon             = 46145 yd
-mil Swedish          = 10 km
-au                   = 1.49597870691e11 m   # astronomical unit
-astronomical unit    = au
-light year           = 365.25 light speed * day
-light minute         = light speed * min
-light second         = light speed * s
-parsec               = 3.0856775813e16 m
-kiloparsec           = 1000 parsec
-megaparsec           = 1000 kiloparsec
-screw size           = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
-                       # # Unified diameters, non-linear
-AWG                  = [in] 92.0**((36-x)/39.0)/200.0 ; \
-                       36 - 39.0*log(200.0*x)/log(92.0) \
-                       # American Wire Gauge \
-                       # use -1, -2 for 00, 000; non-linear
-American Wire Gauge  = [in] 92.0**((36-x)/39.0)/200.0 ; \
-                       36 - 39.0*log(200.0*x)/log(92.0) \
-                       #  # use -1, -2 for 00, 000; non-linear
-standard gauge       = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
-                       (16, .0597800), (17, .0538020), (20, .0358680), \
-                       (26, .0179340), (31, .0104615), (36, .00672525), \
-                       (38, .00597800)] # steel \
-                       # Manufacturers Std. Gauge, non-linear
-zinc gauge           = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
-                       (23, .1), (24, .125), (27, .5), (28, 1)]  \
-                       # # sheet metal thickness, non-linear
-ring size            = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
-                       # # US size, circum., non-linear
-shoe size mens       = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
-                       # # US sizes, non-linear
-shoe size womens     = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
-                       # # US sizes, non-linear
+m                        = !              # meter
+meter                    = m
+metre                    = m
+decimeter                = 0.1 m
+cm                       = 0.01 m         # centimeter
+centimeter               = cm
+mm                       = 0.001 m        # millimeter
+millimeter               = mm
+micrometer               = 1e-6 m
+micron                   = micrometer
+nanometer                = 1e-9 m
+nm                       = nanometer      # nanometer
+dekameter                = 10 m
+hectometer               = 100 m
+km                       = 1000 m         # kilometer
+kilometer                = km
+megameter                = 1000 km
+angstrom                 = 1e-10 m
+fermi                    = 1e-15 m        # # nuclear sizes
+inch                     = 2.54 cm
+in                       = inch           # inch
+inches                   = inch
+mil                      = 0.001 inch
+microinch                = 1e-6 inch
+microinches              = microinch
+foot                     = 12 inch
+ft                       = foot           # foot
+feet                     = foot
+foot US survey           = 1200/3937.0 m
+yard                     = 3 ft
+yd                       = yard           # yard
+mile                     = 5280 ft
+mi                       = mile           # mile
+nautical mile            = 1852 m
+nmi                      = nautical mile  # nautical mile
+league                   = 3 mile
+chain                    = 66 ft
+fathom                   = 6 ft
+rod                      = 5.5 yard
+furlong                  = 40 rod
+hand                     = 4 inch
+cubit                    = 21.8 inch      # # biblical unit
+point                    = 1/72.0 inch      # # desktop publishing point
+pica                     = 12 point
+caliber                  = 0.01 inch      # # bullet sizes
+football field           = 100 yd
+marathon                 = 46145 yd
+mil Swedish              = 10 km
+au                       = 1.49597870691e11 m   # astronomical unit
+astronomical unit        = au
+light year               = 365.25 light speed * day
+light minute             = light speed * min
+light second             = light speed * s
+parsec                   = 3.0856775813e16 m
+kiloparsec               = 1000 parsec
+megaparsec               = 1000 kiloparsec
+screw size               = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
+                           # # Unified diameters, non-linear
+AWG Dia                  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           # American Wire Gauge \
+                           # use -1, -2 for 00, 000; non-linear
+American Wire Gauge Dia  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           #  # use -1, -2 for 00, 000; non-linear
+standard gauge           = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
+                           (16, .0597800), (17, .0538020), (20, .0358680), \
+                           (26, .0179340), (31, .0104615), (36, .00672525), \
+                           (38, .00597800)] # steel \
+                           # Manufacturers Std. Gauge, non-linear
+zinc gauge               = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
+                           (23, .1), (24, .125), (27, .5), (28, 1)]  \
+                           # # sheet metal thickness, non-linear
+ring size                = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
+                           # # US size, circum., non-linear
+shoe size mens           = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+                           # # US sizes, non-linear
+shoe size womens         = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+                           # # US sizes, non-linear
 
 
 #
@@ -470,19 +470,26 @@ ozf            = ounce force     # ounce force
 # area units
 #
 [area]
-barn          = 1e-28 m^2       # # particle physics
-are           = 100 m^2
-decare        = 10 are
-dekare        = 10 are
-hectare       = 100 are
-acre          = 10 chain^2
-section       = mile^2
-township      = 36 section
-homestead     = 160 acre
-rai           = 1600 m^2        # # Thai
-ngaan         = 400 m^2         # # Thai
-circular inch = 1/4.0 pi*in^2   # # area of 1 inch circle
-circular mil  = 1/4.0 pi*mil^2  # # area of 1 mil circle
+barn                     = 1e-28 m^2       # # particle physics
+are                      = 100 m^2
+decare                   = 10 are
+dekare                   = 10 are
+hectare                  = 100 are
+acre                     = 10 chain^2
+section                  = mile^2
+township                 = 36 section
+homestead                = 160 acre
+rai                      = 1600 m^2        # # Thai
+ngaan                    = 400 m^2         # # Thai
+circular inch            = 1/4.0 pi*in^2   # # area of 1 inch circle
+circular mil             = 1/4.0 pi*mil^2  # # area of 1 mil circle
+AWG Area                 = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           # American Wire Gauge \
+                           # use -1, -2 for 00, 000; non-linear
+American Wire Gauge Area = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           #  # use -1, -2 for 00, 000; non-linear
 
 
 #
