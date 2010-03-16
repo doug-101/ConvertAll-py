@@ -272,6 +272,8 @@ class ConvertDlg(QtGui.QWidget):
                                 _('Use scientific notation'))
         optiondlg.OptionDlgBool(dlg, 'FixedDecimals',
                                 _('Use fixed decimal places'))
+        dlg.startGroupBox(_('Recent Units'))
+        optiondlg.OptionDlgInt(dlg, 'RecentUnits', _('Number saved'), 0, 99)
         dlg.startGroupBox(_('Buttons'))
         optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
                                 _('Show operator buttons'))
@@ -282,6 +284,7 @@ class ConvertDlg(QtGui.QWidget):
         optiondlg.OptionDlgPush(dlg, _('Set text color'), self.textColor)
         if dlg.exec_() == QtGui.QDialog.Accepted:
             self.option.writeChanges()
+            self.recentUnits.updateQuantity()
             self.updateColors()
             self.showHideButtons()
             self.fromNumEdit.unitUpdate()

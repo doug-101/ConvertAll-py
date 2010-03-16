@@ -18,8 +18,13 @@ class RecentUnits(list):
     def __init__(self, options):
         list.__init__(self)
         self.options = options
-        self.numEntries = options.intData('RecentUnits', 0, 99)
+        self.updateQuantity()
         self.loadList()
+
+    def updateQuantity(self):
+        """Update number of entries from options"""
+        self.numEntries = self.options.intData('RecentUnits', 0, 99)
+        del self[self.numEntries:]
 
     def loadList(self):
         """Load recent units from option file"""
