@@ -8,8 +8,8 @@
 <h2>a unit conversion program</h2>
 
 <p>Written by Doug Bell<br>
-Version 0.4.3<br>
-September 24, 2009</p>
+Version 0.5.0<br>
+March 24, 2010</p>
 </center>
 
 <h2>Contents</h2>
@@ -67,10 +67,14 @@ feel free to let others know about it.  And let me know what you think
 
   <li>Units may be raised to powers with the "^" operator.</li>
 
+  <li>Units in the denominator may be grouped with parenthesis.</li>
+
   <li>Units with non-linear scales, such as temperature, can also be
   converted.</li>
 
-  <li>A unit list may be filtered and searched</li>
+  <li>A unit list may be filtered and searched.</li>
+
+  <li>Recently used unit combinations may be picked from a menu.</li>
 
   <li>Numbers may be entered on either the "From" or the "To" units
   side, for conversions in both directions.</li>
@@ -80,7 +84,7 @@ feel free to let others know about it.  And let me know what you think
 
   <li>Options control the formatting of numerical results.</li>
 
-  <li>The unit data includes over 400 units.</li>
+  <li>The unit data includes over 500 units.</li>
 
   <li>The format of the unit data file makes it easy to add additional
   units.</li>
@@ -108,21 +112,19 @@ this program for more information.</p>
 <p>ConvertAll requires the following libraries:
 <ul>
   <li>Qt (Version 4.1 or higher - see <a
-    href="http://www.trolltech.com">Trolltech</a> for more information)</li>
+      href="http://www.trolltech.com">Trolltech</a> for more
+      information)</li>
   <li>Python (Version 2.3 or higher)</li>
   <li>PyQt (Version 4.0 or higher - see <a
     href="http://www.riverbankcomputing.co.uk">Riverbank</a>
     for more information)</li>
 </ul></p>
 
-<p>These libraries are relatively new - packages may not be available
-for your distribution.  In that case, an earlier version of ConvertAll
-(0.3.2) that depends on older libraries is still available.</p>
-
 <h3><a name="win-sys"></a>Windows</h3>
 
 <p>Using the files provided in the binary distribution, ConvertAll
-should run on any computer running Win 95, 98, NT, 2000, or XP.</p>
+should run on any computer running Win 95, 98, NT, 2000, XP, Vista, or
+7.</p>
 
 <h2><a name="install"></a>Installation</h2>
 
@@ -145,11 +147,6 @@ installation, simply execute the following command as root:  <tt>python
 (<tt>convertall-x.x.x-install.exe</tt>).  It will install the program
 with its libraries and optionally create file associations and
 shortcuts.</p>
-
-<p>If you already have a working installation of ConvertAll version 0.3.0
-or higher, you can use a smaller download.  Simply install and execute
-<tt>convertall-x.x.x-upgrade.exe</tt> to upgrade the files from your
-previous installation.</p>
 
 <p>If you wish to modify the source code or write your own PyQt programs
 for Windows, do not use the above procedure.  Instead, you need to
@@ -187,9 +184,10 @@ between them.  This allows the entry of units such as "ft*lbf" or
 "sec^-1" (per second), but may switch the multiplication or division
 symbol ("ft*sec^-2" becomes "ft/sec^2").</p>
 
-<p>Multiplication has a higher precedence than division, so that "m /
-sec * hr" means "m / (sec * hr)".  Similarly, "m / sec / hr" is the
-same as "m * hr / sec" (but the latter is less confusing).</p>
+<p>Multiplication and division have the same precedence, so they are
+evaluated left-to-right.  Parenthesis may also be used to group units in
+the denominator.  So "m / sec / kg" can also be entered as "m / (sec *
+kg)".  The version with parenthesis is probably less confusing.</p>
 
 <p>The buttons below the unit lists ('X', '/', '^2', '^3') will also
 place the operators after the unit nearest to the cursor.  The
@@ -198,7 +196,7 @@ exponent keys will replace the unit's exponent.</p>
 <p>Similarly, clicking on a unit from the list generally replaces the
 unit nearest the cursor.</p>
 
-<p>The "Erase Unit" button below the operator buttons may be used to
+<p>The "Clear Unit" button below the operator buttons may be used to
 empty the unit edit window to allow a new unit to be entered.</p>
 
 <h3><a name="shortcut"></a>Shortcuts</h3>
@@ -208,6 +206,10 @@ It is also generally ignored if a plural form of the unit name is
 typed.  When a partially typed unit is highlighted in the list,
 hitting enter will complete the name.  Also, hitting the tab key will
 complete the name and move to the next entry field.</p>
+
+<p>The "Recent Unit" button brings up a list of recently used units and
+unit combinations.  The current unit combination is replaced with any
+selections from this menu.</p>
 
 <p>The number to be converted may be entered in either the "From" or
 "To" unit side.  Standard or scientific notation may be used, or an
@@ -240,8 +242,8 @@ low value, which can result in a significant loss of accuracy.  Six
 places or higher is recommended (eight is the default).</p>
 
 <p>There is an option to hide the operator text option buttons (x, /,
-^2, ^3 and Clear Unit).  These can be hidden to save space if the
-keyboard will be used to enter the operators.</p>
+^2, ^3, Clear Unit and Recent Unit).  These can be hidden to save space
+if the keyboard will be used to enter the operators.</p>
 
 <p>Buttons are also included on the options dialog to control the colors
 of the text fields.</p>
@@ -262,19 +264,30 @@ conversion would not be meaningful.</p>
 
 <p>Conversions may be done from the command line (Linux or DOS console)
 without invoking the graphical interface.  Enter the command
-("convertall"), the number, the from unit and the to unit (separated by
-spaces) to do the conversion.  Unit names containing spaces should be
-surrounded by quotes.  Or, to be prompted for the entries, enter
-"convertall -i" on the command line.</p>
+("convertall" on Linux, "convertall_dos" from the Windows binary), the
+number, the from unit and the to unit (separated by spaces) to do the
+conversion.  Unit names containing spaces should be surrounded by
+quotes.  Or, to be prompted for the entries, use the "-i" option
+("convertall -i" on Linux, "convertall_dos -i" from Windows).</p>
 
 <p>After the conversion is done, ConvertAll will prompt for a new number
 to do the same conversion.  Or "r" can be entered to reverse the
 conversion or "q" to quit.</p>
 
-<p>For a more detailed list of options, enter "convertall -h" on the
-command line.</p>
+<p>For a more detailed list of options, use the "-h" option ("convertall
+-h" on Linux, "convertall_dos -h" on Windows).</p>
 
 <h2><a name="revs"></a>Revision History</h2>
+
+<h3>March 24, 2010 - Release 0.5.0</h3>
+
+<ul><b>New Features:</b>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+</ul>
 
 <h3>September 24, 2009 - Release 0.4.3</h3>
 
