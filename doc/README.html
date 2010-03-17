@@ -207,7 +207,7 @@ typed.  When a partially typed unit is highlighted in the list,
 hitting enter will complete the name.  Also, hitting the tab key will
 complete the name and move to the next entry field.</p>
 
-<p>The "Recent Unit" button brings up a list of recently used units and
+<p>The "Recent Unit" button opens a menu of recently used units and
 unit combinations.  The current unit combination is replaced with any
 selections from this menu.</p>
 
@@ -241,6 +241,9 @@ places.  Be cautious about setting the number of decimal places to a
 low value, which can result in a significant loss of accuracy.  Six
 places or higher is recommended (eight is the default).</p>
 
+<p>There is an option to set the number of recent units to be saved.
+Setting it to zero will disable the Recent Unit buttons.</p>
+
 <p>There is an option to hide the operator text option buttons (x, /,
 ^2, ^3, Clear Unit and Recent Unit).  These can be hidden to save space
 if the keyboard will be used to enter the operators.</p>
@@ -267,12 +270,12 @@ without invoking the graphical interface.  Enter the command
 ("convertall" on Linux, "convertall_dos" from the Windows binary), the
 number, the from unit and the to unit (separated by spaces) to do the
 conversion.  Unit names containing spaces should be surrounded by
-quotes.  Or, to be prompted for the entries, use the "-i" option
+quotes.  Or, to be prompted for each unit entry, use the "-i" option
 ("convertall -i" on Linux, "convertall_dos -i" from Windows).</p>
 
 <p>After the conversion is done, ConvertAll will prompt for a new number
-to do the same conversion.  Or "r" can be entered to reverse the
-conversion or "q" to quit.</p>
+to do the same conversion.  Or "n" can be entered to start a new
+conversion, "r" to reverse the conversion or "q" to quit.</p>
 
 <p>For a more detailed list of options, use the "-h" option ("convertall
 -h" on Linux, "convertall_dos -h" on Windows).</p>
@@ -283,9 +286,38 @@ conversion or "q" to quit.</p>
 
 <ul><b>New Features:</b>
 
+  <li>Multiplication and division operators now have the same
+  precedence.  In previous versions of ConvertAll, a series of units
+  after a division symbol were assumed to be in the denominator.  Now, a
+  division operator only affects the unit (or the unit group in
+  parenthesis) immediately after the operator.</li>
+
+  <li>Parenthesis are now supported to group units in the denominator of
+  a combined unit.  For example, ""m / sec / kg" can also be entered as
+  "m / (sec * kg)".</li>
+
+  <li>"Recent Unit" buttons have been added that open a menu of recently
+  used units and unit combinations.  A unit selected from the menu will
+  replace the current unit combination.  There is also a new option
+  dialog entry that controls the maximum length of this menu.</li>
+
 </ul>
 
 <ul><b>Updates:</b>
+
+  <li>Added the tonne force metric force unit.</li>
+
+  <li>Added hundredweight long and hundredweight short mass units.</li>
+
+  <li>Added an American Wire Gauge (AWG) area unit in addition to the
+  existing AWG diameter unit.</li>
+
+  <li>Added the tonne oil equivalent and the tonne coal equivalent
+  energy units.</li>
+
+  <li>Added the ton refrigeration power unit.</li>
+
+  <li>Added the darcy and millidarcy permeability units.</li>
 
 </ul>
 
@@ -293,10 +325,10 @@ conversion or "q" to quit.</p>
 
 <ul><b>New Features:</b>
 
-  <li>Prepared ConvertAll for translation efforts by properly handling Unicode
-  characters in unit data and by marking internal program strings for
-  translation.  Volunteers for translating ConvertAll into other languages
-  are welcome.</li>
+  <li>Prepared ConvertAll for translation efforts by properly handling
+  Unicode characters in unit data and by marking internal program
+  strings for translation.  Volunteers for translating ConvertAll into
+  other languages are welcome.</li>
 
 </ul>
 
@@ -312,18 +344,18 @@ conversion or "q" to quit.</p>
 
   <li>Added the mpg imp mileage unit.</li>
 
-  <li>Changed the value of the point unit from the old American point to the
-  more modern desktop publishing point.</li>
+  <li>Changed the value of the point unit from the old American point to
+  the more modern desktop publishing point.</li>
 
 </ul>
 
 <ul><b>Bug Fixes:</b>
 
-  <li>A critical QString conversion bug that caused ConvertAll to not run with
-  the latest version of PyQt (4.5.4) was fixed.</li>
+  <li>A critical QString conversion bug that caused ConvertAll to not
+  run with the latest version of PyQt (4.5.4) was fixed.</li>
 
-  <li>Command line quiet mode was fixed to avoid an interactive prompt when
-  bad unit data is entered.</li>
+  <li>Command line quiet mode was fixed to avoid an interactive prompt
+  when bad unit data is entered.</li>
 
 </ul>
 
@@ -338,11 +370,11 @@ conversion or "q" to quit.</p>
 <ul><b>Bug Fixes:</b>
 
   <li>Changed the "mach" unit from 331.46 m/s to 340.29 m/s.  It is now
-  correct for STP conditions (15 degrees C).  The previous value was for 0
-  degrees C.</li>
+  correct for STP conditions (15 degrees C).  The previous value was for
+  0 degrees C.</li>
 
-  <li>Fixed a bug that could hide messages about errors in a manually edited
-  unit data file.</li>
+  <li>Fixed a bug that could hide messages about errors in a manually
+  edited unit data file.</li>
 
 </ul>
 
@@ -350,9 +382,9 @@ conversion or "q" to quit.</p>
 
 <ul><b>New Features:</b>
 
-  <li>An optional command line mode was added to do conversions without the
-  graphical interface.  Enter the command ("convertall"), the number,
-  the from unit and the to unit (separated by spaces) to do the
+  <li>An optional command line mode was added to do conversions without
+  the graphical interface.  Enter the command ("convertall"), the
+  number, the from unit and the to unit (separated by spaces) to do the
   conversion.  For a more detailed list of options, enter "convertall
   -h" on the command line.</li>
 
