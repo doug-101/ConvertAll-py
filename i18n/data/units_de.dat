@@ -1,0 +1,859 @@
+#*****************************************************************************
+# units.dat, the units data file, version 0.4.3
+#
+# ConvertAll, a units conversion program
+# Copyright (C) 2005, Douglas W. Bell
+#
+# This is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License, Version 2.  This program is
+# distributed in the hope that it will be useful, but WITTHOUT ANY WARRANTY.
+#*****************************************************************************
+#
+# Units are defined by an optional quantity and an equivalent unit or unit
+# combination.  A python expression may be used for the quantity, but is
+# resticted to using only the following operators: *, /, +, -, **, (, ).
+# Beware of integer division truncation: be sure to use a float for at
+# least one of the values.
+#
+# The unit type must be placed in square brackets before a set of units.
+# The first comment after the equivalent unit will be put in parenthesis after
+# the unit name (usually used to give the full name of an abbreviated unit).
+# The next comment will be used in the program list's comment column;
+# later comments and full line comments are ignored.
+#
+# Non-linear units are indicated with an equivalent unit in square brackets,
+# followed by either equations or equivalency lists for the definition.
+# For equations, two are given, separated by a ';'.  Both are functions of
+# "x", the first going from the unit to the equivalent unit and the second
+# one in reverse.  Any valid Python expression returning a float (including 
+# the functions in the math module) should work.  The equivalency list is a 
+# python list of tuples giving points for linear interpolation.
+#
+# All units must reduce to primitive units, which are indicated by an '!'
+# as the equivalent unit.  Circular refernces must also be avoided.
+#
+# Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
+#
+##############################################################################
+
+#
+# mass units
+#
+[Masse]
+kg                = !                  # Kilogramm
+Kilogramm         = kg
+Hektogramm        = 100 Gramm
+Dekagramm         = 10 Gramm
+Gramm             = 0.001 kg
+g                 = Gramm              # Gramm
+Dezigramm         = 0.1 Gramm
+Zentigramm        = 0.01 Gramm
+Milligramm        = 0.001 Gramm
+mg                = Milligramm         # Milligramm
+Mikrogramm        = 0.001 mg
+µg                = Mikrogramm         # Mikrogramm
+t                 = 1000 kg            # Tonne # metrisch
+Tonne             = t
+Metrische Tonne   = t
+Megagramm         = t
+Kilotonne         = 1000 t             # # metrisch
+Gigagramm         = 1e9 g
+Teragramm         = 1e12 g
+Karat             = 0.2 g              # # Gewichtsmaß für Edelsteine
+ct                = Karat              # Karat # engl. carat
+amu               = 1.66053873e-27 kg  # Atomare Masseneinheit
+atomare Masseneinheit = amu
+Pfund deutsch     = 500 g              # # dt. Sprachraum, ugs.
+pound             = 0.45359237 kg      # # angloamer. Pfund
+Pfund             = pound              # # angloamer. Pfund
+lb                = pound              # Pfund # engl. pound
+lbm               = pound              # Pfund # engl. pound
+ounce             = 1/16.0 pound       # Unze
+Unze              = ounce              # # engl. ounce
+oz                = ounce              # Unze # engl. ounce
+lid               = ounce              # Unze # Drogenslang
+pound troy        = 5760 grain         # # angloamer. Apotheker-Pfund
+lb troy           = pound troy         # # angloamer. Apotheker-Pfund
+ounce troy        = 1/12.0 lb troy     # Feinunze # angloamer. Apotheker-Unze
+oz troy           = ounce troy         # Feinunze # angloamer. Apotheker-Unze
+Feinunze          = ounce troy         # # Gewichtseinheit für Goldhandel
+ton               = 2000 lb            # nicht-metrisch # angloamer. Tonne
+kiloton           = 1000 ton           # nicht-metrisch # angloamer. Tonne
+slug              = lbf*s^2/ft
+hyl               = kp*s^2/m           # # seit 1978 untersagt
+stone             = 14 lb
+grain             = 1/7000.0 lb
+pennyweight       = 24 grain
+Erdmasse          = 5.974e24 kg
+Mondmasse         = 7.349e22 kg
+Sonnenmasse       = 1.9891e30 kg
+
+
+#
+# length / distance units
+#
+[Länge]
+m                    = !              # Meter
+Meter                = m
+metre                = m
+Dezimeter            = 0.1 m
+dm                   = Dezimeter      # Dezimeter
+Zentimeter           = 0.01 m
+cm                   = Zentimeter     # Zentimeter
+Millimeter           = 0.001 m
+mm                   = Millimeter     # Millimeter
+Mikrometer           = 1e-6 m
+Mikron               = Mikrometer
+µm                   = Mikrometer     # Mikrometer
+Nanometer            = 1e-9 m
+nm                   = Nanometer      # Nanometer
+Dekameter            = 10 m
+Hektometer           = 100 m
+Kilometer            = 1000 m
+km                   = Kilometer      # Kilometer
+Megameter            = 1000 km
+Ångström             = 1e-10 m
+Angström             = Ångström
+Å                    = Angström       # Ångström
+fm                   = 1e-15 m        # Femtometer
+Fermi                = fm             # # Kerngrößen, veraltet
+Zoll                 = 2.54 cm
+in                   = Zoll           # Zoll # engl. inch
+inch                 = Zoll
+inches               = inch
+mil US               = 0.001 inch     # # angloamer. Millizoll
+Mikrozoll            = 1e-6 Zoll
+microinch            = Mikrozoll
+Fuß                  = 12 Zoll
+foot                 = Fuß            # Fuß
+ft                   = foot           # Fuß # engl. foot
+feet                 = foot           # Fuß
+foot US survey       = 1200/3937.0 m
+yard                 = 3 ft           # # engl. Schritt
+yd                   = yard           # Yard # engl. Schritt
+Schritt              = yard
+Meile                = 5280 ft
+mile                 = Meile          # Meile # brit. Landmeile
+mi                   = Meile          # Meile # brit. Landmeile
+Nautische Meile      = 1852 m
+nmi                  = Nautische Meile # nautische Meile
+league               = 3 mile         # # engl. Wegstunde / Landleug 
+Wegstunde            = league
+chain                = 66 ft          # # Kette(nlänge)
+fathom               = 6 ft           # # nautischer Faden
+Faden                = fathom         # # nautischer Faden
+rod                  = 5.5 yard       # # Rute
+furlong              = 40 rod         # # Furchenlänge (angloamer.)
+hand                 = 4 inch         # # angloamer. Höhenmaß für Pferde
+cubit                = 21.8 inch      # # biblische Einheit
+point                = 1/72.0 inch    # # Punkt im Desktop Publishing
+pica                 = 12 point
+Kaliber              = 0.01 inch      # # Geschossdurchmesser
+caliber              = Kaliber        # # Geschossdurchmesser
+Footballfeld         = 100 yd         # # amer. Football
+Marathondistanz      = 46145 yd
+mil                  = 10 km          # # Metrische/Skandinav. Meile
+au                   = 1.49597870691e11 m   # Astronomische Einheit
+Astronomische Einheit = au
+Lichtjahr            = 365.25 Tage * Lichtgeschwindigkeit
+Lichtminute          = Lichtgeschwindigkeit * min
+Lichtsekunde         = Lichtgeschwindigkeit * s
+Parsec               = 3.0856775813e16 m
+pc                   = Parsec         # Parsec
+Kiloparsec           = 1000 Parsec
+Megaparsec           = 1000 Kiloparsec
+Schraubenmaß         = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
+                       # zöllig # Vereinheitlichte Durchmesser, nicht-linear
+AWG                  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+                       36 - 39.0*log(200.0*x)/log(92.0) \
+                       # American Wire Gauge \
+                       # US-Maß für Drahtdurchmesser; -1, -2 für 00, 000 benutzen; nicht-linear
+American Wire Gauge  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+                       36 - 39.0*log(200.0*x)/log(92.0) \
+                       #  # US-Maß für Drahtdurchmesser; -1, -2 für 00, 000 benutzen; nicht-linear
+Standard gauge       = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
+                       (16, .0597800), (17, .0538020), (20, .0358680), \
+                       (26, .0179340), (31, .0104615), (36, .00672525), \
+                       (38, .00597800)] # Stahl \
+                       # US-Maß für Dicke von Stahlblechen, nicht-linear
+Zinc gauge           = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
+                       (23, .1), (24, .125), (27, .5), (28, 1)]  \
+                       # # US-Maß für Dicke von Zinkblechen, nicht-linear
+Ringgröße US         = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
+                       # # Umfang, nicht-linear
+Schuhgrößen Männer US = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+                       # # US-Größen, nicht-linear
+Schuhgrößen Frauen US = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+                       # # US-Größen, nicht-linear
+Schuhgrößen EU        = [cm] (x * 2.0 / 3.0) - 1.5 ; (x + 1.5) * 3.0 / 2.0 \
+                        # # Innenmaß, nicht-linear
+
+
+#
+# time units
+#
+[Zeit]
+s             = !                 # Sekunde
+sec           = s                 # Sekunde
+Sekunde       = s
+Sekunden      = Sekunde
+ms            = 0.001 s           # Millisekunde
+Millisekunde  = ms
+Mikrosekunde  = 1e-6 s
+µs            = Mikrosekunde      # Mikrosekunde
+ns            = 1e-9 s            # Nanosekunde
+Nanosekunde   = ns
+Minute        = 60 s
+min           = Minute            # Minute
+Stunde        = 60 min
+Stunden       = Stunde
+Std           = Stunde            # Stunde
+hr            = Stunde            # Stunde # (lat. hora)
+Glasen        = 30 min            #  # Schifffahrt
+Glasenschläge = Glasen            #  # Schifffahrt
+Wache         = 4 hr              #  # Schifffahrt
+Wachen        = 4 hr              #  # Schifffahrt
+Tag           = 24 hr
+Tage          = Tag
+d             = Tag               # Tag # (lat. dies)
+Woche         = 7 Tage
+Wochen        = Woche
+fortnight     = 14 Tage           # 14 Tage # (engl.)
+Monat         = 1/12.0 Jahr
+Jahr          = 365.242198781 Tage
+Jahre         = Jahr
+y             = Jahr              # Jahr # (engl. year)
+yr            = Jahr              # Jahr # (engl. year)
+Kalenderjahr  = 365 Tage
+Dekade        = 10 Jahre
+Jahrzehnt     = Dekade
+Jahrzehnte    = Dekade
+Dezennium     = Dekade
+Jahrhundert   = 100 Jahre
+Centennium    = Jahrhundert
+Hektode       = Jahrhundert
+Jahrhunderte  = Jahrhundert
+Millennium    = 1000 Jahre
+Millennia     = Millennium
+[Zeitplanung]
+Personenstunde = 168/40.0 Stunden   #  # auf 40-Std.-Wochen gerechnet
+Personenstunden = Personenstunde    
+Mannstunde    = Personenstunde      #  # veraltet für "Personenstunde"
+Mannstunden   = Personenstunde      #  # veraltet für "Personenstunden"
+Personentag   = 8 Personenstunden
+Personentage  = Personentag
+Manntag       = Personentag         #  # veraltet für "Personentag"
+Manntage      = Personentag         #  # veraltet für "Personentage"
+Personenwoche = 5 Personentage
+Personenwochen = Personenwoche      
+Mannwoche     = Personenwoche       #  # veraltet für "Personenwoche"
+Mannwochen    = Personenwoche       #  # veraltet für "Personenwochen"
+Personenmonat = 20 Personentage
+Personenmonate = Personenmonat      
+Mannmonat     = Personenmonat       #  # veraltet für "Personenmonat"
+Mannmonate    = Personenmonat       #  # veraltet für "Personenmonate"
+Personenjahr  = 2000 Personenstunden
+Personenjahre = Personenjahr        
+Mannjahr      = Personenjahr        #  # veraltet für "Personenjahr"
+Mannjahre     = Personenjahr        #  # veraltet für "Personenjahre"
+
+
+#
+# temperature
+#
+[Temperatur]
+K                 = !     # Kelvin
+Kelvin            = K
+°K                = K     # Kelvin
+Grad Kelvin       = K
+
+C                 = [K] x + 273.15 ; x - 273.15  # Celsius  # nicht-linear
+Celsius           = [K] x + 273.15 ; x - 273.15  #          # nicht-linear
+°C                = [K] x + 273.15 ; x - 273.15  # Celsius  # nicht-linear
+Grad Celsius      = [K] x + 273.15 ; x - 273.15  #          # nicht-linear
+
+R                 = 5/9.0 K     # Rankine
+Rankine           = R
+°R                = R           # Rankine
+F                 = [R] x + 459.67 ; x - 459.67  # Fahrenheit  # nicht-linear
+Fahrenheit        = [R] x + 459.67 ; x - 459.67  #             # nicht-linear
+°F                = [R] x + 459.67 ; x - 459.67  # Fahrenheit  # nicht-linear
+Grad Fahrenheit   = [R] x + 459.67 ; x - 459.67  #             # nicht-linear
+
+[Temperaturdifferenz]
+C Grad            = K        # Grad Celsius
+Celsius Grad      = C Grad
+F Grad            = R        # Grad Fahrenheit
+Fahrenheit Grad   = F Grad
+
+
+#
+# electrical units
+#
+[Strom]
+A              = !              # Ampere
+Ampere         = A
+Milliampere    = 0.001 A
+mA             = Milliampere    # Milliampere
+Mikroampere    = 0.001 mA
+Kiloampere     = 1000 A
+kA             = Kiloampere     # Kiloampere
+[Ladung]
+Coulomb        = A*s
+Amperestunde   = A*hr
+Amperestunden  = Amperestunde
+mAh            = 0.001 Amperestunde # Milliamperestunde
+Milliamp hr  = mAh
+[Spannung]
+Volt           = W/A
+V              = Volt           # Volt
+Millivolt      = 0.001 Volt
+mV             = Millivolt      # Millivolt
+Kilovolt       = 1000 Volt
+kV             = Kilovolt       # Kilovolt
+[Widerstand]
+Ohm            = V/A
+Ω              = Ohm            # Ohm
+Milliohm       = 0.001 ohm
+Mikroohm       = 0.001 Milliohm
+Kiloohm        = 1000 ohm
+[Leitfähigkeit]
+Siemens        = A/V
+℧              = Siemens        # Mho # veraltet für Siemens ("Ohm" rückwärts)
+[Kapazität]
+Farad          = Coulomb/V
+Millifarad     = 0.001 Farad
+Mikrofarad     = 0.001 Millifarad
+Nanofarad      = 1e-9 Farad
+Pikofarad      = 1e-12 Farad
+[Magn. Fluss]
+Weber          = V*s
+Wb             = Weber          # Weber
+Maxwell        = 1e-8 Wb
+[Induktivität]
+Henry          = Wb/A
+H              = Henry          # Henry
+Millihenry     = 0.001 Henry
+mH             = Millihenry     # Millihenry
+Mikrohenry     = 0.001 mH
+[Flussdichte]
+Tesla          = Wb/m^2
+# T              = Tesla          # Tesla   ### t = metric ton!
+Gauss          = Maxwell/cm^2
+Gauß           = Gauss
+
+
+#
+# molecular units
+#
+[Molekulare Mengen]
+mol          = !            # Mol
+Kilomol      = 1000 mol
+kmol         = Kilomol     # Kilomol
+pound mole   = mol*lbm/gramm    # Pfund Mol # engl.
+lbmol        = pound mole  # Pfund Mol # engl. pound mole
+[Größe eines Mol]
+Avogadrozahl = Gramm/amu*mol
+
+
+#
+# Illumination units
+#
+[Lichtstärke]
+cd          = !          # Candela
+Candela     = cd
+
+[Lichtstrom]
+Lumen        = cd * sr
+lm           = Lumen     # Lumen
+
+[Beleuchtungsstärke]
+lx          = Lumen/m^2         # Lux
+Lux         = lx
+footcandle   = Lumen/ft^2
+metercandle  = lx
+
+[Leuchtdichte]
+Lambert      = cd/pi*cm^2       # # US-Maß
+la           = Lambert          # Lambert
+Millilambert = 0.001 Lambert
+footlambert  = cd/pi*ft^2       # # Fuß-Lambert (angloamer.)
+
+
+#
+# angular units
+#
+[Winkel]
+Radian      = !
+rad         = Radian         # Radian # Bogengrad
+Kreis       = 2 pi*rad
+Umdrehung   = Kreis
+rev         = Umdrehung      # Umdrehung # engl. revolution
+Grad        = 1/360.0 Kreis
+degree      = Grad           # Grad # engl.
+deg         = degree         # Grad # engl. degree
+Bogenminute = 1/60.0 Grad
+arc min     = Bogenminute     # Bogenminute # engl. arc minute
+arc minute  = Bogenminute     # Bogenminute # engl. arc minute
+min arc     = Bogenminute     # Bogenminute # engl. minute arc
+minute arc  = Bogenminute     # Bogenminute 
+Bogensekunde = 1/60.0 Bogenminute
+arc sec     = Bogensekunde    # Bogensekunde # engl. arc second
+arc second  = Bogensekunde    # Bogensekunde
+sec arc     = Bogensekunde    # Bogensekunde # engl. second arc
+second arc  = Bogensekunde    # Bogensekunde
+Halbkreis   = 1/2.0 Kreis
+Viertelkreis = 1/4.0 Kreis
+Quadrant    = Viertelkreis
+rechter Winkel = Viertelkreis
+gon         = 0.01 Viertelkreis
+gradian     = gon             # gon # engl. Maß
+
+
+#
+# solid angle units
+#
+[Raumwinkel]
+sr         = !      # Steradian
+Steradian  = sr
+Kugel      = 4 pi*sr
+Halbkugel  = 1/2.0 Kugel
+Hemisphäre = Halbkugel
+
+
+#
+# information units
+#
+[Daten]
+bit              = !
+Kilobit          = 1000 bit          #                  # basierend auf Basis 10
+Megabit          = 1000 Kilobit      #                  # basierend auf Basis 10
+Nibble           = 4 bit
+Byte             = 8 bit
+Bytes            = byte
+B                = byte              # Byte
+Kilobyte         = 1024 byte         #                  # basierend auf Basis 2
+kB               = Kilobyte          # Kilobyte         # basierend auf Basis 2
+Megabyte         = 1024 kB           #                  # basierend auf Basis 2
+MB               = Megabyte          # Megabyte         # basierend auf Basis 2
+Gigabyte         = 1024 MB           #                  # basierend auf Basis 2
+GB               = Gigabyte          # Gigabyte         # basierend auf Basis 2
+Terabyte         = 1024 GB           #                  # basierend auf Basis 2
+TB               = Terabyte          # Terabyte         # basierend auf Basis 2
+petabyte         = 1024 TB           #                  # basierend auf Basis 2
+PB               = petabyte          # Petabyte         # basierend auf Basis 2
+
+Kilobyte IEC std = 1000 byte         #                  # basierend auf Basis 10
+kB IEC std       = Kilobyte IEC std  # Kilobyte         # basierend auf Basis 10
+Megabyte IEC std = 1000 kB IEC std   #                  # basierend auf Basis 10
+MB IEC std       = Megabyte IEC std  # Megabyte         # basierend auf Basis 10
+Gigabyte IEC std = 1000 MB IEC std   #                  # basierend auf Basis 10
+GB IEC std       = Gigabyte IEC std  # Gigabyte         # basierend auf Basis 10
+Terabyte IEC std = 1000 GB IEC std   #                  # basierend auf Basis 10
+TB IEC std       = terabyte IEC std  # Terabyte         # basierend auf Basis 10
+petabyte IEC std = 1000 TB IEC std   #                  # basierend auf Basis 10
+PB IEC std       = petabyte IEC std  # Petabyte         # basierend auf Basis 10
+
+Kibibyte         = 1024 byte
+KiB              = Kibibyte          # Kibibyte
+Mebibyte         = 1024 KiB
+MiB              = Mebibyte          # Mebibyte
+Gibibyte         = 1024 MiB
+GiB              = Gibibyte          # Gibibyte
+Tebibyte         = 1024 GiB
+TiB              = Tebibyte          # Tebibyte
+Pebibyte         = 1024 TiB
+PiB              = Pebibyte          # Pebibyte
+
+[Datenübertragung]
+bps              = bit/sec           # Bit/sec
+kbps             = 1000 bps          # Kilobit/sec      # basierend auf Basis 10
+Mbps             = 1000 kbps         # Megabit/sec      # basierend auf Basis 10
+Gbps             = 1000 Mbps         # Gigabit/sec      # basierend auf Basis 10
+
+
+#
+# Unitless numbers
+#
+[Anzahl]
+unit               = !
+Stück              = unit
+1                  = Stück            # Stück
+pi                 = 3.14159265358979323846 Stück    # π # Kreiszahl
+π                  = pi             # # Kreiszahl
+Paar               = 2 Stück
+hat trick          = 3 Stück          # # Sport
+Halbstiege         = 10 Stück
+Dutzend            = 12 Stück
+dozen              = Dutzend        # Dutzend # engl.
+Dtz                = Dutzend        # Dutzend
+doz                = Dutzend           # Dutzend # engl. dozen
+bakers dozen       = 13 Stück        # # engl.
+Mandel             = 15 Stück
+Malter             = Mandel
+Große Mandel       = 16 Stück
+Bauernmandel       = Große Mandel
+score              = 20 Stück        # # engl.
+Stiege             = 20 Stück
+Steige             = Stiege
+Band               = 30 Stück
+Bund               = Band
+Schock             = 5 Dutzend
+Großschock         = 4 Bauernmandel
+Bauernschock       = Großschock
+Gros               = 12 Dutzend
+gross              = Gros       # # engl.
+Großgros           = 12 Gros
+great gross        = 12 gross       # # engl.
+ream               = 500 Stück       # # engl.
+Prozent            = 0.01 Stück
+percent            = Prozent        # # engl.
+%                  = Prozent
+Promille           = 0.001 Stück
+mill               = 0.001 Stück    # # engl.
+[Verzinsung]
+APR                = [unit] log(1 + x/100) ;  (exp(x) - 1)*100 \
+                     # annual percent rate # basierend auf stetiger Verzinsung
+[Konzentration]
+proof              = 1/200.0 Stück    # # Alkoholgehalt
+ppm                = 1e-6 Stück       # parts per million # Teile auf eine Million
+parts per million  = ppm              # # Teile auf eine Million
+ppb                = 1e-9 Stück       # parts per billion # Teile auf eine Milliarde
+parts per billion  = ppb              # # Teile auf eine Milliarde
+ppt                = 1e-12 Stück      # parts per trillion # Teile auf eine Billion
+parts per trillion = ppt              # # Teile auf eine Billion
+Karat Gold         = 1/24.0 Stück     # # Goldreinheit
+
+
+#
+# force units
+#
+[Kraft]
+Newton         = kg*m/s^2
+N              = Newton          # Newton
+Dekanewton     = 10 Newton
+Kilonewton     = 1000 N
+kN             = Kilonewton      # Kilonewton
+Meganewton     = 1000 kN
+Millinewton    = 0.001 N
+dyn            = cm*g/s^2
+dyne           = dyn
+Kilopond       = kg * Erdbeschleunigung 
+kp             = Kilopond       # Kilopond
+kg force       = Kilopond       # Kilopond
+kgf            = Kilopond       # Kilopond
+Pond           = g * Erdbeschleunigung
+gram force     = Pond           # Pond
+pound force    = lbm * Erdbeschleunigung # # Gewichtskraft eines Pfunds
+lbf            = pound force    # pound force # Gewichtskraft eines Pfunds
+ton force      = ton * Erdbeschleunigung # # Gewichtskraft einer angloamer. Tonne 
+ounce force    = ounce * Erdbeschleunigung # # Gewichtskraft einer Unze
+ozf            = ounce force    # ounce force # Gewichtskraft einer Unze
+
+
+#
+# area units
+#
+[Fläche]
+Quadratmeter  = m^2
+qm            = m^2             # Quadratmeter
+Barn          = 1e-28 m^2       # # Teilchenphysik
+Ar            = 100 m^2
+are           = Ar              # # engl. Ar
+Dekar         = 10 Ar
+Hektar        = 100 Ar
+acre          = 10 chain^2
+section       = mile^2
+township      = 36 section
+homestead     = 160 acre
+rai           = 1600 m^2        # # Thailändisch
+ngaan         = 400 m^2         # # Thailändisch
+circular inch = 1/4.0 pi*in^2   # # Fläche eines Kreises mit 1 Zoll Durchmesser 
+circular mil  = 1/4.0 pi*mil^2  # # Fläche eines Kreises mit 1 Zoll Durchmesser 
+
+
+#
+# volume units
+#
+[Volumen]
+cc                   = cm^3                 # Kubikzentimeter # engl. cubic centimeter
+Kubikzentimeter      = cc
+Liter                = 1000 cc
+l                    = Liter                # Liter
+litre                = Liter                # # engl.
+Deziliter            = 0.1 Liter
+Zentiliter           = 0.01 Liter
+Milliliter           = cc
+ml                   = Milliliter           # Milliliter
+Dekaliter            = 10 Liter
+Hektoliter           = 100 Liter
+Kiloliter            = 1000 Liter
+kl                   = Kiloliter            # Kiloliter
+Megaliter            = 1000 Kiloliter
+gallon               = 231 in^3             # Gallone
+Gallone              = gallon               #
+gal                  = gallon               # Gallone
+quart                = 1/4.0 gallon         #
+qt                   = quart                # Quart
+pint                 = 1/2.0 quart          #
+pt                   = pint                 # Pint
+fluid ounce          = 1/16.0 pint          #             # Flüssigunze
+fl oz                = fluid ounce          # fluid ounce # US
+ounce fluid          = fluid ounce          #             # US
+imperial gallon      = 4.54609 Liter
+imp gal              = imperial gallon      # imperial gallon
+gallon imperial      = imperial gallon
+imperial quart       = 1/4.0 imp gal
+imp qt               = imperial quart       # imperial quart
+quart imperial       = imperial quart
+imperial pint        = 1/8.0 imp gal
+imp pt               = imperial pint        # imperial pint
+pint imperial        = imperial pint
+imperial fluid ounce = 1/160.0 imp gal
+imp fl oz            = imperial fluid ounce # imperial fluid ounce
+cup                  = 8 fl oz              # Tasse     # engl.
+tablespoon           = 1/16.0 cup           # Esslöffel # engl.
+tbsp                 = tablespoon           # Esslöffel # engl. tablespoon
+teaspoon             = 1/3.0 tbsp           # Teelöffel # engl.
+tsp                  = teaspoon             # Teelöffel # engl. teaspoon
+barrel               = 42 gallon
+bbl                  = barrel               # barrel
+shot                 = 1.5 fl oz
+fifth                = 1/5.0 gallon         #             # Alkohol
+wine bottle          = 750 ml
+magnum               = 1.5 Liter            #             # Alkohol
+keg                  = 15.5 gallon          # Fass        # Bierfass
+hogshead wine        = 63 gal
+hogshead beer        = 54 gal
+bushel               = 2150.42 in^3
+peck                 = 1/4.0 bushel
+cord                 = 128 ft^3
+board foot           = ft^2*in
+board feet           = board foot
+
+
+#
+# velocity units
+#
+[Geschwindigkeit]
+knot        = nmi/hr           # Knoten # Schifffahrt
+kt          = knot             # Knoten # Schifffahrt, engl. knot
+Lichtgeschwindigkeit = 2.99792458e8 m/s # # definiert
+kmh         = km/hr            # Kilometer/Std
+Stundenkilometer = kmh         # # ugs. für km/h
+mph         = mi/hr            # Meilen pro Stunde # engl. miles per hour
+Mach        = 340.29 m/s       # # Schallgeschwindigkeit unter Std.bedingungen
+[Umdrehungsgeschw.]
+rpm         = rev/min          # Umdrehungen/min # engl. rounds per min
+rps         = rev/sec          # Umdrehungen/sec # engl. rounds per sec
+Upm         = rev/min          # Umdrehungen/min
+Ups         = rev/sec          # Umdrehungen/sec
+
+
+#
+# flow rate units
+#
+[Flüssigkeitsfluss]
+gph         = gal/hr           # Gallonen/Std
+gpm         = gal/min          # Gallonen/min
+cfs         = ft^3/sec         # cu ft/sec
+cfm         = ft^3/min         # cu ft/min
+lpm         = l/min            # Liter/min
+[Gasfluss]
+sccm        = atm*cc/min       # std cc/min      # Druck * Fluss
+sccs        = atm*cc/sec       # std cc/sec      # Druck * Fluss
+slpm        = atm*l/min        # std Liter/min   # Druck * Fluss
+slph        = atm*l/hr         # std Liter/hr  # Druck * Fluss
+scfh        = atm*ft^3/hr    # std cu ft/hr  # Druck * Fluss
+scfm        = atm*ft^3/min     # std cu ft/min   # Druck * Fluss
+
+
+#
+# pressure units
+#
+[Druck]
+Pa                    = N/m^2                    # Pascal
+Pascal                = Pa
+hPa                   = 100 Pa                   # Hektopascal
+Hektopascal           = hPa
+kPa                   = 1000 Pa                  # Kilopascal
+Kilopascal            = kPa
+MPa                   = 1000 kPa                 # Megapascal
+Megapascal            = MPa
+GPa                   = 1000 MPa                 # Gigapascal
+Gigapascal            = GPa
+atm                   = 101325 Pa                # Atmosphäre
+Atmosphäre            = atm
+Atmosphären           = atm
+Normaldruck           = atm                      # # definiert
+bar                   = 1e5 Pa
+mbar                  = 0.001 bar                # Millibar
+Millibar              = mbar
+Mikrobar              = 0.001 mbar
+Dezibar               = 0.1 bar
+Kilobar               = 1000 bar
+Megabar               = 1000 Kilobar
+mm Hg                 = mm*Dichte Hg*Erdgravitation    # Millimeter Quecksilbersäule 
+Millimeter Quecksilbersäule = mm Hg
+Torr                  = mm Hg
+in Hg                 = in*Dichte Hg*Erdgravitation    # Zoll Quecksilbersäule
+Zoll Hg               = in Hg                   # Zoll Quecksilbersäule
+Zoll Quecksilbersäule = in Hg
+m Wassersäule         = Meter Wassersäule
+m H2O                 = Meter Wassersäule       # Meter Wassersäule
+Meter Wassersäule     = m*Dichte Wasser*Erdgravitation
+in water              = Zoll Wassersäule        # Zoll Wassersäule
+in H2O                = Zoll Wassersäule        # Zoll Wassersäule
+Zoll Wassersäule      = in*Dichte Wasser*Erdgravitation
+ft H2O                = Fuß Wassersäule         # Fuß Wassersäule
+Fuß Wassersäule       = ft*Dichte Wasser*Erdgravitation
+foot of head          = Fuß Wassersäule         # Fuß Wassersäule
+ft hd                 = Fuß Wassersäule         # Fuß Wassersäule # engl. foot of head
+ft water              = Fuß Wassersäule         # Fuß Wassersäule
+psi                   = lbf/in^2                # pound per sq inch # Pfund pro Quadratzoll (engl.)
+pound per sq inch     = psi
+ksi                   = 1000 psi                # kilopound per sq inch # Kilopfund pro Quadratzoll (engl. 1000 lb / sq inch)
+
+
+#
+# density units
+#
+[Dichte]
+Dichte Wasser        = g/cm^3
+Dichte Seewasser     = 1.025 g/cm^3
+Dichte Hg            = 13.5950981 g/cm^3     # Quecksilber
+Dichte Quecksilber   = Dichte Hg
+Dichte Luft          = 1.293 kg/m^3          # # unter Standardbedingungen
+Dichte Stahl         = 0.283 lb/in^3         # # Kohlenstoffstahl
+Dichte Aluminium     = 0.098 lb/in^3
+Dichte Zink          = 0.230 lb/in^3
+Dichte Messing       = 0.310 lb/in^3         # # 80Cu-20Zn
+Dichte Kupfer        = 0.295 lb/in^3
+Dichte Eisen         = 0.260 lb/in^3         # # Gusseisen
+Dichte Nickel        = 0.308 lb/in^3
+Dichte Zinn          = 0.275 lb/in^3
+Dichte Titan         = 0.170 lb/in^3
+Dichte Silber        = 0.379 lb/in^3
+Dichte Nylon         = 0.045 lb/in^3
+Dichte Polykarbonat  = 0.045 lb/in^3
+
+
+#
+# energy units
+#
+[Energie]
+Joule                = N*m
+J                    = Joule             # Joule
+Kilojoule            = 1000 Joule
+kJ                   = Kilojoule         # Kilojoule
+Megajoule            = 1000 Kilojoule
+Gigajoule            = 1000 Megajoule
+Millijoule           = 0.001 Joule
+mJ                   = Millijoule        # Millijoule
+Kalorie              = 4.1868 J
+Kalorien             = Kalorie
+cal                  = Kalorie           # Kalorie
+Kilokalorie          = 1000 Kalorie
+kcal                 = Kilokalorie       # Kilokalorie
+Kalorien in Nahrung  = Kilokalorie       # Kilokalorie
+thermie              = 1000 kcal
+Btu                  = cal*lb*R/g*K      # British thermal unit
+British thermal unit = Btu
+therm                = 100000 Btu
+erg                  = cm*dyne
+Elektronenvolt       = 1.602176462e-19 J
+eV                   = Elektronenvolt  # Elektronenvolt
+kWh                  = kW*hr           # Kilowattstunde
+Kilowattstunde       = kWh
+Tonne TNT            = 4.184e9 J
+
+
+#
+# power units
+#
+[Leistung]
+Watt              = J/s
+W                 = Watt            # Watt
+Kilowatt          = 1000 W
+kW                = Kilowatt        # Kilowatt
+Megawatt          = 1000 kW
+MW                = Megawatt        # Megawatt
+Gigawatt          = 1000 MW
+GW                = Gigawatt        # Gigawatt
+Milliwatt         = 0.001 W
+PS                = 735.49875 W     # Pferdestärke
+Pferdestärke      = PS
+horsepower        = 550 ft*lbf/sec  # engl. Pferdestärke
+hp                = horsepower      # engl. Pferdestärke # engl. horsepower
+metric horsepower = 75 kgf*m/s      # Pferdestärke
+
+
+#
+# frequency
+#
+[Frequenz]
+Hertz       = unit/sec
+Hz          = Hertz      # Hertz
+Millihertz  = 0.001 Hz
+Kilohertz   = 1000 Hz
+kHz         = Kilohertz  # Kilohertz
+Megahertz   = 1000 kHz
+MHz         = Megahertz  # Megahertz
+Gigahertz   = 1000 MHz
+GHz         = Gigahertz  # Gigahertz
+
+
+#
+# radioactivity
+#
+[Radioaktivität]
+Becquerel       = unit/sec
+Bq              = Becquerel     # Becquerel
+Curie           = 3.7e10 Bq
+Millicurie      = 0.001 Curie
+Roentgen        = 2.58e-4 Coulomb/kg
+Röntgen         = Roentgen
+[Strahlungsdosis]
+Gray            = J/kg
+Gy              = Gray          # Gray
+rad Dosis       = 0.001 Gy      # # 
+Sievert         = J/kg          # # Äquivalentdosis
+Millisievert    = 0.001 Sievert # # Äquivalentdosis
+Sv              = Sievert       # Sievert # Äquivalentdosis
+rem             = 0.01 Sv       # # Äquivalentdosis, veraltet
+Millirem        = 0.001 rem     # # Äquivalentdosis, veraltet
+
+
+#
+# viscosity
+#
+[dyn. Viskosität]
+Poise        = g/cm*s
+P            = Poise       # Poise
+Zentipoise   = 0.01 Poise
+cP           = Zentipoise  # Zentipoise
+
+[kinem. Viskosität]
+Stokes       = cm^2/s
+St           = Stokes      # Stokes
+Zentistokes  = 0.01 Stokes
+cSt          = Zentistokes # Zentistokes
+
+
+#
+# misc. units
+#
+[Beschleunigung]
+Erdbeschleunigung      = 9.80665 m/s^2      # # Mittelwert, internat. Konvention
+Erdschwerebeschleunigung = Erdbeschleunigung
+Erdgravitation         = Erdbeschleunigung
+Gravitation            = Erdbeschleunigung  # Erdbeschleunigung
+[Konstanten]
+Gravitationskonstante  = 6.673e-11 N*m^2/kg^2
+Gaskonstante           = 8.314472 J/mol*K     # R
+[Benzinverbrauch]
+Meilen pro Gallone     = mi/gal
+mpg                    = Meilen pro Gallone   # Meilen pro Gallone
+mpg imp                = mi/gallon imperial   # Meilen pro Gallone (brit.)
+Liter pro 100 km       = 1/100.0 l/km
+

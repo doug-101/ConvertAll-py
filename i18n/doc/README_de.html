@@ -1,0 +1,320 @@
+<html>
+<head>
+<title>README-Datei zu ConvertAll</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<center>
+<h1>README-Datei zu ConvertAll</h1>
+<h2>Ein Programm zum Konvertieren von Einheiten</h2>
+
+<p>Geschrieben von Doug Bell<br>
+Version 0.4.3<br>
+24. September 2009</p>
+</center>
+
+<h2>Inhalt</h2>
+
+<ul>
+<li><a href="#background">Hintergrund</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#legal">Rechtliches</a>
+<li><a href="#sysreq">Systemanforderungen</a>
+  <ul><li><a href="#linux-sys">Linux</a></li>
+  <li><a href="#win-sys">Windows</a></li></ul></li>
+<li><a href="#install">Installation</a>
+  <ul><li><a href="#linux-inst">Linux</a></li>
+  <li><a href="#win-inst">Windows</a></li></ul></li>
+<li><a href="#using">ConvertAll benutzen</a>
+  <ul><li><a href="#basics">Grundlagen</a></li>
+  <li><a href="#combine">Einheiten kombinieren</a></li>
+  <li><a href="#shortcut">Abk&uuml;rzungen</a></li>
+  <li><a href="#finder">Einheitensuche</a></li>
+  <li><a href="#options">Optionen</a></li>
+  <li><a href="#nonlinear">Nichtlineare Umwandlungen</a></li>
+  <li><a href="#cmdline">Verwendung auf der Kommandozeile</a></li></ul></li>
+<li><a href="#revs">Versionshistorie</a></li>
+<li><a href="#contact">Fragen, Kommentare, Kritik?</a></li>
+</ul>
+
+<h2><a name="background"></a>Hintergrund</h2>
+
+<p>Warum noch ein Einheiten-Konverter?  Es gibt doch bereits jede Menge.
+Tja, ich konnte aber keinen finden, der so funktionierte, wie ich es
+mir vorstellte.</p>
+
+<p>Mit ConvertAll kann man Einheiten auf beliebige Weise kombinieren.
+Wenn Sie von Zoll pro Dekade konvertieren wollen, in Ordnung. Oder von
+Meterpfund. Oder von nautischen Kubikmeilen. Die Einheiten m&uuml;ssen f&uuml;r
+niemand anderen einen Sinn ergeben.</p>
+
+<p>Da ich nichts mit dem Software-Business zu tun habe, erlaube ich
+jedem, das Programm kostenlos zu nutzen, zu verteilen und zu
+modifizieren, so lange es nicht Teil eines propriet&auml;ren Programms wird.
+Wenn Ihnen die Software gef&auml;llt, sagen Sie es ruhig weiter. Und teilen
+Sie mir mit, was Sie denken. Meine E-Mail-Adresse ist doug101 AT bellz
+DOT org.</p>
+
+<h2><a name="features"></a>Features</h2>
+
+<ul>
+
+  <li>Die Basiseinheiten f&uuml;r die Konvertierung k&ouml;nnen 
+  eingetippt (mit Auto-Vervollst&auml;ndigung) oder aus einer Liste
+  ausgew&auml;hlt werden.</li>
+
+  <li>Einheiten k&ouml;nnen sowohl mit ihrer Abk&uuml;rzung als auch mit ihrem
+  vollen Namen angegeben werden.</li>
+
+  <li>Einheiten k&ouml;nnen mit den Rechenoperationen "*" und "/" kombiniert
+  werden.</li>
+
+  <li>Mit dem Operator "^" k&ouml;nnen Einheiten zu einer Potenz erhoben
+  werden.</li>
+
+  <li>Auch Einheiten mit nichtlinearen Skalen, wie Temperatur, k&ouml;nnen
+  konvertiert werden.</li>
+
+  <li>Eine Liste von Einheiten kann gefiltert und durchsucht werden.</li>
+
+  <li>Zahlen k&ouml;nnen sowohl auf der Seite der Quell- als auch der
+  Zieleinheit angegeben werden, um in beide Richtungen konvertieren zu
+  k&ouml;nnen.</li>
+
+  <li>Anstelle von Zahlen k&ouml;nnen auch einfache mathematische Ausdr&uuml;cke
+  eingegeben werden.</li>
+
+  <li>Die Formatierung der numerischen Ergebnisse kann durch Optionen
+  festgelegt werden.</li>
+
+  <li>Die Einheitendaten enthalten mehr als 400 Einheiten.</li>
+
+  <li>Das Format der Einheitendatei macht es einfach, neue Einheiten
+  hinzuzuf&uuml;gen.</li>
+
+  <li>Mit Hilfe von Kommandozeilenoptionen k&ouml;nnen Umwandlungen ohne die
+  GUI vorgenommen werden.</li>
+
+</ul>
+
+<h2><a name="legal"></a>Rechtliches</h2>
+
+<p>ConvertAll ist freie Software. Sie k&ouml;nnen es unter den Bedingungen
+der GNU General Public License, wie von der Free Software Foundation
+ver&ouml;ffentlicht, weitergeben und/oder modifizieren, entweder gem&auml;&szlig;
+Version 2 der Lizenz oder (nach Ihrer Option) jeder sp&auml;teren
+Version.</p>
+
+</p>Die Ver&ouml;ffentlichung dieses Programms erfolgt in der Hoffnung, da&szlig;
+es Ihnen von Nutzen sein wird, aber OHNE IRGENDEINE GARANTIE.  Details
+finden Sie in der Datei <tt>LICENSE</tt>, die mit diesem Programm
+ausgeliefert wird.</p>
+
+<h2><a name="sysreq"></a>Systemanforderungen</h2>
+
+<h3><a name="linux-sys"></a>Linux</h3>
+
+<p>ConvertAll ben&ouml;tigt die folgenden Bibliotheken:
+<ul>
+  <li>Qt (Version 4.1 oder h&ouml;her - 
+    siehe <a href="http://www.trolltech.com">Trolltech</a> f&uuml;r weitere
+    Informationen)</li>
+  <li>Python (Version 2.3 oder h&ouml;her)</li>
+  <li>PyQt (Version 4.0 oder h&ouml;her - siehe <a
+    href="http://www.riverbankcomputing.co.uk">Riverbank</a>
+    f&uuml;r weitere Informationen)</li>
+</ul></p>
+
+<p>Diese Libraries sind relativ neu - evtl. gibt es kein Paket f&uuml;r Ihre
+Distribution. In diesem Fall gibt es noch eine fr&uuml;here Version von
+ConvertAll (0.3.2), die von &auml;lteren Versionen der Libraries abh&auml;ngt.
+Diese steht aber leider nur in Englisch zur Verf&uuml;gung.</p>
+
+<h3><a name="win-sys"></a>Windows</h3>
+
+<p>Wenn Sie die Dateien aus dem Bin&auml;rpaket nutzen, sollte ConvertAll
+auf jedem Computer mit Windows 95, 98, NT, 2000 oder XP laufen.</p>
+
+<h2><a name="install"></a>Installation</h2>
+
+<h3><a name="linux-inst"></a>Linux</h3>
+
+<p>Packen Sie die Quelldateien aus dem convertall tar-Archiv aus, wechseln
+Sie dann in einem Terminal in das Verzeichnis <tt>ConvertAll</tt>. F&uuml;r
+eine einfache Installation f&uuml;hren Sie nur den folgenden Befehl als
+"root" aus: <tt>python install.py</tt></p>
+
+<p>Um alle Installationsoptionen zu sehen, geben Sie ein: <tt>python
+    install.py -h</tt></p>
+
+<p>Um ConvertAll unter einem anderen Verzeichnispr&auml;fix zu installieren
+(der Default ist <tt>/usr/local</tt>), geben Sie dies ein: 
+<tt>python install.py -p /prefix/pfad</tt></p>
+
+<h3><a name="win-inst"></a>Windows</h3>
+
+<p>F&uuml;hren Sie einfach die heruntergeladene Installationsdatei aus
+(<tt>convertall-x.x.x-install.exe</tt>).  Damit wird das Programm mit
+den Libraries installiert und optional Dateitypzuordnungen und
+Verweise angelegt.</p>
+
+<p>Wenn Sie schon eine funktionierende Installation von ConvertAll in
+der Version 0.3.0 oder h&ouml;her haben, k&ouml;nnen Sie einen kleineren Download
+nutzen.  Installieren Sie einfach <tt>convertall-x.x.x-upgrade.exe</tt>
+und f&uuml;hren Sie es aus, um die Dateien aus Ihrer vorigen Installation zu
+aktualisieren.</p>
+
+<p>Wenn Sie den Quellcode modifizieren wollen oder eigene
+PyQt-Programme f&uuml;r Windows schreiben wollen, dann nutzen Sie nicht den 
+gerade beschrieben Ablauf. Stattdessen m&uuml;ssen Sie
+<a href="http://www.python.org">Python</a> und das Binary von 
+<a href="http://www.riverbankcomputing.co.uk">PyQt</a> installieren.  
+Dann entpacken Sie den Sourcecode und die Daten-Dateien der Linux-Version
+(die convertall Tar-Datei) in ein Verzeichnis Ihrer Wahl und f&uuml;hren die
+Datei <tt>convertall.py</tt> aus.</p>
+
+<h2><a name="using"></a>ConvertAll benutzen</h2>
+
+<h3><a name="basics"></a>Grundlagen</h3>
+
+<p>Geben Sie einfach einen Einheitennamen in das Eingabefeld
+"Ausgangseinheit" ein. W&auml;hrend Sie tippen, verschiebt sich die Liste unter
+dem Eingabefeld, bis Einheitennamen angezeigt werden, die Ihrer Eingabe
+&auml;hnlich sind. Geben Sie entweder das Einheitenk&uuml;rzel bzw. den
+Einheitennamen komplett an oder dr&uuml;cken Sie die Eingabetaste, um die in
+der Liste hervorgehobene Einheit zu nehmen. Nat&uuml;rlich k&ouml;nnen Sie auch
+mit der Maus auf eine Einheit aus der Liste klicken, um sie in das
+Eingabefeld zu &uuml;bernehmen. Sie k&ouml;nnen auch die Pfeiltasten nach oben und
+unten benutzen, um benachbarte Einheiten aus der Liste auszuw&auml;hlen.</p>
+
+<p>Wiederholen Sie die Einheiteneingabe im Eingabefeld "Zieleinheit".
+Wenn Sie fertig und die Einheiten kompatibel sind, dann sehen Sie, dass
+die numerischen Eingabefelder unterhalb der Einheitenlisten aktiviert
+werden. Sie k&ouml;nnen in eines der beiden Felder einen Zahlenwert
+eingeben, und im anderen Feld wird das Ergebnis der Umwandlung stehen.</p>
+
+<h3><a name="combine"></a>Einheiten kombinieren</h3>
+
+
+<p>Die wahre St&auml;rke von ConvertAll liegt in seiner F&auml;higkeit, mehrere
+Einheiten zu kombinieren. Geben Sie einfach die Einheitennamen mit
+einem '*' oder '/' dazwischen ein. Damit k&ouml;nnen Sie Einheiten wie "N*m"
+oder "km/hr" ausdr&uuml;cken. Das Symbol '^' kann f&uuml;r Exponenten genutzt
+werden, wie "m^3" oder "kg*m/s^2". Negative Exponenten sind erlaubt, um
+Einheiten wie "sec^-1" (pro Sekunde) angeben zu k&ouml;nnen, aber es kann
+sein, dass sich dadurch Multiplikations- oder Divisionszeichen
+umkehren ("m*s^-2" wird zu "m/s^2").</p>
+
+<p>Die Multiplikation hat eine h&ouml;here Pr&auml;zedenz als die Division, d.h.
+"m / sec * hr" ist das Gleiche wie "m / (sec * hr)". Auch ist "m / sec
+/ hr" &auml;quivalent zu "m * hr / sec" (wobei das letztere weniger
+verwirrend ist).</p>
+
+<p>Die Schaltfl&auml;chen unter den Einheitenlisten ('X', '/', '^2', '^3')
+f&uuml;gen ebenfalls den jeweiligen Operator hinter der Einheit ein, die der
+Schreibmarke am n&auml;chsten steht. Die Schaltfl&auml;chen f&uuml;r die Exponenten
+ersetzen den Exponenten der Einheit.</p>
+
+<p>Auch wenn Sie auf eine Einheit aus der Liste klicken, wird im
+Allgemeinen die der Schreibmarke am n&auml;chsten stehende Einheit
+im Eingabefeld ersetzt.</p>
+
+<p>Die Schaltfl&auml;che "Einheit l&ouml;schen" unter den Operator-Schaltfl&auml;chen
+kann benutzt werden, um das Eingabefeld zu l&ouml;schen und eine neue
+Einheit eingeben zu k&ouml;nnen.</p>
+
+<h3><a name="shortcut"></a>Abk&uuml;rzungen</h3>
+
+<p>Wenn Sie Einheitennamen eingeben, werden Leerzeichen ignoriert. Sie
+k&ouml;nnen sie also weglassen. Wenn Sie einen Teil eines Einheitennamens
+bereits eingetippt haben, wird der entsprechende Eintrag in der Liste
+hervorgehoben. Durch Dr&uuml;cken der Eingabetaste wird der Name
+im Eingabefeld vervollst&auml;ndigt. Auch durch Bet&auml;tigen der Tabulatortaste
+wird der Name vervollst&auml;ndigt und zum n&auml;chsten Eingabefeld
+gesprungen.</p>
+
+<p>Der zu konvertierende Zahlenwert kann entweder auf der "Ausgangs"-
+oder der "Ziel"-Seite eingegeben werden. F&uuml;r die Eingabe kann Standard- oder
+wissenschaftliche Schreibweise benutzt werden, oder ein Ausdruck mit
+einfachen mathematischen Operatoren (+, -, *, /, **) und Klammern.</p>
+
+<h3><a name="finder"></a>Einheitensuche</h3>
+
+<p>Die Einheitensuche kann benutzt werden, um Einheiten nach Typ zu
+filtern und/oder mit einem Textstring nach Einheiten zu suchen. Sie
+zeigt in einem neuen Fenster eine separate Einheitenliste. Die Liste
+wird anhand des Filters und der Sucheingabe aktualisiert.</p>
+
+<p>Mit Schaltfl&auml;chen weiter unten im Suchfenster kann die ausgew&auml;hlte
+Einheit zu den Einheiten in einem Eingabefeld im Hauptfenster
+hinzugef&uuml;gt werden. Die "Ersetzen"-Schaltfl&auml;chen ersetzen die gesamte
+Eingabe durch die ausgew&auml;hlte Einheit. Die "Einf&uuml;gen"-Schaltfl&auml;chen
+&auml;ndern nur den Teil einer kombinierten Einheit, der aktiv ist (bei der
+Schreibmarke im jeweiligen Eingabefeld des Hauptfensters).</p>
+
+<h3><a name="options"></a>Optionen</h3>
+
+<p>Die Schaltfl&auml;che "Optionen..." &ouml;ffnet ein Fenster, in dem sich
+verschiedene Voreinstellungen &auml;ndern lassen. Diese Einstellungen werden
+automatisch gespeichert, ConvertAll startet das n&auml;chste Mal automatisch
+mit den zuletzt benutzten Einstellungen.</p>
+
+<p>Die erste Option bestimmt die Anzeige numerischer Ergebnisse,
+einschlie&szlig;lich der Verwendung einer wissenschaftlichen Zahlennotation
+und der Anzahl der dargestellten Dezimalstellen. Setzen Sie die Zahl der
+Dezimalstellen nicht zu niedrig, da hierdurch die Genauigkeit stark
+leiden kann. Sechs oder mehr Stellen sind empfohlen (acht ist die
+Voreinstellung).</p>
+
+<p>Ein Option dient dazu, die Schaltfl&auml;chen mit den Operatoren (x, /,
+^2, ^3 und Einheit l&ouml;schen) zu verstecken. Durch diese Option kann man
+Platz sparen, falls Sie die Operatoren mit der Tastatur eingeben.</p>
+
+<p>Weitere Schaltfl&auml;chen im Optionsdialog dienen dazu, die Farben der
+Textfelder zu &auml;ndern.</p>
+
+<h3><a name="nonlinear"></a>Nichtlineare Umwandlungen</h3>
+
+<p>Bei einigen Einheiten ist die Umwandlung nichtlinear. Dazu geh&ouml;ren
+zum Beispiel die Temperaturenskalen f&uuml;r Fahrenheit und Celsius (da der
+Nullpunkt einen Offset hat) und f&uuml;r American Wire Gauge (amer.
+Kodierung f&uuml;r Drahtdurchmesser, logarithmische Skala). Die
+nichtlinearen Einheiten sind in der Kommentarspalte (rechts von der
+Typ-Spalte) als solche gekennzeichnet.</p>
+
+<p>Diese Einheiten k&ouml;nnen nur umgewandelt werden, wenn sie nicht mit
+anderen Einheiten kombiniert werden und keinen Exponenten tragen.
+Andernfalls w&auml;re die Umwandlung nicht sinnvoll.</p>
+
+<h3><a name="cmdline"></a>Verwendung auf der Kommandozeile</h3>
+
+<p>Umwandlungen k&ouml;nnen auf der Kommandozeile (Linux-Konsole oder
+Windows/DOS Befehlsaufforderung) ausgef&uuml;hrt werden, ohne die grafische
+Benutzerschnittstelle aufzurufen. Geben Sie den Befehl "convertall",
+gefolgt von der Zahl, der Ausgangseinheit und der Quelleinheit an,
+getrennt durch Leerzeichen. Wenn Einheitennamen Leerzeichen enthalten,
+m&uuml;ssen sie in Anf&uuml;hrungszeichen gesetzt werden. Alternativ k&ouml;nnen Sie
+auch "convertall -i" auf der Kommandozeile eingeben, die Angaben werden
+dann interaktiv angegeben.</p>
+
+<p>Wenn die Umwandlung fertig ist, fragt ConvertAll nach einer neuen
+Zahl f&uuml;r die gleiche Umwandlung. Mit "r" kann die Konversion umgekehrt
+werden, mit "q" wird das Programm beendet.</p>
+
+<p>Mit der Eingabe von "convertall -h" auf der Kommandozeile bekommen
+Sie eine ausf&uuml;hrlichere Liste der Optionen.</p>
+
+<h2><a name="revs"></a>Versionshistorie</h2>
+
+<p>Die vollst&auml;ndige Versionshistorie befindet sich in der englischen
+Version der README-Datei.</p>
+
+<h2><a name="contact"></a>Fragen, Kommentare, Kritik?</h2>
+
+<p>Man kann mich per E-Mail erreichen unter: doug101 AT bellz DOT
+org<br>Ich freue mich &uuml;ber jedes Feedback, einschlie&szlig;lich Mitteilung
+&uuml;ber Fehler, die Sie finden. Schauen Sie auch regelm&auml;&szlig;ig unter 
+<a href="http://www.bellz.org">www.bellz.org</a> nach Updates.</p>
+
+</body>
+</html>
