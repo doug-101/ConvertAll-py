@@ -101,129 +101,144 @@
 <context>
     <name>convertdlg</name>
     <message>
-        <location filename="convertdlg.py" line="62"/>
+        <location filename="convertdlg.py" line="64"/>
         <source>%d units loaded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="65"/>
+        <location filename="convertdlg.py" line="67"/>
         <source>Error in unit data - %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="79"/>
+        <location filename="convertdlg.py" line="82"/>
         <source>From Unit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="95"/>
+        <location filename="convertdlg.py" line="98"/>
         <source>To Unit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="113"/>
+        <location filename="convertdlg.py" line="116"/>
         <source>Set units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="130"/>
+        <location filename="convertdlg.py" line="134"/>
         <source>No Unit Set</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="150"/>
+        <location filename="convertdlg.py" line="159"/>
         <source>&amp;Close</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="154"/>
+        <location filename="convertdlg.py" line="163"/>
         <source>&amp;Unit Finder...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="158"/>
+        <location filename="convertdlg.py" line="167"/>
         <source>&amp;Options...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="163"/>
+        <location filename="convertdlg.py" line="172"/>
         <source>&amp;Help...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="167"/>
+        <location filename="convertdlg.py" line="176"/>
         <source>&amp;About...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="192"/>
+        <location filename="convertdlg.py" line="201"/>
         <source>Clear Unit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="223"/>
+        <location filename="convertdlg.py" line="268"/>
         <source>Result Display</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="224"/>
+        <location filename="convertdlg.py" line="269"/>
         <source>Decimal places</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="227"/>
+        <location filename="convertdlg.py" line="272"/>
         <source>Use scientific notation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="229"/>
+        <location filename="convertdlg.py" line="274"/>
         <source>Use fixed decimal places</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="230"/>
+        <location filename="convertdlg.py" line="277"/>
         <source>Buttons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="232"/>
+        <location filename="convertdlg.py" line="279"/>
         <source>Show operator buttons</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="233"/>
+        <location filename="convertdlg.py" line="280"/>
         <source>Colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="235"/>
+        <location filename="convertdlg.py" line="282"/>
         <source>Use default system colors</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="236"/>
+        <location filename="convertdlg.py" line="283"/>
         <source>Set background color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="237"/>
+        <location filename="convertdlg.py" line="284"/>
         <source>Set text color</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="307"/>
+        <location filename="convertdlg.py" line="355"/>
         <source>Read Me file not found</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="309"/>
+        <location filename="convertdlg.py" line="357"/>
         <source>ConvertAll README File</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="317"/>
+        <location filename="convertdlg.py" line="365"/>
         <source>ConvertAll Version %s
 by %s</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="210"/>
+        <source>Recent Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="275"/>
+        <source>Recent Units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="276"/>
+        <source>Number saved</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -321,27 +336,27 @@ by %s</source>
 <context>
     <name>numedit</name>
     <message>
-        <location filename="numedit.py" line="89"/>
+        <location filename="numedit.py" line="92"/>
         <source>Error in unit data - %s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="numedit.py" line="53"/>
+        <location filename="numedit.py" line="54"/>
         <source>Converting...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="numedit.py" line="65"/>
+        <location filename="numedit.py" line="66"/>
         <source>Units are not compatible (%s  vs.  %s)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="numedit.py" line="70"/>
+        <location filename="numedit.py" line="71"/>
         <source>Set units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="numedit.py" line="71"/>
+        <location filename="numedit.py" line="72"/>
         <source>No Unit Set</source>
         <translation type="unfinished"></translation>
     </message>
@@ -388,22 +403,22 @@ by %s</source>
 <context>
     <name>unitgroup</name>
     <message>
-        <location filename="unitgroup.py" line="194"/>
+        <location filename="unitgroup.py" line="281"/>
         <source>Circular unit definition</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="199"/>
+        <location filename="unitgroup.py" line="286"/>
         <source>Invalid conversion for &quot;%s&quot;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="240"/>
+        <location filename="unitgroup.py" line="330"/>
         <source>Cannot combine non-linear units</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="277"/>
+        <location filename="unitgroup.py" line="368"/>
         <source>Bad equation for %s</source>
         <translation type="unfinished"></translation>
     </message>

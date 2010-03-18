@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="de_DE">
+<!DOCTYPE TS><TS version="1.1" language="de_DE">
 <context>
     <name>cmdline</name>
     <message>
@@ -102,132 +101,146 @@
 <context>
     <name>convertdlg</name>
     <message>
-        <location filename="convertdlg.py" line="62"/>
+        <location filename="convertdlg.py" line="64"/>
         <source>%d units loaded</source>
         <translation>%d Einheiten geladen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="65"/>
+        <location filename="convertdlg.py" line="67"/>
         <source>Error in unit data - %s</source>
         <translation>Fehler in Einheitendaten - %s</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="79"/>
+        <location filename="convertdlg.py" line="82"/>
         <source>From Unit</source>
         <translation>Ausgangseinheit</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="95"/>
+        <location filename="convertdlg.py" line="98"/>
         <source>To Unit</source>
         <translation>Zieleinheit</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="113"/>
+        <location filename="convertdlg.py" line="116"/>
         <source>Set units</source>
         <translation>Einheit angeben</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="130"/>
+        <location filename="convertdlg.py" line="134"/>
         <source>No Unit Set</source>
         <translation>Keine Einheit angegeben</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="150"/>
+        <location filename="convertdlg.py" line="159"/>
         <source>&amp;Close</source>
         <translation>S&amp;chließen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="154"/>
+        <location filename="convertdlg.py" line="163"/>
         <source>&amp;Unit Finder...</source>
         <translation>Einheit s&amp;uchen...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="158"/>
+        <location filename="convertdlg.py" line="167"/>
         <source>&amp;Options...</source>
         <translation>&amp;Optionen...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="163"/>
+        <location filename="convertdlg.py" line="172"/>
         <source>&amp;Help...</source>
         <translation>&amp;Hilfe...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="167"/>
+        <location filename="convertdlg.py" line="176"/>
         <source>&amp;About...</source>
         <translation>&amp;Über...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="192"/>
+        <location filename="convertdlg.py" line="201"/>
         <source>Clear Unit</source>
         <translation>Einheit löschen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="223"/>
+        <location filename="convertdlg.py" line="268"/>
         <source>Result Display</source>
         <translation>Ergebnis-Ausgabe</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="224"/>
+        <location filename="convertdlg.py" line="269"/>
         <source>Decimal places</source>
         <translation>Dezimalstellen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="227"/>
+        <location filename="convertdlg.py" line="272"/>
         <source>Use scientific notation</source>
         <translation>Wissenschaftliche Darstellung nutzen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="229"/>
+        <location filename="convertdlg.py" line="274"/>
         <source>Use fixed decimal places</source>
         <translation>Festkommadarstellung nutzen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="230"/>
+        <location filename="convertdlg.py" line="277"/>
         <source>Buttons</source>
         <translation>Schaltflächen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="232"/>
+        <location filename="convertdlg.py" line="279"/>
         <source>Show operator buttons</source>
         <translation>Schaltflächen für Rechenoperationen anzeigen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="233"/>
+        <location filename="convertdlg.py" line="280"/>
         <source>Colors</source>
         <translation>Farben</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="235"/>
+        <location filename="convertdlg.py" line="282"/>
         <source>Use default system colors</source>
         <translation>Systemfarben nutzen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="236"/>
+        <location filename="convertdlg.py" line="283"/>
         <source>Set background color</source>
         <translation>Hintergrundfarbe setzen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="237"/>
+        <location filename="convertdlg.py" line="284"/>
         <source>Set text color</source>
         <translation>Textfarbe setzen</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="307"/>
+        <location filename="convertdlg.py" line="355"/>
         <source>Read Me file not found</source>
         <translation>README-Datei nicht gefunden</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="309"/>
+        <location filename="convertdlg.py" line="357"/>
         <source>ConvertAll README File</source>
         <translation>ConvertAll-README-Datei</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="317"/>
+        <location filename="convertdlg.py" line="365"/>
         <source>ConvertAll Version %s
 by %s</source>
-        <translatorcomment>add translator here ;-)</translatorcomment>
         <translation>ConvertAll Version %s
 von %s</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="210"/>
+        <source>Recent Unit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="275"/>
+        <source>Recent Units</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="276"/>
+        <source>Number saved</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -324,27 +337,27 @@ von %s</translation>
 <context>
     <name>numedit</name>
     <message>
-        <location filename="numedit.py" line="89"/>
+        <location filename="numedit.py" line="92"/>
         <source>Error in unit data - %s</source>
         <translation>Fehler in Einheitendaten - %s</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="53"/>
+        <location filename="numedit.py" line="54"/>
         <source>Converting...</source>
         <translation>Konvertiere...</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="65"/>
+        <location filename="numedit.py" line="66"/>
         <source>Units are not compatible (%s  vs.  %s)</source>
         <translation>Einheiten sind nicht kompatibel (%s bzw. %s)</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="70"/>
+        <location filename="numedit.py" line="71"/>
         <source>Set units</source>
         <translation>Einheiten angeben</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="71"/>
+        <location filename="numedit.py" line="72"/>
         <source>No Unit Set</source>
         <translation>Keine Einheit angegeben</translation>
     </message>
@@ -380,7 +393,6 @@ von %s</translation>
     <message>
         <location filename="unitdata.py" line="58"/>
         <source>Can not read &quot;units.dat&quot; file</source>
-        <translatorcomment>modify to match language-specific file, e.g. &quot;units_de.dat&quot; for German?</translatorcomment>
         <translation>Kann Datei &quot;units.dat&quot; nicht lesen</translation>
     </message>
     <message>
@@ -392,22 +404,22 @@ von %s</translation>
 <context>
     <name>unitgroup</name>
     <message>
-        <location filename="unitgroup.py" line="194"/>
+        <location filename="unitgroup.py" line="281"/>
         <source>Circular unit definition</source>
         <translation>Einheitendefinition hat Schleife</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="199"/>
+        <location filename="unitgroup.py" line="286"/>
         <source>Invalid conversion for &quot;%s&quot;</source>
         <translation>Ungültige Umwandlung für &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="240"/>
+        <location filename="unitgroup.py" line="330"/>
         <source>Cannot combine non-linear units</source>
         <translation>Kann keine nichtlinearen Einheiten kombinieren</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="277"/>
+        <location filename="unitgroup.py" line="368"/>
         <source>Bad equation for %s</source>
         <translation>Ungültige Gleichung für %s</translation>
     </message>

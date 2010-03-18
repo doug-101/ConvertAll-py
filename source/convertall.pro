@@ -16,4 +16,6 @@ SOURCES = cmdline.py \
           unitgroup.py \
           unitlistview.py
 
-TRANSLATIONS = convertall_xx.ts
+TRANSLATIONS = convertall_xx.ts \
+               convertall_de.ts \
+               convertall_fr.ts
