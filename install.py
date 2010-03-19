@@ -270,7 +270,6 @@ def main():
         dataPrefixDir = os.path.join(prefixDir, 'share', progName)
         dataBuildDir = os.path.join(buildRoot, dataPrefixDir[1:])
         print '  Copying data files to %s' % dataBuildDir
-        removeDir(dataBuildDir)   # remove old?
         copyDir('data', dataBuildDir)
         # update data file location in main python script
         replaceLine(os.path.join(pythonBuildDir, '%s.py' % progName),
