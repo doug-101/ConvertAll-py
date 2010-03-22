@@ -46,10 +46,6 @@ usage = [_('Usage:'),
              _('show results in scientific notation'),
          '']
 
-availOptions = 'd:fhiqs'
-availLongOptions = ['decimals=', 'fixed-decimals', 'help', 'interactive',
-                    'quiet', 'sci-notation']
-
 def parseArgs(opts, args):
     """Parse the command line and output conversion results"""
     options = option.Option('convertall', 20)

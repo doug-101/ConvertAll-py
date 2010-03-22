@@ -95,28 +95,45 @@ def setupTranslator(app):
     else:
         __builtin__._ = markNoTranslate
 
-
-if __name__ == '__main__':
+def main():
+    if len(sys.argv) > 1:
+        try:
+            opts, args = getopt.gnu_getopt(sys.argv, 'd:fhiqs', 
+                                           ['decimals=', 'fixed-decimals',
+                                            'help', 'interactive', 'quiet',
+                                            'sci-notation'])
+        except getopt.GetoptError:
+            # check that arguments aren't Qt GUI options
+            if sys.argv[1][:3] not in ['-ba', '-bg', '-bt', '-bu', '-cm',
+                                       '-di', '-do', '-fg', '-fn', '-fo',
+                                       '-ge', '-gr', '-im', '-in', '-na',
+                                       '-nc', '-no', '-re', '-se', '-st',
+                                       '-sy', '-ti', '-vi', '-wi']:
+                app = QtCore.QCoreApplication(sys.argv)
+                setupTranslator(app)
+                import cmdline
+                cmdline.printUsage()
+                sys.exit(2)
+        else:
+            app = QtCore.QCoreApplication(sys.argv)
+            setupTranslator(app)
+            import cmdline
+            try:
+                cmdline.parseArgs(opts, args[1:])
+            except KeyboardInterrupt:
+                pass
+            return
     userStyle = '-style' in ' '.join(sys.argv)
     app = QtGui.QApplication(sys.argv)
     setupTranslator(app)  # must be before importing any convertall modules
-    if len(sys.argv) > 1:
-        import cmdline
-        try:
-            opts, args = getopt.gnu_getopt(sys.argv, cmdline.availOptions,
-                                           cmdline.availLongOptions)
-        except getopt.GetoptError:
-            cmdline.printUsage()
-            sys.exit(2)
-        try:
-            cmdline.parseArgs(opts, args[1:])
-        except KeyboardInterrupt:
-            pass
-    else:
-        import convertdlg
-        if not userStyle and not sys.platform.startswith('win'):
-            QtGui.QApplication.setStyle('plastique')
-        win = convertdlg.ConvertDlg()
-        win.show()
-        signal.signal(signal.SIGINT, signal.SIG_IGN)
-        app.exec_()
+    import convertdlg
+    if not userStyle and not sys.platform.startswith('win'):
+        QtGui.QApplication.setStyle('plastique')
+    win = convertdlg.ConvertDlg()
+    win.show()
+    signal.signal(signal.SIGINT, signal.SIG_IGN)
+    app.exec_()
+
+
+if __name__ == '__main__':
+    main()
