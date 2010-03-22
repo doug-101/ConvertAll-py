@@ -16,12 +16,14 @@ import sys
 import os.path
 from PyQt4 import QtCore, QtGui
 try:
-    from __main__ import __version__, __author__, helpFilePath, iconPath, lang
+    from __main__ import __version__, __author__, helpFilePath, iconPath
+    from __main__ import lang, localEncoding
 except ImportError:
     __version__ = __author__ = '??'
     helpFilePath = None
     iconPath = None
     lang = ''
+    localEncoding = 'utf-8'
 import unitdata
 from unitgroup import UnitGroup
 from option import Option
@@ -61,7 +63,7 @@ class ConvertDlg(QtGui.QWidget):
         self.recentUnits = recentunits.RecentUnits(self.option)
         try:
             num = ConvertDlg.unitData.readData()
-            print _('%d units loaded') % num
+            print (_('%d units loaded') % num).encode(localEncoding)
         except unitdata.UnitDataError, text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - %s') % text)

@@ -13,6 +13,10 @@
 #*****************************************************************************
 
 import sys
+try:
+    from __main__ import localEncoding
+except ImportError:
+    localEncoding = 'utf-8'
 import option
 import optiondefaults
 import unitdata
@@ -98,12 +102,14 @@ def parseArgs(opts, args):
         return
     while True:
         while not fromUnit:
-            fromText = raw_input(_('Enter from unit -> '))
+            text = _('Enter from unit -> ')
+            fromText = raw_input(text.encode(localEncoding))
             if not fromText:
                 return
             fromUnit = getUnit(data, options, fromText)
         while not toUnit:
-            toText = raw_input(_('Enter to unit -> '))
+            text = _('Enter to unit -> ')
+            toText = raw_input(text.encode(localEncoding))
             if not toText:
                 return
             toUnit = getUnit(data, options, toText)
@@ -111,15 +117,16 @@ def parseArgs(opts, args):
             badEntry = False
             while True:
                 if not badEntry:
-                    print u'%s %s = %s %s' % (numStr, fromUnit.unitString(),
+                    text = u'%s %s = %s %s' % (numStr, fromUnit.unitString(),
                                              fromUnit.convertStr(float(numStr),
                                                                  toUnit),
                                              toUnit.unitString())
+                    print text.encode(localEncoding)
                     if quiet:
                         return
                 badEntry = False
-                rep = raw_input(_('Enter number, [n]ew, '
-                                  '[r]everse or [q]uit -> '))
+                text = _('Enter number, [n]ew, [r]everse or [q]uit -> ')
+                rep = raw_input(text.encode(localEncoding))
                 if not rep or rep[0] in ('q', 'Q'):
                     return
                 if rep[0] in ('r', 'R'):
@@ -137,8 +144,9 @@ def parseArgs(opts, args):
                     except ValueError:
                         badEntry = True
         else:
-            print _(u'Units %s and %s are not compatible') % \
+            text = _(u'Units %s and %s are not compatible') % \
                          (fromUnit.unitString(), toUnit.unitString())
+            print text.encode(localEncoding)
             if quiet:
                 return
             fromUnit = None
@@ -152,9 +160,9 @@ def getUnit(data, options, text):
     if unit.groupValid():
         unit.reduceGroup()
         return unit
-    print _(u'%s is not a valid unit') % text
+    print (_(u'%s is not a valid unit') % text).encode(localEncoding)
     return None
 
 def printUsage():
     """Print usage text"""
-    print '\n'.join(usage)
+    print ('\n'.join(usage)).encode(localEncoding)

@@ -22,6 +22,7 @@ helpFilePath = None    # modified by install script if required
 iconPath = None        # modified by install script if required
 translationPath = 'translations'
 lang = ''
+localEncoding = ''
 
 import sys
 import os.path
@@ -95,6 +96,26 @@ def setupTranslator(app):
     else:
         __builtin__._ = markNoTranslate
 
+def setLocalEncoding():
+    """Store locale's default text encoding for console messages"""
+    global localEncoding
+    try:
+        # not reliable?
+        localEncoding = locale.getpreferredencoding()
+        'test'.encode(localEncoding)
+    except (AttributeError, LookupError, TypeError, locale.Error):
+        try:
+            # not available on windows
+            localEncoding = locale.nl_langinfo(locale.CODESET)
+            'test'.encode(localEncoding)
+        except (AttributeError, LookupError, TypeError, locale.Error):
+            try:
+                localEncoding = locale.getdefaultlocale()[1]
+                'test'.encode(localEncoding)
+            except (AttributeError, LookupError, TypeError, locale.Error):
+                localEncoding = 'utf-8'
+
+
 def main():
     if len(sys.argv) > 1:
         try:
@@ -111,12 +132,14 @@ def main():
                                        '-sy', '-ti', '-vi', '-wi']:
                 app = QtCore.QCoreApplication(sys.argv)
                 setupTranslator(app)
+                setLocalEncoding()
                 import cmdline
                 cmdline.printUsage()
                 sys.exit(2)
         else:
             app = QtCore.QCoreApplication(sys.argv)
             setupTranslator(app)
+            setLocalEncoding()
             import cmdline
             try:
                 cmdline.parseArgs(opts, args[1:])
@@ -126,6 +149,7 @@ def main():
     userStyle = '-style' in ' '.join(sys.argv)
     app = QtGui.QApplication(sys.argv)
     setupTranslator(app)  # must be before importing any convertall modules
+    setLocalEncoding()
     import convertdlg
     if not userStyle and not sys.platform.startswith('win'):
         QtGui.QApplication.setStyle('plastique')
