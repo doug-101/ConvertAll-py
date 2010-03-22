@@ -4,7 +4,7 @@
 # cmdline.py, provides a class to read and execute command line arguments
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2010, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
