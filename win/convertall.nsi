@@ -3,7 +3,7 @@
 ; Created       : 2004-03-09
 ; By            : Doug Bell
 ; License       : Free to use, modify and distribute, but with no warranty.
-; Last modified : 2009-09-24
+; Last modified : 2010-03-23
 
 ; ConvertAll is a versatile unit conversion program
 ; Please check the website for details and updates <http://www.bellz.org/>.
@@ -16,7 +16,7 @@
 ; The name of the installer
 
 !define NAME "ConvertAll"
-!define VERSION "0.4.3"
+!define VERSION "0.4.90"
 
 ; Uncomment next line to include pyQt libraries in the installer
 !define PYQT
@@ -122,6 +122,7 @@ SectionEnd
 		File ".\lib\_socket.pyd"
 		File ".\lib\_ssl.pyd"
                 File ".\lib\bz2.pyd"
+                File ".\lib\libgcc_s_dw2-1.dll"
                 File ".\lib\mingwm10.dll"
                 File ".\lib\msvcp71.dll"
                 File ".\lib\MSVCR71.dll"
@@ -190,12 +191,14 @@ Section /o "${NAME} source code" source
         File ".\source\option.py"
         File ".\source\optiondefaults.py"
         File ".\source\optiondlg.py"
+        File ".\source\recentunits.py"
         File ".\source\setup.py"
         File ".\source\unitatom.py"
         File ".\source\unitdata.py"
         File ".\source\unitedit.py"
         File ".\source\unitgroup.py"
         File ".\source\unitlistview.py"
+        File ".\source\convertall.pro"
 
 SectionEnd
 
@@ -254,6 +257,7 @@ Section "Uninstall"
 	Delete "$INSTDIR\lib\_socket.pyd"
 	Delete "$INSTDIR\lib\_ssl.pyd"
         Delete "$INSTDIR\lib\bz2.pyd"
+        Delete "$INSTDIR\lib\libgcc_s_dw2-1.dll"
         Delete "$INSTDIR\lib\mingwm10.dll"
         Delete "$INSTDIR\lib\msvcp71.dll"
         Delete "$INSTDIR\lib\MSVCR71.dll"
@@ -296,6 +300,7 @@ Section "Uninstall"
         Delete "$INSTDIR\source\option.py"
         Delete "$INSTDIR\source\optiondefaults.py"
         Delete "$INSTDIR\source\optiondlg.py"
+        Delete "$INSTDIR\source\recentunits.py"
         Delete "$INSTDIR\source\setup.py"
         Delete "$INSTDIR\source\tmpcontrol.py"
         Delete "$INSTDIR\source\unit.py"
@@ -304,6 +309,7 @@ Section "Uninstall"
         Delete "$INSTDIR\source\unitedit.py"
         Delete "$INSTDIR\source\unitgroup.py"
         Delete "$INSTDIR\source\unitlistview.py"
+        Delete "$INSTDIR\source\convertall.pro"
 
 	Delete "$INSTDIR\lib\convertall.ini"
 
