@@ -143,11 +143,11 @@ class UnitGroup(object):
         """Change the current unit's exponent"""
         self.completePartial()
         currentUnit = self.currentUnit()
-        if self.currentUnit:
-            if self.currentUnit.exp > 0:
-                self.currentUnit.exp = newExp
+        if currentUnit:
+            if currentUnit.exp > 0:
+                currentUnit.exp = newExp
             else:
-                self.currentUnit.exp = -newExp
+                currentUnit.exp = -newExp
 
     def clearUnit(self):
         """Remove units"""
