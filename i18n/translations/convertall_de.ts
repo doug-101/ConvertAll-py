@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>cmdline</name>
     <message>
@@ -230,17 +231,17 @@ von %s</translation>
     <message>
         <location filename="convertdlg.py" line="210"/>
         <source>Recent Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt benutzte Einheit</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="275"/>
         <source>Recent Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Zuletzt benutzte Einheiten</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="276"/>
         <source>Number saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Gespeicherte Anzahl</translation>
     </message>
 </context>
 <context>
@@ -406,7 +407,7 @@ von %s</translation>
     <message>
         <location filename="unitgroup.py" line="281"/>
         <source>Circular unit definition</source>
-        <translation>Einheitendefinition hat Schleife</translation>
+        <translation>Einheitendefinition enthält Selbstbezug</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="286"/>

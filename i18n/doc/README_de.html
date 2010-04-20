@@ -9,8 +9,8 @@
 <h2>Ein Programm zum Konvertieren von Einheiten</h2>
 
 <p>Geschrieben von Doug Bell<br>
-Version 0.4.3<br>
-24. September 2009</p>
+Version 0.4.90<br>
+23. M&auml;rz 2010</p>
 </center>
 
 <h2>Inhalt</h2>
@@ -66,16 +66,21 @@ DOT org.</p>
   <li>Einheiten k&ouml;nnen sowohl mit ihrer Abk&uuml;rzung als auch mit ihrem
   vollen Namen angegeben werden.</li>
 
-  <li>Einheiten k&ouml;nnen mit den Rechenoperationen "*" und "/" kombiniert
+  <li>Einheiten k&ouml;nnen mit den Rechenoperationen &bdquo;*&ldquo; und &bdquo;/&ldquo; kombiniert
   werden.</li>
 
-  <li>Mit dem Operator "^" k&ouml;nnen Einheiten zu einer Potenz erhoben
+  <li>Mit dem Operator &bdquo;^&ldquo; k&ouml;nnen Einheiten zu einer Potenz erhoben
   werden.</li>
+
+  <li>Einheiten im Nenner k&ouml;nnen mit Klammern gruppiert werden.</li>
 
   <li>Auch Einheiten mit nichtlinearen Skalen, wie Temperatur, k&ouml;nnen
   konvertiert werden.</li>
 
   <li>Eine Liste von Einheiten kann gefiltert und durchsucht werden.</li>
+
+  <li>Die zuletzt benutzten Einheitenkombinationen k&ouml;nnen in einem
+  Men&uuml; ausgew&auml;hlt werden.
 
   <li>Zahlen k&ouml;nnen sowohl auf der Seite der Quell- als auch der
   Zieleinheit angegeben werden, um in beide Richtungen konvertieren zu
@@ -87,7 +92,7 @@ DOT org.</p>
   <li>Die Formatierung der numerischen Ergebnisse kann durch Optionen
   festgelegt werden.</li>
 
-  <li>Die Einheitendaten enthalten mehr als 400 Einheiten.</li>
+  <li>Die Einheitendaten enthalten mehr als 500 Einheiten.</li>
 
   <li>Das Format der Einheitendatei macht es einfach, neue Einheiten
   hinzuzuf&uuml;gen.</li>
@@ -133,7 +138,7 @@ Diese steht aber leider nur in Englisch zur Verf&uuml;gung.</p>
 <h3><a name="win-sys"></a>Windows</h3>
 
 <p>Wenn Sie die Dateien aus dem Bin&auml;rpaket nutzen, sollte ConvertAll
-auf jedem Computer mit Windows 95, 98, NT, 2000 oder XP laufen.</p>
+auf jedem Computer mit Windows 95, 98, NT, 2000, XP, Vista oder 7 laufen.</p>
 
 <h2><a name="install"></a>Installation</h2>
 
@@ -142,7 +147,7 @@ auf jedem Computer mit Windows 95, 98, NT, 2000 oder XP laufen.</p>
 <p>Packen Sie die Quelldateien aus dem convertall tar-Archiv aus, wechseln
 Sie dann in einem Terminal in das Verzeichnis <tt>ConvertAll</tt>. F&uuml;r
 eine einfache Installation f&uuml;hren Sie nur den folgenden Befehl als
-"root" aus: <tt>python install.py</tt></p>
+&bdquo;root&ldquo; aus: <tt>python install.py</tt></p>
 
 <p>Um alle Installationsoptionen zu sehen, geben Sie ein: <tt>python
     install.py -h</tt></p>
@@ -155,22 +160,16 @@ eine einfache Installation f&uuml;hren Sie nur den folgenden Befehl als
 
 <p>F&uuml;hren Sie einfach die heruntergeladene Installationsdatei aus
 (<tt>convertall-x.x.x-install.exe</tt>).  Damit wird das Programm mit
-den Libraries installiert und optional Dateitypzuordnungen und
+den Libraries installiert und optional werden Dateitypzuordnungen und
 Verweise angelegt.</p>
 
-<p>Wenn Sie schon eine funktionierende Installation von ConvertAll in
-der Version 0.3.0 oder h&ouml;her haben, k&ouml;nnen Sie einen kleineren Download
-nutzen.  Installieren Sie einfach <tt>convertall-x.x.x-upgrade.exe</tt>
-und f&uuml;hren Sie es aus, um die Dateien aus Ihrer vorigen Installation zu
-aktualisieren.</p>
-
 <p>Wenn Sie den Quellcode modifizieren wollen oder eigene
-PyQt-Programme f&uuml;r Windows schreiben wollen, dann nutzen Sie nicht den 
+PyQt-Programme f&uuml;r Windows schreiben wollen, dann folgen Sie nicht den 
 gerade beschrieben Ablauf. Stattdessen m&uuml;ssen Sie
 <a href="http://www.python.org">Python</a> und das Binary von 
 <a href="http://www.riverbankcomputing.co.uk">PyQt</a> installieren.  
 Dann entpacken Sie den Sourcecode und die Daten-Dateien der Linux-Version
-(die convertall Tar-Datei) in ein Verzeichnis Ihrer Wahl und f&uuml;hren die
+(die convertall tar-Datei) in ein Verzeichnis Ihrer Wahl und f&uuml;hren die
 Datei <tt>convertall.py</tt> aus.</p>
 
 <h2><a name="using"></a>ConvertAll benutzen</h2>
@@ -178,7 +177,7 @@ Datei <tt>convertall.py</tt> aus.</p>
 <h3><a name="basics"></a>Grundlagen</h3>
 
 <p>Geben Sie einfach einen Einheitennamen in das Eingabefeld
-"Ausgangseinheit" ein. W&auml;hrend Sie tippen, verschiebt sich die Liste unter
+&bdquo;Ausgangseinheit&ldquo; ein. W&auml;hrend Sie tippen, verschiebt sich die Liste unter
 dem Eingabefeld, bis Einheitennamen angezeigt werden, die Ihrer Eingabe
 &auml;hnlich sind. Geben Sie entweder das Einheitenk&uuml;rzel bzw. den
 Einheitennamen komplett an oder dr&uuml;cken Sie die Eingabetaste, um die in
@@ -187,7 +186,7 @@ mit der Maus auf eine Einheit aus der Liste klicken, um sie in das
 Eingabefeld zu &uuml;bernehmen. Sie k&ouml;nnen auch die Pfeiltasten nach oben und
 unten benutzen, um benachbarte Einheiten aus der Liste auszuw&auml;hlen.</p>
 
-<p>Wiederholen Sie die Einheiteneingabe im Eingabefeld "Zieleinheit".
+<p>Wiederholen Sie die Einheiteneingabe im Eingabefeld &bdquo;Zieleinheit&rdquo;.
 Wenn Sie fertig und die Einheiten kompatibel sind, dann sehen Sie, dass
 die numerischen Eingabefelder unterhalb der Einheitenlisten aktiviert
 werden. Sie k&ouml;nnen in eines der beiden Felder einen Zahlenwert
@@ -198,30 +197,31 @@ eingeben, und im anderen Feld wird das Ergebnis der Umwandlung stehen.</p>
 
 <p>Die wahre St&auml;rke von ConvertAll liegt in seiner F&auml;higkeit, mehrere
 Einheiten zu kombinieren. Geben Sie einfach die Einheitennamen mit
-einem '*' oder '/' dazwischen ein. Damit k&ouml;nnen Sie Einheiten wie "N*m"
-oder "km/hr" ausdr&uuml;cken. Das Symbol '^' kann f&uuml;r Exponenten genutzt
-werden, wie "m^3" oder "kg*m/s^2". Negative Exponenten sind erlaubt, um
-Einheiten wie "sec^-1" (pro Sekunde) angeben zu k&ouml;nnen, aber es kann
+einem &sbquo;*&lsquo; oder &sbquo;/&lsquo; dazwischen ein. Damit k&ouml;nnen Sie Einheiten wie &bdquo;N*m&rdquo;
+oder &bdquo;km/hr&ldquo; ausdr&uuml;cken. Das Symbol &sbquo;^&lsquo; kann f&uuml;r Exponenten genutzt
+werden, wie &bdquo;m^3&ldquo; oder &bdquo;kg*m/s^2&rdquo;. Negative Exponenten sind erlaubt, um
+Einheiten wie &bdquo;sec^-1&ldquo; (pro Sekunde) angeben zu k&ouml;nnen, aber es kann
 sein, dass sich dadurch Multiplikations- oder Divisionszeichen
-umkehren ("m*s^-2" wird zu "m/s^2").</p>
+umkehren (&bdquo;m*s^-2&ldquo; wird zu &bdquo;m/s^2&rdquo;).</p>
 
-<p>Die Multiplikation hat eine h&ouml;here Pr&auml;zedenz als die Division, d.h.
-"m / sec * hr" ist das Gleiche wie "m / (sec * hr)". Auch ist "m / sec
-/ hr" &auml;quivalent zu "m * hr / sec" (wobei das letztere weniger
-verwirrend ist).</p>
+<p>Multiplikation und Division haben die gleiche Pr&auml;zedenz und werden
+daher von links nach rechts ausgewertet. Es k&ouml;nnen auch Klammern benutzt werden,
+um die Einheiten im Nenner zu gruppieren. Daher kann &bdquo;m / sec / hr&ldquo; auch als &bdquo;m
+/ (sec * hr)&ldquo; eingegeben werden. Die Variante mit den Klammern ist
+m&ouml;glicherweise weniger verwirrend.</p>
 
-<p>Die Schaltfl&auml;chen unter den Einheitenlisten ('X', '/', '^2', '^3')
+<p>Die Schaltfl&auml;chen unter den Einheitenlisten (&bdquo;X&ldquo;, &bdquo;/&ldquo;, &bdquo;^2&ldquo;, &bdquo;^3&ldquo;)
 f&uuml;gen ebenfalls den jeweiligen Operator hinter der Einheit ein, die der
-Schreibmarke am n&auml;chsten steht. Die Schaltfl&auml;chen f&uuml;r die Exponenten
-ersetzen den Exponenten der Einheit.</p>
+Schreibmarke am n&auml;chsten steht. Die Schaltfl&auml;chen f&uuml;r die
+Exponenten ersetzen den Exponenten der Einheit.</p>
 
 <p>Auch wenn Sie auf eine Einheit aus der Liste klicken, wird im
 Allgemeinen die der Schreibmarke am n&auml;chsten stehende Einheit
 im Eingabefeld ersetzt.</p>
 
-<p>Die Schaltfl&auml;che "Einheit l&ouml;schen" unter den Operator-Schaltfl&auml;chen
-kann benutzt werden, um das Eingabefeld zu l&ouml;schen und eine neue
-Einheit eingeben zu k&ouml;nnen.</p>
+<p>Die Schaltfl&auml;che &bdquo;Einheit l&ouml;schen&ldquo; unter den
+Operator-Schaltfl&auml;chen kann benutzt werden, um das Eingabefeld zu
+l&ouml;schen und eine neue Einheit eingeben zu k&ouml;nnen.</p>
 
 <h3><a name="shortcut"></a>Abk&uuml;rzungen</h3>
 
@@ -233,8 +233,12 @@ im Eingabefeld vervollst&auml;ndigt. Auch durch Bet&auml;tigen der Tabulatortast
 wird der Name vervollst&auml;ndigt und zum n&auml;chsten Eingabefeld
 gesprungen.</p>
 
-<p>Der zu konvertierende Zahlenwert kann entweder auf der "Ausgangs"-
-oder der "Ziel"-Seite eingegeben werden. F&uuml;r die Eingabe kann Standard- oder
+<p>Die Schaltfl&auml;che &bdquo;Zuletzt benutzte Einheit&ldquo; &ouml;ffnet ein Men&uuml;
+der zuletzt verwendeten Einheiten und Einheitenkombinationen. Die aktuelle
+Einheitenkombination wird durch eine Auswahl in diesem Men&uuml; ersetzt.</p>
+
+<p>Der zu konvertierende Zahlenwert kann entweder auf der &bdquo;Ausgangs&rdquo;-
+oder der &bdquo;Ziel&rdquo;-Seite eingegeben werden. F&uuml;r die Eingabe kann Standard- oder
 wissenschaftliche Schreibweise benutzt werden, oder ein Ausdruck mit
 einfachen mathematischen Operatoren (+, -, *, /, **) und Klammern.</p>
 
@@ -247,17 +251,17 @@ wird anhand des Filters und der Sucheingabe aktualisiert.</p>
 
 <p>Mit Schaltfl&auml;chen weiter unten im Suchfenster kann die ausgew&auml;hlte
 Einheit zu den Einheiten in einem Eingabefeld im Hauptfenster
-hinzugef&uuml;gt werden. Die "Ersetzen"-Schaltfl&auml;chen ersetzen die gesamte
-Eingabe durch die ausgew&auml;hlte Einheit. Die "Einf&uuml;gen"-Schaltfl&auml;chen
+hinzugef&uuml;gt werden. Die &bdquo;Ersetzen&rdquo;-Schaltfl&auml;chen ersetzen die gesamte
+Eingabe durch die ausgew&auml;hlte Einheit. Die &bdquo;Einf&uuml;gen&rdquo;-Schaltfl&auml;chen
 &auml;ndern nur den Teil einer kombinierten Einheit, der aktiv ist (bei der
 Schreibmarke im jeweiligen Eingabefeld des Hauptfensters).</p>
 
 <h3><a name="options"></a>Optionen</h3>
 
-<p>Die Schaltfl&auml;che "Optionen..." &ouml;ffnet ein Fenster, in dem sich
-verschiedene Voreinstellungen &auml;ndern lassen. Diese Einstellungen werden
-automatisch gespeichert, ConvertAll startet das n&auml;chste Mal automatisch
-mit den zuletzt benutzten Einstellungen.</p>
+<p>Die Schaltfl&auml;che &bdquo;Optionen...&ldquo; &ouml;ffnet ein Fenster, in dem sich
+verschiedene Voreinstellungen &auml;ndern lassen. Diese werden automatisch
+gespeichert, ConvertAll startet das n&auml;chste Mal automatisch mit den
+zuletzt gew&auml;hlten Einstellungen.</p>
 
 <p>Die erste Option bestimmt die Anzeige numerischer Ergebnisse,
 einschlie&szlig;lich der Verwendung einer wissenschaftlichen Zahlennotation
@@ -266,9 +270,15 @@ Dezimalstellen nicht zu niedrig, da hierdurch die Genauigkeit stark
 leiden kann. Sechs oder mehr Stellen sind empfohlen (acht ist die
 Voreinstellung).</p>
 
-<p>Ein Option dient dazu, die Schaltfl&auml;chen mit den Operatoren (x, /,
-^2, ^3 und Einheit l&ouml;schen) zu verstecken. Durch diese Option kann man
-Platz sparen, falls Sie die Operatoren mit der Tastatur eingeben.</p>
+<p>Es gibt eine Option, um festzulegen, wie viele der zuletzt benutzten 
+Einheiten gespeichert werden sollen. Setzt man die Zahl auf Null, dann werden die 
+Schaltfl&auml;chen f&uuml;r den Zugriff auf die zuletzt benutzten Einheiten
+deaktiviert.</p>
+
+<p>Ein Option dient dazu, die Schaltfl&auml;chen mit den Operationen (&bdquo;X&ldquo;, &bdquo;/&ldquo;,
+&bdquo;^2&ldquo;, &bdquo;^3&ldquo;, &bdquo;Einheit l&ouml;schen&ldquo; und &bdquo;Zuletzt verwendete Einheit&ldquo;) zu verstecken.
+Durch diese Option kann man Platz sparen, falls Sie die Operatoren nur mit der
+Tastatur eingeben.</p>
 
 <p>Weitere Schaltfl&auml;chen im Optionsdialog dienen dazu, die Farben der
 Textfelder zu &auml;ndern.</p>
@@ -290,19 +300,23 @@ Andernfalls w&auml;re die Umwandlung nicht sinnvoll.</p>
 
 <p>Umwandlungen k&ouml;nnen auf der Kommandozeile (Linux-Konsole oder
 Windows/DOS Befehlsaufforderung) ausgef&uuml;hrt werden, ohne die grafische
-Benutzerschnittstelle aufzurufen. Geben Sie den Befehl "convertall",
+Benutzerschnittstelle aufzurufen. Geben Sie den Befehl (&bdquo;convertall&ldquo; unter Linux,
+&bdquo;convertall_dos&ldquo; aus dem Windows-Bin&auml;arpaket),
 gefolgt von der Zahl, der Ausgangseinheit und der Quelleinheit an,
 getrennt durch Leerzeichen. Wenn Einheitennamen Leerzeichen enthalten,
 m&uuml;ssen sie in Anf&uuml;hrungszeichen gesetzt werden. Alternativ k&ouml;nnen Sie
-auch "convertall -i" auf der Kommandozeile eingeben, die Angaben werden
-dann interaktiv angegeben.</p>
+auch die Option &bdquo;-i&ldquo; auf der Kommandozeile verwenden (&bdquo;convertall -i&ldquo; unter Linux, 
+&bdquo;convertall_dos -i&ldquo; unter Windows), die Angaben werden
+dann interaktiv eingegeben.</p>
 
-<p>Wenn die Umwandlung fertig ist, fragt ConvertAll nach einer neuen
-Zahl f&uuml;r die gleiche Umwandlung. Mit "r" kann die Konversion umgekehrt
-werden, mit "q" wird das Programm beendet.</p>
+<p>Wenn die Umwandlung erfolgt ist, fragt ConvertAll nach einer neuen
+Zahl f&uuml;r die gleiche Umwandlung. Mit &bdquo;n&ldquo; wird eine neue Umwandlung
+gestartet, mit &bdquo;r&ldquo; kann die Konversion umgekehrt werden, mit &bdquo;q&ldquo; wird das
+Programm beendet.</p>
 
-<p>Mit der Eingabe von "convertall -h" auf der Kommandozeile bekommen
-Sie eine ausf&uuml;hrlichere Liste der Optionen.</p>
+<p>Mit der Option &bdquo;-h&ldquo; auf der Kommandozeile (&bdquo;convertall -h&ldquo; unter Linux,
+&bdquo;convertall_dos -h&ldquo; unter Windows) bekommen Sie eine ausf&uuml;hrlichere Liste
+der Optionen.</p>
 
 <h2><a name="revs"></a>Versionshistorie</h2>
 

@@ -1,8 +1,8 @@
 #*****************************************************************************
-# units.dat, the units data file, version 0.4.3
+# units.dat, the units data file, version 0.5.0
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2005, Douglas W. Bell
+# Copyright (C) 2010, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
@@ -84,6 +84,8 @@ hyl               = kp*s^2/m           # # seit 1978 untersagt
 stone             = 14 lb
 grain             = 1/7000.0 lb
 pennyweight       = 24 grain
+hundredweight long  = 112 lb           # # britisches Maß
+hundredweight short = 100 lb
 Erdmasse          = 5.974e24 kg
 Mondmasse         = 7.349e22 kg
 Sonnenmasse       = 1.9891e30 kg
@@ -164,11 +166,11 @@ Kiloparsec           = 1000 Parsec
 Megaparsec           = 1000 Kiloparsec
 Schraubenmaß         = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
                        # zöllig # Vereinheitlichte Durchmesser, nicht-linear
-AWG                  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+AWG Dia              = [in] 92.0**((36-x)/39.0)/200.0 ; \
                        36 - 39.0*log(200.0*x)/log(92.0) \
                        # American Wire Gauge \
                        # US-Maß für Drahtdurchmesser; -1, -2 für 00, 000 benutzen; nicht-linear
-American Wire Gauge  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+American Wire Gauge Dia = [in] 92.0**((36-x)/39.0)/200.0 ; \
                        36 - 39.0*log(200.0*x)/log(92.0) \
                        #  # US-Maß für Drahtdurchmesser; -1, -2 für 00, 000 benutzen; nicht-linear
 Standard gauge       = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
@@ -353,7 +355,7 @@ kmol         = Kilomol     # Kilomol
 pound mole   = mol*lbm/gramm    # Pfund Mol # engl.
 lbmol        = pound mole  # Pfund Mol # engl. pound mole
 [Größe eines Mol]
-Avogadrozahl = Gramm/amu*mol
+Avogadrozahl = Gramm/(amu*mol)
 
 
 #
@@ -374,10 +376,10 @@ footcandle   = Lumen/ft^2
 metercandle  = lx
 
 [Leuchtdichte]
-Lambert      = cd/pi*cm^2       # # US-Maß
+Lambert      = cd/(pi*cm^2)       # # US-Maß
 la           = Lambert          # Lambert
 Millilambert = 0.001 Lambert
-footlambert  = cd/pi*ft^2       # # Fuß-Lambert (angloamer.)
+footlambert  = cd/(pi*ft^2)       # # Fuß-Lambert (angloamer.)
 
 
 #
@@ -549,6 +551,7 @@ lbf            = pound force    # pound force # Gewichtskraft eines Pfunds
 ton force      = ton * Erdbeschleunigung # # Gewichtskraft einer angloamer. Tonne 
 ounce force    = ounce * Erdbeschleunigung # # Gewichtskraft einer Unze
 ozf            = ounce force    # ounce force # Gewichtskraft einer Unze
+tonne force    = Tonne * gravity # # Gewichtskraft einer metrischen Tonne
 
 
 #
@@ -570,6 +573,13 @@ rai           = 1600 m^2        # # Thailändisch
 ngaan         = 400 m^2         # # Thailändisch
 circular inch = 1/4.0 pi*in^2   # # Fläche eines Kreises mit 1 Zoll Durchmesser 
 circular mil  = 1/4.0 pi*mil^2  # # Fläche eines Kreises mit 1 Zoll Durchmesser 
+AWG Area                 = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           # American Wire Gauge \
+                           # US-Maß für Drahtquerschnitte; -1, -2 für 00, 000 benutzen; nicht-linear
+American Wire Gauge Area = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           #  # US-Maß für Drahtquerschnitte; -1, -2 für 00, 000 benutzen; nicht-linear
 
 
 #
@@ -656,15 +666,15 @@ Ups         = rev/sec          # Umdrehungen/sec
 [Flüssigkeitsfluss]
 gph         = gal/hr           # Gallonen/Std
 gpm         = gal/min          # Gallonen/min
-cfs         = ft^3/sec         # cu ft/sec
-cfm         = ft^3/min         # cu ft/min
+cfs         = ft^3/sec         # cu ft/sec # Kubikfuß pro Sekunde
+cfm         = ft^3/min         # cu ft/min # Kubikfuß pro Minute
 lpm         = l/min            # Liter/min
 [Gasfluss]
 sccm        = atm*cc/min       # std cc/min      # Druck * Fluss
 sccs        = atm*cc/sec       # std cc/sec      # Druck * Fluss
 slpm        = atm*l/min        # std Liter/min   # Druck * Fluss
 slph        = atm*l/hr         # std Liter/hr  # Druck * Fluss
-scfh        = atm*ft^3/hr    # std cu ft/hr  # Druck * Fluss
+scfh        = atm*ft^3/hr      # std cu ft/hr  # Druck * Fluss
 scfm        = atm*ft^3/min     # std cu ft/min   # Druck * Fluss
 
 
@@ -757,7 +767,7 @@ Kilokalorie          = 1000 Kalorie
 kcal                 = Kilokalorie       # Kilokalorie
 Kalorien in Nahrung  = Kilokalorie       # Kilokalorie
 thermie              = 1000 kcal
-Btu                  = cal*lb*R/g*K      # British thermal unit
+Btu                  = cal*lb*R/(g*K)    # British thermal unit
 British thermal unit = Btu
 therm                = 100000 Btu
 erg                  = cm*dyne
@@ -766,6 +776,8 @@ eV                   = Elektronenvolt  # Elektronenvolt
 kWh                  = kW*hr           # Kilowattstunde
 Kilowattstunde       = kWh
 Tonne TNT            = 4.184e9 J
+Tonne Erdöläquivalent = 41.868 Gigajoule
+Tonne Kohleäquivalent = 7000000 kcal
 
 
 #
@@ -786,6 +798,7 @@ Pferdestärke      = PS
 horsepower        = 550 ft*lbf/sec  # engl. Pferdestärke
 hp                = horsepower      # engl. Pferdestärke # engl. horsepower
 metric horsepower = 75 kgf*m/s      # Pferdestärke
+ton refrigeration = 12000 Btu/hr    # # amer. Einheit für Kühlleistung
 
 
 #
@@ -828,7 +841,7 @@ Millirem        = 0.001 rem     # # Äquivalentdosis, veraltet
 # viscosity
 #
 [dyn. Viskosität]
-Poise        = g/cm*s
+Poise        = g/(cm*s)
 P            = Poise       # Poise
 Zentipoise   = 0.01 Poise
 cP           = Zentipoise  # Zentipoise
@@ -850,10 +863,13 @@ Erdgravitation         = Erdbeschleunigung
 Gravitation            = Erdbeschleunigung  # Erdbeschleunigung
 [Konstanten]
 Gravitationskonstante  = 6.673e-11 N*m^2/kg^2
-Gaskonstante           = 8.314472 J/mol*K     # R
+Gaskonstante           = 8.314472 J/(mol*K)     # R
 [Benzinverbrauch]
 Meilen pro Gallone     = mi/gal
 mpg                    = Meilen pro Gallone   # Meilen pro Gallone
 mpg imp                = mi/gallon imperial   # Meilen pro Gallone (brit.)
 Liter pro 100 km       = 1/100.0 l/km
 
+[Permeabilität]
+Darcy                  = 1 cm^2*Zentipoise/atm/s
+Millidarcy             = 0.001 Darcy
