@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS><TS version="1.1" language="fr">
+<defaultcodec></defaultcodec>
 <context>
     <name>cmdline</name>
     <message>
@@ -230,17 +231,17 @@ by %s</translation>
     <message>
         <location filename="convertdlg.py" line="210"/>
         <source>Recent Unit</source>
-        <translation type="unfinished"></translation>
+        <translation>Unité récente</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="275"/>
         <source>Recent Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Unités récentes</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="276"/>
         <source>Number saved</source>
-        <translation type="unfinished"></translation>
+        <translation>Nombre sauvé</translation>
     </message>
 </context>
 <context>

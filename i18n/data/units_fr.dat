@@ -72,8 +72,8 @@ livre troy        = 5760 grain
 lb troy           = livre troy         # livre troy
 once troy        = 1/12.0 lb troy
 oz troy           = ounce troy         # ounce troy
-ton               = 2000 lb            # # imperiale
-kiloton           = 1000 ton           # # imperiale
+ton               = 2000 lb            # # impériale
+kiloton           = 1000 ton           # # impériale
 slug              = lbf*s^2/ft
 stone             = 14 lb
 grain             = 1/7000.0 lb
@@ -85,23 +85,22 @@ masse solaire        = 1.9891e30 kg
 # length / distance units
 #
 [longueur]
-m                    = !              # metre
-meter                = m
-metre                = m
-decimetre            = 0.1 m
-cm                   = 0.01 m         # centimetre
-centimetre           = cm
-mm                   = 0.001 m        # millimetre
-millimetre           = mm
-micrometre           = 1e-6 m
-micron               = micrometre
-nanometre            = 1e-9 m
-nm                   = nanometre      # nanometre
-dekametre            = 10 m
-hectometre           = 100 m
-km                   = 1000 m         # kilometre
-kilometre            = km
-megametre            = 1000 km
+m                    = !              # mètre
+mètre                = m
+decimètre            = 0.1 m
+cm                   = 0.01 m         # centimètre
+centimètre           = cm
+mm                   = 0.001 m        # millimètre
+millimètre           = mm
+micromètre           = 1e-6 m
+micron               = micromètre
+nanomètre            = 1e-9 m
+nm                   = nanomètre      # nanomètre
+decamètre            = 10 m
+hectomètre           = 100 m
+km                   = 1000 m         # kilomètre
+kilomètre            = km
+megamètre            = 1000 km
 angstrom             = 1e-10 m
 fermi                = 1e-15 m        # # grandeur nucléaire
 pouce                 = 2.54 cm
@@ -122,19 +121,20 @@ nautical mile        = 1852 m
 nmi                  = nautical mile  # mille nautique
 league               = 3 mile
 chain                = 66 ft
-fathom               = 6 ft
-rod                  = 5.5 yard
+brasse               = 6 ft
+fm		     = brasse
+perche                  = 5.5 verge
 furlong              = 40 rod
-hand                 = 4 pouce
+main                 = 4 pouce
 cubit                = 21.8 pouce      # # coudée biblique
 point                = 1/72.0 pouce      # # point de caractère
 pica                 = 12 point
-caliber              = 0.01 pouce      # # calibre d'une arme
+calibre              = 0.01 pouce      # # calibre d'une arme
 terrain de football  = 100 yd
 marathon             = 46145 yd
-mil Swedish          = 10 km
-au                   = 1.49597870691e11 m   # unité astronomique
-unite astronomique    = au
+mille suedois          = 10 km
+ua                   = 1.49597870691e11 m   # unité astronomique
+unite astronomique    = ua
 annee lumiere           = 365.25 vitesse lumiere * jour
 minute lumiere         = vitesse lumiere * min
 seconde lumiere        = vitesse lumiere * s
@@ -158,11 +158,11 @@ standard gauge       = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
 zinc gauge           = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
                        (23, .1), (24, .125), (27, .5), (28, 1)]  \
                        # # épaisseur de la feuille de métal, non linéaire
-ring size            = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
+taille bague            = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
                        # # Taille américaine, circ., non linéaire
-shoe size mens       = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+grandeur soulier homme       = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
                        # # Taille américainre, non linéaire
-shoe size womens     = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+grandeur soulier femme     = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
                        # # Taille américainre, non linéaire
 
 
@@ -217,7 +217,7 @@ degree Kelvin     = K
 C                 = [K] x + 273.15 ; x - 273.15  # Celsius  # non linéaire
 Celsius           = [K] x + 273.15 ; x - 273.15  #          # non linéaire
 deg C             = [K] x + 273.15 ; x - 273.15  # Celsius  # non linéaire
-degree Celsius    = [K] x + 273.15 ; x - 273.15  #          # non linéaire
+degre Celsius    = [K] x + 273.15 ; x - 273.15  #          # non linéaire
 
 R                 = 5/9.0 K     # Rankine
 Rankine           = R
@@ -236,16 +236,16 @@ Fahrenheit degree = F deg
 
 #
 # electrical units
-#
+##
 [intensité du courrant]
 A              = !              # ampère
-ampere         = A
+ampère         = A
 amp            = A
-milliampere    = 0.001 A
-milliamp       = milliampere
-mA             = milliampere    # milliamèpre
-microampere    = 0.001 mA
-kiloampere     = 1000 A
+milliampère    = 0.001 A
+milliamp       = milliampère
+mA             = milliampère    # milliamèpre
+microampère    = 0.001 mA
+kiloampère     = 1000 A
 kA             = kiloampere     # kiloampère
 [charge]
 coulomb        = A*s
@@ -317,7 +317,7 @@ lm           = lumen     # lumen
 [illuminance]
 lux          = lumen/m^2
 footcandle   = lumen/ft^2
-metrecandle  = lumen/m^2
+mètrecandle  = lumen/m^2
 
 [luminance]
 lambert      = cd/pi*cm^2
@@ -356,8 +356,8 @@ gradian     = 0.01 quadrant
 [angle dans les solides]
 sr         = !      # stéradian
 steradian  = sr
-sphere     = 4 pi*sr
-hemisphere = 1/2.0 sphere
+sphère     = 4 pi*sr
+hemisphère = 1/2.0 sphère
 
 
 #
@@ -488,7 +488,7 @@ circular mil  = 1/4.0 pi*mil^2  # # cercle d'un mille de surface
 #
 [volume]
 cc                   = cm^3                 # centimètre cube
-centimetre cube     = cc
+centimètre cube     = cc
 litre                = 1000 cc
 l                    = litre                # litre
 liter                = litre
@@ -509,15 +509,15 @@ pint                 = 1/2.0 quart          #             # US liquide
 pt                   = pint                 # pinte        # US liquide
 once liquide          = 1/16.0 pint          #             # US
 fl oz                = once liquide          # once liquide # US
-imperial gallon      = 4.54609 litre
-imp gal              = imperial gallon      # gallon impérial
-gallon imperial      = imperial gallon
-imperial quart       = 1/4.0 imp gal
-imp qt               = imperial quart       # litre impérial
-quart imperial       = imperial quart
-imperial pint        = 1/8.0 imp gal
-imp pt               = imperial pint        # pinte impériale
-pint imperial        = imperial pint
+impérial gallon      = 4.54609 litre
+imp gal              = impérial gallon      # gallon impérial
+gallon impérial      = impérial gallon
+impérial quart       = 1/4.0 imp gal
+imp qt               = impérial quart       # litre impérial
+quart impérial       = impérial quart
+impérial pint        = 1/8.0 imp gal
+imp pt               = impérial pint        # pinte impériale
+pint impérial        = impérial pint
 once liquide impériale = 1/160.0 imp gal
 imp fl oz            = once liquide impériale # once liquide impériale
 tasse                  = 8 fl oz
@@ -588,8 +588,8 @@ MPa                   = 1000 kPa                 # megaPascal
 megapascal            = MPa
 GPa                   = 1000 MPa                 # gigaPascal
 gigapascal            = GPa
-atm                   = 101325 Pa                # atmosphere
-atmosphere            = atm
+atm                   = 101325 Pa                # atmosphère
+atmosphère            = atm
 bar                   = 1e5 Pa
 mbar                  = 0.001 bar                # millibar
 millibar              = mbar
@@ -598,12 +598,12 @@ decibar               = 0.1 bar
 kilobar               = 1000 bar
 megabar               = 1000 kilobar
 mm Hg                 = mm*density Hg*gravity
-millimetre de Hg      = mm Hg
+millimètre de Hg      = mm Hg
 torr                  = mm Hg
 in Hg                 = in*density Hg*gravity    # mm de Hg
 pouce de Hg            = in Hg
-m water               = m*density water*gravity  # metre de H2O
-m H2O                 = m water                  # metre de H2O
+m water               = m*density water*gravity  # mètre de H2O
+m H2O                 = m water                  # mètre de H2O
 metre de water        = m water
 in water              = in*density water*gravity # pouce de H2O
 in H2O                = in water                 # pouce de H2O
@@ -622,22 +622,22 @@ ksi                   = 1000 psi                 # 1000 lb / pouce carré
 # density units
 #
 [densite]
-densite eau         = gramme/cm^3
-densite eau salee     = 1.025 gramme/cm^3
-densite Hg            = 13.5950981 gramme/cm^3
-densite air           = 1.293 kg/m^3          # # a TPN
-densite acier         = 0.283 lb/in^3         # # acier carbone
-densite aluminum      = 0.098 lb/in^3
-densite zinc          = 0.230 lb/in^3
-densite cuivre-zinc         = 0.310 lb/in^3         # # 80Cu-20Zn
-densite cuivre        = 0.295 lb/in^3
-densite fonte          = 0.260 lb/in^3         # # fonte
-densite nickel        = 0.308 lb/in^3
-densite tin           = 0.275 lb/in^3
-densite titane     = 0.170 lb/in^3
-densite argent        = 0.379 lb/in^3
-densite nylon         = 0.045 lb/in^3
-densite polycarbonate = 0.045 lb/in^3
+densité eau         = gramme/cm^3
+densité eau salee     = 1.025 gramme/cm^3
+densité Hg            = 13.5950981 gramme/cm^3
+densité air           = 1.293 kg/m^3          # # a TPN
+densité acier         = 0.283 lb/in^3         # # acier carbone
+densité aluminum      = 0.098 lb/in^3
+densité zinc          = 0.230 lb/in^3
+densité cuivre-zinc         = 0.310 lb/in^3         # # 80Cu-20Zn
+densité cuivre        = 0.295 lb/in^3
+densité fonte          = 0.260 lb/in^3         # # fonte
+densité nickel        = 0.308 lb/in^3
+densité tin           = 0.275 lb/in^3
+densité titane     = 0.170 lb/in^3
+densité argent        = 0.379 lb/in^3
+densité nylon         = 0.045 lb/in^3
+densité polycarbonate = 0.045 lb/in^3
 
 
 #
@@ -748,7 +748,7 @@ constante de gravite       = 6.673e-11 N*m^2/kg^2
 constante des gaz           = 8.314472 J/mol*K     # R
 [consommation d'essence]
 mpg                    = mi/gal               # milles/gallon
-mpg imp                = mi/gallon imperial   # milles/gallon imp.
+mpg imp                = mi/gallon impérial   # milles/gallon imp.
 litre par 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
                          3.785411784 / (x * 0.01609344) # # non linéaire
 
