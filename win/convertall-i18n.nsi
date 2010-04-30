@@ -3,7 +3,7 @@
 ; Created       : 2010-03-23
 ; By            : Doug Bell
 ; License       : Free to use, modify and distribute, but with no warranty.
-; Last modified : 2010-04-22
+; Last modified : 2010-04-30
 
 ; ConvertAll is a versatile unit conversion program
 ; Please check the website for details and updates <http://www.bellz.org/>.
@@ -16,7 +16,7 @@
 ; The name of the installer
 
 !define NAME "ConvertAll"
-!define VERSION "0.5.0a"
+!define VERSION "0.5.0b"
 
 
 Name "${NAME} Translations ${VERSION} by Doug Bell"
@@ -80,6 +80,9 @@ Section "Translation Files (required)" translations
         File ".\translations\convertall_de.ts"
         File ".\translations\convertall_de.qm"
 	File ".\translations\qt_de.qm"
+        File ".\translations\convertall_es.ts"
+        File ".\translations\convertall_es.qm"
+	File ".\translations\qt_es.qm"
         File ".\translations\convertall_fr.ts"
         File ".\translations\convertall_fr.qm"
 	File ".\translations\qt_fr.qm"
@@ -89,6 +92,7 @@ Section "Translation Files (required)" translations
 
 	; Put files there
         File ".\translations\README_de.html"
+        File ".\translations\README_es.html"
         File ".\translations\README_fr.html"
 
         ; Set output path to the data install directory.
@@ -96,6 +100,7 @@ Section "Translation Files (required)" translations
 
 	; Put files there
         File ".\translations\units_de.dat"
+        File ".\translations\units_es.dat"
         File ".\translations\units_fr.dat"
 
 	; Write the installation path into the registry
@@ -128,14 +133,19 @@ Section "Uninstall"
 	Delete "$INSTDIR\lib\translations\convertall_de.ts"
         Delete "$INSTDIR\lib\translations\convertall_de.qm"
         Delete "$INSTDIR\lib\translations\qt_de.qm"
+	Delete "$INSTDIR\lib\translations\convertall_es.ts"
+        Delete "$INSTDIR\lib\translations\convertall_es.qm"
+        Delete "$INSTDIR\lib\translations\qt_es.qm"
 	Delete "$INSTDIR\lib\translations\convertall_fr.ts"
         Delete "$INSTDIR\lib\translations\convertall_fr.qm"
         Delete "$INSTDIR\lib\translations\qt_fr.qm"
 
         Delete "$INSTDIR\doc\README_de.html"
+        Delete "$INSTDIR\doc\README_es.html"
         Delete "$INSTDIR\doc\README_fr.html"
 
         Delete "$INSTDIR\lib\units_de.dat"
+        Delete "$INSTDIR\lib\units_es.dat"
         Delete "$INSTDIR\lib\units_fr.dat"
 
         Delete "$INSTDIR\uninstall-i18n.exe"
