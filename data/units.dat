@@ -6,12 +6,12 @@
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
-# distributed in the hope that it will be useful, but WITTHOUT ANY WARRANTY.
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
 #*****************************************************************************
 #
 # Units are defined by an optional quantity and an equivalent unit or unit
-# combination.  A python expression may be used for the quantity, but is
-# resticted to using only the following operators: *, /, +, -, **, (, ).
+# combination.  A Python expression may be used for the quantity, but is
+# restricted to using only the following operators: *, /, +, -, **, (, ).
 # Beware of integer division truncation: be sure to use a float for at
 # least one of the values.
 #
@@ -27,10 +27,10 @@
 # "x", the first going from the unit to the equivalent unit and the second
 # one in reverse.  Any valid Python expression returning a float (including 
 # the functions in the math module) should work.  The equivalency list is a 
-# python list of tuples giving points for linear interpolation.
+# Python list of tuples giving points for linear interpolation.
 #
 # All units must reduce to primitive units, which are indicated by an '!'
-# as the equivalent unit.  Circular refernces must also be avoided.
+# as the equivalent unit.  Circular references must also be avoided.
 #
 # Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
 #
