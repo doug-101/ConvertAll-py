@@ -829,7 +829,7 @@ Röntgen         = Roentgen
 [Strahlungsdosis]
 Gray            = J/kg
 Gy              = Gray          # Gray
-rad Dosis       = 0.001 Gy      # # 
+rad Dosis       = 0.01 Gy       # # 
 Sievert         = J/kg          # # Äquivalentdosis
 Millisievert    = 0.001 Sievert # # Äquivalentdosis
 Sv              = Sievert       # Sievert # Äquivalentdosis
