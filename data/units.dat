@@ -126,6 +126,7 @@ mile US survey           = 5280 foot US survey
 league                   = 3 mile
 chain                    = 66 ft
 chain US survey          = 66 foot US survey
+link                     = 0.01 chain
 fathom                   = 6 ft
 rod                      = 5.5 yard
 furlong                  = 40 rod
