@@ -728,6 +728,7 @@ roentgen        = 2.58e-4 coulomb/kg
 [radiation dose]
 gray            = J/kg
 Gy              = gray          # gray
+centigray       = 0.01 Gy
 rad. abs. dose  = 0.01 Gy       # # commonly rad
 sievert         = J/kg          # # equiv. dose
 millisievert    = 0.001 sievert # # equiv. dose
