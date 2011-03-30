@@ -3,7 +3,7 @@
 ; Created       : 2004-03-09
 ; By            : Doug Bell
 ; License       : Free to use, modify and distribute, but with no warranty.
-; Last modified : 2010-04-22
+; Last modified : 2011-03-30
 
 ; ConvertAll is a versatile unit conversion program
 ; Please check the website for details and updates <http://www.bellz.org/>.
@@ -16,7 +16,7 @@
 ; The name of the installer
 
 !define NAME "ConvertAll"
-!define VERSION "0.5.0"
+!define VERSION "0.5.1"
 
 ; Uncomment next line to include pyQt libraries in the installer
 !define PYQT
@@ -117,18 +117,24 @@ SectionEnd
 
 		SectionIn 1 RO
 
+                Delete "$INSTDIR\lib\libgcc_s_dw2-1.dll"
+                Delete "$INSTDIR\lib\mingwm10.dll"
+                Delete "$INSTDIR\lib\msvcp71.dll"
+                Delete "$INSTDIR\lib\MSVCR71.dll"
+		Delete "$INSTDIR\lib\python25.dll"
+
                 SetOutPath "$INSTDIR\lib"
 
+                File ".\lib\_hashlib.pyd"
 		File ".\lib\_socket.pyd"
 		File ".\lib\_ssl.pyd"
                 File ".\lib\bz2.pyd"
-                File ".\lib\libgcc_s_dw2-1.dll"
-                File ".\lib\mingwm10.dll"
-                File ".\lib\msvcp71.dll"
-                File ".\lib\MSVCR71.dll"
+                File ".\lib\Microsoft.VC90.CRT.manifest"
+                File ".\lib\msvcp90.dll"
+                File ".\lib\msvcr90.dll"
                 File ".\lib\PyQt4.QtCore.pyd"
                 File ".\lib\PyQt4.QtGui.pyd"
-		File ".\lib\python25.dll"
+                File ".\lib\python27.dll"
                 File ".\lib\QtCore4.dll"
                 File ".\lib\QtGui4.dll"
                 File ".\lib\select.pyd"
@@ -254,6 +260,7 @@ Section "Uninstall"
         Delete "$INSTDIR\icons\helpforward.png"
         Delete "$INSTDIR\icons\helphome.png"
 
+        Delete "$INSTDIR\lib\_hashlib.pyd"
 	Delete "$INSTDIR\lib\_socket.pyd"
 	Delete "$INSTDIR\lib\_ssl.pyd"
         Delete "$INSTDIR\lib\bz2.pyd"
@@ -261,10 +268,14 @@ Section "Uninstall"
         Delete "$INSTDIR\lib\mingwm10.dll"
         Delete "$INSTDIR\lib\msvcp71.dll"
         Delete "$INSTDIR\lib\MSVCR71.dll"
+        Delete "$INSTDIR\lib\Microsoft.VC90.CRT.manifest"
+        Delete "$INSTDIR\lib\msvcp90.dll"
+        Delete "$INSTDIR\lib\msvcr90.dll"
         Delete "$INSTDIR\lib\PyQt4.QtCore.pyd"
         Delete "$INSTDIR\lib\PyQt4.QtGui.pyd"
 	Delete "$INSTDIR\lib\python24.dll"
 	Delete "$INSTDIR\lib\python25.dll"
+        Delete "$INSTDIR\lib\python27.dll"
         Delete "$INSTDIR\lib\QtCore4.dll"
         Delete "$INSTDIR\lib\QtGui4.dll"
         Delete "$INSTDIR\lib\sip.pyd"
