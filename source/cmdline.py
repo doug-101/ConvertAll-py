@@ -13,6 +13,7 @@
 #*****************************************************************************
 
 import sys
+import re
 try:
     from __main__ import localEncoding
 except ImportError:
@@ -55,6 +56,7 @@ def parseArgs(opts, args):
     options = option.Option('convertall', 20)
     options.loadAll(optiondefaults.defaultList)
     quiet = False
+    dataTestMode = False
     for opt, arg in opts:
         if opt in ('-h', '--help'):
             printUsage()
@@ -72,12 +74,17 @@ def parseArgs(opts, args):
             options.changeData('SciNotation', 'yes', False)
         elif opt in ('-q', '--quiet'):
             quiet = True
+        elif opt in ('-t', '--test'):
+            dataTestMode = True
     data = unitdata.UnitData()
     try:
         data.readData()
     except unitdata.UnitDataError, text:
         print u'Error in unit data - %s' % text
         sys.exit(1)
+    if dataTestMode:
+        unitDataTest(data, options)
+        return
     numStr = u'1.0'
     if args:
         numStr = args[0]
@@ -166,3 +173,27 @@ def getUnit(data, options, text):
 def printUsage():
     """Print usage text"""
     print ('\n'.join(usage)).encode(localEncoding)
+
+def unitDataTest(data, options):
+    """Run through a test of all units for consistent definitions,
+       print results, return True if all pass"""
+    badUnits = {}
+    errorRegEx = re.compile(r'.*"(.*)"$')
+    for unit in data.values():
+        if not unit.unitValid():
+            badUnits.setdefault(unit.name, []).append(unit.name)
+        group = unitgroup.UnitGroup(data, options)
+        group.replaceCurrent(unit)
+        try:
+            group.reduceGroup()
+        except unitdata.UnitDataError as errorText:
+            rootUnitName = errorRegEx.match(unicode(errorText)).group(1)
+            badUnits.setdefault(rootUnitName, []).append(unit.name)
+    if not badUnits:
+        print 'All units pass tests'
+        return True
+    for key in sorted(badUnits.keys()):
+        impacts = ', '.join(sorted(badUnits[key]))
+        text = '%s\n   Impacts:  %s\n' % (key, impacts)
+        print text.encode(localEncoding)
+    return False

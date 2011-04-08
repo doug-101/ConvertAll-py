@@ -119,10 +119,10 @@ def setLocalEncoding():
 def main():
     if len(sys.argv) > 1:
         try:
-            opts, args = getopt.gnu_getopt(sys.argv, 'd:fhiqs', 
+            opts, args = getopt.gnu_getopt(sys.argv, 'd:fhiqst', 
                                            ['decimals=', 'fixed-decimals',
                                             'help', 'interactive', 'quiet',
-                                            'sci-notation'])
+                                            'sci-notation', 'test'])
         except getopt.GetoptError:
             # check that arguments aren't Qt GUI options
             if sys.argv[1][:3] not in ['-ba', '-bg', '-bt', '-bu', '-cm',
