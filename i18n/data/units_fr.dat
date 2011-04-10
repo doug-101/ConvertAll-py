@@ -71,7 +71,7 @@ lid               = once              # # jargon de drogue
 livre troy        = 5760 grain
 lb troy           = livre troy         # livre troy
 once troy        = 1/12.0 lb troy
-oz troy           = ounce troy         # ounce troy
+oz troy           = once troy         # once troy
 ton               = 2000 lb            # # impériale
 kiloton           = 1000 ton           # # impériale
 slug              = lbf*s^2/ft
@@ -124,7 +124,7 @@ chain                = 66 ft
 brasse               = 6 ft
 fm		     = brasse
 perche                  = 5.5 verge
-furlong              = 40 rod
+furlong              = 40 perche
 main                 = 4 pouce
 cubit                = 21.8 pouce      # # coudée biblique
 point                = 1/72.0 pouce      # # point de caractère
@@ -183,7 +183,7 @@ min           = minute            # minute
 heure          = 60 min
 hr            = heure              # heure
 bell          = 30 min            #  # définition nautique
-watch         = 4 hour
+watch         = 4 heure
 watches       = watch
 jour           = 24 hr
 semaine          = 7 jour
@@ -195,12 +195,12 @@ yr            = annee              # année
 annee calendrier = 365 jour
 decennie        = 10 annee
 siecle       = 100 annee
-siecles     = secle
+siecles     = siecle
 millenaire    = 1000 annee
 millennia     = millenaire
 [horaire]
-man hour      = 168/40.0 hour
-man week      = 40 man hour
+man heure      = 168/40.0 heure
+man week      = 40 man heure
 man month     = 1/12.0 man year
 man year      = 52 man week
 
@@ -246,11 +246,11 @@ milliamp       = milliampère
 mA             = milliampère    # milliamèpre
 microampère    = 0.001 mA
 kiloampère     = 1000 A
-kA             = kiloampere     # kiloampère
+kA             = kiloampère     # kiloampère
 [charge]
 coulomb        = A*s
 amp heure       = A*hr
-mAh            = 0.001 amp hour # miliampère-heure
+mAh            = 0.001 amp heure # miliampère-heure
 milliamp heure  = mAh
 [voltage]
 volt           = W/A
@@ -337,7 +337,7 @@ revolution  = cercle
 rev         = revolution     # tour
 degre      = 1/360.0 cercle
 deg         = degre         # degré
-arc min     = 1/60.0 degree  # minute
+arc min     = 1/60.0 degre  # minute
 arc minute  = arc min
 min arc     = arc min        # minute
 minute arc  = arc min
@@ -345,7 +345,7 @@ arc sec     = 1/60.0 arc min # seconde
 arc seconde  = arc sec
 sec arc     = arc sec        # seconde
 seconde arc  = arc sec
-quadrant    = 1/4.0 circle
+quadrant    = 1/4.0 cercle
 right angle = quadrant
 gradian     = 0.01 quadrant
 
@@ -417,7 +417,7 @@ pi                 = 3.14159265358979323846 unite
 paire               = 2 unite
 tour du chapeau          = 3 unite          # # sports
 douzaine              = 12 unite
-doz                = dozaine           # douzaine
+doz                = douzaine           # douzaine
 trieze à la douzaine       = 13 unite
 score              = 20 unite
 grosse              = 144 unite
@@ -453,14 +453,14 @@ kN             = kilonewton      # kilonewton
 meganewton     = 1000 kN
 millinewton    = 0.001 N
 dyne           = cm*g/s^2
-kg force       = kg * gravity    # kilogramme-force
+kg force       = kg * acceleration gravitationnelle    # kilogramme-force
 kgf            = kg force        # kilogramme-force
 kilogramme force = kg force
-gramme force     = g * gravity
-livre force    = lbm * gravity
+gramme force     = g * acceleration gravitationnelle
+livre force    = lbm * acceleration gravitationnelle
 lbf            = livre force     # livres-force
-tonne force      = tonne * gravity
-once force    = once * gravity
+tonne force      = tonne * acceleration gravitationnelle
+once force    = once * acceleration gravitationnelle
 ozf            = once force     # once-force
 
 
@@ -569,8 +569,8 @@ lpm         = l/min            # litre/min
 sccm        = atm*cc/min       # TPN cc/min      # pression * flux
 sccs        = atm*cc/sec       # TPN cc/sec      # pression * flux
 slpm        = atm*l/min        # TPN litre/min   # pression * flux
-slph        = atm*l/hr         # TPN litre/hour  # pression * flux
-scfh        = atm*ft^3/hour    # TPN pied cube/hour  # pression * flux
+slph        = atm*l/hr         # TPN litre/heure  # pression * flux
+scfh        = atm*ft^3/heure    # TPN pied cube/heure  # pression * flux
 scfm        = atm*ft^3/min     # TPN pied cube/min   # pression * flux
 
 
@@ -597,18 +597,18 @@ microbar              = 0.001 mbar
 decibar               = 0.1 bar
 kilobar               = 1000 bar
 megabar               = 1000 kilobar
-mm Hg                 = mm*density Hg*gravity
+mm Hg                 = mm*densité Hg*acceleration gravitationnelle
 millimètre de Hg      = mm Hg
 torr                  = mm Hg
-in Hg                 = in*density Hg*gravity    # mm de Hg
+in Hg                 = in*densité Hg*acceleration gravitationnelle    # mm de Hg
 pouce de Hg            = in Hg
-m water               = m*density water*gravity  # mètre de H2O
+m water               = m*densité eau*acceleration gravitationnelle  # mètre de H2O
 m H2O                 = m water                  # mètre de H2O
 metre de water        = m water
-in water              = in*density water*gravity # pouce de H2O
+in water              = in*densité eau*acceleration gravitationnelle # pouce de H2O
 in H2O                = in water                 # pouce de H2O
 inch of water         = in water
-ft water              = ft*density water*gravity # pied de H2O
+ft water              = ft*densité eau*acceleration gravitationnelle # pied de H2O
 ft H2O                = ft water                 # pied de H20
 feet of water         = ft water
 foot of head          = ft water
@@ -664,8 +664,8 @@ therm                = 100000 Btu
 erg                  = cm*dyne
 electronvolt         = 1.602176462e-19 J
 eV                   = electronvolt      # electronvolt
-kWh                  = kW*hour           # kilowatt-heure
-kilowatt hour        = kWh
+kWh                  = kW*heure           # kilowatt-heure
+kilowatt heure        = kWh
 tonne TNT              = 4.184e9 J
 
 
@@ -691,7 +691,7 @@ horsepower metrique = 75 kgf*m/s
 # frequency
 #
 [frequence]
-hertz       = unit/sec
+hertz       = unite/sec
 Hz          = hertz      # hertz
 millihertz  = 0.001 Hz
 kilohertz   = 1000 Hz
@@ -706,7 +706,7 @@ GHz         = gigahertz  # gigahertz
 # radioactivity
 #
 [radioactivite]
-becquerel       = unit/sec
+becquerel       = unite/sec
 Bq              = becquerel     # becquerel
 curie           = 3.7e10 Bq
 millicurie      = 0.001 curie

@@ -262,7 +262,7 @@ voltio         = W/A
 V              = voltio         # voltio
 milivoltio     = 0.001 voltio
 mV             = milivoltio     # milivoltio
-kilovoltio     = 1000 volt
+kilovoltio     = 1000 voltio
 kV             = kilovoltio     # kilovoltio
 [resistencia]
 ohm            = V/A
@@ -302,10 +302,10 @@ mole         = mol         #            # gramo mole
 gramo mole   = mol
 kilomol      = 1000 mol
 kmol         = kilomol     # kilomol
-libra mole   = mol*lbm/gram
+libra mole   = mol*lbm/gramo
 lbmol        = libra mole  # libra mole
 [tamaño de un mol]
-avogadro     = gram/(amu*mol)
+avogadro     = gramo/(amu*mol)
 
 
 #
@@ -342,7 +342,7 @@ revolución  = círculo
 rev         = revolución     # revolución
 grado       = 1/360.0 círculo
 deg         = grado          # grado
-arc min     = 1/60.0 degree  # minuto
+arc min     = 1/60.0 grado   # minuto
 arc minute  = arc min
 min arc     = arc min        # minuto
 minute arc  = arc min
@@ -408,7 +408,7 @@ pebibyte         = 1024 TiB
 PiB              = pebibyte          # pebibyte
 
 [transferencia de datos]
-bps              = bit/sec           # bits / second
+bps              = bit/seg           # bits / segundo
 kbps             = 1000 bps          # kilobits / sec.  # basado en potencias de 10
 
 
@@ -476,9 +476,9 @@ tonelada fuerza = tonelada * gravedad # # métrica
 [área]
 barn                     = 1e-28 m^2       # # física de partículas
 área                     = 100 m^2
-decaárea                 = 10 are
-dekare                   = 10 are
-hectárea                 = 100 are
+decaárea                 = 10 área
+dekare                   = 10 área
+hectárea                 = 100 área
 acre                     = 10 chain^2
 section                  = milla^2
 township                 = 36 section
@@ -620,13 +620,13 @@ m agua                = m*densidad agua*gravedad # metros de H2O
 m H2O                 = m agua                   # metros de H2O
 metros de agua        = m agua
 in de agua            = in*densidad agua*gravedad # pulgadas de H2O
-in H2O                = in agua                  # pulgadas de H2O
-pulgadas de agua      = in agua
+in H2O                = in de agua                  # pulgadas de H2O
+pulgadas de agua      = in de agua
 ft de agua            = ft*densidad agua*gravedad # pies de H2O
-ft H2O                = ft agua                  # pies de H20
-pies de agua          = ft agua
-pies de head          = ft agua
-ft hd                 = ft agua                  # pies de head
+ft H2O                = ft de agua                # pies de H20
+pies de agua          = ft de agua
+pies de head          = ft de agua
+ft hd                 = ft de agua               # pies de head
 psi                   = lbf/in^2                 # libra / pulgada cuadrada
 libra por pulgada cuadrada = psi
 ksi                   = 1000 psi                 # 1000 lb / pulgada cuadrada
@@ -678,7 +678,7 @@ therm                 = 100000 Btu
 erg                   = cm*dyna
 electronvolt          = 1.602176462e-19 J
 eV                    = electronvolt      # electronvolt
-kWh                   = kW*hour           # kilowatt-hora
+kWh                   = kW*hora           # kilowatt-hora
 kilowatt hora         = kWh
 ton TNT               = 4.184e9 J
 tonelada de aceite equivalente = 41.868 gigajoule

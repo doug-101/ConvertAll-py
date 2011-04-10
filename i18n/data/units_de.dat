@@ -551,7 +551,7 @@ lbf            = pound force    # pound force # Gewichtskraft eines Pfunds
 ton force      = ton * Erdbeschleunigung # # Gewichtskraft einer angloamer. Tonne 
 ounce force    = ounce * Erdbeschleunigung # # Gewichtskraft einer Unze
 ozf            = ounce force    # ounce force # Gewichtskraft einer Unze
-tonne force    = Tonne * gravity # # Gewichtskraft einer metrischen Tonne
+tonne force    = Tonne * Erdbeschleunigung # # Gewichtskraft einer metrischen Tonne
 
 
 #
