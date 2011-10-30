@@ -1,8 +1,7 @@
 #*****************************************************************************
-# units.dat, the units data file, version 0.5.1
+#units.dat, the units data file, version 0.5.1
 #
-# ConvertAll, a units conversion program
-# Copyright (C) 2010, Douglas W. Bell
+# ConvertAll, a units conversion program Copyright (C) 2010, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
@@ -12,25 +11,27 @@
 # Units are defined by an optional quantity and an equivalent unit or unit
 # combination.  A Python expression may be used for the quantity, but is
 # restricted to using only the following operators: *, /, +, -, **, (, ).
-# Beware of integer division truncation: be sure to use a float for at
-# least one of the values.
+# Beware of integer division truncation: be sure to use a float for at least
+# one of the values.
 #
-# The unit type must be placed in square brackets before a set of units.
-# The first comment after the equivalent unit will be put in parenthesis after
-# the unit name (usually used to give the full name of an abbreviated unit).
-# The next comment will be used in the program list's comment column;
-# later comments and full line comments are ignored.
+# The unit type must be placed in square brackets before a set of units.  The
+# first comment after the equivalent unit will be put in parenthesis after the
+# unit name (usually used to give the full name of an abbreviated unit).  The
+# next comment will be used in the program list's comment column; later
+# comments and full line comments are ignored.
 #
 # Non-linear units are indicated with an equivalent unit in square brackets,
-# followed by either equations or equivalency lists for the definition.
-# For equations, two are given, separated by a ';'.  Both are functions of
-# "x", the first going from the unit to the equivalent unit and the second
-# one in reverse.  Any valid Python expression returning a float (including 
-# the functions in the math module) should work.  The equivalency list is a 
-# Python list of tuples giving points for linear interpolation.
+# followed by either equations or equivalency lists for the definition.  For
+# equations, two are given, separated by a ';'.  Both are functions of "x", the
+# first going from the unit to the equivalent unit and the second one in
+# reverse.  Any valid Python expression returning a float (including the
+# functions in the math module) should work.  The equivalency list is a Python
+# list of tuples giving points for linear interpolation.
 #
-# All units must reduce to primitive units, which are indicated by an '!'
-# as the equivalent unit.  Circular references must also be avoided.
+# All units must reduce to primitive units, which are indicated by an
+# equivalent unit starting with '!'.  A special "unitless" primitve unit
+# (usualty called "unit") has '!!' for an equivalent unit.  Circular references
+# must also be avoided.
 #
 # Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
 #
@@ -416,7 +417,7 @@ kbps             = 1000 bps          # kilobits / sec.  # based on power of 10
 # Unitless numbers
 #
 [quantity]
-unit               = !
+unit               = !!
 1                  = unit            # unit
 pi                 = 3.14159265358979323846 unit
 pair               = 2 unit

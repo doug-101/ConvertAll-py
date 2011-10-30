@@ -279,7 +279,7 @@ class UnitGroup(object):
             if count > 5000:
                 raise unitdata.UnitDataError, _('Circular unit definition')
             unit = tmpList.pop(0)
-            if unit.equiv == '!':
+            if unit.equiv.startswith('!'):
                 self.reducedList.append(unit.copy())
             elif not unit.equiv:
                 raise unitdata.UnitDataError, \
@@ -303,7 +303,8 @@ class UnitGroup(object):
             else:
                 self.reducedList.append(unit)
         self.reducedList = [unit for unit in self.reducedList if
-                            unit.name != u'unit' and unit.exp != 0]
+                            unit.equiv != '!!' and unit.name != u'unit' and
+                            unit.exp != 0]
 
     def categoryMatch(self, otherGroup):
         """Return True if unit types are equivalent"""

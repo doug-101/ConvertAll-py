@@ -29,8 +29,10 @@
 # the functions in the math module) should work.  The equivalency list is a 
 # python list of tuples giving points for linear interpolation.
 #
-# All units must reduce to primitive units, which are indicated by an '!'
-# as the equivalent unit.  Circular refernces must also be avoided.
+# All units must reduce to primitive units, which are indicated by an
+# equivalent unit starting with '!'.  A special "unitless" primitve unit
+# (usualty called "unit") has '!!' for an equivalent unit.  Circular references
+# must also be avoided.
 #
 # Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
 #
@@ -478,7 +480,7 @@ Gbps             = 1000 Mbps         # Gigabit/sec      # basierend auf Basis 10
 # Unitless numbers
 #
 [Anzahl]
-unit               = !
+unit               = !!
 Stück              = unit
 1                  = Stück            # Stück
 pi                 = 3.14159265358979323846 Stück    # π # Kreiszahl
