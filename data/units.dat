@@ -762,6 +762,7 @@ cSt          = centistokes # centistokes
 #
 [acceleration]
 gravity                = 9.80665 m/s^2
+galileo                = cm/s^2
 [constant]
 gravity constant       = 6.673e-11 N*m^2/kg^2
 gas constant           = 8.314472 J/(mol*K)   # R
