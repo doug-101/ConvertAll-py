@@ -510,6 +510,7 @@ deciliter            = 0.1 liter
 centiliter           = 0.01 liter
 milliliter           = cc
 ml                   = milliliter           # milliliter
+microliter           = 1e-6 liter
 dekaliter            = 10 liter
 hectoliter           = 100 liter
 kiloliter            = 1000 liter
