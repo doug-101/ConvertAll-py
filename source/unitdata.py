@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # unitdata.py, reads unit data from file
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -24,19 +24,22 @@ import unitatom
 
 
 class UnitDataError(Exception):
-    """General exception for unit data problems"""
+    """General exception for unit data problems.
+    """
     pass
 
 
 class UnitData(dict):
-    """Reads unit data nad stores in a dictionary based on unit name"""
+    """Reads unit data nad stores in a dictionary based on unit name.
+    """
     def __init__(self):
         dict.__init__(self)
         self.sortedKeys = []
         self.typeList = []
 
     def findDataFile(self):
-        """Search for data file, return line list or None"""
+        """Search for data file, return line list or None.
+        """
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
             modPath = os.path.dirname(modPath)
@@ -44,25 +47,28 @@ class UnitData(dict):
         fileList = ['units.dat']
         if lang and lang != 'C':
             fileList[0:0] = ['units_%s.dat' % lang, 'units_%s.dat' % lang[:2]]
-        for path in filter(None, pathList):
-            for fileName in fileList:
-                try:
-                    f = codecs.open(os.path.join(path, fileName), 'r', 'utf-8')
-                    lineList = f.readlines()
-                    f.close()
-                    return lineList
-                except IOError:
-                    pass
-        raise UnitDataError, _('Can not read "units.dat" file')
+        for path in pathList:
+            if path:
+                for fileName in fileList:
+                    try:
+                        f = codecs.open(os.path.join(path, fileName), 'r',
+                                        'utf-8')
+                        lineList = f.readlines()
+                        f.close()
+                        return lineList
+                    except IOError:
+                        pass
+        raise UnitDataError(_('Can not read "units.dat" file'))
 
     def readData(self):
-        """Read all unit data from file, return number loaded"""
+        """Read all unit data from file, return number loaded.
+        """
         lines = self.findDataFile()
         for i in range(len(lines)):     # join continuation lines
             delta = 1
             while lines[i].rstrip().endswith('\\'):
-                lines[i] = u''.join([lines[i].rstrip()[:-1], lines[i+delta]])
-                lines[i+delta] = u''
+                lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+delta]])
+                lines[i+delta] = ''
                 delta += 1
         units = [unitatom.UnitAtom(line) for line in lines if
                  line.split('#', 1)[0].strip()]   # remove comment lines
@@ -75,14 +81,15 @@ class UnitData(dict):
         units = [unit for unit in units if unit.equiv]  # keep valid units
         for unit in units:
             self[unit.name.lower().replace(' ', '')] = unit
-        self.sortedKeys = self.keys()
+        self.sortedKeys = list(self.keys())
         self.sortedKeys.sort()
         if len(self.sortedKeys) < len(units):
-            raise UnitDataError, _('Duplicate unit names found')
+            raise UnitDataError(_('Duplicate unit names found'))
         return len(units)
 
     def findPartialMatch(self, text):
-        """Return first partially matching unit or None"""
+        """Return first partially matching unit or None.
+        """
         text = text.lower().replace(' ', '')
         if not text:
             return None
@@ -92,7 +99,8 @@ class UnitData(dict):
         return None
 
     def findSortPos(self, text):
-        """Return unit whose abbrev comes immediately after text"""
+        """Return unit whose abbrev comes immediately after text.
+        """
         text = text.lower().replace(' ', '')
         for name in self.sortedKeys:
             if text <= name:
@@ -101,8 +109,9 @@ class UnitData(dict):
 
     def filteredList(self, type='', srchStr=''):
         """Return list of units matching type and search string,
-           if given"""
-        units = self.values()
+           if given.
+        """
+        units = list(self.values())
         if type:
             units = [unit for unit in units if unit.typeName == type]
         if srchStr.strip():

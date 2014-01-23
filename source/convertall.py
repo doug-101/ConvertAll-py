@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 ****************************************************************************
  convertall.py, the main program file
 
  ConvertAll, a units conversion program
- Copyright (C) 2008, Douglas W. Bell
+ Copyright (C) 2014, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -29,14 +29,14 @@ import os.path
 import locale
 import getopt
 import signal
-import __builtin__
+import builtins
 from PyQt4 import QtCore, QtGui
 
 def loadTranslator(fileName, app):
-    """Load and install qt translator, return True if sucessful"""
+    """Load and install qt translator, return True if sucessful.
+    """
     translator = QtCore.QTranslator(app)
-    modPath = unicode(os.path.abspath(sys.path[0]),
-                      sys.getfilesystemencoding())
+    modPath = os.path.abspath(sys.path[0])
     if modPath.endswith('.zip'):  # for py2exe
         modPath = os.path.dirname(modPath)
     path = os.path.join(modPath, translationPath)
@@ -51,11 +51,12 @@ def loadTranslator(fileName, app):
         QtCore.QCoreApplication.installTranslator(translator)
         return True
     else:
-        print 'Warning: translation file "%s" could not be loaded' % fileName
+        print('Warning: translation file "%s" could not be loaded' % fileName)
         return False
 
 def setupTranslator(app):
-    """Set language, load translators and setup translator function"""
+    """Set language, load translators and setup translator function.
+    """
     try:
         locale.setlocale(locale.LC_ALL, '')
     except locale.Error:
@@ -78,26 +79,27 @@ def setupTranslator(app):
 
     def translate(text, comment=''):
         """Translation function that sets context to calling module's
-           filename"""
+           filename.
+        """
         try:
             frame = sys._getframe(1)
             fileName = frame.f_code.co_filename
         finally:
             del frame
         context = os.path.basename(os.path.splitext(fileName)[0])
-        return unicode(QtCore.QCoreApplication.translate(context, text,
-                                                         comment))
+        return QtCore.QCoreApplication.translate(context, text, comment)
 
     def markNoTranslate(text, comment=''):
         return text
 
     if numTranslators:
-        __builtin__._ = translate
+        builtins._ = translate
     else:
-        __builtin__._ = markNoTranslate
+        builtins._ = markNoTranslate
 
 def setLocalEncoding():
-    """Store locale's default text encoding for console messages"""
+    """Store locale's default text encoding for console messages.
+    """
     global localEncoding
     try:
         # not reliable?

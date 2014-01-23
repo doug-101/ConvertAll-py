@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # cmdline.py, provides a class to read and execute command line arguments
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2010, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -52,7 +52,8 @@ usage = [_('Usage:'),
          '']
 
 def parseArgs(opts, args):
-    """Parse the command line and output conversion results"""
+    """Parse the command line and output conversion results.
+    """
     options = option.Option('convertall', 20)
     options.loadAll(optiondefaults.defaultList)
     quiet = False
@@ -79,20 +80,20 @@ def parseArgs(opts, args):
     data = unitdata.UnitData()
     try:
         data.readData()
-    except unitdata.UnitDataError, text:
-        print u'Error in unit data - %s' % text
+    except unitdata.UnitDataError as text:
+        print('Error in unit data - %s' % text)
         sys.exit(1)
     if dataTestMode:
         unitDataTest(data, options)
         return
-    numStr = u'1.0'
+    numStr = '1.0'
     if args:
         numStr = args[0]
         try:
             float(numStr)
             del args[0]
         except (ValueError):
-            numStr = u'1.0'
+            numStr = '1.0'
     fromUnit = None
     try:
         fromUnit = getUnit(data, options, args.pop(0))
@@ -110,13 +111,13 @@ def parseArgs(opts, args):
     while True:
         while not fromUnit:
             text = _('Enter from unit -> ')
-            fromText = raw_input(text.encode(localEncoding))
+            fromText = input(text.encode(localEncoding))
             if not fromText:
                 return
             fromUnit = getUnit(data, options, fromText)
         while not toUnit:
             text = _('Enter to unit -> ')
-            toText = raw_input(text.encode(localEncoding))
+            toText = input(text.encode(localEncoding))
             if not toText:
                 return
             toUnit = getUnit(data, options, toText)
@@ -124,16 +125,16 @@ def parseArgs(opts, args):
             badEntry = False
             while True:
                 if not badEntry:
-                    text = u'%s %s = %s %s' % (numStr, fromUnit.unitString(),
+                    text = '%s %s = %s %s' % (numStr, fromUnit.unitString(),
                                              fromUnit.convertStr(float(numStr),
                                                                  toUnit),
                                              toUnit.unitString())
-                    print text.encode(localEncoding)
+                    print(text.encode(localEncoding))
                     if quiet:
                         return
                 badEntry = False
                 text = _('Enter number, [n]ew, [r]everse or [q]uit -> ')
-                rep = raw_input(text.encode(localEncoding))
+                rep = input(text.encode(localEncoding))
                 if not rep or rep[0] in ('q', 'Q'):
                     return
                 if rep[0] in ('r', 'R'):
@@ -141,8 +142,8 @@ def parseArgs(opts, args):
                 elif rep[0] in ('n', 'N'):
                     fromUnit = None
                     toUnit = None
-                    numStr = u'1.0'
-                    print
+                    numStr = '1.0'
+                    print()
                     break
                 else:
                     try:
@@ -151,9 +152,9 @@ def parseArgs(opts, args):
                     except ValueError:
                         badEntry = True
         else:
-            text = _(u'Units %s and %s are not compatible') % \
+            text = _('Units %s and %s are not compatible') % \
                          (fromUnit.unitString(), toUnit.unitString())
-            print text.encode(localEncoding)
+            print(text.encode(localEncoding))
             if quiet:
                 return
             fromUnit = None
@@ -161,22 +162,25 @@ def parseArgs(opts, args):
 
 def getUnit(data, options, text):
     """Create unit from text, check unit is valid,
-       return reduced unit or None"""
+       return reduced unit or None.
+    """
     unit = unitgroup.UnitGroup(data, options)
     unit.update(text)
     if unit.groupValid():
         unit.reduceGroup()
         return unit
-    print (_(u'%s is not a valid unit') % text).encode(localEncoding)
+    print((_('%s is not a valid unit') % text).encode(localEncoding))
     return None
 
 def printUsage():
-    """Print usage text"""
-    print ('\n'.join(usage)).encode(localEncoding)
+    """Print usage text.
+    """
+    print(('\n'.join(usage)).encode(localEncoding))
 
 def unitDataTest(data, options):
     """Run through a test of all units for consistent definitions,
-       print results, return True if all pass"""
+       print results, return True if all pass.
+    """
     badUnits = {}
     errorRegEx = re.compile(r'.*"(.*)"$')
     for unit in data.values():
@@ -187,13 +191,13 @@ def unitDataTest(data, options):
         try:
             group.reduceGroup()
         except unitdata.UnitDataError as errorText:
-            rootUnitName = errorRegEx.match(unicode(errorText)).group(1)
+            rootUnitName = errorRegEx.match(errorText).group(1)
             badUnits.setdefault(rootUnitName, []).append(unit.name)
     if not badUnits:
-        print 'All units pass tests'
+        print('All units pass tests')
         return True
     for key in sorted(badUnits.keys()):
         impacts = ', '.join(sorted(badUnits[key]))
         text = '%s\n   Impacts:  %s\n' % (key, impacts)
-        print text.encode(localEncoding)
+        print(text.encode(localEncoding))
     return False

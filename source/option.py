@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # option.py, provides classes to read and set user preferences
 #
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -16,7 +16,8 @@ import os.path
 import codecs
 
 class Option(object):
-    """Stores and retrieves string options"""
+    """Stores and retrieves string options.
+    """
     def __init__(self, fileName, keySpaces=20):
         self.path = ''
         if fileName:
@@ -46,7 +47,8 @@ class Option(object):
 
     def loadAll(self, defaultList):
         """Reads defaultList & file, writes file if required
-           return true if file read"""
+           return true if file read.
+        """
         self.loadSet(defaultList, self.dfltDict)
         if self.path:
             try:
@@ -55,7 +57,7 @@ class Option(object):
                 try:
                     f = codecs.open(self.path, 'w', 'utf-8')
                 except IOError:
-                    print 'Error - could not write to config file', self.path
+                    print('Error - could not write to config file', self.path)
                     self.path = ''
                 else:
                     f.writelines([line + '\n' for line in defaultList])
@@ -67,7 +69,8 @@ class Option(object):
         return False
 
     def loadSet(self, list, data):
-        """Reads settings from list into dict"""
+        """Reads settings from list into dict.
+        """
         for line in list:
             line = line.split('#', 1)[0].strip()
             if line:
@@ -75,24 +78,27 @@ class Option(object):
                 data[item[0]] = item[1].strip()
 
     def addData(self, key, strData, storeChange=0):
-        """Add new entry, add to write list if storeChange"""
+        """Add new entry, add to write list if storeChange.
+        """
         self.userDict[key] = strData
         if storeChange:
             self.chgList.append(key)
 
     def boolData(self, key):
-        """Returns true or false from yes or no in option data"""
+        """Returns true or false from yes or no in option data.
+        """
         for data in self.dictList:
             val = data.get(key)
             if val and val[0] in ('y', 'Y'):
                 return True
             if val and val[0] in ('n', 'N'):
                 return False
-        print 'Option error - bool key', key, 'is not valid'
+        print('Option error - bool key', key, 'is not valid')
         return False
 
     def numData(self, key, min=None, max=None):
-        """Return float from option data"""
+        """Return float from option data.
+        """
         for data in self.dictList:
             val = data.get(key)
             if val:
@@ -103,11 +109,12 @@ class Option(object):
                         return num
                 except ValueError:
                     pass
-        print 'Option error - float key', key, 'is not valid'
+        print('Option error - float key', key, 'is not valid')
         return False
 
     def intData(self, key, min=None, max=None):
-        """Return int from option data"""
+        """Return int from option data.
+        """
         for data in self.dictList:
             val = data.get(key)
             if val:
@@ -118,22 +125,24 @@ class Option(object):
                         return num
                 except ValueError:
                     pass
-        print 'Option error - int key', key, 'is not valid'
+        print('Option error - int key', key, 'is not valid')
         return False
 
     def strData(self, key, emptyOk=0):
-        """Return string from option data"""
+        """Return string from option data.
+        """
         for data in self.dictList:
             val = data.get(key)
             if val != None:
                 if val or emptyOk:
                     return val
-        print 'Option error - string key', key, 'is not valid'
+        print('Option error - string key', key, 'is not valid')
         return ''
 
     def changeData(self, key, strData, storeChange):
         """Change entry, add to write list if storeChange
-           Return true if changed"""
+           Return true if changed.
+        """
         for data in self.dictList:
             val = data.get(key)
             if val != None:
@@ -143,11 +152,12 @@ class Option(object):
                 if storeChange:
                     self.chgList.append(key)
                 return True
-        print 'Option error - key', key, 'is not valid'
+        print('Option error - key', key, 'is not valid')
         return False
 
     def writeChanges(self):
-        """Write any stored changes to the option file - rtn true on success"""
+        """Write any stored changes to the option file - rtn true on success.
+        """
         if self.path and self.chgList:
             try:
                 f = codecs.open(self.path, 'r', 'utf-8')
@@ -172,5 +182,5 @@ class Option(object):
                 f.close()
                 return True
             except IOError:
-                print 'Error - could not write to config file', self.path
+                print('Error - could not write to config file', self.path)
         return False

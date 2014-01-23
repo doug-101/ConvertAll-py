@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # convertdlg.py, provides the main dialog and GUI interface
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2010, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -40,7 +40,8 @@ import optiondlg
 
 
 class ConvertDlg(QtGui.QWidget):
-    """Main dialog for ConvertAll program"""
+    """Main dialog for ConvertAll program.
+    """
     unitData = unitdata.UnitData()
     def __init__(self, parent=None):
         QtGui.QWidget.__init__(self, parent)
@@ -51,7 +52,7 @@ class ConvertDlg(QtGui.QWidget):
         iconPathList = [iconPath, os.path.join(modPath, 'icons/'),
                          os.path.join(modPath, '../icons')]
         self.icons = icondict.IconDict()
-        self.icons.addIconPath(filter(None, iconPathList))
+        self.icons.addIconPath([path for path in iconPathList if path])
         try:
             QtGui.QApplication.setWindowIcon(self.icons['convertall_med'])
         except KeyError:
@@ -63,14 +64,14 @@ class ConvertDlg(QtGui.QWidget):
         self.recentUnits = recentunits.RecentUnits(self.option)
         try:
             num = ConvertDlg.unitData.readData()
-        except unitdata.UnitDataError, text:
+        except unitdata.UnitDataError as text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - %s') % text)
             sys.exit(1)
         try:
-            print (_('%d units loaded') % num).encode(localEncoding)
+            print((_('%d units loaded') % num).encode(localEncoding))
         except UnicodeError:
-            print (_('%d units loaded') % num).encode('utf-8')
+            print((_('%d units loaded') % num).encode('utf-8'))
         self.fromGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.origPal = QtGui.QApplication.palette()
@@ -192,7 +193,8 @@ class ConvertDlg(QtGui.QWidget):
                   self.option.intData('MainDlgYPos', 0, 10000))
 
     def addButtons(self, unitGroup, listView, upperLayout):
-        """Add buttons to unit selector"""
+        """Add buttons to unit selector.
+        """
         buttonLayout = QtGui.QHBoxLayout()
         upperLayout.addLayout(buttonLayout)
         buttons = []
@@ -222,7 +224,8 @@ class ConvertDlg(QtGui.QWidget):
         self.setRecentAvail()
 
     def recentMenu(self):
-        """Show a menu with recently used units"""
+        """Show a menu with recently used units.
+        """
         button = self.sender()
         menu = QtGui.QMenu()
         for unit in self.recentUnits:
@@ -233,13 +236,15 @@ class ConvertDlg(QtGui.QWidget):
         menu.exec_(button.mapToGlobal(QtCore.QPoint(0, 0)))
 
     def setRecentAvail(self):
-        """Enable or disable recent unit button"""
+        """Enable or disable recent unit button.
+        """
         for button in self.recentButtons:
             button.setEnabled(len(self.recentUnits))
 
     def insertRecent(self, action):
-        """Insert the recent unit from the given action"""
-        action.unitGroup.update(unicode(action.text()))
+        """Insert the recent unit from the given action.
+        """
+        action.unitGroup.update(action.text())
         if action.unitGroup is self.fromGroup:
             self.fromUnitEdit.unitUpdate()
             self.fromUnitListView.updateSelection()
@@ -248,7 +253,8 @@ class ConvertDlg(QtGui.QWidget):
             self.toUnitListView.updateSelection()
 
     def updateColors(self):
-        """Adjust the colors to the current option settings"""
+        """Adjust the colors to the current option settings.
+        """
         if self.option.boolData('UseDefaultColors'):
             pal = self.origPal
         else:
@@ -260,13 +266,15 @@ class ConvertDlg(QtGui.QWidget):
         QtGui.QApplication.setPalette(pal)
 
     def showFinder(self):
-        """Show dialog for searhing and filtering units"""
+        """Show dialog for searhing and filtering units.
+        """
         if not self.findDlg:
             self.findDlg = finddlg.FindDlg(self)
         self.findDlg.show()
 
     def changeOptions(self):
-        """Show dialog for option changes"""
+        """Show dialog for option changes.
+        """
         origBackground = self.getOptionColor('Background')
         origForeground = self.getOptionColor('Foreground')
         dlg = optiondlg.OptionDlg(self.option, self)
@@ -299,33 +307,38 @@ class ConvertDlg(QtGui.QWidget):
             self.setOptionColor('Foreground', origForeground)
 
     def getOptionColor(self, rootName):
-        """Return a color from option storage"""
+        """Return a color from option storage.
+        """
         return QtGui.QColor(self.option.intData('%sR' % rootName, 0, 255),
                             self.option.intData('%sG' % rootName, 0, 255),
                             self.option.intData('%sB' % rootName, 0, 255))
 
     def setOptionColor(self, rootName, color):
-        """Store given color in options"""
+        """Store given color in options.
+        """
         self.option.changeData('%sR' % rootName, str(color.red()), True)
         self.option.changeData('%sG' % rootName, str(color.green()), True)
         self.option.changeData('%sB' % rootName, str(color.blue()), True)
 
     def backColor(self):
-        """Allow user to set control background color"""
+        """Allow user to set control background color.
+        """
         background = self.getOptionColor('Background')
         newColor = QtGui.QColorDialog.getColor(background, self)
         if newColor.isValid() and newColor != background:
             self.setOptionColor('Background', newColor)
 
     def textColor(self):
-        """Allow user to set control text color"""
+        """Allow user to set control text color.
+        """
         foreground = self.getOptionColor('Foreground')
         newColor = QtGui.QColorDialog.getColor(foreground, self)
         if newColor.isValid() and newColor != foreground:
             self.setOptionColor('Foreground', newColor)
 
     def showHideButtons(self):
-        """Show or hide text modify buttons"""
+        """Show or hide text modify buttons.
+        """
         visible = self.option.boolData('ShowOpButtons')
         for button in self.textButtons:
             if visible:
@@ -334,7 +347,8 @@ class ConvertDlg(QtGui.QWidget):
                 button.hide()
 
     def findHelpFile(self):
-        """Return the path to the help file"""
+        """Return the path to the help file.
+        """
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
             modPath = os.path.dirname(modPath)
@@ -344,7 +358,7 @@ class ConvertDlg(QtGui.QWidget):
         if lang and lang != 'C':
             fileList[0:0] = ['README_%s.html' % lang,
                              'README_%s.html' % lang[:2]]
-        for path in filter(None, pathList):
+        for path in [path for path in pathList if path]:
             for fileName in fileList:
                 fullPath = os.path.join(path, fileName)
                 if os.access(fullPath, os.R_OK):
@@ -352,7 +366,8 @@ class ConvertDlg(QtGui.QWidget):
         return ''
 
     def help(self):
-        """View the ReadMe file"""
+        """View the ReadMe file.
+        """
         if not self.helpView:
             path = self.findHelpFile()
             if not path:
@@ -364,13 +379,15 @@ class ConvertDlg(QtGui.QWidget):
         self.helpView.show()
 
     def about(self):
-        """Show about info"""
+        """Show about info.
+        """
         QtGui.QMessageBox.about(self, 'ConvertAll',
                                 _('ConvertAll Version %s\nby %s') %
                                 (__version__, __author__))
 
     def closeEvent(self, event):
-        """Save window data on close"""
+        """Save window data on close.
+        """
         self.option.changeData('MainDlgXSize', self.width(), True)
         self.option.changeData('MainDlgYSize', self.height(), True)
         self.option.changeData('MainDlgXPos', self.x(), True)

@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # unitgroup.py, provides a group of units and does conversions
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2010, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -19,7 +19,8 @@ import unitdata
 
 
 class UnitGroup(object):
-    """Stores, updates and converts a group of units"""
+    """Stores, updates and converts a group of units.
+    """
     maxDecPlcs = 12
     operRegEx = re.compile(r'[\*/]')
     operGroupRegEx = re.compile(r'(\(.*\)|\(.*$|[\*/])')
@@ -34,7 +35,8 @@ class UnitGroup(object):
         self.parenthClosed = True
 
     def flatUnitList(self):
-        """Return the units with sub-groups flattened"""
+        """Return the units with sub-groups flattened.
+        """
         result = []
         for unit in self.unitList:
             if hasattr(unit, 'flatUnitList'):
@@ -44,7 +46,8 @@ class UnitGroup(object):
         return result
 
     def unitGroups(self):
-        """Return a list of this unit group and all sub-groups"""
+        """Return a list of this unit group and all sub-groups.
+        """
         result = [self]
         for group in self.unitList:
             if hasattr(group, 'unitGroups'):
@@ -52,7 +55,8 @@ class UnitGroup(object):
         return result
 
     def unitGroupExpSign(self):
-        """Return True if the first unit's exponent is positive"""
+        """Return True if the first unit's exponent is positive.
+        """
         unitList = self.unitList
         while unitList and not hasattr(unitList[0], 'exp'):
             unitList = unitList[0].unitList
@@ -61,7 +65,8 @@ class UnitGroup(object):
         return True
 
     def currentGroupPos(self):
-        """Return a tuple of the group and position of the current unit"""
+        """Return a tuple of the group and position of the current unit.
+        """
         currentUnit = self.currentUnit()
         if currentUnit:
             for group in self.unitGroups():
@@ -71,7 +76,8 @@ class UnitGroup(object):
         return (self, 0)
 
     def update(self, text, cursorPos=None):
-        """Decode user entered text into units"""
+        """Decode user entered text into units.
+        """
         self.unitList = self.parseGroup(text)
         if cursorPos != None:
             self.updateCurrentUnit(text, cursorPos)
@@ -79,32 +85,37 @@ class UnitGroup(object):
             self.currentNum = len(self.flatUnitList()) - 1
 
     def updateCurrentUnit(self, text, cursorPos):
-        """Set current unit number"""
+        """Set current unit number.
+        """
         self.currentNum = len(UnitGroup.operRegEx.findall(text[:cursorPos]))
 
     def currentUnit(self):
-        """Return current unit if set, o/w None"""
+        """Return current unit if set, o/w None.
+        """
         try:
             return self.flatUnitList()[self.currentNum]
         except IndexError:
             return None
 
     def currentPartialUnit(self):
-        """Return unit with at least a partial match, o/w None"""
+        """Return unit with at least a partial match, o/w None.
+        """
         currentUnit = self.currentUnit()
         if not currentUnit:
             return None
         return self.unitData.findPartialMatch(currentUnit.name)
 
     def currentSortPos(self):
-        """Return unit near current unit for sorting"""
+        """Return unit near current unit for sorting.
+        """
         try:
             return self.unitData.findSortPos(self.currentUnit().name)
         except AttributeError:
             return self.unitData[self.unitData.sortedKeys[0]]
 
     def replaceCurrent(self, newUnit):
-        """Replace the current unit with unit"""
+        """Replace the current unit with unit.
+        """
         if self.unitList:
             oldUnit = self.currentUnit()
             group, pos = self.currentGroupPos()
@@ -114,7 +125,8 @@ class UnitGroup(object):
         self.unitList.append(newUnit.copy())
 
     def completePartial(self):
-        """Replace a partial unit with a full one"""
+        """Replace a partial unit with a full one.
+        """
         partUnit = self.currentUnit()
         if partUnit and not partUnit.equiv:
             newUnit = self.unitData.findPartialMatch(partUnit.name)
@@ -122,7 +134,8 @@ class UnitGroup(object):
                 self.replaceCurrent(newUnit)
 
     def moveToNext(self, upward):
-        """Replace unit with adjacent one based on match or sort position"""
+        """Replace unit with adjacent one based on match or sort position.
+        """
         unit = self.currentSortPos()
         name = unit.name.lower().replace(' ', '')
         num = self.unitData.sortedKeys.index(name) + (upward and -1 or 1)
@@ -130,17 +143,19 @@ class UnitGroup(object):
             self.replaceCurrent(self.unitData[self.unitData.sortedKeys[num]])
 
     def addOper(self, mult):
-        """Add new operator & blank unit after current, * if mult is true"""
+        """Add new operator & blank unit after current, * if mult is true.
+        """
         if self.unitList:
             self.completePartial()
             group, pos = self.currentGroupPos()
             self.currentNum += 1
-            group.unitList.insert(pos + 1, UnitAtom(u''))
+            group.unitList.insert(pos + 1, UnitAtom(''))
             if not mult:
                 self.currentUnit().exp = -1
 
     def changeExp(self, newExp):
-        """Change the current unit's exponent"""
+        """Change the current unit's exponent.
+        """
         self.completePartial()
         currentUnit = self.currentUnit()
         if currentUnit:
@@ -150,7 +165,8 @@ class UnitGroup(object):
                 currentUnit.exp = -newExp
 
     def clearUnit(self):
-        """Remove units"""
+        """Remove units.
+        """
         self.unitList = []
         self.currentNum = 0
         self.factor = 1.0
@@ -158,7 +174,8 @@ class UnitGroup(object):
         self.linear = True
 
     def parseGroup(self, text):
-        """Return list of units from text string"""
+        """Return list of units from text string.
+        """
         unitList = []
         parts = [part.strip() for part in UnitGroup.operGroupRegEx.split(text)
                  if part.strip()]
@@ -167,7 +184,7 @@ class UnitGroup(object):
             part = parts.pop(0)
             if part == '*' or part  == '/':
                 parts.insert(0, part)
-                part = u''      # add blank invalid unit if order wrong
+                part = ''      # add blank invalid unit if order wrong
             if part.startswith('('):
                 part = part[1:]
                 group = UnitGroup(self.unitData, self.option)
@@ -192,13 +209,14 @@ class UnitGroup(object):
                 if oper == '*' or oper == '/':
                     numerator = oper == '*' and True or False
                     if not parts:
-                        parts.insert(0, u'')  # add blank invalid unit at end
+                        parts.insert(0, '')  # add blank invalid unit at end
                 else:
                     parts.insert(0, oper)  # put unit back if order wrong
         return unitList
 
     def parseUnit(self, text):
-        """Return a valid or invalid unit with exponent from a text string"""
+        """Return a valid or invalid unit with exponent from a text string.
+        """
         parts = text.split('^', 1)
         exp = 1
         if len(parts) > 1:   # has exponent
@@ -222,7 +240,8 @@ class UnitGroup(object):
         return unit
 
     def unitString(self, unitList=None, swapExpSign=False):
-        """Return the full string for this group or a given group"""
+        """Return the full string for this group or a given group.
+        """
         if unitList == None:
             unitList = self.unitList
         fullText = ''
@@ -236,9 +255,9 @@ class UnitGroup(object):
                         expSign = unit.unitGroupExpSign()
                     if swapExpSign:
                         expSign = not expSign
-                    fullText = u'%s %s ' % (fullText, expSign and '*' or '/')
+                    fullText = '%s %s ' % (fullText, expSign and '*' or '/')
                 if hasattr(unit, 'unitText'):
-                    fullText = u'%s%s' % (fullText,
+                    fullText = '%s%s' % (fullText,
                                           unit.unitText(swapExpSign or
                                                         not firstUnit))
                 else:
@@ -246,14 +265,15 @@ class UnitGroup(object):
                         swap = False
                     else:
                         swap = not unit.unitGroupExpSign()
-                    fullText = u'%s(%s%s' % (fullText,
+                    fullText = '%s(%s%s' % (fullText,
                                              unit.unitString(None, swap),
                                              unit.parenthClosed and ')' or '')
                 firstUnit = False
         return fullText
 
     def groupValid(self):
-        """Return True if all units are valid"""
+        """Return True if all units are valid.
+        """
         if not self.unitList or not self.parenthClosed:
             return False
         for unit in self.unitList:
@@ -266,7 +286,8 @@ class UnitGroup(object):
         return True
 
     def reduceGroup(self):
-        """Update reduced list of units and factor"""
+        """Update reduced list of units and factor.
+        """
         self.linear = True
         self.reducedList = []
         self.factor = 1.0
@@ -277,13 +298,12 @@ class UnitGroup(object):
         while tmpList:
             count += 1
             if count > 5000:
-                raise unitdata.UnitDataError, _('Circular unit definition')
+                raise unitdata.UnitDataError(_('Circular unit definition'))
             unit = tmpList.pop(0)
             if unit.equiv.startswith('!'):
                 self.reducedList.append(unit.copy())
             elif not unit.equiv:
-                raise unitdata.UnitDataError, \
-                      _('Invalid conversion for "%s"') % unit.name
+                raise unitdata.UnitDataError(_('Invalid conversion for "%s"') % unit.name)
             else:
                 if unit.fromEqn:
                     self.linear = False
@@ -303,11 +323,12 @@ class UnitGroup(object):
             else:
                 self.reducedList.append(unit)
         self.reducedList = [unit for unit in self.reducedList if
-                            unit.equiv != '!!' and unit.name != u'unit' and
+                            unit.equiv != '!!' and unit.name != 'unit' and
                             unit.exp != 0]
 
     def categoryMatch(self, otherGroup):
-        """Return True if unit types are equivalent"""
+        """Return True if unit types are equivalent.
+        """
         if not self.checkLinear() or not otherGroup.checkLinear():
             return False
         return self.reducedList == otherGroup.reducedList and \
@@ -315,7 +336,8 @@ class UnitGroup(object):
                [unit.exp for unit in otherGroup.reducedList]
 
     def checkLinear(self):
-        """Return True if linear or acceptable non-linear"""
+        """Return True if linear or acceptable non-linear.
+        """
         if not self.linear:
             flatList = self.flatUnitList()
             if len(flatList) > 1 or flatList[0].exp != 1:
@@ -323,13 +345,15 @@ class UnitGroup(object):
         return True
 
     def compatStr(self):
-        """Return string with reduced unit or linear compatability problem"""
+        """Return string with reduced unit or linear compatability problem.
+        """
         if self.checkLinear():
             return self.unitString(self.reducedList)
         return _('Cannot combine non-linear units')
 
     def convert(self, num, toGroup):
-        """Return num of this group converted to toGroup"""
+        """Return num of this group converted to toGroup.
+        """
         if self.linear:
             num *= self.factor
         else:
@@ -339,7 +363,8 @@ class UnitGroup(object):
         return toGroup.nonLinearCalc(num / toGroup.factor, 0)
 
     def nonLinearCalc(self, num, isFrom):
-        """Return result of non-linear calculation"""
+        """Return result of non-linear calculation.
+        """
         x = num
         try:
             unit = self.flatUnitList()[0]
@@ -365,21 +390,22 @@ class UnitGroup(object):
         except OverflowError:
             return 1e9999
         except:
-            raise unitdata.UnitDataError, \
-                  _('Bad equation for %s') % unit.name
+            raise unitdata.UnitDataError(_('Bad equation for %s') % unit.name)
 
     def convertStr(self, num, toGroup):
-        """Return formatted string of converted number"""
+        """Return formatted string of converted number.
+        """
         return self.formatNumStr(self.convert(num, toGroup))
 
     def formatNumStr(self, num):
-        """Return num string formatted per options"""
+        """Return num string formatted per options.
+        """
         decPlcs = self.option.intData('DecimalPlaces', 0, UnitGroup.maxDecPlcs)
         if self.option.boolData('SciNotation'):
-            return (u'%%0.%dE' % decPlcs) % num
+            return ('%%0.%dE' % decPlcs) % num
         if self.option.boolData('FixedDecimals'):
-            return (u'%%0.%df' % decPlcs) % num
-        return (u'%%0.%dG' % decPlcs) % num
+            return ('%%0.%df' % decPlcs) % num
+        return ('%%0.%dG' % decPlcs) % num
 
 
 if __name__ == '__main__':
@@ -391,21 +417,21 @@ if __name__ == '__main__':
                      "FixedDecimals       no"])
     data = unitdata.UnitData()
     data.readData()
-    fromText = raw_input('Enter from unit -> ')
+    fromText = input('Enter from unit -> ')
     fromUnit = UnitGroup(data, options)
     fromUnit.update(fromText)
-    toText = raw_input('Enter to unit -> ')
+    toText = input('Enter to unit -> ')
     toUnit = UnitGroup(data, options)
     toUnit.update(toText)
-    print u'%s   TO   %s' % (fromUnit.unitString(), toUnit.unitString())
+    print('%s   TO   %s' % (fromUnit.unitString(), toUnit.unitString()))
     fromUnit.reduceGroup()
     toUnit.reduceGroup()
-    print u'%s   TO   %s' % (fromUnit.unitString(fromUnit.reducedList),
-                             toUnit.unitString(toUnit.reducedList))
+    print('%s   TO   %s' % (fromUnit.unitString(fromUnit.reducedList),
+                             toUnit.unitString(toUnit.reducedList)))
     if not fromUnit.categoryMatch(toUnit):
-        print 'NO MATCH'
+        print('NO MATCH')
     else:
-        print 'MATCH'
-        numText = raw_input('Enter value -> ')
+        print('MATCH')
+        numText = input('Enter value -> ')
         num = float(numText)
-        print u'%f   IS  %f' % (num, fromUnit.convert(num, toUnit))
+        print('%f   IS  %f' % (num, fromUnit.convert(num, toUnit)))

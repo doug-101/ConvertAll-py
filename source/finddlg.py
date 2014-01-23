@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # finddlg.py, provides dialog interface for unit find dialog
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -19,7 +19,8 @@ import convertdlg
 
 
 class FindDlg(QtGui.QWidget):
-    """Dialog for filtering and searching for units"""
+    """Dialog for filtering and searching for units.
+    """
     def __init__(self, mainDlg, parent=None):
         QtGui.QWidget.__init__(self, parent)
         self.setAttribute(QtCore.Qt.WA_QuitOnClose, False)
@@ -101,7 +102,8 @@ class FindDlg(QtGui.QWidget):
                      QtCore.SIGNAL('itemSelectionChanged()'), self.updateCtrls)
 
     def loadUnits(self):
-        """Load unit items"""
+        """Load unit items.
+        """
         self.unitListView.clear()
         for unit in convertdlg.ConvertDlg.unitData.\
                                filteredList(self.currentType,
@@ -114,36 +116,40 @@ class FindDlg(QtGui.QWidget):
         self.updateCtrls()
 
     def loadTypes(self):
-        """Load combobox with type names"""
+        """Load combobox with type names.
+        """
         types = convertdlg.ConvertDlg.unitData.typeList[:]
         types.sort()
         self.filterCombo.clear()
-        self.filterCombo.addItem(_(u'[All]'))
-        prevName = u''
+        self.filterCombo.addItem(_('[All]'))
+        prevName = ''
         for name in types:
             if name != prevName:
                 self.filterCombo.addItem(name)
             prevName = name
 
     def updateCtrls(self):
-        """Change active status of unit set buttons"""
+        """Change active status of unit set buttons.
+        """
         item = self.unitListView.selectedItems()
         for button in self.buttonList:
             button.setEnabled(item != [])
 
     def changeType(self, newType):
-        """Change current unit type setting"""
-        self.currentType = unicode(newType)
-        if self.currentType == _(u'[All]'):
-            self.currentType = u''
+        """Change current unit type setting.
+        """
+        self.currentType = newType
+        if self.currentType == _('[All]'):
+            self.currentType = ''
         self.loadUnits()
 
     def changeSearch(self, newStr):
-        self.currentSearch = unicode(newStr)
+        self.currentSearch = newStr
         self.loadUnits()
 
     def fromRepl(self):
-        """Replace from unit with selected unit"""
+        """Replace from unit with selected unit.
+        """
         item = self.unitListView.currentItem()
         if item:
             unit = item.unit
@@ -153,7 +159,8 @@ class FindDlg(QtGui.QWidget):
             self.mainDlg.fromUnitListView.updateSelection()
 
     def fromIns(self):
-        """Insert selected unit into from unit"""
+        """Insert selected unit into from unit.
+        """
         item = self.unitListView.currentItem()
         if item:
             unit = item.unit
@@ -162,7 +169,8 @@ class FindDlg(QtGui.QWidget):
             self.mainDlg.fromUnitListView.updateSelection()
 
     def toRepl(self):
-        """Replace to unit with selected unit"""
+        """Replace to unit with selected unit.
+        """
         item = self.unitListView.currentItem()
         if item:
             unit = item.unit
@@ -172,7 +180,8 @@ class FindDlg(QtGui.QWidget):
             self.mainDlg.toUnitListView.updateSelection()
 
     def toIns(self):
-        """Insert selected unit into to unit"""
+        """Insert selected unit into to unit.
+        """
         item = self.unitListView.currentItem()
         if item:
             unit = item.unit
@@ -182,7 +191,8 @@ class FindDlg(QtGui.QWidget):
 
 
 class FindUnitListView(QtGui.QTreeWidget):
-    """ListView of units available"""
+    """ListView of units available.
+    """
     def __init__(self, parent=None):
         QtGui.QTreeWidget.__init__(self, parent)
         self.setRootIsDecorated(False)
@@ -192,7 +202,8 @@ class FindUnitListView(QtGui.QTreeWidget):
         self.setSortingEnabled(True)
 
     def sizeHint(self):
-        """Adjust width smaller"""
+        """Adjust width smaller.
+        """
         size = QtGui.QTreeWidget.sizeHint(self)
         size.setWidth(self.columnWidth(0) + self.columnWidth(1) +
                       self.columnWidth(2) + 10 +   # fudge factor
@@ -201,7 +212,8 @@ class FindUnitListView(QtGui.QTreeWidget):
 
 
 class FindUnitListItem(QtGui.QTreeWidgetItem):
-    """Item in the find unit list view"""
+    """Item in the find unit list view.
+    """
     def __init__(self, unit, parent=None):
         QtGui.QTreeWidgetItem.__init__(self, parent)
         self.unit = unit

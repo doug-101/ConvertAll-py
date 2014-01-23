@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # modbutton.py, provides a button that signals its text
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -16,7 +16,8 @@ from PyQt4 import QtCore, QtGui
 
 
 class ModButton(QtGui.QPushButton):
-    """Button used to add operators, change exponent or clear unit"""
+    """Button used to add operators, change exponent or clear unit.
+    """
     def __init__(self, function, param, label, parent=None):
         QtGui.QPushButton.__init__(self, label, parent)
         self.function = function
@@ -25,7 +26,8 @@ class ModButton(QtGui.QPushButton):
         self.connect(self, QtCore.SIGNAL('clicked()'), self.exe)
 
     def exe(self):
-        """Execute function on button push"""
+        """Execute function on button push.
+        """
         if self.param != None:
             self.function(self.param)
         else:
@@ -33,7 +35,8 @@ class ModButton(QtGui.QPushButton):
         self.emit(QtCore.SIGNAL('stateChg'))   # update listView
 
     def sizeHint(self):
-        """Adjust width smaller"""
+        """Adjust width smaller.
+        """
         size = QtGui.QPushButton.sizeHint(self)
         size.setWidth(size.width() / 2)
         return size

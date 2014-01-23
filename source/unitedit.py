@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # unitedit.py, provides a line edit for unit entry
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -16,7 +16,8 @@ from PyQt4 import QtCore, QtGui
 
 
 class UnitEdit(QtGui.QLineEdit):
-    """Text line editor for unit entry"""
+    """Text line editor for unit entry.
+    """
     def __init__(self, unitGroup, parent=None):
         QtGui.QLineEdit.__init__(self, parent)
         self.unitGroup = unitGroup
@@ -27,7 +28,8 @@ class UnitEdit(QtGui.QLineEdit):
                      self.updateCurrentUnit)
 
     def unitUpdate(self):
-        """Update text from unit group"""
+        """Update text from unit group.
+        """
         newText = self.unitGroup.unitString()
         cursorPos = len(newText) - self.text().length() + self.cursorPosition()
         if cursorPos < 0:      # cursor set to same distance from right end
@@ -39,21 +41,24 @@ class UnitEdit(QtGui.QLineEdit):
         self.emit(QtCore.SIGNAL('unitChanged'))  # update numEdit
 
     def updateGroup(self):
-        """Update unit based on edit text change (except spacing change)"""
-        if unicode(self.text()).replace(' ', '') \
+        """Update unit based on edit text change (except spacing change).
+        """
+        if self.text().replace(' ', '') \
                    != self.unitGroup.unitString().replace(' ', ''):
-            self.unitGroup.update(unicode(self.text()), self.cursorPosition())
+            self.unitGroup.update(self.text(), self.cursorPosition())
             self.emit(QtCore.SIGNAL('currentChanged'))  # update listView
             self.unitUpdate()   # replace text with formatted text
 
     def updateCurrentUnit(self):
-        """Change current unit based on cursor movement"""
-        self.unitGroup.updateCurrentUnit(unicode(self.text()),
+        """Change current unit based on cursor movement.
+        """
+        self.unitGroup.updateCurrentUnit(self.text(),
                                          self.cursorPosition())
         self.emit(QtCore.SIGNAL('currentChanged'))  # update listView
 
     def keyPressEvent(self, event):
-        """Keys for return and up/down"""
+        """Keys for return and up/down.
+        """
         if event.key() == QtCore.Qt.Key_Up:
             self.unitGroup.moveToNext(True)
             self.emit(QtCore.SIGNAL('currentChanged'))  # update listView
@@ -70,7 +75,8 @@ class UnitEdit(QtGui.QLineEdit):
             QtGui.QLineEdit.keyPressEvent(self, event)
 
     def event(self, event):
-        """Catch tab press to complete unit"""
+        """Catch tab press to complete unit.
+        """
         if event.type() == QtCore.QEvent.KeyPress and \
                  event.key() == QtCore.Qt.Key_Tab:
             self.unitGroup.completePartial()

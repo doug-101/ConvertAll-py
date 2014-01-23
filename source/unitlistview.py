@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # unitlistview.py, provides a list view of available units
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -17,7 +17,8 @@ import convertdlg
 
 
 class UnitListView(QtGui.QTreeWidget):
-    """ListView of units available"""
+    """ListView of units available.
+    """
     def __init__(self, unitGroup, unitRefNum, parent=None):
         QtGui.QTreeWidget.__init__(self, parent)
         self.unitGroup = unitGroup
@@ -32,7 +33,8 @@ class UnitListView(QtGui.QTreeWidget):
         self.loadUnits()
 
     def loadUnits(self):
-        """Load unit items"""
+        """Load unit items.
+        """
         self.clear()
         for name in convertdlg.ConvertDlg.unitData.sortedKeys:
             UnitListViewItem(convertdlg.ConvertDlg.unitData[name],
@@ -41,13 +43,15 @@ class UnitListView(QtGui.QTreeWidget):
             self.resizeColumnToContents(col)
 
     def relayChange(self):
-        """Update list after buttons changed the unit group"""
+        """Update list after buttons changed the unit group.
+        """
         self.updateSelection()
         self.setFocus()
         self.emit(QtCore.SIGNAL('unitChanged'))   # update unitEdit
 
     def updateSelection(self):
-        """Update list after change to line editor"""
+        """Update list after change to line editor.
+        """
         self.blockSignals(True)
         self.enableButtons(True)
         self.clearSelection()
@@ -67,7 +71,8 @@ class UnitListView(QtGui.QTreeWidget):
         self.blockSignals(False)
 
     def replaceUnit(self):
-        """Replace current unit in response to a selection change"""
+        """Replace current unit in response to a selection change.
+        """
         selectList = self.selectedItems()
         if selectList:
             selection = selectList[-1]
@@ -76,12 +81,14 @@ class UnitListView(QtGui.QTreeWidget):
             self.enableButtons(True)
 
     def enableButtons(self, enable=True):
-        """Enable unit modification buttons for valid unit"""
+        """Enable unit modification buttons for valid unit.
+        """
         for button in self.buttonList:
             button.setEnabled(enable)
 
     def scrollToCenter(self, unit):
-        """Scroll so given unit is in the center of the viewport"""
+        """Scroll so given unit is in the center of the viewport.
+        """
         unitItem = unit.viewLink[self.unitRefNum]
         index = self.indexOfTopLevelItem(unitItem)
         itemHeight = self.visualItemRect(unitItem).height()
@@ -93,7 +100,8 @@ class UnitListView(QtGui.QTreeWidget):
         self.scrollToItem(bottomItem, QtGui.QAbstractItemView.PositionAtBottom)
 
     def sizeHint(self):
-        """Adjust width smaller"""
+        """Adjust width smaller.
+        """
         size = QtGui.QTreeWidget.sizeHint(self)
         size.setWidth(self.columnWidth(0) + self.columnWidth(1) +
                       self.verticalScrollBar().sizeHint().width())
@@ -101,7 +109,8 @@ class UnitListView(QtGui.QTreeWidget):
 
 
 class UnitListViewItem(QtGui.QTreeWidgetItem):
-    """Item in list view, references unit"""
+    """Item in list view, references unit.
+    """
     def __init__(self, unit, unitRefNum, parent=None):
         QtGui.QTreeWidgetItem.__init__(self, parent)
         self.unit = unit

@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # icondict.py, provides a class to load and store icons
 #
-# Copyright (C) 2008, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -15,14 +15,16 @@ import os.path
 from PyQt4 import QtCore, QtGui
 
 class IconDict(dict):
-    """Stores icons by name, loads on demand"""
+    """Stores icons by name, loads on demand.
+    """
     iconExt = ['.png', '.bmp']
     def __init__(self):
         dict.__init__(self, {})
         self.pathList = []
 
     def addIconPath(self, potentialPaths):
-        """Add first good path from potentialPaths"""
+        """Add first good path from potentialPaths.
+        """
         for path in potentialPaths:
             try:
                 for name in os.listdir(path):
@@ -34,7 +36,8 @@ class IconDict(dict):
                 pass
 
     def __getitem__(self, name):
-        """Return icon, loading if necessary"""
+        """Return icon, loading if necessary.
+        """
         try:
             return dict.__getitem__(self, name)
         except KeyError:
@@ -44,7 +47,8 @@ class IconDict(dict):
             return icon
 
     def loadAllIcons(self):
-        """Load all icons available in self.pathList"""
+        """Load all icons available in self.pathList.
+        """
         self.clear()
         for path in self.pathList:
             try:
@@ -62,7 +66,8 @@ class IconDict(dict):
                 pass
 
     def loadIcon(self, iconName):
-        """Load icon from iconPath, add to dictionary and return the icon"""
+        """Load icon from iconPath, add to dictionary and return the icon.
+        """
         icon = QtGui.QIcon()
         for path in self.pathList:
             for ext in IconDict.iconExt:

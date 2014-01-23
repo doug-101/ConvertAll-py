@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # numedit.py, provides a number entry editor
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2006, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -12,7 +12,7 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from __future__ import division
+
 
 import re
 import sys
@@ -21,7 +21,8 @@ import unitdata
 
 
 class NumEdit(QtGui.QLineEdit):
-    """Number entry editor"""
+    """Number entry editor.
+    """
     def __init__(self, thisUnit, otherUnit, label, status, recentUnits,
                  primary, parent=None):
         QtGui.QLineEdit.__init__(self, parent)
@@ -38,14 +39,15 @@ class NumEdit(QtGui.QLineEdit):
                      self.convert)
 
     def unitUpdate(self):
-        """Update the editor and labels based on a unit change"""
+        """Update the editor and labels based on a unit change.
+        """
         if self.thisUnit.groupValid():
             self.label.setTitle(self.thisUnit.unitString())
             if self.otherUnit.groupValid():
                 try:
                     self.thisUnit.reduceGroup()
                     self.otherUnit.reduceGroup()
-                except unitdata.UnitDataError, text:
+                except unitdata.UnitDataError as text:
                     QtGui.QMessageBox.warning(self, 'ConvertAll',
                                               _('Error in unit data - %s')
                                               % text)
@@ -58,7 +60,7 @@ class NumEdit(QtGui.QLineEdit):
                         self.emit(QtCore.SIGNAL('convertRqd'))
                     return
                 if self.onLeft:
-                    self.status.setText(_(u'Units are not compatible '\
+                    self.status.setText(_('Units are not compatible '\
                               '(%s  vs.  %s)') % (self.thisUnit.compatStr(),
                                                   self.otherUnit.compatStr()))
                 else:
@@ -74,25 +76,27 @@ class NumEdit(QtGui.QLineEdit):
         self.emit(QtCore.SIGNAL('convertNum'), '')
 
     def convert(self):
-        """Do conversion with self primary"""
+        """Do conversion with self primary.
+        """
         self.primary = True
         self.setEnabled(True)
         self.recentUnits.addEntry(self.thisUnit.unitString())
         self.recentUnits.addEntry(self.otherUnit.unitString())
         try:
-            num = float(eval(unicode(self.text())))
+            num = float(eval(self.text()))
         except:
             self.emit(QtCore.SIGNAL('convertNum'), '')
             return
         try:
             numText = self.thisUnit.convertStr(num, self.otherUnit)
             self.emit(QtCore.SIGNAL('convertNum'), numText)
-        except unitdata.UnitDataError, text:
+        except unitdata.UnitDataError as text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - %s') % text)
 
     def setNum(self, numText):
-        """Set text based on conversion from other number editor"""
+        """Set text based on conversion from other number editor.
+        """
         if not numText:
             self.setEnabled(False)
         else:
@@ -102,13 +106,15 @@ class NumEdit(QtGui.QLineEdit):
 
 
 class FloatExprValidator(QtGui.QValidator):
-    """Validator for float python expressions typed into NumEdit"""
+    """Validator for float python expressions typed into NumEdit.
+    """
     invalidRe = re.compile(r'[^\d\.eE\+\-\*/\(\)]')
     def __init__(self, parent):
         QtGui.QValidator.__init__(self, parent)
 
     def validate(self, inputStr, pos):
-        """Check for valid characters in entry"""
-        if FloatExprValidator.invalidRe.search(unicode(inputStr)):
+        """Check for valid characters in entry.
+        """
+        if FloatExprValidator.invalidRe.search(inputStr):
             return (QtGui.QValidator.Invalid, pos)
         return (QtGui.QValidator.Acceptable, pos)

@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #****************************************************************************
 # recentunits.py, provides a list of recently used units
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2010, Douglas W. Bell
+# Copyright (C) 2014, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -14,7 +14,8 @@
 
 
 class RecentUnits(list):
-    """A list of recent unit combo names"""
+    """A list of recent unit combo names.
+    """
     def __init__(self, options):
         list.__init__(self)
         self.options = options
@@ -22,12 +23,14 @@ class RecentUnits(list):
         self.loadList()
 
     def updateQuantity(self):
-        """Update number of entries from options"""
+        """Update number of entries from options.
+        """
         self.numEntries = self.options.intData('RecentUnits', 0, 99)
         del self[self.numEntries:]
 
     def loadList(self):
-        """Load recent units from option file"""
+        """Load recent units from option file.
+        """
         self[:] = []
         for num in range(self.numEntries):
             name = self.options.strData(self.optionTitle(num), True)
@@ -35,7 +38,8 @@ class RecentUnits(list):
                 self.append(name)
 
     def writeList(self):
-        """Write list of paths to options"""
+        """Write list of paths to options.
+        """
         for num in range(self.numEntries):
             try:
                 name = self[num]
@@ -45,7 +49,8 @@ class RecentUnits(list):
         self.options.writeChanges()
 
     def addEntry(self, name):
-        """Move name to start if found, otherwise add it"""
+        """Move name to start if found, otherwise add it.
+        """
         try:
             self.remove(name)
         except ValueError:
@@ -54,5 +59,6 @@ class RecentUnits(list):
         del self[self.numEntries:]
 
     def optionTitle(self, num):
-        """Return option key for the given nummber"""
+        """Return option key for the given nummber.
+        """
         return 'RecentUnit%d' % (num + 1)
