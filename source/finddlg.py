@@ -57,27 +57,25 @@ class FindDlg(QtGui.QWidget):
         fromLayout = QtGui.QVBoxLayout(fromBox)
         fromReplaceButton = QtGui.QPushButton(_('&Replace'))
         fromLayout.addWidget(fromReplaceButton)
-        self.connect(fromReplaceButton, QtCore.SIGNAL('clicked()'),
-                     self.fromRepl)
+        fromReplaceButton.clicked.connect(self.fromRepl)
         fromInsertButton = QtGui.QPushButton(_('&Insert'))
         fromLayout.addWidget(fromInsertButton)
-        self.connect(fromInsertButton, QtCore.SIGNAL('clicked()'),
-                     self.fromIns)
+        fromInsertButton.clicked.connect(self.fromIns)
         toBox = QtGui.QGroupBox(_('To Unit'))
         lowerLayout.addWidget(toBox)
         toLayout = QtGui.QVBoxLayout(toBox)
         toReplaceButton = QtGui.QPushButton(_('Replac&e'))
         toLayout.addWidget(toReplaceButton)
-        self.connect(toReplaceButton, QtCore.SIGNAL('clicked()'), self.toRepl)
+        toReplaceButton.clicked.connect(self.toRepl)
         toInsertButton = QtGui.QPushButton(_('Inser&t'))
         toLayout.addWidget(toInsertButton)
-        self.connect(toInsertButton, QtCore.SIGNAL('clicked()'), self.toIns)
+        toInsertButton.clicked.connect(self.toIns)
         self.buttonList = [fromReplaceButton, fromInsertButton,
                            toReplaceButton, toInsertButton]
 
         closeButton = QtGui.QPushButton(_('&Close'))
         upperLayout.addWidget(closeButton)
-        self.connect(closeButton, QtCore.SIGNAL('clicked()'), self.close)
+        closeButton.clicked.connect(self.close)
 
         option = self.mainDlg.option
         xSize = option.intData('FinderXSize', 0, 10000)
@@ -90,16 +88,10 @@ class FindDlg(QtGui.QWidget):
         for col in range(3):
             self.unitListView.resizeColumnToContents(col)
         self.loadTypes()
-        self.connect(self.filterCombo,
-                     QtCore.SIGNAL('activated(const QString&)'),
-                     self.changeType)
-        self.connect(self.searchEdit,
-                     QtCore.SIGNAL('textEdited(const QString&)'),
-                     self.changeSearch)
-        self.connect(clearButton, QtCore.SIGNAL('clicked()'), self.searchEdit,
-                     QtCore.SLOT('clear()'))
-        self.connect(self.unitListView,
-                     QtCore.SIGNAL('itemSelectionChanged()'), self.updateCtrls)
+        self.filterCombo.activated[str].connect(self.changeType)
+        self.searchEdit.textEdited.connect(self.changeSearch)
+        clearButton.clicked.connect(self.searchEdit.clear)
+        self.unitListView.itemSelectionChanged.connect(self.updateCtrls)
 
     def loadUnits(self):
         """Load unit items.

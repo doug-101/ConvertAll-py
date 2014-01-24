@@ -19,6 +19,7 @@ import convertdlg
 class UnitListView(QtGui.QTreeWidget):
     """ListView of units available.
     """
+    unitChanged = QtCore.pyqtSignal()
     def __init__(self, unitGroup, unitRefNum, parent=None):
         QtGui.QTreeWidget.__init__(self, parent)
         self.unitGroup = unitGroup
@@ -28,8 +29,7 @@ class UnitListView(QtGui.QTreeWidget):
         self.setColumnCount(3)
         self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
         self.header().setStretchLastSection(False)
-        self.connect(self, QtCore.SIGNAL('itemSelectionChanged()'),
-                     self.replaceUnit)
+        self.itemSelectionChanged.connect(self.replaceUnit)
         self.loadUnits()
 
     def loadUnits(self):
@@ -47,7 +47,7 @@ class UnitListView(QtGui.QTreeWidget):
         """
         self.updateSelection()
         self.setFocus()
-        self.emit(QtCore.SIGNAL('unitChanged'))   # update unitEdit
+        self.unitChanged.emit()     # update unitEdit
 
     def updateSelection(self):
         """Update list after change to line editor.
@@ -77,7 +77,7 @@ class UnitListView(QtGui.QTreeWidget):
         if selectList:
             selection = selectList[-1]
             self.unitGroup.replaceCurrent(selection.unit)
-            self.emit(QtCore.SIGNAL('unitChanged'))   # update unitEdit
+            self.unitChanged.emit()     # update unitEdit
             self.enableButtons(True)
 
     def enableButtons(self, enable=True):

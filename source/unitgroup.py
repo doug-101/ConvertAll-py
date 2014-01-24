@@ -255,19 +255,20 @@ class UnitGroup(object):
                         expSign = unit.unitGroupExpSign()
                     if swapExpSign:
                         expSign = not expSign
-                    fullText = '%s %s ' % (fullText, expSign and '*' or '/')
+                    fullText = '{0} {1} '.format(fullText,
+                                                 expSign and '*' or '/')
                 if hasattr(unit, 'unitText'):
-                    fullText = '%s%s' % (fullText,
-                                          unit.unitText(swapExpSign or
-                                                        not firstUnit))
+                    fullText = '{0}{1}'.format(fullText,
+                                               unit.unitText(swapExpSign or
+                                                             not firstUnit))
                 else:
                     if firstUnit and not swapExpSign:
                         swap = False
                     else:
                         swap = not unit.unitGroupExpSign()
-                    fullText = '%s(%s%s' % (fullText,
-                                             unit.unitString(None, swap),
-                                             unit.parenthClosed and ')' or '')
+                    fullText = '{0}({1}{2}'.format(fullText,
+                                              unit.unitString(None, swap),
+                                              unit.parenthClosed and ')' or '')
                 firstUnit = False
         return fullText
 
@@ -303,7 +304,8 @@ class UnitGroup(object):
             if unit.equiv.startswith('!'):
                 self.reducedList.append(unit.copy())
             elif not unit.equiv:
-                raise unitdata.UnitDataError(_('Invalid conversion for "%s"') % unit.name)
+                raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                             format(unit.name))
             else:
                 if unit.fromEqn:
                     self.linear = False
@@ -385,12 +387,13 @@ class UnitGroup(object):
                     break
             if pos == 0:
                 pos = 1
-            return (num-data[pos-1][0]) / float(data[pos][0]-data[pos-1][0]) \
-                   * (data[pos][1]-data[pos-1][1]) + data[pos-1][1]
+            return ((num-data[pos-1][0]) / float(data[pos][0]-data[pos-1][0]) *
+                    (data[pos][1]-data[pos-1][1]) + data[pos-1][1])
         except OverflowError:
             return 1e9999
         except:
-            raise unitdata.UnitDataError(_('Bad equation for %s') % unit.name)
+            raise unitdata.UnitDataError(_('Bad equation for {0}').
+                                         format(unit.name))
 
     def convertStr(self, num, toGroup):
         """Return formatted string of converted number.
@@ -402,10 +405,10 @@ class UnitGroup(object):
         """
         decPlcs = self.option.intData('DecimalPlaces', 0, UnitGroup.maxDecPlcs)
         if self.option.boolData('SciNotation'):
-            return ('%%0.%dE' % decPlcs) % num
+            return '{0:0.{prec}E}'.format(num, prec = decPlcs)
         if self.option.boolData('FixedDecimals'):
-            return ('%%0.%df' % decPlcs) % num
-        return ('%%0.%dG' % decPlcs) % num
+            return '{0:0.{prec}f}'.format(num, prec = decPlcs)
+        return '{0:0.{prec}G}'.format(num, prec = decPlcs)
 
 
 if __name__ == '__main__':
@@ -423,15 +426,15 @@ if __name__ == '__main__':
     toText = input('Enter to unit -> ')
     toUnit = UnitGroup(data, options)
     toUnit.update(toText)
-    print('%s   TO   %s' % (fromUnit.unitString(), toUnit.unitString()))
+    print('{0}   TO   {1}'.format(fromUnit.unitString(), toUnit.unitString()))
     fromUnit.reduceGroup()
     toUnit.reduceGroup()
-    print('%s   TO   %s' % (fromUnit.unitString(fromUnit.reducedList),
-                             toUnit.unitString(toUnit.reducedList)))
+    print('{0}   TO   {1}'.format(fromUnit.unitString(fromUnit.reducedList),
+                                  toUnit.unitString(toUnit.reducedList)))
     if not fromUnit.categoryMatch(toUnit):
         print('NO MATCH')
     else:
         print('MATCH')
         numText = input('Enter value -> ')
         num = float(numText)
-        print('%f   IS  %f' % (num, fromUnit.convert(num, toUnit)))
+        print('{0}  IS  {1}'.format(num, fromUnit.convert(num, toUnit)))

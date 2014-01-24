@@ -1,18 +1,41 @@
 #!/usr/bin/env python3
-from distutils.core import setup
-import py2exe
 
-guiProg = {'script': 'convertall.py',
-           'icon_resources': [(1, '../win/convertall.ico')],
-           'dest_base': 'convertall'}
+#****************************************************************************
+# setup.py, provides a distutils script for use with cx_Freeze
+#
+# Creates a standalone windows executable
+#
+# Run the build process by running the command 'python setup.py build'
+#
+# If everything works well you should find a subdirectory in the build
+# subdirectory that contains the files needed to run the application
+#
+# ConvertAll, a units conversion program
+# Copyright (C) 2014, Douglas W. Bell
+#
+# This is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License, either Version 2 or any later
+# version.  This program is distributed in the hope that it will be useful,
+# but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
+#*****************************************************************************
 
-consoleProg = {'script': 'convertall.py',
-               'icon_resources': [(1, '../win/convertall.ico')],
-               'dest_base': 'convertall_dos'}
+import sys
+from cx_Freeze import setup, Executable
+from convertall import __version__
 
-options = {'py2exe': {'includes': ['sip'],
-                      'dist_dir': 'dist/lib'}}
+base = None
+if sys.platform == 'win32':
+    base = 'Win32GUI'
 
-setup(windows=[guiProg], console=[consoleProg], options=options)
+extraFiles =  [('../data', 'data'), ('../doc', 'doc'), ('../icons', 'icons'),
+               ('../source', 'source'), ('../win', '.')]
 
-# run with: python setup.py py2exe
+setup(name = 'convertall',
+      version = __version__,
+      description = 'ConvertAll, a units conversion program',
+      options = {'build_exe': {'includes': 'atexit',
+                               'include_files': extraFiles,
+                               'excludes': ['*.pyc'],
+                               'icon': '../win/convertall.ico',
+                               'build_exe': '../../convertall-0.6'}},
+      executables = [Executable('convertall.py', base=base)])

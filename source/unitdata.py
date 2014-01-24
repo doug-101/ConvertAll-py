@@ -14,7 +14,6 @@
 
 import sys
 import os.path
-import codecs
 try:
     from __main__ import dataFilePath, lang
 except ImportError:
@@ -46,15 +45,15 @@ class UnitData(dict):
         pathList = [dataFilePath, os.path.join(modPath, '../data/'), modPath]
         fileList = ['units.dat']
         if lang and lang != 'C':
-            fileList[0:0] = ['units_%s.dat' % lang, 'units_%s.dat' % lang[:2]]
+            fileList[0:0] = ['units_{0}.dat'.format(lang),
+                             'units_{0}.dat'.format(lang[:2])]
         for path in pathList:
             if path:
                 for fileName in fileList:
                     try:
-                        f = codecs.open(os.path.join(path, fileName), 'r',
-                                        'utf-8')
-                        lineList = f.readlines()
-                        f.close()
+                        with open(os.path.join(path, fileName), 'r',
+                                  encoding='utf-8') as f:
+                            lineList = f.readlines()
                         return lineList
                     except IOError:
                         pass

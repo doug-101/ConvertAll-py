@@ -18,12 +18,13 @@ from PyQt4 import QtCore, QtGui
 class ModButton(QtGui.QPushButton):
     """Button used to add operators, change exponent or clear unit.
     """
+    stateChg = QtCore.pyqtSignal()
     def __init__(self, function, param, label, parent=None):
         QtGui.QPushButton.__init__(self, label, parent)
         self.function = function
         self.param = param
         self.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.connect(self, QtCore.SIGNAL('clicked()'), self.exe)
+        self.clicked.connect(self.exe)
 
     def exe(self):
         """Execute function on button push.
@@ -32,7 +33,7 @@ class ModButton(QtGui.QPushButton):
             self.function(self.param)
         else:
             self.function()
-        self.emit(QtCore.SIGNAL('stateChg'))   # update listView
+        self.stateChg.emit()       # update listView
 
     def sizeHint(self):
         """Adjust width smaller.

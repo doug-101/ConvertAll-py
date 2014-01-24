@@ -13,9 +13,8 @@
 
 import sys
 import os.path
-import codecs
 
-class Option(object):
+class Option:
     """Stores and retrieves string options.
     """
     def __init__(self, fileName, keySpaces=20):
@@ -32,11 +31,12 @@ class Option(object):
                             self.path = ''
                 if not self.path:
                     self.path = os.path.abspath(sys.path[0])
-                self.path = os.path.join(self.path, '%s.ini' % fileName)
+                self.path = os.path.join(self.path, '{0}.ini'.format(fileName))
             else:
                 self.path = os.environ.get('HOME', '')
                 if os.path.exists(self.path):
-                    self.path = os.path.join(self.path, '.%s' % fileName)
+                    self.path = os.path.join(self.path, '.{0}'.
+                                             format(fileName))
                 else:
                     self.path = ''
         self.keySpaces = keySpaces
@@ -52,21 +52,17 @@ class Option(object):
         self.loadSet(defaultList, self.dfltDict)
         if self.path:
             try:
-                f = codecs.open(self.path, 'r', 'utf-8')
+                with open(self.path, 'r', encoding='utf-8') as f:
+                    self.loadSet(f.readlines(), self.userDict)
+                    return True
             except IOError:
                 try:
-                    f = codecs.open(self.path, 'w', 'utf-8')
+                    with open(self.path, 'w', encoding='utf-8') as f:
+                        f.writelines([line + '\n' for line in defaultList])
                 except IOError:
                     print('Error - could not write to config file', self.path)
                     self.path = ''
-                else:
-                    f.writelines([line + '\n' for line in defaultList])
-                    f.close()
-            else:
-                self.loadSet(f.readlines(), self.userDict)
-                f.close()
-                return True
-        return False
+                return False
 
     def loadSet(self, list, data):
         """Reads settings from list into dict.
@@ -110,7 +106,7 @@ class Option(object):
                 except ValueError:
                     pass
         print('Option error - float key', key, 'is not valid')
-        return False
+        return 0
 
     def intData(self, key, min=None, max=None):
         """Return int from option data.
@@ -126,7 +122,7 @@ class Option(object):
                 except ValueError:
                     pass
         print('Option error - int key', key, 'is not valid')
-        return False
+        return 0
 
     def strData(self, key, emptyOk=0):
         """Return string from option data.
@@ -160,9 +156,8 @@ class Option(object):
         """
         if self.path and self.chgList:
             try:
-                f = codecs.open(self.path, 'r', 'utf-8')
-                fileList = f.readlines()
-                f.close()
+                with open(self.path, 'r', encoding='utf-8') as f:
+                    fileList = f.readlines()
                 for key in self.chgList[:]:
                     hitList = [line for line in fileList if
                                line.strip().split(None, 1)[:1] == [key]]
@@ -171,15 +166,15 @@ class Option(object):
                                    line.replace('#', ' ', 1).strip().
                                    split(None, 1)[:1] == [key]]
                     if hitList:
-                        fileList[fileList.index(hitList[-1])] = '%s%s\n' % \
-                                (key.ljust(self.keySpaces), self.userDict[key])
+                        fileList[fileList.index(hitList[-1])] = '{0}{1}\n'.\
+                                format(key.ljust(self.keySpaces),
+                                       self.userDict[key])
                         self.chgList.remove(key)
                 for key in self.chgList:
-                    fileList.append('%s%s\n' % (key.ljust(self.keySpaces),
-                                                self.userDict[key]))
-                f = codecs.open(self.path, 'w', 'utf-8')
-                f.writelines([line for line in fileList])
-                f.close()
+                    fileList.append('{0}{1}\n'.format(key.ljust(self.keySpaces),
+                                                      self.userDict[key]))
+                with open(self.path, 'w', encoding='utf-8') as f:
+                    f.writelines([line for line in fileList])
                 return True
             except IOError:
                 print('Error - could not write to config file', self.path)

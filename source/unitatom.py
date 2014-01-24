@@ -42,7 +42,8 @@ class UnitAtom(object):
                         self.toEqn = self.toEqn.strip()
                     self.fromEqn = self.fromEqn.strip()
                 except AttributeError:
-                    raise unitdata.UnitDataError(_('Bad equation for "%s"') % self.name)
+                    raise unitdata.UnitDataError(_('Bad equation for "{0}"').
+                                                 format(self.name))
             else:                # split factor and equiv unit for linear
                 parts = self.equiv.split(None, 1)
                 if len(parts) > 1 and \
@@ -63,7 +64,7 @@ class UnitAtom(object):
         """Return name and 1st comment (usu. full name) if applicable.
         """
         if self.comments[0]:
-            return '%s  (%s)' % (self.name, self.comments[0])
+            return '{0}  ({1})'.format(self.name, self.comments[0])
         return self.name
 
     def unitValid(self):
@@ -83,11 +84,11 @@ class UnitAtom(object):
         if exp == 1:
             return self.name
         if -UnitAtom.partialExp < exp < UnitAtom.partialExp:
-            return '%s^%d' % (self.name, exp)
+            return '{0}^{1}'.format(self.name, exp)
         if exp > 1:
-            return '%s^' % self.name
+            return '{0}^'.format(self.name)
         else:
-            return '%s^-' % self.name
+            return '{0}^-'.format(self.name)
 
     def matchWords(self, wordList):
         """Return True if unit name and comments match word list.
@@ -104,5 +105,12 @@ class UnitAtom(object):
         """
         return copy.copy(self)
 
-    def __cmp__(self, other):
-        return cmp(self.name.lower(), other.name.lower())
+    def __lt__(self, other):
+        """Less than comparison for sorting.
+        """
+        return self.name.lower() < other.name.lower()
+
+    def __eq__(self, other):
+        """Equality test.
+        """
+        return self.name.lower() == other.name.lower()

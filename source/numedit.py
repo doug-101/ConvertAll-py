@@ -23,6 +23,8 @@ import unitdata
 class NumEdit(QtGui.QLineEdit):
     """Number entry editor.
     """
+    convertRqd = QtCore.pyqtSignal()
+    convertNum = QtCore.pyqtSignal(str)
     def __init__(self, thisUnit, otherUnit, label, status, recentUnits,
                  primary, parent=None):
         QtGui.QLineEdit.__init__(self, parent)
@@ -35,8 +37,7 @@ class NumEdit(QtGui.QLineEdit):
         self.onLeft = primary
         self.setValidator(FloatExprValidator(self))
         self.setText(self.thisUnit.formatNumStr(1.0))
-        self.connect(self, QtCore.SIGNAL('textEdited(const QString &)'),
-                     self.convert)
+        self.textEdited.connect(self.convert)
 
     def unitUpdate(self):
         """Update the editor and labels based on a unit change.
@@ -49,31 +50,33 @@ class NumEdit(QtGui.QLineEdit):
                     self.otherUnit.reduceGroup()
                 except unitdata.UnitDataError as text:
                     QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                              _('Error in unit data - %s')
-                                              % text)
+                                              _('Error in unit data - {0}').
+                                              format(text))
                     return
                 if self.thisUnit.categoryMatch(self.otherUnit):
                     self.status.setText(_('Converting...'))
                     if self.primary:
                         self.convert()
                     else:
-                        self.emit(QtCore.SIGNAL('convertRqd'))
+                        self.convertRqd.emit()
                     return
                 if self.onLeft:
-                    self.status.setText(_('Units are not compatible '\
-                              '(%s  vs.  %s)') % (self.thisUnit.compatStr(),
-                                                  self.otherUnit.compatStr()))
+                    self.status.setText(_('Units are not compatible '
+                                          '({0}  vs.  {1})').
+                                        format(self.thisUnit.compatStr(),
+                                               self.otherUnit.compatStr()))
                 else:
-                    self.status.setText(_('Units are not compatible '\
-                              '(%s  vs.  %s)') % (self.otherUnit.compatStr(),
-                                                  self.thisUnit.compatStr()))
+                    self.status.setText(_('Units are not compatible '
+                                          '({0}  vs.  {1})').
+                                        format(self.otherUnit.compatStr(),
+                                               self.thisUnit.compatStr()))
             else:
                 self.status.setText(_('Set units'))
         else:
             self.status.setText(_('Set units'))
             self.label.setTitle(_('No Unit Set'))
         self.setEnabled(False)
-        self.emit(QtCore.SIGNAL('convertNum'), '')
+        self.convertNum.emit('')
 
     def convert(self):
         """Do conversion with self primary.
@@ -85,14 +88,15 @@ class NumEdit(QtGui.QLineEdit):
         try:
             num = float(eval(self.text()))
         except:
-            self.emit(QtCore.SIGNAL('convertNum'), '')
+            self.convertNum.emit('')
             return
         try:
             numText = self.thisUnit.convertStr(num, self.otherUnit)
-            self.emit(QtCore.SIGNAL('convertNum'), numText)
+            self.convertNum.emit(numText)
         except unitdata.UnitDataError as text:
             QtGui.QMessageBox.warning(self, 'ConvertAll',
-                                      _('Error in unit data - %s') % text)
+                                      _('Error in unit data - {0}').
+                                      format(text))
 
     def setNum(self, numText):
         """Set text based on conversion from other number editor.
@@ -116,5 +120,5 @@ class FloatExprValidator(QtGui.QValidator):
         """Check for valid characters in entry.
         """
         if FloatExprValidator.invalidRe.search(inputStr):
-            return (QtGui.QValidator.Invalid, pos)
-        return (QtGui.QValidator.Acceptable, pos)
+            return (QtGui.QValidator.Invalid, inputStr, pos)
+        return (QtGui.QValidator.Acceptable, inputStr, pos)

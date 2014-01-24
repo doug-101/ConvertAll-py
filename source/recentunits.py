@@ -61,4 +61,4 @@ class RecentUnits(list):
     def optionTitle(self, num):
         """Return option key for the given nummber.
         """
-        return 'RecentUnit%d' % (num + 1)
+        return 'RecentUnit{0}'.format(num + 1)

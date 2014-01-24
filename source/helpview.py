@@ -33,46 +33,85 @@ class HelpView(QtGui.QMainWindow):
         if sys.platform.startswith('win'):
             path = path.replace('\\', '/')
         self.textView.setSearchPaths([os.path.dirname(path)])
-        self.textView.setSource(QtCore.QUrl('file:///%s' % path))
+        self.textView.setSource(QtCore.QUrl('file:///{0}'.format(path)))
         self.resize(520, 440)
         self.setWindowTitle(caption)
         tools = self.addToolBar('Tools')
         self.menu = QtGui.QMenu(self.textView)
-        self.connect(self.textView,
-                     QtCore.SIGNAL('highlighted(const QString&)'),
-                     self.showLink)
+        self.textView.highlighted[str].connect(self.showLink)
 
         backAct = QtGui.QAction(_('&Back'), self)
         backAct.setIcon(icons['helpback'])
         tools.addAction(backAct)
         self.menu.addAction(backAct)
-        self.connect(backAct, QtCore.SIGNAL('triggered()'),
-                     self.textView, QtCore.SLOT('backward()'))
+        backAct.triggered.connect(self.textView.backward)
         backAct.setEnabled(False)
-        self.connect(self.textView, QtCore.SIGNAL('backwardAvailable(bool)'),
-                     backAct, QtCore.SLOT('setEnabled(bool)'))
+        self.textView.backwardAvailable.connect(backAct.setEnabled)
 
         forwardAct = QtGui.QAction(_('&Forward'), self)
         forwardAct.setIcon(icons['helpforward'])
         tools.addAction(forwardAct)
         self.menu.addAction(forwardAct)
-        self.connect(forwardAct, QtCore.SIGNAL('triggered()'),
-                     self.textView, QtCore.SLOT('forward()'))
+        forwardAct.triggered.connect(self.textView.forward)
         forwardAct.setEnabled(False)
-        self.connect(self.textView, QtCore.SIGNAL('forwardAvailable(bool)'),
-                     forwardAct, QtCore.SLOT('setEnabled(bool)'))
+        self.textView.forwardAvailable.connect(forwardAct.setEnabled)
 
         homeAct = QtGui.QAction(_('&Home'), self)
         homeAct.setIcon(icons['helphome'])
         tools.addAction(homeAct)
         self.menu.addAction(homeAct)
-        self.connect(homeAct, QtCore.SIGNAL('triggered()'),
-                     self.textView, QtCore.SLOT('home()'))
+        homeAct.triggered.connect(self.textView.home)
+
+        tools.addSeparator()
+        tools.addSeparator()
+        findLabel = QtGui.QLabel(' {0}: '.format(_('Find')), self)
+        tools.addWidget(findLabel)
+        self.findEdit = QtGui.QLineEdit(self)
+        tools.addWidget(self.findEdit)
+        self.findEdit.textEdited.connect(self.findTextChanged)
+        self.findEdit.returnPressed.connect(self.findNext)
+
+        self.findPreviousAct = QtGui.QAction(_('Find &Previous'), self)
+        self.findPreviousAct.setIcon(icons['helpprevious'])
+        tools.addAction(self.findPreviousAct)
+        self.menu.addAction(self.findPreviousAct)
+        self.findPreviousAct.triggered.connect(self.findPrevious)
+        self.findPreviousAct.setEnabled(False)
+
+        self.findNextAct = QtGui.QAction(_('Find &Next'), self)
+        self.findNextAct.setIcon(icons['helpnext'])
+        tools.addAction(self.findNextAct)
+        self.menu.addAction(self.findNextAct)
+        self.findNextAct.triggered.connect(self.findNext)
+        self.findNextAct.setEnabled(False)
 
     def showLink(self, text):
         """Send link text to the statusbar.
         """
-        self.statusBar().showMessage(str(text))
+        self.statusBar().showMessage(text)
+
+    def findTextChanged(self, text):
+        """Update find controls based on text in text edit.
+        """
+        self.findPreviousAct.setEnabled(len(text) > 0)
+        self.findNextAct.setEnabled(len(text) > 0)
+
+    def findPrevious(self):
+        """Command to find the previous string.
+        """
+        if self.textView.find(self.findEdit.text(),
+                              QtGui.QTextDocument.FindBackward):
+            self.statusBar().clearMessage()
+        else:
+            self.statusBar().showMessage(_('Text string not found'))
+
+    def findNext(self):
+        """Command to find the next string.
+        """
+        if self.textView.find(self.findEdit.text()):
+            self.statusBar().clearMessage()
+        else:
+            self.statusBar().showMessage(_('Text string not found'))
 
 
 class HelpViewer(QtGui.QTextBrowser):
@@ -84,7 +123,7 @@ class HelpViewer(QtGui.QTextBrowser):
     def setSource(self, url):
         """Called when user clicks on a URL.
         """
-        name = str(url.toString())
+        name = url.toString()
         if name.startswith('http'):
             webbrowser.open(name, True)
         else:

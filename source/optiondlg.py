@@ -37,12 +37,10 @@ class OptionDlg(QtGui.QDialog):
         ctrlLayout.addStretch(0)
         okButton = QtGui.QPushButton(_('&OK'), self)
         ctrlLayout.addWidget(okButton)
-        self.connect(okButton, QtCore.SIGNAL('clicked()'), self,
-                     QtCore.SLOT('accept()'))
+        okButton.clicked.connect(self.accept)
         cancelButton = QtGui.QPushButton(_('&Cancel'), self)
         ctrlLayout.addWidget(cancelButton)
-        self.connect(cancelButton, QtCore.SIGNAL('clicked()'), self,
-                     QtCore.SLOT('reject()'))
+        cancelButton.clicked.connect(self.reject)
         self.setWindowTitle(_('Preferences'))
         self.itemList = []
         self.curGroup = None
@@ -65,6 +63,7 @@ class OptionDlg(QtGui.QDialog):
         row = self.oldLayout.rowCount()
         self.oldLayout.addWidget(self.curGroup, row, 0, 1, 2)
         self.gridLayout = QtGui.QGridLayout(self.curGroup)
+        self.gridLayout.setVerticalSpacing(intSpace)
 
     def endGroupBox(self):
         """Cancel group box for next added items.
@@ -148,7 +147,7 @@ class OptionDlgInt(OptionDlgItem):
         """Update Option class based on spinbox status.
         """
         if self.control.value() != int(self.dlg.option.numData(self.key)):
-            self.dlg.option.changeData(self.key, str(self.control.value()),
+            self.dlg.option.changeData(self.key, repr(self.control.value()),
                                        self.writeChg)
 
 class OptionDlgDbl(OptionDlgItem):
@@ -157,7 +156,7 @@ class OptionDlgDbl(OptionDlgItem):
     def __init__(self, dlg, key, menuText, min, max, writeChg=True):
         OptionDlgItem.__init__(self, dlg, key, writeChg)
         label = QtGui.QLabel(menuText, dlg.parentGroup())
-        self.control = QtGui.QLineEdit(str(dlg.option.numData(key, min, max)),
+        self.control = QtGui.QLineEdit(repr(dlg.option.numData(key, min, max)),
                                        dlg.parentGroup())
         valid = QtGui.QDoubleValidator(min, max, 6, self.control)
         self.control.setValidator(valid)
@@ -171,7 +170,7 @@ class OptionDlgDbl(OptionDlgItem):
         if self.control.validator().validate(text, unusedPos)[0] != \
                 QtGui.QValidator.Acceptable:
             return
-        num = float(str(text))
+        num = float(text)
         if num != self.dlg.option.numData(self.key):
             self.dlg.option.changeData(self.key, repr(num), self.writeChg)
 
@@ -227,5 +226,5 @@ class OptionDlgPush(OptionDlgItem):
     def __init__(self, dlg, text, cmd):
         OptionDlgItem.__init__(self, dlg, '', 0)
         self.control = QtGui.QPushButton(text, dlg.parentGroup())
-        self.control.connect(self.control, QtCore.SIGNAL('clicked()'), cmd)
+        self.control.clicked.connect(cmd)
         dlg.addItem(self, self.control)

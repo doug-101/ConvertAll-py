@@ -14,10 +14,6 @@
 
 import sys
 import re
-try:
-    from __main__ import localEncoding
-except ImportError:
-    localEncoding = 'utf-8'
 import option
 import optiondefaults
 import unitdata
@@ -25,30 +21,32 @@ import unitgroup
 
 usage = [_('Usage:'),
          '',
-         '   convertall [%s]' % _('qt-options'),
+         '   convertall [{0}]'.format(_('qt-options')),
          '',
          _('-or- (non-GUI):'),
-         '   convertall [%s] [%s] %s [%s]' % (_('options'), _('number'),
-                                              _('from_unit'), _('to_unit')),
+         '   convertall [{0}] [{1}] {2} [{3}]'.format(_('options'),
+                                                      _('number'),
+                                                      _('from_unit'),
+                                                      _('to_unit')),
          '',
          _('-or- (non-GUI):'),
-         '   convertall -i [%s]' % _('options'),
+         '   convertall -i [{0}]'.format(_('options')),
          '',
          _('Units with spaces must be "quoted"'),
          '',
          _('Options:'),
-         '   -d, --decimals=%-6s %s' %
-             (_('num'), _('set number of decimals to show')),
-         '   -f, --fixed-decimals  %s' %
-             _('show set number of decimals, even if zeros'),
-         '   -h, --help            %s' %
-             _('display this message and exit'),
-         '   -i, --interactive     %s' %
-             _('interactive command line mode (non-GUI)'),
-         '   -q, --quiet           %s' %
-             _('convert without further prompts'),
-         '   -s, --sci-notation    %s' %
-             _('show results in scientific notation'),
+         '   -d, --decimals={0:6} {1}'.format(_('num'),
+                                          _('set number of decimals to show')),
+         '   -f, --fixed-decimals  {0}'.format(
+                              _('show set number of decimals, even if zeros')),
+         '   -h, --help            {0}'.format(
+                                           _('display this message and exit')),
+         '   -i, --interactive     {0}'.format(
+                                 _('interactive command line mode (non-GUI)')),
+         '   -q, --quiet           {0}'.format(
+                                         _('convert without further prompts')),
+         '   -s, --sci-notation    {0}'.format(
+                                     _('show results in scientific notation')),
          '']
 
 def parseArgs(opts, args):
@@ -81,7 +79,7 @@ def parseArgs(opts, args):
     try:
         data.readData()
     except unitdata.UnitDataError as text:
-        print('Error in unit data - %s' % text)
+        print('Error in unit data - {0}'.format(text))
         sys.exit(1)
     if dataTestMode:
         unitDataTest(data, options)
@@ -111,13 +109,13 @@ def parseArgs(opts, args):
     while True:
         while not fromUnit:
             text = _('Enter from unit -> ')
-            fromText = input(text.encode(localEncoding))
+            fromText = input(text)
             if not fromText:
                 return
             fromUnit = getUnit(data, options, fromText)
         while not toUnit:
             text = _('Enter to unit -> ')
-            toText = input(text.encode(localEncoding))
+            toText = input(text)
             if not toText:
                 return
             toUnit = getUnit(data, options, toText)
@@ -125,16 +123,16 @@ def parseArgs(opts, args):
             badEntry = False
             while True:
                 if not badEntry:
-                    text = '%s %s = %s %s' % (numStr, fromUnit.unitString(),
-                                             fromUnit.convertStr(float(numStr),
-                                                                 toUnit),
-                                             toUnit.unitString())
-                    print(text.encode(localEncoding))
+                    newNumStr = fromUnit.convertStr(float(numStr), toUnit)
+                    print('{0} {1} = {2} {3}'.format(numStr,
+                                                     fromUnit.unitString(),
+                                                     newNumStr,
+                                                     toUnit.unitString()))
                     if quiet:
                         return
                 badEntry = False
                 text = _('Enter number, [n]ew, [r]everse or [q]uit -> ')
-                rep = input(text.encode(localEncoding))
+                rep = input(text)
                 if not rep or rep[0] in ('q', 'Q'):
                     return
                 if rep[0] in ('r', 'R'):
@@ -152,9 +150,8 @@ def parseArgs(opts, args):
                     except ValueError:
                         badEntry = True
         else:
-            text = _('Units %s and %s are not compatible') % \
-                         (fromUnit.unitString(), toUnit.unitString())
-            print(text.encode(localEncoding))
+            print(_('Units {0} and {1} are not compatible').
+                  format(fromUnit.unitString(), toUnit.unitString()))
             if quiet:
                 return
             fromUnit = None
@@ -169,13 +166,13 @@ def getUnit(data, options, text):
     if unit.groupValid():
         unit.reduceGroup()
         return unit
-    print((_('%s is not a valid unit') % text).encode(localEncoding))
+    print(_('{0} is not a valid unit').format(text))
     return None
 
 def printUsage():
     """Print usage text.
     """
-    print(('\n'.join(usage)).encode(localEncoding))
+    print('\n'.join(usage))
 
 def unitDataTest(data, options):
     """Run through a test of all units for consistent definitions,
@@ -198,6 +195,5 @@ def unitDataTest(data, options):
         return True
     for key in sorted(badUnits.keys()):
         impacts = ', '.join(sorted(badUnits[key]))
-        text = '%s\n   Impacts:  %s\n' % (key, impacts)
-        print(text.encode(localEncoding))
+        print('{0}\n   Impacts:  {1}\n'.format(key, impacts))
     return False

@@ -14,7 +14,7 @@
 """
 
 __progname__ = 'ConvertAll'
-__version__ = '0.5.2'
+__version__ = '0.6.0'
 __author__ = 'Doug Bell'
 
 dataFilePath = None    # modified by install script if required
@@ -22,7 +22,6 @@ helpFilePath = None    # modified by install script if required
 iconPath = None        # modified by install script if required
 translationPath = 'translations'
 lang = ''
-localEncoding = ''
 
 import sys
 import os.path
@@ -51,7 +50,8 @@ def loadTranslator(fileName, app):
         QtCore.QCoreApplication.installTranslator(translator)
         return True
     else:
-        print('Warning: translation file "%s" could not be loaded' % fileName)
+        print('Warning: translation file "{0}" could not be loaded'.
+              format(fileName))
         return False
 
 def setupTranslator(app):
@@ -74,8 +74,8 @@ def setupTranslator(app):
                 lang = ''
     numTranslators = 0
     if lang and lang[:2] not in ['C', 'en']:
-        numTranslators += loadTranslator('qt_%s' % lang, app)
-        numTranslators += loadTranslator('convertall_%s' % lang, app)
+        numTranslators += loadTranslator('qt_{0}'.format(lang, app))
+        numTranslators += loadTranslator('convertall_{0}'.format(lang), app)
 
     def translate(text, comment=''):
         """Translation function that sets context to calling module's
@@ -97,26 +97,6 @@ def setupTranslator(app):
     else:
         builtins._ = markNoTranslate
 
-def setLocalEncoding():
-    """Store locale's default text encoding for console messages.
-    """
-    global localEncoding
-    try:
-        # not reliable?
-        localEncoding = locale.getpreferredencoding()
-        'test'.encode(localEncoding)
-    except (AttributeError, LookupError, TypeError, locale.Error):
-        try:
-            # not available on windows
-            localEncoding = locale.nl_langinfo(locale.CODESET)
-            'test'.encode(localEncoding)
-        except (AttributeError, LookupError, TypeError, locale.Error):
-            try:
-                localEncoding = locale.getdefaultlocale()[1]
-                'test'.encode(localEncoding)
-            except (AttributeError, LookupError, TypeError, locale.Error):
-                localEncoding = 'utf-8'
-
 
 def main():
     if len(sys.argv) > 1:
@@ -134,14 +114,12 @@ def main():
                                        '-sy', '-ti', '-vi', '-wi']:
                 app = QtCore.QCoreApplication(sys.argv)
                 setupTranslator(app)
-                setLocalEncoding()
                 import cmdline
                 cmdline.printUsage()
                 sys.exit(2)
         else:
             app = QtCore.QCoreApplication(sys.argv)
             setupTranslator(app)
-            setLocalEncoding()
             import cmdline
             try:
                 cmdline.parseArgs(opts, args[1:])
@@ -151,7 +129,6 @@ def main():
     userStyle = '-style' in ' '.join(sys.argv)
     app = QtGui.QApplication(sys.argv)
     setupTranslator(app)  # must be before importing any convertall modules
-    setLocalEncoding()
     import convertdlg
     if not userStyle and not sys.platform.startswith('win'):
         QtGui.QApplication.setStyle('plastique')
