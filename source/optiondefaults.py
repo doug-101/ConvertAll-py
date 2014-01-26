@@ -32,6 +32,7 @@ defaultList = [
     "FixedDecimals       no",
     "ShowOpButtons       yes",
     "RecentUnits         8",
+    "LoadLastUnit        no",
     "#",
     "MainDlgXSize        0",
     "MainDlgYSize        0",

@@ -83,8 +83,12 @@ class NumEdit(QtGui.QLineEdit):
         """
         self.primary = True
         self.setEnabled(True)
-        self.recentUnits.addEntry(self.thisUnit.unitString())
-        self.recentUnits.addEntry(self.otherUnit.unitString())
+        if self.onLeft:
+            self.recentUnits.addEntry(self.otherUnit.unitString())
+            self.recentUnits.addEntry(self.thisUnit.unitString())
+        else:
+            self.recentUnits.addEntry(self.thisUnit.unitString())
+            self.recentUnits.addEntry(self.otherUnit.unitString())
         try:
             num = float(eval(self.text()))
         except:

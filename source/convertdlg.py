@@ -177,6 +177,15 @@ class ConvertDlg(QtGui.QWidget):
             self.resize(xSize, ySize)
         self.move(self.option.intData('MainDlgXPos', 0, 10000),
                   self.option.intData('MainDlgYPos', 0, 10000))
+        if self.option.boolData('LoadLastUnit') and len(self.recentUnits) > 1:
+            self.fromGroup.update(self.recentUnits[0])
+            self.fromUnitEdit.unitUpdate()
+            self.fromUnitListView.updateSelection()
+            self.toGroup.update(self.recentUnits[1])
+            self.toUnitEdit.unitUpdate()
+            self.toUnitListView.updateSelection()
+            self.fromNumEdit.setFocus()
+            self.fromNumEdit.selectAll()
 
     def addButtons(self, unitGroup, listView, upperLayout):
         """Add buttons to unit selector.
@@ -271,7 +280,9 @@ class ConvertDlg(QtGui.QWidget):
         optiondlg.OptionDlgBool(dlg, 'FixedDecimals',
                                 _('Use fixed decimal places'))
         dlg.startGroupBox(_('Recent Units'))
-        optiondlg.OptionDlgInt(dlg, 'RecentUnits', _('Number saved'), 0, 99)
+        optiondlg.OptionDlgInt(dlg, 'RecentUnits', _('Number saved'), 2, 99)
+        optiondlg.OptionDlgBool(dlg, 'LoadLastUnit',
+                                _('Load last units at startup'))
         dlg.startGroupBox(_('Buttons'))
         optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
                                 _('Show operator buttons'))
