@@ -89,7 +89,7 @@ class FindDlg(QtGui.QWidget):
             self.unitListView.resizeColumnToContents(col)
         self.loadTypes()
         self.filterCombo.activated[str].connect(self.changeType)
-        self.searchEdit.textEdited.connect(self.changeSearch)
+        self.searchEdit.textChanged.connect(self.changeSearch)
         clearButton.clicked.connect(self.searchEdit.clear)
         self.unitListView.itemSelectionChanged.connect(self.updateCtrls)
 
@@ -136,6 +136,8 @@ class FindDlg(QtGui.QWidget):
         self.loadUnits()
 
     def changeSearch(self, newStr):
+        """Update the search results based on a change to the text string.
+        """
         self.currentSearch = newStr
         self.loadUnits()
 
