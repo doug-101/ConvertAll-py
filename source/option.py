@@ -17,28 +17,31 @@ import os.path
 class Option:
     """Stores and retrieves string options.
     """
-    def __init__(self, fileName, keySpaces=20):
+    def __init__(self, baseFileName, keySpaces=20):
         self.path = ''
-        if fileName:
+        if baseFileName:
             if sys.platform.startswith('win'):
-                self.path = os.environ.get('APPDATA', '')
-                if self.path:
-                    self.path = os.path.join(self.path, 'bellz', fileName)
-                    if not os.path.exists(self.path):
-                        try:
-                            os.makedirs(self.path)
-                        except OSError:
-                            self.path = ''
-                if not self.path:
-                    self.path = os.path.abspath(sys.path[0])
-                self.path = os.path.join(self.path, '{0}.ini'.format(fileName))
+                fileName = '{0}.ini'.format(baseFileName)
+                userPath = os.environ.get('APPDATA', '')
+                if userPath:
+                    userPath = os.path.join(userPath, 'bellz', baseFileName)
             else:
-                self.path = os.environ.get('HOME', '')
-                if os.path.exists(self.path):
-                    self.path = os.path.join(self.path, '.{0}'.
-                                             format(fileName))
-                else:
-                    self.path = ''
+                fileName = '.{0}'.format(baseFileName)
+                userPath = os.environ.get('HOME', '')
+            self.path = os.path.join(userPath, fileName)
+            if not os.path.exists(self.path):
+                modPath = os.path.abspath(sys.path[0])
+                if modPath.endswith('.zip') or modPath.endswith('.exe'):
+                    modPath = os.path.dirname(modPath)  # for py2exe/cx_freeze
+                self.path = os.path.join(modPath, fileName)
+                if not os.access(self.path, os.W_OK):
+                    self.path = os.path.join(userPath, fileName)
+                    if not os.path.exists(userPath):
+                        try:
+                            os.makedirs(userPath)
+                        except OSError:
+                            print('Error - could not write to config dir')
+                            self.path = ''
         self.keySpaces = keySpaces
         self.dfltDict = {}
         self.userDict = {}
