@@ -186,6 +186,10 @@ class ConvertDlg(QtGui.QWidget):
             self.toUnitListView.updateSelection()
             self.fromNumEdit.setFocus()
             self.fromNumEdit.selectAll()
+        if self.option.boolData('ShowStartupTip'):
+            self.show()
+            tipDialog = TipDialog(self.option, self)
+            tipDialog.exec_()
 
     def addButtons(self, unitGroup, listView, upperLayout):
         """Add buttons to unit selector.
@@ -283,9 +287,11 @@ class ConvertDlg(QtGui.QWidget):
         optiondlg.OptionDlgInt(dlg, 'RecentUnits', _('Number saved'), 2, 99)
         optiondlg.OptionDlgBool(dlg, 'LoadLastUnit',
                                 _('Load last units at startup'))
-        dlg.startGroupBox(_('Buttons'))
+        dlg.startGroupBox(_('User Interface'))
         optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
                                 _('Show operator buttons'))
+        optiondlg.OptionDlgBool(dlg, 'ShowStartupTip',
+                                _('Show tip at startup'))
         dlg.startGroupBox(_('Colors'))
         optiondlg.OptionDlgBool(dlg, 'UseDefaultColors',
                                 _('Use default system colors'))
@@ -397,3 +403,48 @@ class ConvertDlg(QtGui.QWidget):
         self.recentUnits.writeList()
         self.option.writeChanges()
         event.accept()
+
+
+class TipDialog(QtGui.QDialog):
+    """Show a static usage tip at startup by default.
+    """
+    def __init__(self, option, parent=None):
+        QtGui.QDialog.__init__(self, parent)
+        self.option = option
+        self.setWindowFlags(QtCore.Qt.Dialog | QtCore.Qt.WindowTitleHint |
+                            QtCore.Qt.WindowSystemMenuHint)
+        self.setWindowTitle(_('Convertall - Tip'))
+        topLayout = QtGui.QVBoxLayout(self)
+        self.setLayout(topLayout)
+
+        box = QtGui.QGroupBox('Combining Units')
+        topLayout.addWidget(box)
+        boxLayout = QtGui.QVBoxLayout(box)
+        label = QtGui.QLabel(self)
+        label.setTextFormat(QtCore.Qt.RichText)
+        label.setText('<p>ConvertAll\'s strength is the ability to combine '
+                      'units:</p>'
+                      '<ul><li>Enter "m/s" to get meters per second</li>'
+                      '<li>Enter "ft*lbf" to get foot-pounds (torque)</li>'
+                      '<li>Enter "in^2" to get square inches</li>'
+                      '<li>Enter "m^3" to get cubic meters</li>'
+                      '<li>or any other combinations you can imagine</li>')
+        boxLayout.addWidget(label)
+
+        ctrlLayout = QtGui.QHBoxLayout()
+        topLayout.addLayout(ctrlLayout)
+        self.showCheck = QtGui.QCheckBox('Show this tip at startup', self)
+        self.showCheck.setChecked(True)
+        ctrlLayout.addWidget(self.showCheck)
+
+        ctrlLayout.addStretch()
+        okButton = QtGui.QPushButton(_('&OK'), self)
+        ctrlLayout.addWidget(okButton)
+        okButton.clicked.connect(self.accept)
+
+    def accept(self):
+        """Called by dialog when OK button pressed.
+        """
+        if not self.showCheck.isChecked():
+            self.option.changeData('ShowStartupTip', 'no', True)
+        QtGui.QDialog.accept(self)

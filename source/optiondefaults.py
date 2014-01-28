@@ -33,6 +33,7 @@ defaultList = [
     "ShowOpButtons       yes",
     "RecentUnits         8",
     "LoadLastUnit        no",
+    "ShowStartupTip      yes",
     "#",
     "MainDlgXSize        0",
     "MainDlgYSize        0",
