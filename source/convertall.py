@@ -74,7 +74,7 @@ def setupTranslator(app):
                 lang = ''
     numTranslators = 0
     if lang and lang[:2] not in ['C', 'en']:
-        numTranslators += loadTranslator('qt_{0}'.format(lang, app))
+        numTranslators += loadTranslator('qt_{0}'.format(lang), app)
         numTranslators += loadTranslator('convertall_{0}'.format(lang), app)
 
     def translate(text, comment=''):

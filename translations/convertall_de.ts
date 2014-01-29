@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.0" language="de_DE">
 <context>
     <name>cmdline</name>
     <message>
@@ -100,12 +101,12 @@
     <message>
         <location filename="cmdline.py" line="153"/>
         <source>Units {0} and {1} are not compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>Einheiten sind nicht kompatibel ({0} bzw. {1})</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="169"/>
         <source>{0} is not a valid unit</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} ist keine gültige Einheit</translation>
     </message>
 </context>
 <context>
@@ -255,43 +256,64 @@ von %s</translation>
     <message>
         <location filename="convertdlg.py" line="68"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler in Einheitendaten - {0}</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="71"/>
         <source>{0} units loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} Einheiten geladen</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="289"/>
         <source>Load last units at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Legen letzten Einheiten beim Start</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="290"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>User Interface</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="294"/>
         <source>Show tip at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Zeigen Spitze beim Start</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="388"/>
         <source>ConvertAll Version {0}
 by {1}</source>
-        <translation type="unfinished"></translation>
+        <translation>ConvertAll Version {0}
+von {1}</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="416"/>
         <source>Convertall - Tip</source>
-        <translation type="unfinished"></translation>
+        <translation>Convertall - Hinweis</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="441"/>
+        <location filename="convertdlg.py" line="442"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;OK</translation>
+        <translation>&amp;OK</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="420"/>
+        <source>Combining Units</source>
+        <translation>Die Kombination von Units</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="431"/>
+        <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;</source>
+        <translation type="obsolete">&lt;p&gt;ConvertAll Stärke ist die Fähigkeit, Geräte zu kombinieren:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Geben Sie &quot;m / s&quot; in Meter pro Sekunde zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;ft · lbf&quot;, um Fuß-Pfund (Drehmoment) zu erhalten&lt;li&gt;&lt;li&gt;Enter &quot;in ^ 2&quot; auf Platz Zoll zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;m ^ 3 &quot;, um Kubikmeter&lt;/li&lt;li&gt;oder andere Kombinationen, die Sie sich vorstellen können zu&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="437"/>
+        <source>Show this tip at startup</source>
+        <translation>Zeigen Spitze beim Start</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="432"/>
+        <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;p&gt;ConvertAll Stärke ist die Fähigkeit, Geräte zu kombinieren:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Geben Sie &quot;m / s&quot; in Meter pro Sekunde zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;ft · lbf&quot;, um Fuß-Pfund (Drehmoment) zu erhalten&lt;li&gt;&lt;li&gt;Enter &quot;in ^ 2&quot; auf Platz Zoll zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;m ^ 3 &quot;, um Kubikmeter&lt;/li&lt;li&gt;oder andere Kombinationen, die Sie sich vorstellen können zu&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -369,7 +391,7 @@ by {1}</source>
     <message>
         <location filename="finddlg.py" line="135"/>
         <source>[All]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Alle]</translation>
     </message>
 </context>
 <context>
@@ -392,22 +414,22 @@ by {1}</source>
     <message>
         <location filename="helpview.py" line="67"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation> Suchen</translation>
     </message>
     <message>
         <location filename="helpview.py" line="74"/>
         <source>Find &amp;Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rückwärts Suchen</translation>
     </message>
     <message>
         <location filename="helpview.py" line="81"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Vorwärts Suchen</translation>
     </message>
     <message>
         <location filename="helpview.py" line="114"/>
         <source>Text string not found</source>
-        <translation type="unfinished"></translation>
+        <translation>String nicht gefunden</translation>
     </message>
 </context>
 <context>
@@ -440,12 +462,12 @@ by {1}</source>
     <message>
         <location filename="numedit.py" line="102"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Fehler in Einheitendaten - {0}</translation>
     </message>
     <message>
         <location filename="numedit.py" line="70"/>
         <source>Units are not compatible ({0}  vs.  {1})</source>
-        <translation type="unfinished"></translation>
+        <translation>Einheiten sind nicht kompatibel ({0} bzw. {1})</translation>
     </message>
 </context>
 <context>
@@ -476,7 +498,7 @@ by {1}</source>
     <message>
         <location filename="unitatom.py" line="45"/>
         <source>Bad equation for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Gleichung für &quot;{0}&quot;</translation>
     </message>
 </context>
 <context>
@@ -517,12 +539,12 @@ by {1}</source>
     <message>
         <location filename="unitgroup.py" line="307"/>
         <source>Invalid conversion for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Umwandlung für &quot;{0}&quot;</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="395"/>
         <source>Bad equation for {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Ungültige Gleichung für {0}</translation>
     </message>
 </context>
 <context>

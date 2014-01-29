@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="fr">
+<!DOCTYPE TS>
+<TS version="2.0" language="fr">
 <context>
     <name>cmdline</name>
     <message>
@@ -100,12 +101,12 @@
     <message>
         <location filename="cmdline.py" line="153"/>
         <source>Units {0} and {1} are not compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>Les unités ne sont pas compatibles ({0}  vs.  {1})</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="169"/>
         <source>{0} is not a valid unit</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} n&apos;est pas une unité valide</translation>
     </message>
 </context>
 <context>
@@ -255,43 +256,59 @@ by %s</translation>
     <message>
         <location filename="convertdlg.py" line="68"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur dans l&apos;unité - {0}</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="71"/>
         <source>{0} units loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} unités chargées</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="289"/>
         <source>Load last units at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Chargez dernières unités au démarrage</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="290"/>
         <source>User Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>Interface utilisateur</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="294"/>
         <source>Show tip at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Afficher allusion au démarrage</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="388"/>
         <source>ConvertAll Version {0}
 by {1}</source>
-        <translation type="unfinished"></translation>
+        <translation>ConvertAll version {0}
+by {1}</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="416"/>
         <source>Convertall - Tip</source>
-        <translation type="unfinished"></translation>
+        <translation>ConvertAll</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="441"/>
+        <location filename="convertdlg.py" line="442"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;Ok</translation>
+        <translation>&amp;Ok</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="420"/>
+        <source>Combining Units</source>
+        <translation>La combinaison de unités</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="437"/>
+        <source>Show this tip at startup</source>
+        <translation>Afficher allusion au démarrage</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="432"/>
+        <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation>&lt;p&gt;La force de ConvertAll est la possibilité de combiner des unités:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Entrez &quot;m / s&quot; pour obtenir mètres par seconde;&lt;/li&gt;&lt;li&gt;Entrez &quot;ft * lbf&quot; pour obtenir pieds-livres (couple);&lt;/li&gt;&lt;li&gt;Enter &quot;^ 2&quot; pour obtenir pouces carrés;&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;pour obtenir de mètres cubes&lt;/li&gt;&lt;li&gt;ou toute autre combinaison que vous pouvez imaginer&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
@@ -369,7 +386,7 @@ by {1}</source>
     <message>
         <location filename="finddlg.py" line="135"/>
         <source>[All]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Tout]</translation>
     </message>
 </context>
 <context>
@@ -392,22 +409,22 @@ by {1}</source>
     <message>
         <location filename="helpview.py" line="67"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher</translation>
     </message>
     <message>
         <location filename="helpview.py" line="74"/>
         <source>Find &amp;Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher &amp;Précédent</translation>
     </message>
     <message>
         <location filename="helpview.py" line="81"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Chercher &amp;Suivant</translation>
     </message>
     <message>
         <location filename="helpview.py" line="114"/>
         <source>Text string not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Chaîne de  caractères non trouvée</translation>
     </message>
 </context>
 <context>
@@ -440,12 +457,12 @@ by {1}</source>
     <message>
         <location filename="numedit.py" line="102"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Erreur dans l&apos;unité - {0}</translation>
     </message>
     <message>
         <location filename="numedit.py" line="70"/>
         <source>Units are not compatible ({0}  vs.  {1})</source>
-        <translation type="unfinished"></translation>
+        <translation>Les unités ne sont pas compatibles ({0}  vs.  {1})</translation>
     </message>
 </context>
 <context>
@@ -476,7 +493,7 @@ by {1}</source>
     <message>
         <location filename="unitatom.py" line="45"/>
         <source>Bad equation for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauvaise équation pour &quot;{0}&quot;</translation>
     </message>
 </context>
 <context>
@@ -517,12 +534,12 @@ by {1}</source>
     <message>
         <location filename="unitgroup.py" line="307"/>
         <source>Invalid conversion for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Conversion invalide pour &quot;{0}&quot;</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="395"/>
         <source>Bad equation for {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Mauvaise équation pour {0}</translation>
     </message>
 </context>
 <context>

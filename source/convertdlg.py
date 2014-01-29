@@ -417,23 +417,24 @@ class TipDialog(QtGui.QDialog):
         topLayout = QtGui.QVBoxLayout(self)
         self.setLayout(topLayout)
 
-        box = QtGui.QGroupBox('Combining Units')
+        box = QtGui.QGroupBox(_('Combining Units'))
         topLayout.addWidget(box)
         boxLayout = QtGui.QVBoxLayout(box)
         label = QtGui.QLabel(self)
         label.setTextFormat(QtCore.Qt.RichText)
-        label.setText('<p>ConvertAll\'s strength is the ability to combine '
-                      'units:</p>'
-                      '<ul><li>Enter "m/s" to get meters per second</li>'
-                      '<li>Enter "ft*lbf" to get foot-pounds (torque)</li>'
-                      '<li>Enter "in^2" to get square inches</li>'
-                      '<li>Enter "m^3" to get cubic meters</li>'
-                      '<li>or any other combinations you can imagine</li>')
+        label.setText(_('<p>ConvertAll\'s strength is the ability to combine '
+                        'units:</p>'
+                        '<ul><li>Enter "m/s" to get meters per second</li>'
+                        '<li>Enter "ft*lbf" to get foot-pounds (torque)</li>'
+                        '<li>Enter "in^2" to get square inches</li>'
+                        '<li>Enter "m^3" to get cubic meters</li>'
+                        '<li>or any other combinations you can imagine</li>'
+                        '</ul>'))
         boxLayout.addWidget(label)
 
         ctrlLayout = QtGui.QHBoxLayout()
         topLayout.addLayout(ctrlLayout)
-        self.showCheck = QtGui.QCheckBox('Show this tip at startup', self)
+        self.showCheck = QtGui.QCheckBox(_('Show this tip at startup', self))
         self.showCheck.setChecked(True)
         ctrlLayout.addWidget(self.showCheck)
 
