@@ -8,8 +8,8 @@
 <h2>a unit conversion program</h2>
 
 <p>Written by Doug Bell<br>
-Version 0.5.2<br>
-November 2, 2011</p>
+Version 0.6.0<br>
+February 1, 2014</p>
 </center>
 
 <h2>Contents</h2>
@@ -111,20 +111,23 @@ this program for more information.</p>
 
 <p>ConvertAll requires the following libraries:
 <ul>
-  <li>Qt (Version 4.1 or higher - see <a
-      href="http://www.trolltech.com">Trolltech</a> for more
-      information)</li>
-  <li>Python (Version 2.3 or higher)</li>
-  <li>PyQt (Version 4.0 or higher - see <a
+  <li>Python (Version 3.2 or higher)</li>
+  <li>Qt (Version 4.6, 4.7 or 4.8 - see <a
+    href="http://qt-project.org">Qt Project</a> for more
+  information)</li>
+  <li>PyQt (Version 4.8.x, 4.9.x or 4.10.x - see <a
     href="http://www.riverbankcomputing.co.uk">Riverbank</a>
     for more information)</li>
 </ul></p>
 
+<p>If these libraries are not be available for your distribution, an
+earlier version of ConvertAll (0.5.2) that depends on older libraries is
+still available.</p>
+
 <h3><a name="win-sys"></a>Windows</h3>
 
 <p>Using the files provided in the binary distribution, ConvertAll
-should run on any computer running Win 95, 98, NT, 2000, XP, Vista, or
-7.</p>
+should run on any computer running Windows XP, Vista, 7 or 8.</p>
 
 <h2><a name="install"></a>Installation</h2>
 
@@ -135,26 +138,27 @@ the <tt>ConvertAll</tt> directory in a terminal.  For a basic
 installation, simply execute the following command as root:  <tt>python
   install.py</tt></p>
 
-<p>To see all install options, use: <tt>python install.py -h</tt></p>
+<p>If your distribution defaults to Python 2.x, you may need to
+substitute <tt>python3</tt>, <tt>python3.2</tt> or <tt>python3.3</tt>
+for <tt>python</tt> in these commands.</p>
 
-<p>To install ConvertAll with a different prefix (the default is
+<p>To see all install options, use: <tt>python install.py -h</tt>.  To
+install ConvertAll with a different prefix (the default is
 <tt>/usr/local</tt>), use:  <tt>python install.py -p
   /prefix/path</tt></p>
 
 <h3><a name="win-inst"></a>Windows</h3>
 
-<p>Simply execute the downloaded installation file
-(<tt>convertall-x.x.x-install.exe</tt>).  It will install the program
-with its libraries and optionally create file associations and
-shortcuts.</p>
+<p>To install for all users, execute the
+<tt>ConvertAll-x.x.x-install-all.exe</tt> file.  Administrator
+permissions are required.</p>
 
-<p>If you wish to modify the source code or write your own PyQt programs
-for Windows, do not use the above procedure.  Instead, you need to
-install <a href="http://www.python.org">Python</a> and the binary for <a
-  href="http://www.riverbankcomputing.co.uk">PyQt</a>.  Then extract the
-source code and data files from the Linux version (convertall tar file)
-to a directory of your choice and execute the <tt>convertall.py</tt>
-file.</p>
+<p>To install for a single user (administrator rights are not required),
+execute the <tt>ConvertAll-x.x.x-install-user.exe</tt> file.</p>
+
+<p>For a portable install, execute the
+<tt>ConvertAll-x.x.x-install-user.exe</tt> file, uncheck the shortcuts
+and uninstaller tasks, and check the portable config task.</p>
 
 <h2><a name="using"></a>Using ConvertAll</h2>
 
@@ -242,7 +246,8 @@ low value, which can result in a significant loss of accuracy.  Six
 places or higher is recommended (eight is the default).</p>
 
 <p>There is an option to set the number of recent units to be saved.
-Setting it to zero will disable the Recent Unit buttons.</p>
+Setting it to zero will disable the Recent Unit buttons.  Another option
+will automatically load the most recent previous units at startup.</p>
 
 <p>There is an option to hide the operator text option buttons (x, /,
 ^2, ^3, Clear Unit and Recent Unit).  These can be hidden to save space
@@ -281,6 +286,45 @@ conversion, "r" to reverse the conversion or "q" to quit.</p>
 -h" on Linux, "convertall_dos -h" on Windows).</p>
 
 <h2><a name="revs"></a>Revision History</h2>
+
+<h3>February 1, 2014 - Release 0.6.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>ConvertAll has been ported from Python 2 to Python 3.  This
+  porting includes some code cleanup.</li>
+
+  <li>Added an option to automatically load the last used units at
+  startup.</li>
+
+  <li>Added an introductory tip dialog box that explains combined units.
+  There is also an option to hide this dialog.</li>
+
+  <li>There is an additional Windows installer for users without
+  administrator rights and for portable installations.</li>
+
+  <li>Added a Windows installer option to add a config file to the
+  program's directory for portable installations.  If that file is
+  present, no config files will be written to users' directories.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>The Windows binaries are built using more recent Python, Qt and
+  PyQt libraries.</li>
+
+  <li>The user interface translations are now included in the main
+  installation files.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed the operation of the "Clear" button in the Unit Finder
+  dialog.</li>
+
+</ul>
 
 <h3>November 2, 2011 - Release 0.5.2</h3>
 

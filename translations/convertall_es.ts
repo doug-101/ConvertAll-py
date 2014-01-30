@@ -313,7 +313,7 @@ por {1}</translation>
     <message>
         <location filename="convertdlg.py" line="432"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;La fuerza de ConvertAll es la capacidad de combinar unidades:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;introduzca &quot;m / s&quot; para obtener metros por segundo&lt;/li&lt;li&gt;Enter &quot;ft * lbf&quot; para obtener libras-pie (par)&lt;/li&gt;&lt;li&gt;Enter &quot;en ^ 2&quot; para pulgadas cuadradas&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;para obtener metros cúbicos&lt;/li&lt;li&gt;o cualquier otra combinación que se pueda imaginar&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;La fuerza de ConvertAll es la capacidad de combinar unidades:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;introduzca &quot;m / s&quot; para obtener metros por segundo&lt;/li&lt;li&gt;Enter &quot;ft * lbf&quot; para obtener libras-pie (par)&lt;/li&gt;&lt;li&gt;Enter &quot;in ^ 2&quot; para pulgadas cuadradas&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;para obtener metros cúbicos&lt;/li&lt;li&gt;o cualquier otra combinación que se pueda imaginar&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>

@@ -308,7 +308,7 @@ by {1}</translation>
     <message>
         <location filename="convertdlg.py" line="432"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;La force de ConvertAll est la possibilité de combiner des unités:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Entrez &quot;m / s&quot; pour obtenir mètres par seconde;&lt;/li&gt;&lt;li&gt;Entrez &quot;ft * lbf&quot; pour obtenir pieds-livres (couple);&lt;/li&gt;&lt;li&gt;Enter &quot;^ 2&quot; pour obtenir pouces carrés;&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;pour obtenir de mètres cubes&lt;/li&gt;&lt;li&gt;ou toute autre combinaison que vous pouvez imaginer&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation>&lt;p&gt;La force de ConvertAll est la possibilité de combiner des unités:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Entrez &quot;m / s&quot; pour obtenir mètres par seconde;&lt;/li&gt;&lt;li&gt;Entrez &quot;ft * lbf&quot; pour obtenir pieds-livres (couple);&lt;/li&gt;&lt;li&gt;Enter &quot;in^ 2&quot; pour obtenir pouces carrés;&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;pour obtenir de mètres cubes&lt;/li&gt;&lt;li&gt;ou toute autre combinaison que vous pouvez imaginer&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>

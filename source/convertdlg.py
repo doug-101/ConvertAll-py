@@ -434,7 +434,7 @@ class TipDialog(QtGui.QDialog):
 
         ctrlLayout = QtGui.QHBoxLayout()
         topLayout.addLayout(ctrlLayout)
-        self.showCheck = QtGui.QCheckBox(_('Show this tip at startup', self))
+        self.showCheck = QtGui.QCheckBox(_('Show this tip at startup'), self)
         self.showCheck.setChecked(True)
         ctrlLayout.addWidget(self.showCheck)
 
