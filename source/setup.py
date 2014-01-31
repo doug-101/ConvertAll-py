@@ -28,7 +28,8 @@ if sys.platform == 'win32':
     base = 'Win32GUI'
 
 extraFiles =  [('../data', 'data'), ('../doc', 'doc'), ('../icons', 'icons'),
-               ('../source', 'source'), ('../win', '.')]
+               ('../source', 'source'), ('../translations', 'translations'),
+               ('../win', '.')]
 
 setup(name = 'convertall',
       version = __version__,
