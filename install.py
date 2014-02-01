@@ -248,17 +248,25 @@ def main():
         docBuildDir = os.path.join(buildRoot, docPrefixDir[1:])
         print('  Copying documentation files to {0}'.format(docBuildDir))
         copyDir('doc', docBuildDir)
+        if not translated:
+            for name in glob.glob(os.path.join(docBuildDir,
+                                               '*_[a-z][a-z].html')):
+                os.remove(name)
         # update help file location in main python script
         replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
                     'helpFilePath = None',
                     'helpFilePath = \'{0}\'   # modified by install script\n'
                     .format(docPrefixDir))
     if os.path.isdir('data'):
-        dataPrefixDir = os.path.join(prefixDir, 'share', progName)
+        dataPrefixDir = os.path.join(prefixDir, 'share', progName, 'data')
         dataBuildDir = os.path.join(buildRoot, dataPrefixDir[1:])
         print('  Copying data files to {0}'.format(dataBuildDir))
         removeDir(dataBuildDir)   # remove old?
         copyDir('data', dataBuildDir)
+        if not translated:
+            for name in glob.glob(os.path.join(dataBuildDir,
+                                               '*_[a-z][a-z].dat')):
+                os.remove(name)
         # update data file location in main python script
         replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
                     'dataFilePath = None',
