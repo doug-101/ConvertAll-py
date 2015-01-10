@@ -4,7 +4,7 @@
  convertall.py, the main program file
 
  ConvertAll, a units conversion program
- Copyright (C) 2014, Douglas W. Bell
+ Copyright (C) 2015, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -14,7 +14,7 @@
 """
 
 __progname__ = 'ConvertAll'
-__version__ = '0.6.0'
+__version__ = '0.6.1'
 __author__ = 'Doug Bell'
 
 dataFilePath = None    # modified by install script if required
@@ -101,10 +101,11 @@ def setupTranslator(app):
 def main():
     if len(sys.argv) > 1:
         try:
-            opts, args = getopt.gnu_getopt(sys.argv, 'd:fhiqst', 
+            opts, args = getopt.gnu_getopt(sys.argv, 'd:fhiqset',
                                            ['decimals=', 'fixed-decimals',
                                             'help', 'interactive', 'quiet',
-                                            'sci-notation', 'test'])
+                                            'sci-notation', 'eng-notation',
+                                            'test'])
         except getopt.GetoptError:
             # check that arguments aren't Qt GUI options
             if sys.argv[1][:3] not in ['-ba', '-bg', '-bt', '-bu', '-cm',

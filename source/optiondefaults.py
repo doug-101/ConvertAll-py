@@ -4,7 +4,7 @@
 # optiondefaults.py, provides defaults for program options
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -28,8 +28,7 @@ defaultList = [
     "ForegroundB         0",
     "#",
     "DecimalPlaces       8",
-    "SciNotation         no",
-    "FixedDecimals       no",
+    "Notation            general",
     "ShowOpButtons       yes",
     "RecentUnits         8",
     "LoadLastUnit        no",

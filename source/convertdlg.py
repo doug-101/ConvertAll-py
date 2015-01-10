@@ -4,7 +4,7 @@
 # convertdlg.py, provides the main dialog and GUI interface
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -276,13 +276,15 @@ class ConvertDlg(QtGui.QWidget):
         origBackground = self.getOptionColor('Background')
         origForeground = self.getOptionColor('Foreground')
         dlg = optiondlg.OptionDlg(self.option, self)
-        dlg.startGroupBox(_('Result Display'))
+        dlg.startGroupBox(_('Result Precision'))
         optiondlg.OptionDlgInt(dlg, 'DecimalPlaces', _('Decimal places'),
                                0, UnitGroup.maxDecPlcs)
-        optiondlg.OptionDlgBool(dlg, 'SciNotation',
-                                _('Use scientific notation'))
-        optiondlg.OptionDlgBool(dlg, 'FixedDecimals',
-                                _('Use fixed decimal places'))
+        dlg.endGroupBox()
+        optiondlg.OptionDlgRadio(dlg, 'Notation', _('Result Display'),
+                              [('general', _('Use short representation')),
+                               ('fixed', _('Use fixed decimal places')),
+                               ('scientific', _('Use scientific notation')),
+                               ('engineering', _('Use engineering notation'))])
         dlg.startGroupBox(_('Recent Units'))
         optiondlg.OptionDlgInt(dlg, 'RecentUnits', _('Number saved'), 2, 99)
         optiondlg.OptionDlgBool(dlg, 'LoadLastUnit',

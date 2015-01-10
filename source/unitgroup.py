@@ -4,7 +4,7 @@
 # unitgroup.py, provides a group of units and does conversions
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -404,10 +404,20 @@ class UnitGroup(object):
         """Return num string formatted per options.
         """
         decPlcs = self.option.intData('DecimalPlaces', 0, UnitGroup.maxDecPlcs)
-        if self.option.boolData('SciNotation'):
-            return '{0:0.{prec}E}'.format(num, prec = decPlcs)
-        if self.option.boolData('FixedDecimals'):
+        notation = self.option.strData('Notation')
+        if notation == 'fixed':
             return '{0:0.{prec}f}'.format(num, prec = decPlcs)
+        if notation == 'scientific':
+            return '{0:0.{prec}E}'.format(num, prec = decPlcs)
+        if notation == 'engineering':
+            exp = 3 * (floor(log10(abs(num))) // 3)
+            num = round(num / 10**exp, decPlcs)
+            # check if rounding bumps exponent
+            if abs(num) >= 1000.0:
+                num /= 1000.0
+                exp += 3
+            return '{0:0.{prec}f}E{1:0=+3d}'.format(num, exp, prec = decPlcs)
+        # general short representation
         return '{0:0.{prec}G}'.format(num, prec = decPlcs)
 
 
@@ -416,8 +426,7 @@ if __name__ == '__main__':
     import option
     options = option.Option('convertall', 20)
     options.loadAll(["DecimalPlaces       8",
-                     "SciNotation         no",
-                     "FixedDecimals       no"])
+                     "Notation            general"])
     data = unitdata.UnitData()
     data.readData()
     fromText = input('Enter from unit -> ')

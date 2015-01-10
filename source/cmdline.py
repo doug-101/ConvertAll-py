@@ -4,7 +4,7 @@
 # cmdline.py, provides a class to read and execute command line arguments
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -39,14 +39,16 @@ usage = [_('Usage:'),
                                           _('set number of decimals to show')),
          '   -f, --fixed-decimals  {0}'.format(
                               _('show set number of decimals, even if zeros')),
+         '   -s, --sci-notation    {0}'.format(
+                                     _('show results in scientific notation')),
+         '   -e, --eng-notation    {0}'.format(
+                                    _('show results in engineering notation')),
          '   -h, --help            {0}'.format(
                                            _('display this message and exit')),
          '   -i, --interactive     {0}'.format(
                                  _('interactive command line mode (non-GUI)')),
          '   -q, --quiet           {0}'.format(
                                          _('convert without further prompts')),
-         '   -s, --sci-notation    {0}'.format(
-                                     _('show results in scientific notation')),
          '']
 
 def parseArgs(opts, args):
@@ -68,9 +70,11 @@ def parseArgs(opts, args):
             except ValueError:
                 pass
         elif opt in ('-f', '--fixed-decimals'):
-            options.changeData('FixedDecimals', 'yes', False)
+            options.changeData('Notation', 'fixed', False)
         elif opt in ('-s', '--sci-notation'):
-            options.changeData('SciNotation', 'yes', False)
+            options.changeData('Notation', 'scientific', False)
+        elif opt in ('-e', '--eng-notation'):
+            options.changeData('Notation', 'engineering', False)
         elif opt in ('-q', '--quiet'):
             quiet = True
         elif opt in ('-t', '--test'):
