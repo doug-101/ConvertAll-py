@@ -2,7 +2,7 @@
 # units.dat, el archivo de datos de unidad, versión 0.6.0
 #
 # ConvertAll, un programa para convertir unidades
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
@@ -490,11 +490,11 @@ ngaan                    = 400 m^2         # # Thai
 pulgada circular         = 1/4.0 pi*in^2   # # área de un círculo de 1 pulgada de diámetro
 milla circular           = 1/4.0 pi*mil^2  # # área de un círculo de 1 milla de diámetro
 AWG Area                 = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
-                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
                            # American Wire Gauge \
                            # use -1, -2 for 00, 000; non-linear
 American Wire Gauge Area = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
-                           sqrt(36 - 39.0*log(200.0*x)/log(92.0))*4/pi \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
                            #  # use -1, -2 for 00, 000; non-linear
 
 
