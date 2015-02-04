@@ -124,8 +124,7 @@
     <message>
         <location filename="convertdlg.py" line="116"/>
         <source>Set units</source>
-        <translatorcomment>Задайте величины</translatorcomment>
-        <translation></translation>
+        <translation>Задайте величины</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="134"/>
@@ -168,9 +167,19 @@
         <translation>Отображение результата</translation>
     </message>
     <message>
+        <location filename="convertdlg.py" line="279"/>
+        <source>Result Precision</source>
+        <translation>Представление результата</translation>
+    </message>
+    <message>
         <location filename="convertdlg.py" line="269"/>
         <source>Decimal places</source>
         <translation>Знаков после запятой</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="284"/>
+        <source>Use short representation</source>
+        <translation>Короткое представление</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="272"/>
@@ -183,6 +192,21 @@
         <translation>Фиксированное количество знаков</translation>
     </message>
     <message>
+        <location filename="convertdlg.py" line="287"/>
+        <source>Use engineering notation</source>
+        <translation>Инженерное представление</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="291"/>
+        <source>Load last units at startup</source>
+        <translation>Загружать последюю использованную величну при запуке</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="292"/>
+        <source>User Interface</source>
+        <translation>Пользовательский интерфейс</translation>
+    </message>
+    <message>
         <location filename="convertdlg.py" line="277"/>
         <source>Buttons</source>
         <translation>Кнопки</translation>
@@ -191,6 +215,11 @@
         <location filename="convertdlg.py" line="279"/>
         <source>Show operator buttons</source>
         <translation>Показывать кнопки операторов (Х, /, ^2, ^3)</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="296"/>
+        <source>Show tip at startup</source>
+        <translation>Показывать советы при запуске</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="280"/>

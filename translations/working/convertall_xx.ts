@@ -165,9 +165,20 @@
         <source>Result Display</source>
         <translation type="unfinished"></translation>
     </message>
+
+    <message>
+        <location filename="convertdlg.py" line="279"/>
+        <source>Result Precision</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="convertdlg.py" line="269"/>
         <source>Decimal places</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="284"/>
+        <source>Use short representation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -180,6 +191,22 @@
         <source>Use fixed decimal places</source>
         <translation type="unfinished"></translation>
     </message>
+
+    <message>
+        <location filename="convertdlg.py" line="287"/>
+        <source>Use engineering notation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="291"/>
+        <source>Load last units at startup</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="292"/>
+        <source>User Interface</source>
+        <translation type="unfinished"></translation>
+    </message>
     <message>
         <location filename="convertdlg.py" line="277"/>
         <source>Buttons</source>
@@ -188,6 +215,11 @@
     <message>
         <location filename="convertdlg.py" line="279"/>
         <source>Show operator buttons</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="296"/>
+        <source>Show tip at startup</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
