@@ -199,7 +199,7 @@
     <message>
         <location filename="convertdlg.py" line="291"/>
         <source>Load last units at startup</source>
-        <translation>Загружать последюю использованную величну при запуке</translation>
+        <translation>Загружать последюю использованную величну при запуcке</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="292"/>

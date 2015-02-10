@@ -1,0 +1,987 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>ConvertAll ReadMe</title>
+	<meta name="generator" content="LibreOffice 4.3.5.2.0 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="2015-02-09T16:13:31.226814837"/>
+	<style type="text/css">
+		p { color: #000000 }
+		h1 { color: #000000 }
+		h2 { color: #000000 }
+		h2.ctl { font-family: "FreeSans" }
+		h3.ctl { font-family: "FreeSans" }
+		tt.ctl { font-family: "FreeSans", monospace }
+	</style>
+</head>
+<body lang="ru-RU" text="#000000" dir="ltr" style="background: transparent">
+<h1 align="center">Руководство по ConvertAll</h1>
+<h2 class="western" align="center">программа для
+конвертирования величин</h2>
+<p align="center">Автор Doug Bell<br>Версия 0.6.0<br>Февраль
+1, 2014</p>
+<h2 class="western">Содержание</h2>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Введение|outline">Введение</a>
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Возможности|outline">Возможности</a>
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Лицензия и распространение|outline">Лицензия
+	и распространение</a> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Системные требования|outline">Системные
+	требования</a> 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#linux-sys">Linux</a> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#win-sys">Windows</a></p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Установка|outline">Установка</a>
+		</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#linux-inst">Linux</a>
+				</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#win-inst">Windows</a></p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#Использование ConvertAll|outline">Использование
+	ConvertAll</a> 
+	</p>
+	<ul>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Основы|outline">Основы</a>
+				</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Комбинирование величин|outline">Комбинирование
+		величин</a> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Ускорение набора|outline">Ускорение
+		набора</a> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Поиск величины|outline">Поиск
+		величины</a> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Настройки|outline">Настройки</a>
+				</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Нелинейное конвертирование|outline">Нелинейное
+		конвертирование</a> 
+		</p>
+		<li/>
+<p style="margin-bottom: 0cm"><a href="#Режим командной строки (без GUI)|outline">Режим
+		командной строки (без GUI)</a></p>
+	</ul>
+	<li/>
+<p style="margin-bottom: 0cm"><a href="#История версий|outline">История
+	версий</a> 
+	</p>
+	<li/>
+<p><a href="#Вопросы, Комментарии, Критика_|outline">Вопросы,
+	Комментарии, Критика?</a> 
+	</p>
+</ul>
+<h2 class="western"><a name="Введение|outline"></a>Введение</h2>
+<p align="left">Для чего писать ещё один
+конвертер величин? Да, их множество. Но,
+я не нашёл такого, который бы работал
+так, как я хочу.</p>
+<p>С помощью ConvertAll можно комбинировать
+величины как вам захочется. Если Вы
+хотите конвертировать дюймы за декаду,
+запросто. Или перевести величину из
+метр-фунтов. Или морских миль в кубе.
+Величины не должны иметь смысл для
+кого-то ещё.</p>
+<p>Я не преследую коммерческой цели и
+делаю эту программу бесплатной для
+использования, распространения и
+изменения, так как она не включает в
+себя никаких <em><span style="font-variant: normal"><span style="font-style: normal">проприетарных</span></span></em>
+программ. Если Вам понравилась программа,
+поделитесь с другими своей находкой.
+Можете также высказать своё мнение о
+программе - мой электронный адрес:
+doug101 собака bellz точка org.</p>
+<h2 class="western"><a name="Возможности|outline"></a>Возможности</h2>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Базовая величина
+	для конвертации может быть напечатана
+	(с автозавершением) или выбрана из
+	списка.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Величину можно
+	выбирать как по аббревиатуре, так и по
+	полному имени. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Величины можно
+	комбинировать с операторами &quot;*&quot; и
+	&quot;/&quot;.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Величину можно
+	возвести в степень с помощью оператора
+	&quot;^&quot;.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Величины в знаменателе
+	можно группировать используя круглые
+	скобки.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Нелинейные величины,
+	такие как температура, тоже могут быть
+	конвертированы.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Список величин
+	можно отфильтровать и использовать
+	поиск.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Недавно использованные
+	величины можно выбрать из меню.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Значение величин
+	можно вводить как со стороны «Из», так
+	и «В» для конвертации в обе стороны.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Базовые математические
+	выражения могут использоваться вместо
+	значений.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Настраиваемый
+	формат представления результата.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Базе включает более
+	500 величин. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Формат базы величин
+	позволяет с лёгкостью добавить
+	дополнительные величины.</p>
+	<li/>
+<p style="margin-bottom: 0cm">С помощью командной
+	строки возможно выполнить конвертацию
+	без GUI.</p>
+	<li/>
+<p style="margin-bottom: 0cm">Пользовательский
+	интерфейс и база величин доступны на
+	Английском, Французском, Немецком,
+	Испанском и Русском языках. 
+	</p>
+</ul>
+<h2 class="western"><a name="Лицензия и распространение|outline"></a>
+Лицензия и распространение</h2>
+<p><a name="tw-target-text"></a>ConvertAll является свободным
+программным обеспечением ; Вы можете
+распространять и / или изменять его в
+соответствии с условиями GNU General Public
+License , опубликованной Фондом свободного
+программного обеспечения, либо версии
+2 Лицензии, либо (по вашему выбору ) любой
+более поздней версии.</p>
+<p>Эта программа распространяется в
+надежде, что будет полезна, но БЕЗ ВСЯКОЙ
+ГАРАНТИИ. Смотри файл <tt class="western">LICENSE</tt>
+для подробной информации.</p>
+<h2 class="western"><a name="sysreq"></a><a name="Системные требования|outline"></a>
+Системные требования</h2>
+<h3 class="western"><a name="linux-sys"></a>Linux</h3>
+<p>ConvertAll зависит от следующих библиотек:</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0cm">Python (Версии 3.2 или
+	выше) 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Qt (Версии 4.6, 4.7 или
+	4.8 - смотри <a href="http://qt-project.org/">Qt Project</a>
+	для подробной информации) 
+	</p>
+	<li/>
+<p>PyQt ( Версии 4.8.x, 4.9.x или 4.10.x - смотри
+	<a href="http://www.riverbankcomputing.co.uk/">Riverbank</a> для
+	подробной информации ) 
+	</p>
+</ul>
+<p>Если данные библиотеки не доступны
+для Вашего дистрибутива, доступна более
+ранняя версия ConvertAll&nbsp;(0.5.2) которая
+зависит от более старых версий библиотек.</p>
+<h3 class="western"><a name="win-sys"></a>Windows</h3>
+<p>Используйте файлы дистрибутива,
+ConvertAll должен запустить на любом компьютере
+под Windows XP, Vista, 7 или 8.</p>
+<h2 class="western"><a name="Установка|outline"></a>Установка</h2>
+<h3 class="western"><a name="linux-inst"></a>Linux</h3>
+<p style="margin-bottom: 0.2cm">Распакуйте исходные
+файлы convertall из tar архива, затем перейдите
+в директорию <tt class="western">ConvertAll</tt> в
+терминале. Для стандартной установки
+просто запустите команду с правами
+root: 
+</p>
+<p><tt class="western">python install.py</tt></p>
+<p>Если в Вашем дистрибутиве по умолчанию
+используется Python 2.x, необходимо подставить
+<tt class="western">python3</tt>, <tt class="western">python3.2</tt>
+или <tt class="western">python3.3</tt> вместо <tt class="western">python</tt>
+в этой команде.</p>
+<p style="margin-bottom: 0cm">Чтобы посмотреть все
+возможные параметры установки,
+используйте: <tt class="western">python install.py -h</tt>.</p>
+<p>Чтобы установить ConvertAll с отличным
+префиксом (по умолчанию <tt class="western">/usr/local</tt>),
+используйте: <tt class="western">python install.py -p
+/prefix/путь</tt></p>
+<h3 class="western"><a name="win-inst"></a>Windows</h3>
+<p>Чтобы установить для всех пользователей,
+запустите файл <tt class="western">ConvertAll-x.x.x-install-all.exe</tt>.
+Потребуются права администратора.</p>
+<p>Для пользовательской установки (права
+администратора не требуются), запустите
+файл <tt class="western">ConvertAll-x.x.x-install-user.exe</tt>.</p>
+<p>Для установки портативной версии,
+запустите файл <tt class="western">ConvertAll-x.x.x-install-user.exe,
+</tt><tt class="western"><font face="Times New Roman, serif">снимите
+отметки установки ярлыков и де</font></tt><tt class="western"><font face="Times New Roman, serif">инсталлятора</font></tt><tt class="western"><font face="Times New Roman, serif">,
+а выберите установку портативной версии.</font></tt></p>
+<h2 class="western"><a name="Использование ConvertAll|outline"></a>
+Использование ConvertAll</h2>
+<h3 class="western"><a name="Основы|outline"></a>Основы</h3>
+<p>Просто напечатайте имя величины в
+поле «Из величины». Пока Вы набираете
+список будет прокручиваться, чтобы
+показать наиболее подходящий. Вы можете
+напечатать полностью аббревиатуру или
+имя величины или нажать клавишу «Enter»
+для выбора величины подсвеченной в
+списке. Конечно же, простое нажатие
+мышкой на элементе списка выберет
+величину в поле ввода. Также можно
+использовать клавиши курсора для выбора
+из величин расположенных рядом.</p>
+<p>Повторите выбор величины в поле «В
+величину».</p>
+<p>Когда завершите выбор и если величины
+совместимы, Вы увидите, что поле для
+ввода значений под списком станет
+активным. Значение величины можно
+указать в любом из полей, а в другом
+будет отображён результат конвертации.</p>
+<h3 class="western"><a name="Комбинирование величин|outline"></a>
+Комбинирование величин</h3>
+<p>Настоящая сила ConvertAll заключается в
+возможности комбинирования нескольких
+величин. Просто напечатайте имена
+величин с операторами '*' или '/' между
+ними. Это даёт возможность получить
+величины типа &quot;ft*lbf&quot; или &quot;mi/hr&quot;.
+Символ '^' используется для возведения
+в степень, например &quot;m^3&quot; или
+&quot;ft*lbm/sec^2&quot;. Его также можно использовать
+для получения величин типа &quot;sec^-1&quot;
+(в секунду), или переключения операции
+умножения или деления (&quot;ft*sec^-2&quot;
+равнозначно &quot;ft/sec^2&quot;).</p>
+<p>Умножение и деление имеют одинаковый
+приоритет, поэтому обрабатываются слева
+на право. Скобки могут быть использованы
+для группировки знаменателя. Например
+&quot;м / сек / кг&quot; можно записать как &quot;м
+/ (сек * кг)&quot;. Вариант со скобками
+вероятно менее запутывающий.</p>
+<p>Кнопки под списком величин ('X', '/', '^2',
+'^3') вставляют операторы после величины
+ближайшей к курсору. Символ возведения
+в степень заменяет экспоненту.</p>
+<p>Также, выбор величины из списка заменит
+величину на ближайшую к курсору.</p>
+<p>Кнопка &quot;Очистить величину&quot; под
+кнопками операторов используется для
+очистки поля выбора величины.</p>
+<h3 class="western"><a name="Ускорение набора|outline"></a>
+Ускорение набора</h3>
+<p>Когда набираете имена величин пробелы
+игнорируются, поэтому их можно пропускать.
+Также игнорируются множественные формы
+величин. Если написанная часть имени
+величины подсвечивает нужную величину
+в списке, нажатие клавиши «Enter» завершит
+имя. Нажатие клавиши «Tab» также завершит
+имя и переместит курсор в следующее
+поле ввода.</p>
+<p>Кнопка «Недавняя величина» открывает
+меню недавно использованных величин и
+комбинаций величин. Текущая комбинация
+величин полностью заменяется выбранной
+из этого меню.</p>
+<p>Значение для конвертации можно вводить
+с любой стороны в &quot;Из&quot; или &quot;В&quot;.
+Можно использовать как стандартную,
+так и научную запись значения, или
+выражение включающее нормальные
+математические операторы (+, -, *, /, **), а
+также круглые скобки.</p>
+<h3 class="western"><a name="Поиск величины|outline"></a>
+Поиск величины</h3>
+<p>Вызывается кнопкой «Поиск величины...»
+в верхнем правом углу. В поиске величины
+можно отфильтровать величины по типу
+и/или искать величины используя текстовый
+запрос. Он отображается списком в
+отдельном окне. Список обновляется на
+основании фильтра и текстового поиска.</p>
+<p>Кнопки внизу окна поиска величины
+добавляют выбранные величины в основное
+окно программы. Кнопки &quot;Заменить&quot;
+— полностью заменяют комбинацию величин
+на выбранную. Кнопки &quot;Вставить&quot;
+заменяют только активную часть комбинации
+величин (по положению курсора в основном
+окне).</p>
+<h3 class="western"><a name="Настройки|outline"></a>Настройки</h3>
+<p>Кнопка &quot;Настройки...&quot; позволяет
+изменить некоторые параметры установленные
+по умолчанию. Изменения автоматически
+сохраняются и при следующем запуске
+ConvertAll будет использовать последние
+установленные параметры.</p>
+<p>Первый раздел включает в себя настройки
+представления результата, включая
+научное представление и количество
+знаков после запятой. Имейте в виду, что
+установка маленького числа знаков после
+запятой может повлиять на точность
+результата. Рекомендуется шесть и более
+знаков (восемь по умолчанию).</p>
+<p>В следующем разделе можно установить
+количество недавно использованных
+величин, которые будут запоминаться.
+При установке нулевого значения, кнопки
+«Недавние величины» будут отключены.
+Далее можно включить автоматическую
+загрузку последней использованной
+величины при запуска приложения.</p>
+<p>Есть возможность скрыть кнопки
+операторов (X, /, ^2, ^3, Очистить величину
+и Недавние величины). Ей можно
+воспользоваться для экономии места,
+если операторы вводятся с клавиатуры.</p>
+<p>Также можно настроить цвет текстовых
+полей с помощью кнопок расположенных
+ниже.</p>
+<h3 class="western"><a name="nonlinear"></a><a name="Нелинейное конвертирование|outline"></a>
+Нелинейное конвертирование</h3>
+<p>Конвертирование некоторых величин
+нелинейное. Примером такой величины
+является Фаренгейт. Нелинейные величины
+отмечены в колонке комментариев (справа
+от колонки «Тип величины»).</p>
+<p>Такие величины могут быть конвертированы
+только, если они не комбинированы с
+другими величинами и не возведены в
+степень. Иначе результат будет неточным.</p>
+<h3 class="western"><a name="Режим командной строки (без GUI)|outline"></a>
+Режим командной строки (без GUI)</h3>
+<p>Конвертирование можно выполнить из
+командной строки (консоль Linux или DOS) без
+использования графического интерфейса.
+Введите команду (&quot;convertall&quot; для Linux,
+&quot;convertall_dos&quot; для Windows), значение,
+величина из которой и величина в которую
+(разделённые пробелами) провести
+конвертацию. Величины содержащие пробелы
+необходимо взять в кавычки. Или их можно
+ввести в интерактивном режиме, использую
+&quot;-i&quot; параметр (&quot;convertall -i&quot; для
+Linux, &quot;convertall_dos -i&quot; для Windows).</p>
+<p>После выполнения конвертации, ConvertAll
+запросит новое значение величины для
+аналогичной конвертации. Также можно
+ввести &quot;n&quot; для начала новой
+конвертации, &quot;r&quot; чтобы поменять
+местами величины или &quot;q&quot; для выхода.</p>
+<p>Для более детального списка параметров,
+используйте &quot;-h&quot; параметр (&quot;convertall
+-h&quot; для Linux, &quot;convertall_dos -h&quot; для Windows).</p>
+<h2 class="western"><a name="История версий|outline"></a>
+История версий</h2>
+<h3 class="western">February 1, 2014 - Release 0.6.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">ConvertAll has been ported from
+	Python 2 to Python 3. This porting includes some code cleanup. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added an option to automatically
+	load the last used units at startup. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added an introductory tip dialog
+	box that explains combined units. There is also an option to hide
+	this dialog. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">There is an additional Windows
+	installer for users without administrator rights and for portable
+	installations. 
+	</p>
+	<li/>
+<p>Added a Windows installer option to add a config file to
+	the program's directory for portable installations. If that file is
+	present, no config files will be written to users' directories. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The Windows binaries are built
+	using more recent Python, Qt and PyQt libraries. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The user interface and unit data
+	language translations are now included in the main installation
+	files. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the long ton unit
+	(Imperial version of the ton). 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the kilopond unit as a
+	synonym of kilogram-force. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the micron of Hg pressure
+	unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the lunar distance (LD)
+	astronomical distance unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the rack unit (height of
+	an electrical rack). 
+	</p>
+	<li/>
+<p>Added the versta Russian length unit. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Fixed the operation of the
+	&quot;Clear&quot; button in the Unit Finder dialog. 
+	</p>
+	<li/>
+<p>Fixed a problem with the definition of the BTU unit in the
+	French translation. 
+	</p>
+</ul>
+<h3 class="western">November 2, 2011 - Release 0.5.2</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the microliter volume
+	unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the galileo acceleration
+	unit. 
+	</p>
+	<li/>
+<p>Added the stremma land area unit. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>Changed the method of identifying a &quot;unitless&quot;
+	portion of a unit to avoid falsely reporting incompatibility between
+	some units when using language translations. 
+	</p>
+</ul>
+<h3 class="western">March 31, 2011 - Release 0.5.1</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the link length unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added US survey variations of
+	the mile and chain length units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the centigray radiation
+	dose unit. 
+	</p>
+	<li/>
+<p>Use DOS newline characters in the Windows version of the
+	unit data file for easier editing by users. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>Fixed incorrect definition of the rad radiation dose unit
+	(it was off by a factor of 10). 
+	</p>
+</ul>
+<h3 class="western">May 2, 2010 - Translation Update 0.5.0b</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p>Added a Spanish translation. The French and German
+	translations remain unchanged. 
+	</p>
+</ul>
+<h3 class="western">April 23, 2010 - Release 0.5.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Multiplication and division
+	operators now have the same precedence. In previous versions of
+	ConvertAll, a series of units after a division symbol were assumed
+	to be in the denominator. Now, a division operator only affects the
+	unit (or the unit group in parenthesis) immediately after the
+	operator. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Parenthesis are now supported to
+	group units in the denominator of a combined unit. For example, &quot;&quot;m
+	/ sec / kg&quot; can also be entered as &quot;m / (sec * kg)&quot;. 
+	</p>
+	<li/>
+<p>&quot;Recent Unit&quot; buttons have been added that open a
+	menu of recently used units and unit combinations. A unit selected
+	from the menu will replace the current unit combination. There is
+	also a new option dialog entry that controls the maximum length of
+	this menu. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the tonne force metric
+	force unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added hundredweight long and
+	hundredweight short mass units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added an American Wire Gauge
+	(AWG) area unit in addition to the existing AWG diameter unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the tonne oil equivalent
+	and the tonne coal equivalent energy units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the ton refrigeration
+	power unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the darcy and millidarcy
+	permeability units. 
+	</p>
+	<li/>
+<p>French and German translations have been added for the user
+	interface and the unit data. To use them, download and install the
+	&quot;convertall-i18n...&quot; file for your platform (in addition
+	to installing the standard ConvertAll package). 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>Fixed problems with running in the command line mode from
+	Linux consoles without X11 present. 
+	</p>
+</ul>
+<h3 class="western">September 24, 2009 - Release 0.4.3</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p>Prepared ConvertAll for translation efforts by properly
+	handling Unicode characters in unit data and by marking internal
+	program strings for translation. Volunteers for translating
+	ConvertAll into other languages are welcome. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added solar mass and pennyweight
+	mass units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added therm and thermie energy
+	units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added gauss and maxwell magnetic
+	units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the US survey foot length
+	unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the mpg imp mileage unit. 
+	</p>
+	<li/>
+<p>Changed the value of the point unit from the old American
+	point to the more modern desktop publishing point. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">A critical QString conversion
+	bug that caused ConvertAll to not run with the latest version of
+	PyQt (4.5.4) was fixed. 
+	</p>
+	<li/>
+<p>Command line quiet mode was fixed to avoid an interactive
+	prompt when bad unit data is entered. 
+	</p>
+</ul>
+<h3 class="western">May 28, 2008 - Release 0.4.2</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p>Added the &quot;liter per 100 km&quot; unit for fuel
+	consumption. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Changed the &quot;mach&quot;
+	unit from 331.46 m/s to 340.29 m/s. It is now correct for STP
+	conditions (15 degrees C). The previous value was for 0 degrees C. 
+	</p>
+	<li/>
+<p>Fixed a bug that could hide messages about errors in a
+	manually edited unit data file. 
+	</p>
+</ul>
+<h3 class="western">January 22, 2008 - Release 0.4.1</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p>An optional command line mode was added to do conversions
+	without the graphical interface. Enter the command (&quot;convertall&quot;),
+	the number, the from unit and the to unit (separated by spaces) to
+	do the conversion. For a more detailed list of options, enter
+	&quot;convertall -h&quot; on the command line. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The icon used for ConvertAll has
+	been updated. Thanks to Ricardo Berlasso for the new artwork. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Alternate units have been added
+	for kilobyte, megabyte, etc., marked &quot;IEC std&quot;. These
+	convert using powers of 10, rather than powers of 2. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Troy pounds and troy ounces have
+	been added. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Gigapascal, hectopascal and
+	megabar have been added. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Hogshead units for wine and beer
+	have been added. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The Swedish mil unit of distance
+	has been added. 
+	</p>
+	<li/>
+<p>The Thai rai and ngaan units of land area have been added. 
+	</p>
+</ul>
+<h3 class="western">October 5, 2006 - Release 0.4.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p>ConvertAll was ported to the Qt4 library. This involved a
+	significant rewrite of the code. The previous versions used Qt3.x on
+	Linux and Qt2.3 on Windows. Benefits include updated widgets and
+	removal of the non-commercial license exception in Windows. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p>On Windows, the ConvertAll.ini file has been moved from the
+	installation directory to a location under the &quot;Documents and
+	Settings&quot; folder. This avoids problems on multi-user systems
+	and for users with limited access rights. 
+	</p>
+</ul>
+<h3 class="western">October 5, 2006 - Release 0.3.2</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added Imperial (UK) gallons,
+	quarts, pints and fluid ounces. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added gigagram and teragram
+	units. 
+	</p>
+	<li/>
+<p>Added the pound-mole unit and clarified that the existing
+	mole is a gram-mole. 
+	</p>
+</ul>
+<h3 class="western">February 14, 2005 - Release 0.3.1</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added the decare unit for land
+	area. 
+	</p>
+	<li/>
+<p>The Linux installer has been updated to be more robust and
+	give more install directory options. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>The barn unit, used in particle physics, was corrected. It
+	had been incorrectly listed as a length unit instead of an area
+	unit. 
+	</p>
+</ul>
+<h3 class="western">March 11, 2004 - Release 0.3.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">A unit finder window was added
+	to allow the unit list to be filtered and searched. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The size and position of the
+	main and finder windows are now saved at exit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">A new option allows the operator
+	text entry buttons (x, /, ^2, ^3 and Clear Unit) to be hidden. 
+	</p>
+	<li/>
+<p>An install program has been added for windows. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>Fixed Linux install script problems with certain versions
+	of Python. 
+	</p>
+</ul>
+<h3 class="western">November 18, 2003 - Release 0.2.4</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Keyboard shortcuts and tab-focus
+	order for the main dialog have been improved. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">An install script was added for
+	Linux and Unix systems. 
+	</p>
+	<li/>
+<p>The windows build now uses Python version 2.3 and PyQt
+	version 3.8. 
+	</p>
+</ul>
+<h3 class="western">March 24, 2003 - Release 0.2.3</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">When an expression using
+	division is entered for the number to be converted, floating point
+	division is now used even if the entries are integers (Python 2.2 or
+	greater only). 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Mouse wheels are now supported
+	in the unit lists. 
+	</p>
+	<li/>
+<p>Icon files are now provided with the distribution files. 
+	</p>
+</ul>
+<h3 class="western">May 28, 2002 - Release 0.2.2a</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p>A fix of the Windows binary only. Fixes major problems by
+	upgrading the library version to PyQt 3.2.4. 
+	</p>
+</ul>
+<h3 class="western">May 16, 2002 - Release 0.2.2</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">ConvertAll has been ported to Qt
+	3.x. It now works with both Qt 2.x and 3.x using the same source
+	code. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The help/readme file has been
+	rewritten and now includes section links. 
+	</p>
+	<li/>
+<p>The binaries for windows have been updated to Python 2.2
+	and PyQt 3.2 (but are still using Qt 2.3 Non-commercial). 
+	</p>
+</ul>
+<h3 class="western">September 17, 2001 - Release 0.2.1</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Some window captions and icons
+	were corrected. 
+	</p>
+	<li/>
+<p>A window maximizing bug was fixed. 
+	</p>
+</ul>
+<h3 class="western">August 20, 2001 - Release 0.2.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">A major rewrite was done of the
+	conversion engine. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">A new data file format makes it
+	easier to add and verify units. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">The unit name and abbreviation
+	are now listed separately for better sorting and searching. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Entering of units has been
+	improved by changing operator precedence, by ignoring spaces and
+	plurals, and by changing the partial selection list highlight. 
+	</p>
+	<li/>
+<p>An expression can now be used for the number to be
+	converted. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Many additional units were added
+	to the database. 
+	</p>
+	<li/>
+<p>For MS Windows users, the binary files were upgraded to
+	PyQt Version 2.5. 
+	</p>
+</ul>
+<h3 class="western">August 10, 2001 - Release 0.1.1</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	</p>
+	<li/>
+<p>Added color controls to the options dialog. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	</p>
+	<li/>
+<p>The convertall.ini file on windows was moved to the program
+	directory. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Fixed problems with using the
+	same unit twice in a combined unit. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Fixed an occasional shutdown
+	when auto-completing. 
+	</p>
+	<li/>
+<p>Fixed a problem with the updating of the unit label. 
+	</p>
+</ul>
+<h3 class="western">July 28, 2001 - Release 0.1.0</h3>
+<ul>
+	<p>Initial release.</p>
+</ul>
+<h2 class="western"><a name="contact"></a>Вопросы,
+Комментарии, Критика?</h2>
+<p>Со мной можно связаться по электронной
+почте: doug101 собака bellz точка org<br>Приветствуются
+различные отзывы, включая сообщения о
+найденных Вами ошибках. Также Вы можете
+переодически проверять наличие каких
+либо обновлений на <a href="http://www.bellz.org/">www.bellz.org</a>.</p>
+</body>
+</html>
