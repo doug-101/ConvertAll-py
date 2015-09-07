@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="de_DE">
+<!DOCTYPE TS>
+<TS version="2.1" language="de_DE">
 <context>
     <name>cmdline</name>
     <message>
@@ -265,7 +266,7 @@ von %s</translation>
     <message>
         <location filename="convertdlg.py" line="289"/>
         <source>Load last units at startup</source>
-        <translation>Legen letzten Einheiten beim Start</translation>
+        <translation type="unfinished">Laden der letzten Einheiten beim Start</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="290"/>
@@ -275,7 +276,7 @@ von %s</translation>
     <message>
         <location filename="convertdlg.py" line="294"/>
         <source>Show tip at startup</source>
-        <translation>Zeigen Spitze beim Start</translation>
+        <translation type="unfinished">Zeige Hinweise beim Start</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="388"/>
@@ -297,7 +298,7 @@ von {1}</translation>
     <message>
         <location filename="convertdlg.py" line="420"/>
         <source>Combining Units</source>
-        <translation>Die Kombination von Units</translation>
+        <translation type="unfinished">Die Kombination von Einheiten</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="431"/>
@@ -307,12 +308,12 @@ von {1}</translation>
     <message>
         <location filename="convertdlg.py" line="437"/>
         <source>Show this tip at startup</source>
-        <translation>Zeigen Spitze beim Start</translation>
+        <translation type="unfinished">Zeige diesen Hinweis beim Start</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="432"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation>&lt;p&gt;ConvertAll Stärke ist die Fähigkeit, Geräte zu kombinieren:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Geben Sie &quot;m / s&quot; in Meter pro Sekunde zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;ft · lbf&quot;, um Fuß-Pfund (Drehmoment) zu erhalten&lt;li&gt;&lt;li&gt;Enter &quot;in ^ 2&quot; auf Platz Zoll zu bekommen&lt;/li&gt;&lt;li&gt;geben Sie &quot;m ^ 3 &quot;, um Kubikmeter&lt;/li&lt;li&gt;oder andere Kombinationen, die Sie sich vorstellen können zu&lt;/li&gt;&lt;/ul&gt;</translation>
+        <translation type="unfinished">&lt;p&gt;Die Stärke von ConvertAll ist die Fähigkeit, Einheiten zu kombinieren:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Geben Sie &quot;m / s&quot; ein, um Meter pro Sekunde zu bekommen&lt;/li&gt;&lt;li&gt;Geben Sie &quot;ft · lbf&quot; ein, um Fuß-Pfund (Drehmoment) zu bekommen&lt;li&gt;&lt;li&gt;Geben Sie &quot;in ^ 2&quot; ein, um Quadratzoll zu bekommen&lt;/li&gt;&lt;li&gt;Geben Sie &quot;m ^ 3 &quot; ein, um Kubikmeter zu bekommen&lt;/li&gt;&lt;li&gt;oder jede andere Kombinationen, die Sie sich vorstellen können&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
 </context>
 <context>
