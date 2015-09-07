@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.0" language="fr">
+<!DOCTYPE TS><TS version="1.1" language="fr">
 <context>
     <name>cmdline</name>
     <message>
@@ -64,49 +63,54 @@
         <translation>montrer le nombre de décimals, même si nul</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="43"/>
+        <location filename="cmdline.py" line="47"/>
         <source>display this message and exit</source>
         <translation>afficher ce message et quitter</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="45"/>
+        <location filename="cmdline.py" line="49"/>
         <source>interactive command line mode (non-GUI)</source>
         <translation>Mode de ligne de commande intéractif (sans-GUI)</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="47"/>
+        <location filename="cmdline.py" line="51"/>
         <source>convert without further prompts</source>
         <translation>convertir sans autres demandes</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="49"/>
+        <location filename="cmdline.py" line="43"/>
         <source>show results in scientific notation</source>
         <translation>afficher les résultats en notation scientifique</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="112"/>
+        <location filename="cmdline.py" line="116"/>
         <source>Enter from unit -&gt; </source>
         <translation>Entrer à partir de l&apos;unité -&gt; </translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="118"/>
+        <location filename="cmdline.py" line="122"/>
         <source>Enter to unit -&gt; </source>
         <translation>Entrer l&apos;unité -&gt; </translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="135"/>
+        <location filename="cmdline.py" line="139"/>
         <source>Enter number, [n]ew, [r]everse or [q]uit -&gt; </source>
         <translation>Entre un nombre, [n]ouveau, [i]nverse ou [q]uitter -&gt; </translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="153"/>
+        <location filename="cmdline.py" line="157"/>
         <source>Units {0} and {1} are not compatible</source>
         <translation>Les unités ne sont pas compatibles ({0}  vs.  {1})</translation>
     </message>
     <message>
-        <location filename="cmdline.py" line="169"/>
+        <location filename="cmdline.py" line="173"/>
         <source>{0} is not a valid unit</source>
         <translation>{0} n&apos;est pas une unité valide</translation>
+    </message>
+    <message>
+        <location filename="cmdline.py" line="45"/>
+        <source>show results in engineering notation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -172,7 +176,7 @@
         <translation>Effacer l&apos;unité</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="279"/>
+        <location filename="convertdlg.py" line="283"/>
         <source>Result Display</source>
         <translation>Afficher le résultat</translation>
     </message>
@@ -182,7 +186,7 @@
         <translation>Décimal</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="283"/>
+        <location filename="convertdlg.py" line="286"/>
         <source>Use scientific notation</source>
         <translation>Utiliser la notation scientifique</translation>
     </message>
@@ -197,37 +201,37 @@
         <translation type="obsolete">Bouttons</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="292"/>
+        <location filename="convertdlg.py" line="294"/>
         <source>Show operator buttons</source>
         <translation>Montrer les bouttons de l&apos;opérateur</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="295"/>
+        <location filename="convertdlg.py" line="297"/>
         <source>Colors</source>
         <translation>Couleurs</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="297"/>
+        <location filename="convertdlg.py" line="299"/>
         <source>Use default system colors</source>
         <translation>Utiliser les couleurs par défaut</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="298"/>
+        <location filename="convertdlg.py" line="300"/>
         <source>Set background color</source>
         <translation>Choisir la couleur de fond</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="299"/>
+        <location filename="convertdlg.py" line="301"/>
         <source>Set text color</source>
         <translation>Choisir la couleur du texte</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="377"/>
+        <location filename="convertdlg.py" line="379"/>
         <source>Read Me file not found</source>
         <translation>Fichier Read Me non trouvé</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="380"/>
+        <location filename="convertdlg.py" line="382"/>
         <source>ConvertAll README File</source>
         <translation>Fichier README de ConvertAll</translation>
     </message>
@@ -244,12 +248,12 @@ by %s</translation>
         <translation>Unité récente</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="286"/>
+        <location filename="convertdlg.py" line="288"/>
         <source>Recent Units</source>
         <translation>Unités récentes</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="287"/>
+        <location filename="convertdlg.py" line="289"/>
         <source>Number saved</source>
         <translation>Nombre sauvé</translation>
     </message>
@@ -264,51 +268,66 @@ by %s</translation>
         <translation>{0} unités chargées</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="289"/>
+        <location filename="convertdlg.py" line="291"/>
         <source>Load last units at startup</source>
         <translation>Chargez dernières unités au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="290"/>
+        <location filename="convertdlg.py" line="292"/>
         <source>User Interface</source>
         <translation>Interface utilisateur</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="294"/>
+        <location filename="convertdlg.py" line="296"/>
         <source>Show tip at startup</source>
         <translation>Afficher allusion au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="388"/>
+        <location filename="convertdlg.py" line="390"/>
         <source>ConvertAll Version {0}
 by {1}</source>
         <translation>ConvertAll version {0}
 by {1}</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="416"/>
+        <location filename="convertdlg.py" line="418"/>
         <source>Convertall - Tip</source>
         <translation>ConvertAll</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="442"/>
+        <location filename="convertdlg.py" line="444"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="420"/>
+        <location filename="convertdlg.py" line="422"/>
         <source>Combining Units</source>
         <translation>La combinaison de unités</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="437"/>
+        <location filename="convertdlg.py" line="439"/>
         <source>Show this tip at startup</source>
         <translation>Afficher allusion au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="432"/>
+        <location filename="convertdlg.py" line="434"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;La force de ConvertAll est la possibilité de combiner des unités:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Entrez &quot;m / s&quot; pour obtenir mètres par seconde;&lt;/li&gt;&lt;li&gt;Entrez &quot;ft * lbf&quot; pour obtenir pieds-livres (couple);&lt;/li&gt;&lt;li&gt;Enter &quot;in^ 2&quot; pour obtenir pouces carrés;&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;pour obtenir de mètres cubes&lt;/li&gt;&lt;li&gt;ou toute autre combinaison que vous pouvez imaginer&lt;/li&gt;&lt;/ul&gt;</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="279"/>
+        <source>Result Precision</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="284"/>
+        <source>Use short representation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="287"/>
+        <source>Use engineering notation</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

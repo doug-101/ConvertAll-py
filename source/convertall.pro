@@ -18,4 +18,7 @@ SOURCES = cmdline.py \
 
 TRANSLATIONS = convertall_es.ts \
                convertall_de.ts \
-               convertall_fr.ts
+               convertall_fr.ts \
+               convertall_it.ts \
+               convertall_ru.ts \
+               convertall_xx.ts
