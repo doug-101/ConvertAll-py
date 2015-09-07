@@ -70,6 +70,7 @@ lbm                 = pound              # pound  # avoirdupois
 ounce               = 1/16.0 pound       #        # avoirdupois
 oz                  = ounce              # ounce  # avoirdupois
 lid                 = ounce              #        # drug slang
+dram                = 1/16.0 ounce       #        # avoirdupois
 pound troy          = 5760 grain
 lb troy             = pound troy         # pound troy
 ounce troy          = 1/12.0 lb troy
