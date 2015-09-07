@@ -11,7 +11,7 @@
 # subdirectory that contains the files needed to run the application
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2015, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -38,5 +38,6 @@ setup(name = 'convertall',
                                'include_files': extraFiles,
                                'excludes': ['*.pyc'],
                                'icon': '../win/convertall.ico',
+                               'include_msvcr': True,
                                'build_exe': '../../convertall-0.6'}},
       executables = [Executable('convertall.py', base=base)])

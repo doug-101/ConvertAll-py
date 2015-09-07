@@ -4,7 +4,7 @@
 ****************************************************************************
  install.py, Linux install script for ConvertAll
 
- Copyright (C) 2014, Douglas W. Bell
+ Copyright (C) 2015, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -201,8 +201,8 @@ def main():
         try:
             from PyQt4 import QtCore, QtGui
         except:
-            print('  Sorry, Qt Version 4.6, 4.7 or 4.8 and '
-                  'PyQt Version 4.8, 4.9 or 4.10 are required')
+            print('  PyQt not found -> Sorry, PyQt 4.x is required'
+                  ' and must be built for Python 3')
             sys.exit(3)
         qtVersion = QtCore.qVersion()
         if cmpVersions(qtVersion, (4, 6)) and not qtVersion.startswith('5'):
@@ -216,7 +216,7 @@ def main():
             not pyqtVersion.startswith('5')):
             print('  PyQt Version {0} -> OK'.format(pyqtVersion))
         else:
-            print('  PyQt Version {0} -> Sorry, 4.8, 4.9 or 4.10 is required'
+            print('  PyQt Version {0} -> Sorry, 4.8 through 4.11 is required'
                   .format(pyqtVersion))
             sys.exit(3)
 
@@ -233,10 +233,6 @@ def main():
         if os.path.isdir('source/__pycache__'):
             copyDir('source/__pycache__',
                     os.path.join(pythonBuildDir, '__pycache__'))
-    if os.path.isdir('source/plugins'):
-        pluginBuildDir = os.path.join(pythonBuildDir, 'plugins')
-        print('  Creating plugins directory if necessary')
-        copyDir('source/plugins', pluginBuildDir)
     if os.path.isdir('translations') and translated:
         translationDir = os.path.join(pythonBuildDir, 'translations')
         print('  Copying translation files to {0}'.format(translationDir))
