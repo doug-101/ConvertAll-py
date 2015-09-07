@@ -8,8 +8,8 @@
 <h2>a unit conversion program</h2>
 
 <p>Written by Doug Bell<br>
-Version 0.6.0<br>
-February 1, 2014</p>
+Version 0.6.1<br>
+September 6, 2015</p>
 </center>
 
 <h2>Contents</h2>
@@ -118,7 +118,7 @@ this program for more information.</p>
   <li>Qt (Version 4.6, 4.7 or 4.8 - see <a
     href="http://qt-project.org">Qt Project</a> for more
   information)</li>
-  <li>PyQt (Version 4.8.x, 4.9.x or 4.10.x - see <a
+  <li>PyQt (Version 4.8.x through 4.11.x - see <a
     href="http://www.riverbankcomputing.co.uk">Riverbank</a>
     for more information)</li>
 </ul></p>
@@ -130,7 +130,7 @@ still available.</p>
 <h3><a name="win-sys"></a>Windows</h3>
 
 <p>Using the files provided in the binary distribution, ConvertAll
-should run on any computer running Windows XP, Vista, 7 or 8.</p>
+should run on any computer running Windows XP, Vista, 7, 8 or 10.</p>
 
 <h2><a name="install"></a>Installation</h2>
 
@@ -289,6 +289,52 @@ conversion, "r" to reverse the conversion or "q" to quit.</p>
 -h" on Linux, "convertall_dos -h" on Windows).</p>
 
 <h2><a name="revs"></a>Revision History</h2>
+
+<h3>September 6, 2015 - Release 0.6.1</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Added an option to output results in engineering notation (a
+  version of scientific notation with exponents divisible by
+  three).</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added the dram mass unit.</li>
+
+  <li>Added the fluid dram and the minim volume units, in both US and
+  Imperial versions.</li>
+
+  <li>Added the smoot length unit.</li>
+
+  <li>Added "dm" as an abbreviation for the decimeter length unit.</li>
+
+  <li>Added "avoirdupois" to the comment column for applicable mass and
+  weight units.</li>
+
+  <li>Added "fresh water" to the comment column for applicable
+  depth-based pressure units.</li>
+
+  <li>Added some MSVC runtime DLL files to the Windows installers to
+  avoid problems on PCs that do not already have them.</li>
+
+  <li>Clarified some dependency checker error messages in the Linux
+  installer.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed an error in the unit data formula for the AWG area
+  unit.</li>
+
+  <li>Changed the value of the caliber unit to be equivalent to inches
+  (typical written usage), not hundredths of an inch (typical verbal
+  usage).</li>
+
+</ul>
 
 <h3>February 1, 2014 - Release 0.6.0</h3>
 
