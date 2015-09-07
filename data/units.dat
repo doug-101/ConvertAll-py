@@ -1,5 +1,5 @@
 #*****************************************************************************
-#units.dat, the units data file, version 0.6.0
+#units.dat, the units data file, version 0.6.1
 #
 # ConvertAll, a units conversion program
 # Copyright (C) 2015, Douglas W. Bell
@@ -64,12 +64,12 @@ carat               = 0.2 gram
 ct                  = carat              # carat
 amu                 = 1.66053873e-27 kg  # atomic mass
 atomic mass unit    = amu
-pound               = 0.45359237 kg
-lb                  = pound              # pound
-lbm                 = pound              # pound
-ounce               = 1/16.0 pound
-oz                  = ounce              # ounce
-lid                 = ounce              # # drug slang
+pound               = 0.45359237 kg      #        # avoirdupois
+lb                  = pound              # pound  # avoirdupois
+lbm                 = pound              # pound  # avoirdupois
+ounce               = 1/16.0 pound       #        # avoirdupois
+oz                  = ounce              # ounce  # avoirdupois
+lid                 = ounce              #        # drug slang
 pound troy          = 5760 grain
 lb troy             = pound troy         # pound troy
 ounce troy          = 1/12.0 lb troy
@@ -471,8 +471,8 @@ kilogram force = kg force
 kp             = kg force         # kilopond
 kilopond       = kg force
 gram force     = g * gravity
-pound force    = lbm * gravity
-lbf            = pound force      # pound force
+pound force    = lbm * gravity    #              # avoirdupois
+lbf            = pound force      # pound force  # avoirdupois
 ton force      = ton * gravity
 ounce force    = ounce * gravity
 ozf            = ounce force      # ounce force
@@ -630,17 +630,17 @@ torr                  = mm Hg
 micron of Hg          = micron*density Hg*gravity
 in Hg                 = in*density Hg*gravity    # inch of Hg
 inch of Hg            = in Hg
-m water               = m*density water*gravity  # meter of H2O
-m H2O                 = m water                  # meter of H2O
-meter of water        = m water
-in water              = in*density water*gravity # inch of H2O
-in H2O                = in water                 # inch of H2O
-inch of water         = in water
-ft water              = ft*density water*gravity # feet of H2O
-ft H2O                = ft water                 # feet of H20
-feet of water         = ft water
-foot of head          = ft water
-ft hd                 = ft water                 # foot of head
+m water               = m*density water*gravity  # meter of H2O # fresh water
+m H2O                 = m water                  # meter of H2O # fresh water
+meter of water        = m water                  #              # fresh water
+in water              = in*density water*gravity # inch of H2O  # fresh water
+in H2O                = in water                 # inch of H2O  # fresh water
+inch of water         = in water                 #              # fresh water
+ft water              = ft*density water*gravity # feet of H2O  # fresh water
+ft H2O                = ft water                 # feet of H20  # fresh water
+feet of water         = ft water                 #              # fresh water
+foot of head          = ft water                 #              # fresh water
+ft hd                 = ft water                 # foot of head # fresh water
 psi                   = lbf/in^2                 # pound / sq inch
 pound per sq inch     = psi
 ksi                   = 1000 psi                 # 1000 lb / sq inch
