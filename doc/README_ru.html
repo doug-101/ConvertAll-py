@@ -3,23 +3,27 @@
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
 	<title>ConvertAll ReadMe</title>
-	<meta name="generator" content="LibreOffice 4.3.5.2.0 (Linux)"/>
+	<meta name="generator" content="LibreOffice 4.4.5.2 (Linux)"/>
 	<meta name="created" content="00:00:00"/>
-	<meta name="changed" content="2015-02-09T16:13:31.226814837"/>
+	<meta name="changed" content="2015-09-08T13:27:59.702451614"/>
 	<style type="text/css">
 		p { color: #000000 }
 		h1 { color: #000000 }
 		h2 { color: #000000 }
 		h2.ctl { font-family: "FreeSans" }
+		h3 { color: #000000 }
 		h3.ctl { font-family: "FreeSans" }
 		tt.ctl { font-family: "FreeSans", monospace }
 	</style>
 </head>
-<body lang="ru-RU" text="#000000" dir="ltr" style="background: transparent">
+<body lang="ru-RU" text="#000000" dir="ltr">
 <h1 align="center">Руководство по ConvertAll</h1>
 <h2 class="western" align="center">программа для
 конвертирования величин</h2>
-<p align="center">Автор Doug Bell<br>Версия 0.6.1<br>10 сентября 2015</p>
+<p align="center">Автор Doug Bell<br/>
+Версия 0.6.1<br/>
+10
+сентября 2015</p>
 <h2 class="western">Содержание</h2>
 <ul>
 	<li/>
@@ -38,20 +42,20 @@
 	</p>
 	<ul>
 		<li/>
-<p style="margin-bottom: 0cm"><a href="#linux-sys">Linux</a> 
+<p style="margin-bottom: 0cm"><a href="">Linux</a> 
 		</p>
 		<li/>
-<p style="margin-bottom: 0cm"><a href="#win-sys">Windows</a></p>
+<p style="margin-bottom: 0cm"><a href="">Windows</a></p>
 	</ul>
 	<li/>
 <p style="margin-bottom: 0cm"><a href="#Установка|outline">Установка</a>
 		</p>
 	<ul>
 		<li/>
-<p style="margin-bottom: 0cm"><a href="#linux-inst">Linux</a>
-				</p>
+<p style="margin-bottom: 0cm"><a href="">Linux</a> 
+		</p>
 		<li/>
-<p style="margin-bottom: 0cm"><a href="#win-inst">Windows</a></p>
+<p style="margin-bottom: 0cm"><a href="">Windows</a></p>
 	</ul>
 	<li/>
 <p style="margin-bottom: 0cm"><a href="#Использование ConvertAll|outline">Использование
@@ -209,7 +213,7 @@ License , опубликованной Фондом свободного
 	для подробной информации) 
 	</p>
 	<li/>
-<p>PyQt ( Версии 4.8.x, 4.9.x или 4.10.x - смотри
+<p>PyQt ( Версии с 4.8.x до 4.11.x - смотри
 	<a href="http://www.riverbankcomputing.co.uk/">Riverbank</a> для
 	подробной информации ) 
 	</p>
@@ -219,9 +223,9 @@ License , опубликованной Фондом свободного
 ранняя версия ConvertAll&nbsp;(0.5.2) которая
 зависит от более старых версий библиотек.</p>
 <h3 class="western"><a name="win-sys"></a>Windows</h3>
-<p>Используйте файлы дистрибутива,
-ConvertAll должен запустить на любом компьютере
-под Windows XP, Vista, 7 или 8.</p>
+<p>Используя файлы дистрибутива, ConvertAll
+должен работать на любом компьютере
+под Windows XP, Vista, 7, 8 или 10.</p>
 <h2 class="western"><a name="Установка|outline"></a>Установка</h2>
 <h3 class="western"><a name="linux-inst"></a>Linux</h3>
 <p style="margin-bottom: 0.2cm">Распакуйте исходные
@@ -254,7 +258,7 @@ root:
 <p>Для установки портативной версии,
 запустите файл <tt class="western">ConvertAll-x.x.x-install-user.exe,
 </tt><tt class="western"><font face="Times New Roman, serif">снимите
-отметки установки ярлыков и де</font></tt><tt class="western"><font face="Times New Roman, serif">инсталлятора</font></tt><tt class="western"><font face="Times New Roman, serif">,
+отметки установки ярлыков и деинсталлятора,
 а выберите установку портативной версии.</font></tt></p>
 <h2 class="western"><a name="Использование ConvertAll|outline"></a>
 Использование ConvertAll</h2>
@@ -417,10 +421,80 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 -h&quot; для Linux, &quot;convertall_dos -h&quot; для Windows).</p>
 <h2 class="western"><a name="История версий|outline"></a>
 История версий</h2>
-<h3 class="western">February 1, 2014 - Release 0.6.0</h3>
+<h3 class="western">Сентябрь 10, 2015 - Release 0.6.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">Added an option to output
+	results in engineering notation (a version of scientific notation
+	with exponents divisible by three). 
 	</p>
+	<li/>
+<p>Добавлен русский перевод. Спасибо
+	vantu5z за перевод. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлена величина
+	dram mass. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлены величины
+	fluid dram и minim volume, для US и Imperial версий. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлена величина
+	smoot length. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлена аббревиатура
+	&quot;dm&quot; для величины decimeter length. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлен комментарий
+	&quot;avoirdupois&quot; для applicable mass и weight величин.
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлен комментарий
+	&quot;fresh water&quot; для applicable depth-based pressure
+	величин. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Обновлён немецкий
+	перевод. Спасибо Thomas Helmke за перевод. 
+	</p>
+	<li/>
+<p style="margin-bottom: 0cm">Добавлены некоторые
+	MSVC библиотеки DLL для инсталлятора
+	Windows, чтобы предотвратить ошибки на
+	компьютерах, где они отсутствуют. 
+	</p>
+	<li/>
+<p>Уточнены некоторые сообщения об
+	ошибках в зависимостях для инсталлятора
+	Linux. 
+	</p>
+</ul>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
+	<li/>
+<p style="margin-bottom: 0cm">Fixed an error in the unit data
+	formula for the AWG area unit. 
+	</p>
+	<li/>
+<p>Changed the value of the caliber unit to be equivalent to
+	inches (typical written usage), not hundredths of an inch (typical
+	verbal usage).</p>
+</ul>
+<h3 class="western">Февраль 1, 2014 - Release 0.6.0</h3>
+<ul>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">ConvertAll has been ported from
 	Python 2 to Python 3. This porting includes some code cleanup. 
@@ -446,7 +520,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">The Windows binaries are built
@@ -482,8 +556,8 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">Fixed the operation of the
 	&quot;Clear&quot; button in the Unit Finder dialog. 
@@ -493,9 +567,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	French translation. 
 	</p>
 </ul>
-<h3 class="western">November 2, 2011 - Release 0.5.2</h3>
+<h3 class="western">Ноябрь 2, 2011 - Release 0.5.2</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added the microliter volume
@@ -518,9 +592,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	some units when using language translations. 
 	</p>
 </ul>
-<h3 class="western">March 31, 2011 - Release 0.5.1</h3>
+<h3 class="western">Март 31, 2011 - Release 0.5.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added the link length unit. 
@@ -539,26 +613,27 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p>Fixed incorrect definition of the rad radiation dose unit
 	(it was off by a factor of 10). 
 	</p>
 </ul>
-<h3 class="western">May 2, 2010 - Translation Update 0.5.0b</h3>
+<h3 class="western">Май 2, 2010 - Обновление перевода
+0.5.0b</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p>Added a Spanish translation. The French and German
 	translations remain unchanged. 
 	</p>
 </ul>
-<h3 class="western">April 23, 2010 - Release 0.5.0</h3>
+<h3 class="western">Апрель 23, 2010 - Release 0.5.0</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">Multiplication and division
 	operators now have the same precedence. In previous versions of
@@ -581,7 +656,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added the tonne force metric
@@ -615,17 +690,17 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p>Fixed problems with running in the command line mode from
 	Linux consoles without X11 present. 
 	</p>
 </ul>
-<h3 class="western">September 24, 2009 - Release 0.4.3</h3>
+<h3 class="western">Сентябрь 24, 2009 - Release 0.4.3</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p>Prepared ConvertAll for translation efforts by properly
 	handling Unicode characters in unit data and by marking internal
@@ -634,7 +709,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added solar mass and pennyweight
@@ -661,8 +736,8 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">A critical QString conversion
 	bug that caused ConvertAll to not run with the latest version of
@@ -673,9 +748,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	prompt when bad unit data is entered. 
 	</p>
 </ul>
-<h3 class="western">May 28, 2008 - Release 0.4.2</h3>
+<h3 class="western">Май 28, 2008 - Release 0.4.2</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p>Added the &quot;liter per 100 km&quot; unit for fuel
@@ -683,8 +758,8 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">Changed the &quot;mach&quot;
 	unit from 331.46 m/s to 340.29 m/s. It is now correct for STP
@@ -695,10 +770,10 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	manually edited unit data file. 
 	</p>
 </ul>
-<h3 class="western">January 22, 2008 - Release 0.4.1</h3>
+<h3 class="western">Январь 22, 2008 - Release 0.4.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p>An optional command line mode was added to do conversions
 	without the graphical interface. Enter the command (&quot;convertall&quot;),
@@ -708,7 +783,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">The icon used for ConvertAll has
@@ -739,10 +814,10 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 <p>The Thai rai and ngaan units of land area have been added. 
 	</p>
 </ul>
-<h3 class="western">October 5, 2006 - Release 0.4.0</h3>
+<h3 class="western">Октябрь 5, 2006 - Release 0.4.0</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p>ConvertAll was ported to the Qt4 library. This involved a
 	significant rewrite of the code. The previous versions used Qt3.x on
@@ -751,7 +826,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p>On Windows, the ConvertAll.ini file has been moved from the
@@ -760,9 +835,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	and for users with limited access rights. 
 	</p>
 </ul>
-<h3 class="western">October 5, 2006 - Release 0.3.2</h3>
+<h3 class="western">Октябрь 5, 2006 - Release 0.3.2</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added Imperial (UK) gallons,
@@ -777,9 +852,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	mole is a gram-mole. 
 	</p>
 </ul>
-<h3 class="western">February 14, 2005 - Release 0.3.1</h3>
+<h3 class="western">Февраль 14, 2005 - Release 0.3.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Added the decare unit for land
@@ -791,18 +866,18 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p>The barn unit, used in particle physics, was corrected. It
 	had been incorrectly listed as a length unit instead of an area
 	unit. 
 	</p>
 </ul>
-<h3 class="western">March 11, 2004 - Release 0.3.0</h3>
+<h3 class="western">Март 11, 2004 - Release 0.3.0</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">A unit finder window was added
 	to allow the unit list to be filtered and searched. 
@@ -820,16 +895,16 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p>Fixed Linux install script problems with certain versions
 	of Python. 
 	</p>
 </ul>
-<h3 class="western">November 18, 2003 - Release 0.2.4</h3>
+<h3 class="western">Ноябрь 18, 2003 - Release 0.2.4</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Keyboard shortcuts and tab-focus
@@ -844,9 +919,9 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	version 3.8. 
 	</p>
 </ul>
-<h3 class="western">March 24, 2003 - Release 0.2.3</h3>
+<h3 class="western">Март 24, 2003 - Release 0.2.3</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">When an expression using
@@ -862,18 +937,18 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 <p>Icon files are now provided with the distribution files. 
 	</p>
 </ul>
-<h3 class="western">May 28, 2002 - Release 0.2.2a</h3>
+<h3 class="western">Май 28, 2002 - Release 0.2.2a</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p>A fix of the Windows binary only. Fixes major problems by
 	upgrading the library version to PyQt 3.2.4. 
 	</p>
 </ul>
-<h3 class="western">May 16, 2002 - Release 0.2.2</h3>
+<h3 class="western">Май 16, 2002 - Release 0.2.2</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">ConvertAll has been ported to Qt
@@ -889,10 +964,10 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	and PyQt 3.2 (but are still using Qt 2.3 Non-commercial). 
 	</p>
 </ul>
-<h3 class="western">September 17, 2001 - Release 0.2.1</h3>
+<h3 class="western">Сентябрь 17, 2001 - Release 0.2.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">Some window captions and icons
 	were corrected. 
@@ -901,10 +976,10 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 <p>A window maximizing bug was fixed. 
 	</p>
 </ul>
-<h3 class="western">August 20, 2001 - Release 0.2.0</h3>
+<h3 class="western">Август 20, 2001 - Release 0.2.0</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">A major rewrite was done of the
 	conversion engine. 
@@ -928,7 +1003,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p style="margin-bottom: 0cm">Many additional units were added
@@ -939,16 +1014,16 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	PyQt Version 2.5. 
 	</p>
 </ul>
-<h3 class="western">August 10, 2001 - Release 0.1.1</h3>
+<h3 class="western">Август 10, 2001 - Release 0.1.1</h3>
 <ul>
-	<p style="margin-bottom: 0cm"><b>New Features:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Новые функции</b><b>:</b>
+		</p>
 	<li/>
 <p>Added color controls to the options dialog. 
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Updates:</b> 
+	<p style="margin-bottom: 0cm"><b>Обновления</b><b>:</b> 
 	</p>
 	<li/>
 <p>The convertall.ini file on windows was moved to the program
@@ -956,8 +1031,8 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 </ul>
 <ul>
-	<p style="margin-bottom: 0cm"><b>Bug Fixes:</b> 
-	</p>
+	<p style="margin-bottom: 0cm"><b>Исправлены ошибки</b><b>:</b>
+		</p>
 	<li/>
 <p style="margin-bottom: 0cm">Fixed problems with using the
 	same unit twice in a combined unit. 
@@ -970,14 +1045,15 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 <p>Fixed a problem with the updating of the unit label. 
 	</p>
 </ul>
-<h3 class="western">July 28, 2001 - Release 0.1.0</h3>
+<h3 class="western">Июль 28, 2001 - Release 0.1.0</h3>
 <ul>
-	<p>Initial release.</p>
+	<p>Начальный релиз.</p>
 </ul>
 <h2 class="western"><a name="contact"></a>Вопросы,
 Комментарии, Критика?</h2>
 <p>Со мной можно связаться по электронной
-почте: doug101 собака bellz точка org<br>Приветствуются
+почте: doug101 собака bellz точка org<br/>
+Приветствуются
 различные отзывы, включая сообщения о
 найденных Вами ошибках. Также Вы можете
 переодически проверять наличие каких

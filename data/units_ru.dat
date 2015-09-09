@@ -1,5 +1,5 @@
 #*****************************************************************************
-# units.dat, файл данных величин, версия 0.6.0
+# units.dat, файл данных величин, версия 0.6.1
 #
 # ConvertAll - программа для конвертирования величин
 # Copyright (C) 2015, Douglas W. Bell
@@ -61,14 +61,15 @@ gigagram            = 1e9 gram
 teragram            = 1e12 gram
 carat               = 0.2 gram
 ct                  = carat              # карат
-amu                 = 1.66053873e-27 kg  # # атомная масса
+amu                 = 1.66053873e-27 kg  # атомная масса
 atomic mass unit    = amu
-pound               = 0.45359237 kg
-lb                  = pound              # фунт
-lbm                 = pound              # фунт
-ounce               = 1/16.0 pound
+pound               = 0.45359237 kg      #        # вес
+lb                  = pound              # фунт   # вес
+lbm                 = pound              # фунт   # вес
+ounce               = 1/16.0 pound       #        # вес
 oz                  = ounce              # унция
-lid                 = ounce              # унция # разговорное
+lid                 = ounce              #        # разговорное
+dram                = 1/16.0 ounce       #        # вес
 pound troy          = 5760 grain
 lb troy             = pound troy         # pound troy
 ounce troy          = 1/12.0 lb troy
@@ -83,13 +84,13 @@ pennyweight         = 24 grain
 hundredweight long  = 112 lb             # # Imperial
 hundredweight short = 100 lb             # # US & Канада
 solar mass          = 1.9891e30 kg
-кг		    = kg
+кг		    = kg                 # килограмм
 килограмм           = kg
 грамм		    = gram
 г		    = gram               # грамм
 мг		    = milligram          # миллиграмм
 миллиграмм	    = milligram
-тонна               = tonne            # # метрическая
+тонна               = tonne              # # метрическая
 карат               = carat
 фунт                = pound
 
@@ -100,7 +101,8 @@ solar mass          = 1.9891e30 kg
 m                        = !              # метр
 meter                    = m
 metre                    = m
-decimeter                = 0.1 m
+dm                       = 0.1 m          # дециметр
+decimeter                = dm
 cm                       = 0.01 m         # сантиметр
 centimeter               = cm
 mm                       = 0.001 m        # миллиметр
@@ -141,11 +143,12 @@ fathom                   = 6 ft
 rod                      = 5.5 yard
 furlong                  = 40 rod
 hand                     = 4 inch
-cubit                    = 21.8 inch      # локоть # biblical unit
-point                    = 1/72.0 inch    # # desktop publishing point
+cubit                    = 21.8 inch      # локоть # библейская величина
+point                    = 1/72.0 inch    # точка # desktop publishing point
 pica                     = 12 point
-caliber                  = 0.01 inch      # # размер пули
+caliber                  = 1.0 inch       # # размер пули
 rack unit                = 1.75 in        # # computing
+smoot                    = 67 inch
 football field           = 100 yd	  # # футбольное поле
 marathon                 = 46145 yd
 mil Swedish              = 10 km
@@ -183,8 +186,9 @@ shoe size mens           = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
                            # # US sizes, нелинейная
 shoe size womens         = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
                            # # US sizes, нелинейная
+
 метр                     = m
-м	                 = m
+м	                 = m              # метр
 см		         = cm             # сантиметр
 мм	                 = mm             # миллиметр
 км                       = km             # километр
@@ -392,7 +396,7 @@ gradian     = 0.01 quadrant
 # Раздел УГЛЫ пространственные
 #
 [пространственный угол]
-sr         = !      # steradian
+sr         = !      # стерадиан
 steradian  = sr
 sphere     = 4 pi*sr
 hemisphere = 1/2.0 sphere
@@ -502,12 +506,12 @@ kilogram force = kg force
 kp             = kg force         # kilopond
 kilopond       = kg force
 gram force     = g * gravity
-pound force    = lbm * gravity
-lbf            = pound force      # pound force
+pound force    = lbm * gravity    #             # вес
+lbf            = pound force      # pound force # вес
 ton force      = ton * gravity
 ounce force    = ounce * gravity
 ozf            = ounce force      # ounce force
-tonne force    = tonne * gravity  # # метрическая
+tonne force    = tonne * gravity  #         # метрическая
 pdl            = lbm * ft / sec^2 # poundal # Imperial force
 poundal        = pdl              # # Imperial force
 
@@ -567,6 +571,8 @@ pt                   = pint                 # пинта       # US жидкос
 fluid ounce          = 1/16.0 pint          #             # US
 fl oz                = fluid ounce          # fluid ounce # US
 ounce fluid          = fluid ounce          #             # US
+fluid dram           = 1/8.0 fluid ounce    #             # US
+minim                = 1/480.0 fluid ounce  #             # US
 imperial gallon      = 4.54609 liter
 imp gal              = imperial gallon      # imperial gallon
 gallon imperial      = imperial gallon
@@ -578,6 +584,8 @@ imp pt               = imperial pint        # imperial pint
 pint imperial        = imperial pint
 imperial fluid ounce = 1/160.0 imp gal
 imp fl oz            = imperial fluid ounce # imperial fluid ounce
+imperial fluid dram  = 1/8.0 imp fl oz
+imperial minim       = 1/480.0 imp fl oz
 cup                  = 8 fl oz
 tablespoon           = 1/16.0 cup
 tbsp                 = tablespoon           # столовая ложка
@@ -617,7 +625,7 @@ rps         = rev/sec          # rev/sec
 
 
 #
-# flow rate units
+# Раздел СКОРОСТЬ ПОТОКА
 #
 [поток жидкости]
 gph         = gal/hr           # gallons/hour
@@ -663,17 +671,17 @@ torr                  = mm Hg
 micron of Hg          = micron*density Hg*gravity
 in Hg                 = in*density Hg*gravity    # inch of Hg
 inch of Hg            = in Hg
-m water               = m*density water*gravity  # метр H2O
-m H2O                 = m water                  # метр H2O
-meter of water        = m water
-in water              = in*density water*gravity # дюйм H2O
-in H2O                = in water                 # дюйм H2O
+m water               = m*density water*gravity  # метр H2O # чистой воды
+m H2O                 = m water                  # метр H2O # чистой воды
+meter of water        = m water                  #          # чистой воды
+in water              = in*density water*gravity # дюйм H2O # чистой воды
+in H2O                = in water                 # дюйм H2O # чистой воды
 inch of water         = in water
-ft water              = ft*density water*gravity # фут H2O
-ft H2O                = ft water                 # фут H20
-feet of water         = ft water
-foot of head          = ft water
-ft hd                 = ft water                 # foot of head
+ft water              = ft*density water*gravity # фут H2O  # чистой воды
+ft H2O                = ft water                 # фут H20  # чистой воды
+feet of water         = ft water                 #          # чистой воды
+foot of head          = ft water                 #          # чистой воды
+ft hd                 = ft water                 # foot of head # чистой воды
 psi                   = lbf/in^2                 # фунт / кв. дюйм
 pound per sq inch     = psi
 ksi                   = 1000 psi                 # 1000 lb / кв. дюйм
@@ -780,7 +788,6 @@ Bq              = becquerel     # беккерель
 curie           = 3.7e10 Bq
 millicurie      = 0.001 curie
 roentgen        = 2.58e-4 coulomb/kg
-
 [доза радиации]
 gray            = J/kg
 Gy              = gray          # Грей # единица измерения поглощённой дозы

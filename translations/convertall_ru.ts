@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<!DOCTYPE TS>
+<TS version="2.1" language="ru_RU">
 <context>
     <name>cmdline</name>
     <message>
@@ -100,17 +101,17 @@
     <message>
         <location filename="cmdline.py" line="45"/>
         <source>show results in engineering notation</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать результат в инженерном представлении</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="157"/>
         <source>Units {0} and {1} are not compatible</source>
-        <translation type="unfinished"></translation>
+        <translation>Величина {0} и {1} несовместимы</translation>
     </message>
     <message>
         <location filename="cmdline.py" line="173"/>
         <source>{0} is not a valid unit</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} не верная величина</translation>
     </message>
 </context>
 <context>
@@ -290,43 +291,45 @@ by %s</source>
     <message>
         <location filename="convertdlg.py" line="68"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Ошибка в данных величины - {0}</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="71"/>
         <source>{0} units loaded</source>
-        <translation type="unfinished"></translation>
+        <translation>{0} величины загружены</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="390"/>
         <source>ConvertAll Version {0}
 by {1}</source>
-        <translation type="unfinished"></translation>
+        <translation>ConvertAll версия {0}
+от {1}</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="418"/>
         <source>Convertall - Tip</source>
-        <translation type="unfinished"></translation>
+        <translation>Convertall - Совет</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="422"/>
         <source>Combining Units</source>
-        <translation type="unfinished"></translation>
+        <translation>Комбинирование величин</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="434"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;p&gt;Настоящая сила ConvertAll заключается в возможности комбинирования нескольких величин:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Введите &quot;m/s&quot;, чтобы получить метры в секунду&lt;/li&gt;&lt;li&gt;Введите &quot;ft*lbf&quot;, чтобы получить foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Введите &quot;in^2&quot;, чтобы получить дюймы в квадрате&lt;/li&gt;&lt;li&gt;Введите &quot;m^3&quot;, чтобы получить метры в кубе&lt;/li&gt;&lt;li&gt;или любую другую комбинацию которую можете придумать&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="439"/>
         <source>Show this tip at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать советы при запуске</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="444"/>
         <source>&amp;OK</source>
-        <translation type="unfinished">&amp;ОК</translation>
+        <translation>&amp;Да</translation>
     </message>
 </context>
 <context>
@@ -404,7 +407,7 @@ by {1}</source>
     <message>
         <location filename="finddlg.py" line="135"/>
         <source>[All]</source>
-        <translation type="unfinished"></translation>
+        <translation>[Все]</translation>
     </message>
 </context>
 <context>
@@ -427,22 +430,22 @@ by {1}</source>
     <message>
         <location filename="helpview.py" line="67"/>
         <source>Find</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти</translation>
     </message>
     <message>
         <location filename="helpview.py" line="74"/>
         <source>Find &amp;Previous</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти &amp;Предыдущий</translation>
     </message>
     <message>
         <location filename="helpview.py" line="81"/>
         <source>Find &amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>Найти &amp;Следующий</translation>
     </message>
     <message>
         <location filename="helpview.py" line="114"/>
         <source>Text string not found</source>
-        <translation type="unfinished"></translation>
+        <translation>Текстовая строка не найдена</translation>
     </message>
 </context>
 <context>
@@ -475,12 +478,12 @@ by {1}</source>
     <message>
         <location filename="numedit.py" line="102"/>
         <source>Error in unit data - {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Ошибка в данных величины - {0}</translation>
     </message>
     <message>
         <location filename="numedit.py" line="70"/>
         <source>Units are not compatible ({0}  vs.  {1})</source>
-        <translation type="unfinished"></translation>
+        <translation>Величины несовместимы  ({0}  и.  {1})</translation>
     </message>
 </context>
 <context>
@@ -488,7 +491,7 @@ by {1}</source>
     <message>
         <location filename="optiondlg.py" line="38"/>
         <source>&amp;OK</source>
-        <translation>&amp;ОК</translation>
+        <translation>&amp;Да</translation>
     </message>
     <message>
         <location filename="optiondlg.py" line="41"/>
@@ -511,7 +514,7 @@ by {1}</source>
     <message>
         <location filename="unitatom.py" line="45"/>
         <source>Bad equation for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверное выражение для «{0}»</translation>
     </message>
 </context>
 <context>
@@ -552,12 +555,12 @@ by {1}</source>
     <message>
         <location filename="unitgroup.py" line="307"/>
         <source>Invalid conversion for &quot;{0}&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверная конвертация для «{0}»</translation>
     </message>
     <message>
         <location filename="unitgroup.py" line="395"/>
         <source>Bad equation for {0}</source>
-        <translation type="unfinished"></translation>
+        <translation>Неверное выражение для {0}</translation>
     </message>
 </context>
 <context>
