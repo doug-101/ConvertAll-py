@@ -68,7 +68,10 @@ class ConvertDlg(QtGui.QWidget):
                                       _('Error in unit data - {0}').
                                       format(text))
             sys.exit(1)
-        print(_('{0} units loaded').format(num))
+        try:
+            print(_('{0} units loaded').format(num))
+        except UnicodeError:
+            print('{0} units loaded'.format(num))
         self.fromGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.origPal = QtGui.QApplication.palette()
