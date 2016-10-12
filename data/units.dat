@@ -1,8 +1,8 @@
 #*****************************************************************************
-#units.dat, the units data file, version 0.6.1
+#units.dat, the units data file, version 0.6.2
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2015, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
@@ -11,7 +11,7 @@
 #
 # Units are defined by an optional quantity and an equivalent unit or unit
 # combination.  A Python expression may be used for the quantity, but is
-# restricted to using only the following operators: *, /, +, -, **, (, ).
+# restricted to using only the following operators: *, /, +, -.
 # Beware of integer division truncation: be sure to use a float for at least
 # one of the values.
 #
@@ -158,11 +158,11 @@ kiloparsec               = 1000 parsec
 megaparsec               = 1000 kiloparsec
 screw size               = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
                            # # Unified diameters, non-linear
-AWG Dia                  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+AWG Dia                  = [in] pow(92.0,(36-x)/39.0)/200.0 ; \
                            36 - 39.0*log(200.0*x)/log(92.0) \
                            # American Wire Gauge \
                            # use -1, -2 for 00, 000; non-linear
-American Wire Gauge Dia  = [in] 92.0**((36-x)/39.0)/200.0 ; \
+American Wire Gauge Dia  = [in] pow(92.0,(36-x)/39.0)/200.0 ; \
                            36 - 39.0*log(200.0*x)/log(92.0) \
                            #  # use -1, -2 for 00, 000; non-linear
 standard gauge           = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
@@ -502,11 +502,11 @@ rai                      = 1600 m^2        # # Thai
 ngaan                    = 400 m^2         # # Thai
 circular inch            = 1/4.0 pi*in^2   # # area of 1 inch circle
 circular mil             = 1/4.0 pi*mil^2  # # area of 1 mil circle
-AWG Area                 = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+AWG Area                 = [in^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
                            36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
                            # American Wire Gauge \
                            # use -1, -2 for 00, 000; non-linear
-American Wire Gauge Area = [in^2] pi/4*(92.0**((36-x)/39.0)/200.0)**2 ; \
+American Wire Gauge Area = [in^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
                            36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
                            #  # use -1, -2 for 00, 000; non-linear
 
