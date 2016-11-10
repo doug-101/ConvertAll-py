@@ -78,6 +78,7 @@ oz troy             = ounce troy         # ounce troy
 ton                 = 2000 lb            # # non-metric
 kiloton             = 1000 ton           # # non-metric
 long ton            = 2240 lb            # # Imperial
+ton imperial        = long ton
 slug                = lbf*s^2/ft
 stone               = 14 lb
 grain               = 1/7000.0 lb
@@ -723,6 +724,7 @@ horsepower        = 550 ft*lbf/sec
 hp                = horsepower      # horsepower
 metric horsepower = 75 kgf*m/s
 ton refrigeration = 12000 Btu/hr
+MBH               = 1000 Btu/hr     # 1000 Btu/hr
 
 
 #
