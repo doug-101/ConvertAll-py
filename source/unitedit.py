@@ -12,16 +12,32 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt, Qt, pyqtSignal, pyqtSignal, Qt, QEvent, Qt,
+                          pyqtSignal)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap, QValidator, QDoubleValidator, QValidator)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser, QPushButton,
+                             QLineEdit, QMessageBox, QButtonGroup, QCheckBox,
+                             QDialog, QGridLayout, QGroupBox, QHBoxLayout,
+                             QLabel, QLineEdit, QPushButton, QRadioButton,
+                             QSpinBox, QVBoxLayout, QLineEdit)
 
 
-class UnitEdit(QtGui.QLineEdit):
+class UnitEdit(QLineEdit):
     """Text line editor for unit entry.
     """
-    unitChanged = QtCore.pyqtSignal()
-    currentChanged = QtCore.pyqtSignal()
+    unitChanged = pyqtSignal()
+    currentChanged = pyqtSignal()
     def __init__(self, unitGroup, parent=None):
-        QtGui.QLineEdit.__init__(self, parent)
+        QLineEdit.__init__(self, parent)
         self.unitGroup = unitGroup
         self.textEdited.connect(self.updateGroup)
         self.cursorPositionChanged.connect(self.updateCurrentUnit)
@@ -58,27 +74,27 @@ class UnitEdit(QtGui.QLineEdit):
     def keyPressEvent(self, event):
         """Keys for return and up/down.
         """
-        if event.key() == QtCore.Qt.Key_Up:
+        if event.key() == Qt.Key_Up:
             self.unitGroup.moveToNext(True)
             self.currentChanged.emit()     # update listView
             self.unitUpdate()
-        elif event.key() == QtCore.Qt.Key_Down:
+        elif event.key() == Qt.Key_Down:
             self.unitGroup.moveToNext(False)
             self.currentChanged.emit()     # update listView
             self.unitUpdate()
-        elif event.key() in (QtCore.Qt.Key_Return, QtCore.Qt.Key_Enter):
+        elif event.key() in (Qt.Key_Return, Qt.Key_Enter):
             self.unitGroup.completePartial()
             self.currentChanged.emit()     # update listView
             self.unitUpdate()
         else:
-            QtGui.QLineEdit.keyPressEvent(self, event)
+            QLineEdit.keyPressEvent(self, event)
 
     def event(self, event):
         """Catch tab press to complete unit.
         """
-        if event.type() == QtCore.QEvent.KeyPress and \
-                 event.key() == QtCore.Qt.Key_Tab:
+        if event.type() == QEvent.KeyPress and \
+                 event.key() == Qt.Key_Tab:
             self.unitGroup.completePartial()
             self.currentChanged.emit()     # update listView
             self.unitUpdate()
-        return QtGui.QLineEdit.event(self, event)
+        return QLineEdit.event(self, event)

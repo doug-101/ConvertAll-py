@@ -16,18 +16,30 @@
 
 import re
 import sys
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt, Qt, pyqtSignal, pyqtSignal)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap, QValidator)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser, QPushButton,
+                             QLineEdit, QMessageBox)
 import unitdata
 
 
-class NumEdit(QtGui.QLineEdit):
+class NumEdit(QLineEdit):
     """Number entry editor.
     """
-    convertRqd = QtCore.pyqtSignal()
-    convertNum = QtCore.pyqtSignal(str)
+    convertRqd = pyqtSignal()
+    convertNum = pyqtSignal(str)
     def __init__(self, thisUnit, otherUnit, label, status, recentUnits,
                  primary, parent=None):
-        QtGui.QLineEdit.__init__(self, parent)
+        QLineEdit.__init__(self, parent)
         self.thisUnit = thisUnit
         self.otherUnit = otherUnit
         self.label = label
@@ -49,7 +61,7 @@ class NumEdit(QtGui.QLineEdit):
                     self.thisUnit.reduceGroup()
                     self.otherUnit.reduceGroup()
                 except unitdata.UnitDataError as text:
-                    QtGui.QMessageBox.warning(self, 'ConvertAll',
+                    QMessageBox.warning(self, 'ConvertAll',
                                               _('Error in unit data - {0}').
                                               format(text))
                     return
@@ -98,7 +110,7 @@ class NumEdit(QtGui.QLineEdit):
             numText = self.thisUnit.convertStr(num, self.otherUnit)
             self.convertNum.emit(numText)
         except unitdata.UnitDataError as text:
-            QtGui.QMessageBox.warning(self, 'ConvertAll',
+            QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - {0}').
                                       format(text))
 
@@ -113,16 +125,16 @@ class NumEdit(QtGui.QLineEdit):
             self.setText(numText)
 
 
-class FloatExprValidator(QtGui.QValidator):
+class FloatExprValidator(QValidator):
     """Validator for float python expressions typed into NumEdit.
     """
     invalidRe = re.compile(r'[^\d\.eE\+\-\*/\(\)]')
     def __init__(self, parent):
-        QtGui.QValidator.__init__(self, parent)
+        QValidator.__init__(self, parent)
 
     def validate(self, inputStr, pos):
         """Check for valid characters in entry.
         """
         if FloatExprValidator.invalidRe.search(inputStr):
-            return (QtGui.QValidator.Invalid, inputStr, pos)
-        return (QtGui.QValidator.Acceptable, inputStr, pos)
+            return (QValidator.Invalid, inputStr, pos)
+        return (QValidator.Acceptable, inputStr, pos)

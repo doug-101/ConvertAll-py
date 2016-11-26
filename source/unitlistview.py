@@ -12,16 +12,33 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt, Qt, pyqtSignal, pyqtSignal, Qt, QEvent, Qt,
+                          pyqtSignal, pyqtSignal)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap, QValidator, QDoubleValidator, QValidator)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser, QPushButton,
+                             QLineEdit, QMessageBox, QButtonGroup, QCheckBox,
+                             QDialog, QGridLayout, QGroupBox, QHBoxLayout,
+                             QLabel, QLineEdit, QPushButton, QRadioButton,
+                             QSpinBox, QVBoxLayout, QLineEdit,
+                             QAbstractItemView, QTreeWidget, QTreeWidgetItem)
 import convertdlg
 
 
-class UnitListView(QtGui.QTreeWidget):
+class UnitListView(QTreeWidget):
     """ListView of units available.
     """
-    unitChanged = QtCore.pyqtSignal()
+    unitChanged = pyqtSignal()
     def __init__(self, unitGroup, unitRefNum, parent=None):
-        QtGui.QTreeWidget.__init__(self, parent)
+        QTreeWidget.__init__(self, parent)
         self.unitGroup = unitGroup
         self.unitRefNum = unitRefNum
         self.buttonList = []
@@ -58,12 +75,12 @@ class UnitListView(QtGui.QTreeWidget):
         unit = self.unitGroup.currentUnit()
         if unit and unit.equiv:
             self.setCurrentItem(unit.viewLink[self.unitRefNum])
-            self.setItemSelected(unit.viewLink[self.unitRefNum], True)
+            unit.viewLink[self.unitRefNum].setSelected(True)
         else:
             unit = self.unitGroup.currentPartialUnit()
             if unit:
                 self.setCurrentItem(unit.viewLink[self.unitRefNum])
-                self.setItemSelected(unit.viewLink[self.unitRefNum], False)
+                unit.viewLink[self.unitRefNum].setSelected(False)
             else:
                 unit = self.unitGroup.currentSortPos()
                 self.enableButtons(False)
@@ -97,22 +114,22 @@ class UnitListView(QtGui.QTreeWidget):
         bottomItem = self.topLevelItem(bottomIndex)
         if not bottomItem:
             bottomItem = self.topLevelItem(self.topLevelItemCount() - 1)
-        self.scrollToItem(bottomItem, QtGui.QAbstractItemView.PositionAtBottom)
+        self.scrollToItem(bottomItem, QAbstractItemView.PositionAtBottom)
 
     def sizeHint(self):
         """Adjust width smaller.
         """
-        size = QtGui.QTreeWidget.sizeHint(self)
+        size = QTreeWidget.sizeHint(self)
         size.setWidth(self.columnWidth(0) + self.columnWidth(1) +
                       self.verticalScrollBar().sizeHint().width())
         return size
 
 
-class UnitListViewItem(QtGui.QTreeWidgetItem):
+class UnitListViewItem(QTreeWidgetItem):
     """Item in list view, references unit.
     """
     def __init__(self, unit, unitRefNum, parent=None):
-        QtGui.QTreeWidgetItem.__init__(self, parent)
+        QTreeWidgetItem.__init__(self, parent)
         self.unit = unit
         unit.viewLink[unitRefNum] = self
         self.setText(0, unit.description())

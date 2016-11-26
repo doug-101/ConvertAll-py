@@ -12,7 +12,18 @@
 #*****************************************************************************
 
 import os.path
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser)
 
 class IconDict(dict):
     """Stores icons by name, loads on demand.
@@ -28,7 +39,7 @@ class IconDict(dict):
         for path in potentialPaths:
             try:
                 for name in os.listdir(path):
-                    pixmap = QtGui.QPixmap(os.path.join(path, name))
+                    pixmap = QPixmap(os.path.join(path, name))
                     if not pixmap.isNull():
                         self.pathList.append(path)
                         return
@@ -53,13 +64,13 @@ class IconDict(dict):
         for path in self.pathList:
             try:
                 for name in os.listdir(path):
-                    pixmap = QtGui.QPixmap(os.path.join(path, name))
+                    pixmap = QPixmap(os.path.join(path, name))
                     if not pixmap.isNull():
                         name = os.path.splitext(name)[0]
                         try:
                             icon = self[name]
                         except KeyError:
-                            icon = QtGui.QIcon()
+                            icon = QIcon()
                             self[name] = icon
                         icon.addPixmap(pixmap)
             except OSError:
@@ -68,11 +79,11 @@ class IconDict(dict):
     def loadIcon(self, iconName):
         """Load icon from iconPath, add to dictionary and return the icon.
         """
-        icon = QtGui.QIcon()
+        icon = QIcon()
         for path in self.pathList:
             for ext in IconDict.iconExt:
                 fileName = iconName + ext
-                pixmap = QtGui.QPixmap(os.path.join(path, fileName))
+                pixmap = QPixmap(os.path.join(path, fileName))
                 if not pixmap.isNull():
                     icon.addPixmap(pixmap)
                 if not icon.isNull():

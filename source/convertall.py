@@ -29,12 +29,13 @@ import locale
 import getopt
 import signal
 import builtins
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator)
+from PyQt5.QtWidgets import QApplication
 
 def loadTranslator(fileName, app):
     """Load and install qt translator, return True if sucessful.
     """
-    translator = QtCore.QTranslator(app)
+    translator = QTranslator(app)
     modPath = os.path.abspath(sys.path[0])
     if modPath.endswith('.zip'):  # for py2exe
         modPath = os.path.dirname(modPath)
@@ -47,7 +48,7 @@ def loadTranslator(fileName, app):
         path = os.path.join(modPath, '..', 'i18n', translationPath)
         result = translator.load(fileName, path)
     if result:
-        QtCore.QCoreApplication.installTranslator(translator)
+        QCoreApplication.installTranslator(translator)
         return True
     else:
         print('Warning: translation file "{0}" could not be loaded'.
@@ -87,7 +88,7 @@ def setupTranslator(app):
         finally:
             del frame
         context = os.path.basename(os.path.splitext(fileName)[0])
-        return QtCore.QCoreApplication.translate(context, text, comment)
+        return QCoreApplication.translate(context, text, comment)
 
     def markNoTranslate(text, comment=''):
         return text
@@ -113,13 +114,13 @@ def main():
                                        '-ge', '-gr', '-im', '-in', '-na',
                                        '-nc', '-no', '-re', '-se', '-st',
                                        '-sy', '-ti', '-vi', '-wi']:
-                app = QtCore.QCoreApplication(sys.argv)
+                app = QCoreApplication(sys.argv)
                 setupTranslator(app)
                 import cmdline
                 cmdline.printUsage()
                 sys.exit(2)
         else:
-            app = QtCore.QCoreApplication(sys.argv)
+            app = QCoreApplication(sys.argv)
             setupTranslator(app)
             import cmdline
             try:
@@ -128,11 +129,11 @@ def main():
                 pass
             return
     userStyle = '-style' in ' '.join(sys.argv)
-    app = QtGui.QApplication(sys.argv)
+    app = QApplication(sys.argv)
     setupTranslator(app)  # must be before importing any convertall modules
     import convertdlg
     if not userStyle and not sys.platform.startswith('win'):
-        QtGui.QApplication.setStyle('plastique')
+        QApplication.setStyle('plastique')
     win = convertdlg.ConvertDlg()
     win.show()
     signal.signal(signal.SIGINT, signal.SIG_IGN)

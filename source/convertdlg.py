@@ -14,7 +14,12 @@
 
 import sys
 import os.path
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt)
+from PyQt5.QtGui import (QColor, QFont, QPalette)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget)
 try:
     from __main__ import __version__, __author__, helpFilePath, iconPath
     from __main__ import lang
@@ -38,12 +43,12 @@ import helpview
 import optiondlg
 
 
-class ConvertDlg(QtGui.QWidget):
+class ConvertDlg(QWidget):
     """Main dialog for ConvertAll program.
     """
     unitData = unitdata.UnitData()
     def __init__(self, parent=None):
-        QtGui.QWidget.__init__(self, parent)
+        QWidget.__init__(self, parent)
         self.setWindowTitle('ConvertAll')
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
@@ -53,7 +58,7 @@ class ConvertDlg(QtGui.QWidget):
         self.icons = icondict.IconDict()
         self.icons.addIconPath([path for path in iconPathList if path])
         try:
-            QtGui.QApplication.setWindowIcon(self.icons['convertall_med'])
+            QApplication.setWindowIcon(self.icons['convertall_med'])
         except KeyError:
             pass
         self.helpView = None
@@ -64,7 +69,7 @@ class ConvertDlg(QtGui.QWidget):
         try:
             num = ConvertDlg.unitData.readData()
         except unitdata.UnitDataError as text:
-            QtGui.QMessageBox.warning(self, 'ConvertAll',
+            QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - {0}').
                                       format(text))
             sys.exit(1)
@@ -74,20 +79,20 @@ class ConvertDlg(QtGui.QWidget):
             print('{0} units loaded'.format(num))
         self.fromGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
-        self.origPal = QtGui.QApplication.palette()
+        self.origPal = QApplication.palette()
         self.updateColors()
         self.textButtons = []
         self.recentButtons = []
 
-        topLayout = QtGui.QHBoxLayout(self)    # divide main, buttons
-        mainLayout = QtGui.QVBoxLayout()
+        topLayout = QHBoxLayout(self)    # divide main, buttons
+        mainLayout = QVBoxLayout()
         topLayout.addLayout(mainLayout)
-        unitLayout = QtGui.QHBoxLayout()       # unit selection
+        unitLayout = QHBoxLayout()       # unit selection
         mainLayout.addLayout(unitLayout)
 
-        fromBox = QtGui.QGroupBox(_('From Unit'))
+        fromBox = QGroupBox(_('From Unit'))
         unitLayout.addWidget(fromBox)
-        fromLayout = QtGui.QVBoxLayout(fromBox)
+        fromLayout = QVBoxLayout(fromBox)
         fromLayout.setSpacing(3)
         self.fromUnitEdit = unitedit.UnitEdit(self.fromGroup)
         fromLayout.addWidget(self.fromUnitEdit)
@@ -100,9 +105,9 @@ class ConvertDlg(QtGui.QWidget):
         self.fromUnitListView.setFocusProxy(self.fromUnitEdit)
         self.addButtons(self.fromGroup, self.fromUnitListView, fromLayout)
 
-        toBox = QtGui.QGroupBox(_('To Unit'))
+        toBox = QGroupBox(_('To Unit'))
         unitLayout.addWidget(toBox)
-        toLayout = QtGui.QVBoxLayout(toBox)
+        toLayout = QVBoxLayout(toBox)
         toLayout.setSpacing(3)
         self.toUnitEdit = unitedit.UnitEdit(self.toGroup)
         toLayout.addWidget(self.toUnitEdit)
@@ -115,28 +120,28 @@ class ConvertDlg(QtGui.QWidget):
         self.addButtons(self.toGroup, self.toUnitListView, toLayout)
         self.showHideButtons()
 
-        numberLayout = QtGui.QHBoxLayout()
+        numberLayout = QHBoxLayout()
         mainLayout.addLayout(numberLayout)
-        statusLabel = QtGui.QLabel(_('Set units'))
-        statusLabel.setFrameStyle(QtGui.QFrame.Panel | QtGui.QFrame.Sunken)
+        statusLabel = QLabel(_('Set units'))
+        statusLabel.setFrameStyle(QFrame.Panel | QFrame.Sunken)
         mainLayout.addWidget(statusLabel)
 
-        fromNumBox = QtGui.QGroupBox(_('No Unit Set'))
+        fromNumBox = QGroupBox(_('No Unit Set'))
         numberLayout.addWidget(fromNumBox)
-        fromNumLayout = QtGui.QVBoxLayout(fromNumBox)
+        fromNumLayout = QVBoxLayout(fromNumBox)
         self.fromNumEdit = numedit.NumEdit(self.fromGroup, self.toGroup,
                                            fromNumBox, statusLabel,
                                            self.recentUnits, True)
         fromNumLayout.addWidget(self.fromNumEdit)
         self.fromUnitEdit.unitChanged.connect(self.fromNumEdit.unitUpdate)
         self.fromNumEdit.setEnabled(False)
-        equalsLabel = QtGui.QLabel(' = ')
-        equalsLabel.setFont(QtGui.QFont(self.font().family(), 30))
+        equalsLabel = QLabel(' = ')
+        equalsLabel.setFont(QFont(self.font().family(), 30))
         numberLayout.addWidget(equalsLabel)
 
-        toNumBox = QtGui.QGroupBox(_('No Unit Set'))
+        toNumBox = QGroupBox(_('No Unit Set'))
         numberLayout.addWidget(toNumBox)
-        toNumLayout = QtGui.QVBoxLayout(toNumBox)
+        toNumLayout = QVBoxLayout(toNumBox)
         self.toNumEdit = numedit.NumEdit(self.toGroup, self.fromGroup,
                                          toNumBox, statusLabel,
                                          self.recentUnits, False)
@@ -150,27 +155,27 @@ class ConvertDlg(QtGui.QWidget):
         self.fromNumEdit.convertRqd.connect(self.toNumEdit.convert)
         self.toNumEdit.convertRqd.connect(self.fromNumEdit.convert)
 
-        buttonLayout = QtGui.QVBoxLayout()     # major buttons
+        buttonLayout = QVBoxLayout()     # major buttons
         topLayout.addLayout(buttonLayout)
-        closeButton = QtGui.QPushButton(_('&Close'))
+        closeButton = QPushButton(_('&Close'))
         buttonLayout.addWidget(closeButton)
-        closeButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        closeButton.setFocusPolicy(Qt.NoFocus)
         closeButton.clicked.connect(self.close)
-        finderButton = QtGui.QPushButton(_('&Unit Finder...'))
+        finderButton = QPushButton(_('&Unit Finder...'))
         buttonLayout.addWidget(finderButton)
-        finderButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        finderButton.setFocusPolicy(Qt.NoFocus)
         finderButton.clicked.connect(self.showFinder)
-        optionsButton = QtGui.QPushButton(_('&Options...'))
+        optionsButton = QPushButton(_('&Options...'))
         buttonLayout.addWidget(optionsButton)
-        optionsButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        optionsButton.setFocusPolicy(Qt.NoFocus)
         optionsButton.clicked.connect(self.changeOptions)
-        helpButton = QtGui.QPushButton(_('&Help...'))
+        helpButton = QPushButton(_('&Help...'))
         buttonLayout.addWidget(helpButton)
-        helpButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        helpButton.setFocusPolicy(Qt.NoFocus)
         helpButton.clicked.connect(self.help)
-        aboutButton = QtGui.QPushButton(_('&About...'))
+        aboutButton = QPushButton(_('&About...'))
         buttonLayout.addWidget(aboutButton)
-        aboutButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        aboutButton.setFocusPolicy(Qt.NoFocus)
         aboutButton.clicked.connect(self.about)
         buttonLayout.addStretch()
 
@@ -197,7 +202,7 @@ class ConvertDlg(QtGui.QWidget):
     def addButtons(self, unitGroup, listView, upperLayout):
         """Add buttons to unit selector.
         """
-        buttonLayout = QtGui.QHBoxLayout()
+        buttonLayout = QHBoxLayout()
         upperLayout.addLayout(buttonLayout)
         buttons = []
         buttons.append(ModButton(unitGroup.addOper, 1, 'X'))
@@ -208,7 +213,7 @@ class ConvertDlg(QtGui.QWidget):
             buttonLayout.addWidget(button)
         listView.buttonList = buttons[:]
         buttons.append(ModButton(unitGroup.clearUnit, None, _('Clear Unit')))
-        extraLayout = QtGui.QHBoxLayout()
+        extraLayout = QHBoxLayout()
         upperLayout.addLayout(extraLayout)
         extraLayout.addWidget(buttons[-1])
         for but in buttons:
@@ -216,8 +221,8 @@ class ConvertDlg(QtGui.QWidget):
             but.setEnabled(False)
             self.textButtons.append(but)
         buttons[-1].setEnabled(True)
-        recentButton = QtGui.QPushButton(_('Recent Unit'))
-        recentButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        recentButton = QPushButton(_('Recent Unit'))
+        recentButton.setFocusPolicy(Qt.NoFocus)
         recentButton.unitGroup = unitGroup
         recentButton.clicked.connect(self.recentMenu)
         extraLayout.addWidget(recentButton)
@@ -229,12 +234,12 @@ class ConvertDlg(QtGui.QWidget):
         """Show a menu with recently used units.
         """
         button = self.sender()
-        menu = QtGui.QMenu()
+        menu = QMenu()
         for unit in self.recentUnits:
             action = menu.addAction(unit)
             action.unitGroup = button.unitGroup
             menu.triggered.connect(self.insertRecent)
-        menu.exec_(button.mapToGlobal(QtCore.QPoint(0, 0)))
+        menu.exec_(button.mapToGlobal(QPoint(0, 0)))
 
     def setRecentAvail(self):
         """Enable or disable recent unit button.
@@ -259,12 +264,12 @@ class ConvertDlg(QtGui.QWidget):
         if self.option.boolData('UseDefaultColors'):
             pal = self.origPal
         else:
-            pal = QtGui.QPalette()
-            pal.setColor(QtGui.QPalette.Base,
+            pal = QPalette()
+            pal.setColor(QPalette.Base,
                          self.getOptionColor('Background'))
-            pal.setColor(QtGui.QPalette.Text,
+            pal.setColor(QPalette.Text,
                          self.getOptionColor('Foreground'))
-        QtGui.QApplication.setPalette(pal)
+        QApplication.setPalette(pal)
 
     def showFinder(self):
         """Show dialog for searhing and filtering units.
@@ -302,7 +307,7 @@ class ConvertDlg(QtGui.QWidget):
                                 _('Use default system colors'))
         optiondlg.OptionDlgPush(dlg, _('Set background color'), self.backColor)
         optiondlg.OptionDlgPush(dlg, _('Set text color'), self.textColor)
-        if dlg.exec_() == QtGui.QDialog.Accepted:
+        if dlg.exec_() == QDialog.Accepted:
             self.option.writeChanges()
             self.recentUnits.updateQuantity()
             self.updateColors()
@@ -316,7 +321,7 @@ class ConvertDlg(QtGui.QWidget):
     def getOptionColor(self, rootName):
         """Return a color from option storage.
         """
-        return QtGui.QColor(self.option.intData(rootName + 'R', 0, 255),
+        return QColor(self.option.intData(rootName + 'R', 0, 255),
                             self.option.intData(rootName + 'G', 0, 255),
                             self.option.intData(rootName + 'B', 0, 255))
 
@@ -331,7 +336,7 @@ class ConvertDlg(QtGui.QWidget):
         """Allow user to set control background color.
         """
         background = self.getOptionColor('Background')
-        newColor = QtGui.QColorDialog.getColor(background, self)
+        newColor = QColorDialog.getColor(background, self)
         if newColor.isValid() and newColor != background:
             self.setOptionColor('Background', newColor)
 
@@ -339,7 +344,7 @@ class ConvertDlg(QtGui.QWidget):
         """Allow user to set control text color.
         """
         foreground = self.getOptionColor('Foreground')
-        newColor = QtGui.QColorDialog.getColor(foreground, self)
+        newColor = QColorDialog.getColor(foreground, self)
         if newColor.isValid() and newColor != foreground:
             self.setOptionColor('Foreground', newColor)
 
@@ -378,7 +383,7 @@ class ConvertDlg(QtGui.QWidget):
         if not self.helpView:
             path = self.findHelpFile()
             if not path:
-                QtGui.QMessageBox.warning(self, 'ConvertAll',
+                QMessageBox.warning(self, 'ConvertAll',
                                           _('Read Me file not found'))
                 return
             self.helpView = helpview.HelpView(path,
@@ -389,7 +394,7 @@ class ConvertDlg(QtGui.QWidget):
     def about(self):
         """Show about info.
         """
-        QtGui.QMessageBox.about(self, 'ConvertAll',
+        QMessageBox.about(self, 'ConvertAll',
                                 _('ConvertAll Version {0}\nby {1}').
                                 format(__version__, __author__))
 
@@ -410,23 +415,23 @@ class ConvertDlg(QtGui.QWidget):
         event.accept()
 
 
-class TipDialog(QtGui.QDialog):
+class TipDialog(QDialog):
     """Show a static usage tip at startup by default.
     """
     def __init__(self, option, parent=None):
-        QtGui.QDialog.__init__(self, parent)
+        QDialog.__init__(self, parent)
         self.option = option
-        self.setWindowFlags(QtCore.Qt.Dialog | QtCore.Qt.WindowTitleHint |
-                            QtCore.Qt.WindowSystemMenuHint)
+        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
+                            Qt.WindowSystemMenuHint)
         self.setWindowTitle(_('Convertall - Tip'))
-        topLayout = QtGui.QVBoxLayout(self)
+        topLayout = QVBoxLayout(self)
         self.setLayout(topLayout)
 
-        box = QtGui.QGroupBox(_('Combining Units'))
+        box = QGroupBox(_('Combining Units'))
         topLayout.addWidget(box)
-        boxLayout = QtGui.QVBoxLayout(box)
-        label = QtGui.QLabel(self)
-        label.setTextFormat(QtCore.Qt.RichText)
+        boxLayout = QVBoxLayout(box)
+        label = QLabel(self)
+        label.setTextFormat(Qt.RichText)
         label.setText(_('<p>ConvertAll\'s strength is the ability to combine '
                         'units:</p>'
                         '<ul><li>Enter "m/s" to get meters per second</li>'
@@ -437,14 +442,14 @@ class TipDialog(QtGui.QDialog):
                         '</ul>'))
         boxLayout.addWidget(label)
 
-        ctrlLayout = QtGui.QHBoxLayout()
+        ctrlLayout = QHBoxLayout()
         topLayout.addLayout(ctrlLayout)
-        self.showCheck = QtGui.QCheckBox(_('Show this tip at startup'), self)
+        self.showCheck = QCheckBox(_('Show this tip at startup'), self)
         self.showCheck.setChecked(True)
         ctrlLayout.addWidget(self.showCheck)
 
         ctrlLayout.addStretch()
-        okButton = QtGui.QPushButton(_('&OK'), self)
+        okButton = QPushButton(_('&OK'), self)
         ctrlLayout.addWidget(okButton)
         okButton.clicked.connect(self.accept)
 
@@ -453,4 +458,4 @@ class TipDialog(QtGui.QDialog):
         """
         if not self.showCheck.isChecked():
             self.option.changeData('ShowStartupTip', 'no', True)
-        QtGui.QDialog.accept(self)
+        QDialog.accept(self)

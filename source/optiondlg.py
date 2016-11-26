@@ -12,33 +12,48 @@
 #*****************************************************************************
 
 import sys
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt, Qt, pyqtSignal, pyqtSignal, Qt)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap, QValidator, QDoubleValidator, QValidator)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser, QPushButton,
+                             QLineEdit, QMessageBox, QButtonGroup, QCheckBox,
+                             QDialog, QGridLayout, QGroupBox, QHBoxLayout,
+                             QLabel, QLineEdit, QPushButton, QRadioButton,
+                             QSpinBox, QVBoxLayout)
 
 
-class OptionDlg(QtGui.QDialog):
+class OptionDlg(QDialog):
     """Works with Option class to provide a dialog for pref/options.
     """
     def __init__(self, option, parent=None):
-        QtGui.QDialog.__init__(self, parent)
-        self.setWindowFlags(QtCore.Qt.Dialog | QtCore.Qt.WindowTitleHint |
-                            QtCore.Qt.WindowSystemMenuHint)
+        QDialog.__init__(self, parent)
+        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
+                            Qt.WindowSystemMenuHint)
         self.option = option
 
-        topLayout = QtGui.QVBoxLayout(self)
+        topLayout = QVBoxLayout(self)
         self.setLayout(topLayout)
-        self.columnLayout = QtGui.QHBoxLayout()
+        self.columnLayout = QHBoxLayout()
         topLayout.addLayout(self.columnLayout)
-        self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout = QGridLayout()
         self.columnLayout.addLayout(self.gridLayout)
         self.oldLayout = self.gridLayout
 
-        ctrlLayout = QtGui.QHBoxLayout()
+        ctrlLayout = QHBoxLayout()
         topLayout.addLayout(ctrlLayout)
         ctrlLayout.addStretch(0)
-        okButton = QtGui.QPushButton(_('&OK'), self)
+        okButton = QPushButton(_('&OK'), self)
         ctrlLayout.addWidget(okButton)
         okButton.clicked.connect(self.accept)
-        cancelButton = QtGui.QPushButton(_('&Cancel'), self)
+        cancelButton = QPushButton(_('&Cancel'), self)
         ctrlLayout.addWidget(cancelButton)
         cancelButton.clicked.connect(self.reject)
         self.setWindowTitle(_('Preferences'))
@@ -59,10 +74,10 @@ class OptionDlg(QtGui.QDialog):
     def startGroupBox(self, title, intSpace=5):
         """Use a group box for next added items.
         """
-        self.curGroup = QtGui.QGroupBox(title, self)
+        self.curGroup = QGroupBox(title, self)
         row = self.oldLayout.rowCount()
         self.oldLayout.addWidget(self.curGroup, row, 0, 1, 2)
-        self.gridLayout = QtGui.QGridLayout(self.curGroup)
+        self.gridLayout = QGridLayout(self.curGroup)
         self.gridLayout.setVerticalSpacing(intSpace)
 
     def endGroupBox(self):
@@ -76,7 +91,7 @@ class OptionDlg(QtGui.QDialog):
         """
         self.curGroup = None
         row = self.oldLayout.rowCount()
-        self.gridLayout = QtGui.QGridLayout()
+        self.gridLayout = QGridLayout()
         self.columnLayout.addLayout(self.gridLayout)
         self.oldLayout = self.gridLayout
 
@@ -92,7 +107,7 @@ class OptionDlg(QtGui.QDialog):
         """
         for item in self.itemList:
             item.updateData()
-        QtGui.QDialog.accept(self)
+        QDialog.accept(self)
 
 
 class OptionDlgItem:
@@ -114,7 +129,7 @@ class OptionDlgBool(OptionDlgItem):
     """
     def __init__(self, dlg, key, menuText, writeChg=True):
         OptionDlgItem.__init__(self, dlg, key, writeChg)
-        self.control = QtGui.QCheckBox(menuText, dlg.parentGroup())
+        self.control = QCheckBox(menuText, dlg.parentGroup())
         self.control.setChecked(dlg.option.boolData(key))
         dlg.addItem(self, self.control)
 
@@ -133,8 +148,8 @@ class OptionDlgInt(OptionDlgItem):
     def __init__(self, dlg, key, menuText, min, max, writeChg=True, step=1,
                  wrap=False, suffix=''):
         OptionDlgItem.__init__(self, dlg, key, writeChg)
-        label = QtGui.QLabel(menuText, dlg.parentGroup())
-        self.control = QtGui.QSpinBox(dlg.parentGroup())
+        label = QLabel(menuText, dlg.parentGroup())
+        self.control = QSpinBox(dlg.parentGroup())
         self.control.setMinimum(min)
         self.control.setMaximum(max)
         self.control.setSingleStep(step)
@@ -155,10 +170,10 @@ class OptionDlgDbl(OptionDlgItem):
     """
     def __init__(self, dlg, key, menuText, min, max, writeChg=True):
         OptionDlgItem.__init__(self, dlg, key, writeChg)
-        label = QtGui.QLabel(menuText, dlg.parentGroup())
-        self.control = QtGui.QLineEdit(repr(dlg.option.numData(key, min, max)),
+        label = QLabel(menuText, dlg.parentGroup())
+        self.control = QLineEdit(repr(dlg.option.numData(key, min, max)),
                                        dlg.parentGroup())
-        valid = QtGui.QDoubleValidator(min, max, 6, self.control)
+        valid = QDoubleValidator(min, max, 6, self.control)
         self.control.setValidator(valid)
         dlg.addItem(self, self.control, label)
 
@@ -168,7 +183,7 @@ class OptionDlgDbl(OptionDlgItem):
         text = self.control.text()
         unusedPos = 0
         if self.control.validator().validate(text, unusedPos)[0] != \
-                QtGui.QValidator.Acceptable:
+                QValidator.Acceptable:
             return
         num = float(text)
         if num != self.dlg.option.numData(self.key):
@@ -179,8 +194,8 @@ class OptionDlgStr(OptionDlgItem):
     """
     def __init__(self, dlg, key, menuText, writeChg=True):
         OptionDlgItem.__init__(self, dlg, key, writeChg)
-        label = QtGui.QLabel(menuText, dlg.parentGroup())
-        self.control = QtGui.QLineEdit(dlg.option.strData(key, True),
+        label = QLabel(menuText, dlg.parentGroup())
+        self.control = QLineEdit(dlg.option.strData(key, True),
                                        dlg.parentGroup())
         dlg.addItem(self, self.control, label)
 
@@ -198,14 +213,14 @@ class OptionDlgRadio(OptionDlgItem):
         # textList is list of tuples: optionText, labelText
         OptionDlgItem.__init__(self, dlg, key, writeChg)
         self.optionList = [x[0] for x in textList]
-        buttonBox = QtGui.QGroupBox(headText, dlg.parentGroup())
-        self.control = QtGui.QButtonGroup(buttonBox)
-        layout = QtGui.QVBoxLayout(buttonBox)
+        buttonBox = QGroupBox(headText, dlg.parentGroup())
+        self.control = QButtonGroup(buttonBox)
+        layout = QVBoxLayout(buttonBox)
         buttonBox.setLayout(layout)
         optionSetting = dlg.option.strData(key)
         id = 0
         for optionText, labelText in textList:
-            button = QtGui.QRadioButton(labelText, buttonBox)
+            button = QRadioButton(labelText, buttonBox)
             layout.addWidget(button)
             self.control.addButton(button, id)
             id += 1
@@ -225,6 +240,6 @@ class OptionDlgPush(OptionDlgItem):
     """
     def __init__(self, dlg, text, cmd):
         OptionDlgItem.__init__(self, dlg, '', 0)
-        self.control = QtGui.QPushButton(text, dlg.parentGroup())
+        self.control = QPushButton(text, dlg.parentGroup())
         self.control.clicked.connect(cmd)
         dlg.addItem(self, self.control)

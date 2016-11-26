@@ -12,18 +12,29 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
+                          Qt, Qt, pyqtSignal)
+from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument, QIcon,
+                         QPixmap)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
+                             QMenu, QStatusBar, QTextBrowser, QPushButton)
 
 
-class ModButton(QtGui.QPushButton):
+class ModButton(QPushButton):
     """Button used to add operators, change exponent or clear unit.
     """
-    stateChg = QtCore.pyqtSignal()
+    stateChg = pyqtSignal()
     def __init__(self, function, param, label, parent=None):
-        QtGui.QPushButton.__init__(self, label, parent)
+        QPushButton.__init__(self, label, parent)
         self.function = function
         self.param = param
-        self.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.setFocusPolicy(Qt.NoFocus)
         self.clicked.connect(self.exe)
 
     def exe(self):
@@ -38,6 +49,6 @@ class ModButton(QtGui.QPushButton):
     def sizeHint(self):
         """Adjust width smaller.
         """
-        size = QtGui.QPushButton.sizeHint(self)
+        size = QPushButton.sizeHint(self)
         size.setWidth(size.width() / 2)
         return size

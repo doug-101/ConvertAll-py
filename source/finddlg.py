@@ -14,66 +14,74 @@
 
 import sys
 import os.path
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt)
+from PyQt5.QtGui import (QColor, QFont, QPalette)
+from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
+                             QColorDialog, QDialog, QFrame, QGroupBox,
+                             QHBoxLayout, QLabel, QMenu, QMessageBox,
+                             QPushButton, QVBoxLayout, QWidget, QComboBox,
+                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
+                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
+                             QWidget)
 import convertdlg
 
 
-class FindDlg(QtGui.QWidget):
+class FindDlg(QWidget):
     """Dialog for filtering and searching for units.
     """
     def __init__(self, mainDlg, parent=None):
-        QtGui.QWidget.__init__(self, parent)
-        self.setAttribute(QtCore.Qt.WA_QuitOnClose, False)
+        QWidget.__init__(self, parent)
+        self.setAttribute(Qt.WA_QuitOnClose, False)
         self.mainDlg = mainDlg
         self.setWindowTitle(_('Unit Finder'))
         self.currentType = ''
         self.currentSearch = ''
 
-        mainLayout = QtGui.QVBoxLayout(self)
-        upperLayout = QtGui.QHBoxLayout()
+        mainLayout = QVBoxLayout(self)
+        upperLayout = QHBoxLayout()
         mainLayout.addLayout(upperLayout)
-        filterBox = QtGui.QGroupBox(_('&Filter Unit Types'))
+        filterBox = QGroupBox(_('&Filter Unit Types'))
         upperLayout.addWidget(filterBox)
-        filterLayout = QtGui.QHBoxLayout(filterBox)
-        self.filterCombo = QtGui.QComboBox()
+        filterLayout = QHBoxLayout(filterBox)
+        self.filterCombo = QComboBox()
         filterLayout.addWidget(self.filterCombo)
 
-        searchBox = QtGui.QGroupBox(_('&Search String'))
+        searchBox = QGroupBox(_('&Search String'))
         mainLayout.addWidget(searchBox)
-        searchLayout = QtGui.QHBoxLayout(searchBox)
-        self.searchEdit = QtGui.QLineEdit()
+        searchLayout = QHBoxLayout(searchBox)
+        self.searchEdit = QLineEdit()
         searchLayout.addWidget(self.searchEdit)
-        clearButton = QtGui.QPushButton(_('C&lear'))
+        clearButton = QPushButton(_('C&lear'))
         searchLayout.addWidget(clearButton)
-        clearButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        clearButton.setFocusPolicy(Qt.NoFocus)
 
         self.unitListView = FindUnitListView()
         mainLayout.addWidget(self.unitListView)
 
-        lowerLayout = QtGui.QHBoxLayout()
+        lowerLayout = QHBoxLayout()
         mainLayout.addLayout(lowerLayout)
-        fromBox = QtGui.QGroupBox(_('From Unit'))
+        fromBox = QGroupBox(_('From Unit'))
         lowerLayout.addWidget(fromBox)
-        fromLayout = QtGui.QVBoxLayout(fromBox)
-        fromReplaceButton = QtGui.QPushButton(_('&Replace'))
+        fromLayout = QVBoxLayout(fromBox)
+        fromReplaceButton = QPushButton(_('&Replace'))
         fromLayout.addWidget(fromReplaceButton)
         fromReplaceButton.clicked.connect(self.fromRepl)
-        fromInsertButton = QtGui.QPushButton(_('&Insert'))
+        fromInsertButton = QPushButton(_('&Insert'))
         fromLayout.addWidget(fromInsertButton)
         fromInsertButton.clicked.connect(self.fromIns)
-        toBox = QtGui.QGroupBox(_('To Unit'))
+        toBox = QGroupBox(_('To Unit'))
         lowerLayout.addWidget(toBox)
-        toLayout = QtGui.QVBoxLayout(toBox)
-        toReplaceButton = QtGui.QPushButton(_('Replac&e'))
+        toLayout = QVBoxLayout(toBox)
+        toReplaceButton = QPushButton(_('Replac&e'))
         toLayout.addWidget(toReplaceButton)
         toReplaceButton.clicked.connect(self.toRepl)
-        toInsertButton = QtGui.QPushButton(_('Inser&t'))
+        toInsertButton = QPushButton(_('Inser&t'))
         toLayout.addWidget(toInsertButton)
         toInsertButton.clicked.connect(self.toIns)
         self.buttonList = [fromReplaceButton, fromInsertButton,
                            toReplaceButton, toInsertButton]
 
-        closeButton = QtGui.QPushButton(_('&Close'))
+        closeButton = QPushButton(_('&Close'))
         upperLayout.addWidget(closeButton)
         closeButton.clicked.connect(self.close)
 
@@ -101,7 +109,7 @@ class FindDlg(QtGui.QWidget):
                                filteredList(self.currentType,
                                             self.currentSearch):
             FindUnitListItem(unit, self.unitListView)
-        self.unitListView.sortItems(0, QtCore.Qt.AscendingOrder)
+        self.unitListView.sortItems(0, Qt.AscendingOrder)
         if self.unitListView.topLevelItemCount() == 1:
             self.unitListView.setItemSelected(self.unitListView.
                                               topLevelItem(0), True)
@@ -184,11 +192,11 @@ class FindDlg(QtGui.QWidget):
             self.mainDlg.toUnitListView.updateSelection()
 
 
-class FindUnitListView(QtGui.QTreeWidget):
+class FindUnitListView(QTreeWidget):
     """ListView of units available.
     """
     def __init__(self, parent=None):
-        QtGui.QTreeWidget.__init__(self, parent)
+        QTreeWidget.__init__(self, parent)
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
         self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
@@ -198,18 +206,18 @@ class FindUnitListView(QtGui.QTreeWidget):
     def sizeHint(self):
         """Adjust width smaller.
         """
-        size = QtGui.QTreeWidget.sizeHint(self)
+        size = QTreeWidget.sizeHint(self)
         size.setWidth(self.columnWidth(0) + self.columnWidth(1) +
                       self.columnWidth(2) + 10 +   # fudge factor
                       self.verticalScrollBar().sizeHint().width())
         return size
 
 
-class FindUnitListItem(QtGui.QTreeWidgetItem):
+class FindUnitListItem(QTreeWidgetItem):
     """Item in the find unit list view.
     """
     def __init__(self, unit, parent=None):
-        QtGui.QTreeWidgetItem.__init__(self, parent)
+        QTreeWidgetItem.__init__(self, parent)
         self.unit = unit
         self.setText(0, unit.description())
         self.setText(1, unit.typeName)
