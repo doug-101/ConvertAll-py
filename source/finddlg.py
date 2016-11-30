@@ -4,7 +4,7 @@
 # finddlg.py, provides dialog interface for unit find dialog
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -14,15 +14,10 @@
 
 import sys
 import os.path
-from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt)
-from PyQt5.QtGui import (QColor, QFont, QPalette)
-from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
-                             QColorDialog, QDialog, QFrame, QGroupBox,
-                             QHBoxLayout, QLabel, QMenu, QMessageBox,
-                             QPushButton, QVBoxLayout, QWidget, QComboBox,
-                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
-                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
-                             QWidget)
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import (QComboBox, QGroupBox, QHBoxLayout, QLineEdit,
+                             QPushButton, QTreeWidget, QTreeWidgetItem,
+                             QVBoxLayout, QWidget)
 import convertdlg
 
 

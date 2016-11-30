@@ -3,7 +3,7 @@
 #****************************************************************************
 # helpview.py, provides a window for viewing an html help file
 #
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -14,17 +14,10 @@
 import os.path
 import sys
 import webbrowser
-from PyQt5.QtCore import (QCoreApplication, QTranslator, QPoint, Qt, Qt, QUrl,
-                          Qt)
-from PyQt5.QtGui import (QColor, QFont, QPalette, QTextDocument)
-from PyQt5.QtWidgets import (QApplication, QApplication, QCheckBox,
-                             QColorDialog, QDialog, QFrame, QGroupBox,
-                             QHBoxLayout, QLabel, QMenu, QMessageBox,
-                             QPushButton, QVBoxLayout, QWidget, QComboBox,
-                             QGroupBox, QHBoxLayout, QLineEdit, QPushButton,
-                             QTreeWidget, QTreeWidgetItem, QVBoxLayout,
-                             QWidget, QAction, QLabel, QLineEdit, QMainWindow,
-                             QMenu, QStatusBar, QTextBrowser)
+from PyQt5.QtCore import (QUrl, Qt)
+from PyQt5.QtGui import QTextDocument
+from PyQt5.QtWidgets import (QAction, QLabel, QLineEdit, QMainWindow, QMenu,
+                             QStatusBar, QTextBrowser)
 
 
 class HelpView(QMainWindow):
