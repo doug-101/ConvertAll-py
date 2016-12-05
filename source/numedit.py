@@ -12,8 +12,6 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-
-
 import re
 import sys
 from PyQt5.QtCore import pyqtSignal
@@ -27,9 +25,10 @@ class NumEdit(QLineEdit):
     """
     convertRqd = pyqtSignal()
     convertNum = pyqtSignal(str)
+    gotFocus = pyqtSignal()
     def __init__(self, thisUnit, otherUnit, label, status, recentUnits,
                  primary, parent=None):
-        QLineEdit.__init__(self, parent)
+        super().__init__(parent)
         self.thisUnit = thisUnit
         self.otherUnit = otherUnit
         self.label = label
@@ -45,7 +44,7 @@ class NumEdit(QLineEdit):
         """Update the editor and labels based on a unit change.
         """
         if self.thisUnit.groupValid():
-            self.label.setTitle(self.thisUnit.unitString())
+            self.label.setText(self.thisUnit.unitString())
             if self.otherUnit.groupValid():
                 try:
                     self.thisUnit.reduceGroup()
@@ -76,7 +75,7 @@ class NumEdit(QLineEdit):
                 self.status.setText(_('Set units'))
         else:
             self.status.setText(_('Set units'))
-            self.label.setTitle(_('No Unit Set'))
+            self.label.setText(_('No Unit Set'))
         self.setEnabled(False)
         self.convertNum.emit('')
 
@@ -114,13 +113,19 @@ class NumEdit(QLineEdit):
             self.setEnabled(True)
             self.setText(numText)
 
+    def focusInEvent(self, event):
+        """Signal that this number editor received focus.
+        """
+        super().focusInEvent(event)
+        self.gotFocus.emit()
+
 
 class FloatExprValidator(QValidator):
     """Validator for float python expressions typed into NumEdit.
     """
     invalidRe = re.compile(r'[^\d\.eE\+\-\*/\(\)]')
     def __init__(self, parent):
-        QValidator.__init__(self, parent)
+        super().__init__(parent)
 
     def validate(self, inputStr, pos):
         """Check for valid characters in entry.

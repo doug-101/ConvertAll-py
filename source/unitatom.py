@@ -4,7 +4,7 @@
 # unitatom.py, provides class to hold data on each available unit
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -57,7 +57,7 @@ class UnitAtom(object):
         self.comments = [comm.strip() for comm in dataList]
         self.comments.extend([''] * (2 - len(self.comments)))
         self.exp = 1
-        self.viewLink = [None, None]
+        self.viewLink = None
         self.typeName = ''
 
     def description(self):

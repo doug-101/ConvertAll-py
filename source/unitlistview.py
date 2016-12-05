@@ -21,10 +21,8 @@ class UnitListView(QTreeWidget):
     """ListView of units available.
     """
     unitChanged = pyqtSignal()
-    def __init__(self, unitGroup, unitRefNum, parent=None):
-        QTreeWidget.__init__(self, parent)
-        self.unitGroup = unitGroup
-        self.unitRefNum = unitRefNum
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.buttonList = []
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
@@ -38,35 +36,38 @@ class UnitListView(QTreeWidget):
         """
         self.clear()
         for name in convertdlg.ConvertDlg.unitData.sortedKeys:
-            UnitListViewItem(convertdlg.ConvertDlg.unitData[name],
-                             self.unitRefNum, self)
+            UnitListViewItem(convertdlg.ConvertDlg.unitData[name], self)
         for col in range(3):
             self.resizeColumnToContents(col)
 
     def relayChange(self):
         """Update list after buttons changed the unit group.
         """
-        self.updateSelection()
+        self.updateSelection(None)
         self.setFocus()
         self.unitChanged.emit()     # update unitEdit
 
-    def updateSelection(self):
+    def updateSelection(self, focusProxy):
         """Update list after change to line editor.
+           Set focus proxy to line editor if given.
         """
+        if focusProxy:
+            self.setFocusProxy(focusProxy)
+        unitGroup = self.focusProxy().unitGroup
         self.blockSignals(True)
         self.enableButtons(True)
         self.clearSelection()
-        unit = self.unitGroup.currentUnit()
+        unit = unitGroup.currentUnit()
         if unit and unit.equiv:
-            self.setCurrentItem(unit.viewLink[self.unitRefNum])
-            unit.viewLink[self.unitRefNum].setSelected(True)
+            self.setCurrentItem(unit.viewLink)
+            unit.viewLink.setSelected(True)
         else:
-            unit = self.unitGroup.currentPartialUnit()
+            unit = unitGroup.currentPartialUnit()
             if unit:
-                self.setCurrentItem(unit.viewLink[self.unitRefNum])
-                unit.viewLink[self.unitRefNum].setSelected(False)
+                self.setCurrentItem(unit.viewLink)
+                unit.viewLink.setSelected(False)
             else:
-                unit = self.unitGroup.currentSortPos()
+                unit = unitGroup.currentSortPos()
                 self.enableButtons(False)
         self.scrollToCenter(unit)
         self.blockSignals(False)
@@ -77,7 +78,7 @@ class UnitListView(QTreeWidget):
         selectList = self.selectedItems()
         if selectList:
             selection = selectList[-1]
-            self.unitGroup.replaceCurrent(selection.unit)
+            self.focusProxy().unitGroup.replaceCurrent(selection.unit)
             self.unitChanged.emit()     # update unitEdit
             self.enableButtons(True)
 
@@ -90,7 +91,7 @@ class UnitListView(QTreeWidget):
     def scrollToCenter(self, unit):
         """Scroll so given unit is in the center of the viewport.
         """
-        unitItem = unit.viewLink[self.unitRefNum]
+        unitItem = unit.viewLink
         index = self.indexOfTopLevelItem(unitItem)
         itemHeight = self.visualItemRect(unitItem).height()
         viewHeight = self.viewport().height()
@@ -103,8 +104,8 @@ class UnitListView(QTreeWidget):
     def sizeHint(self):
         """Adjust width smaller.
         """
-        size = QTreeWidget.sizeHint(self)
-        size.setWidth(self.columnWidth(0) + self.columnWidth(1) +
+        size = super().sizeHint()
+        size.setWidth(self.viewportSizeHint().width() + 5 +
                       self.verticalScrollBar().sizeHint().width())
         return size
 
@@ -112,10 +113,10 @@ class UnitListView(QTreeWidget):
 class UnitListViewItem(QTreeWidgetItem):
     """Item in list view, references unit.
     """
-    def __init__(self, unit, unitRefNum, parent=None):
-        QTreeWidgetItem.__init__(self, parent)
+    def __init__(self, unit, parent=None):
+        super().__init__(parent)
         self.unit = unit
-        unit.viewLink[unitRefNum] = self
+        unit.viewLink = self
         self.setText(0, unit.description())
         self.setText(1, unit.typeName)
         self.setText(2, unit.comments[1])

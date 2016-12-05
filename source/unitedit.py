@@ -13,23 +13,27 @@
 #*****************************************************************************
 
 from PyQt5.QtCore import (QEvent, Qt, pyqtSignal)
-from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import (QLineEdit, QWidget)
 
 
 class UnitEdit(QLineEdit):
     """Text line editor for unit entry.
     """
     unitChanged = pyqtSignal()
-    currentChanged = pyqtSignal()
+    currentChanged = pyqtSignal(QWidget) # pass line edit for focus proxy
+    gotFocus = pyqtSignal()
     def __init__(self, unitGroup, parent=None):
-        QLineEdit.__init__(self, parent)
+        super().__init__(parent)
         self.unitGroup = unitGroup
+        self.activeEditor = False;
         self.textEdited.connect(self.updateGroup)
         self.cursorPositionChanged.connect(self.updateCurrentUnit)
 
     def unitUpdate(self):
         """Update text from unit group.
         """
+        if not self.activeEditor:
+            return
         newText = self.unitGroup.unitString()
         cursorPos = len(newText) - len(self.text()) + self.cursorPosition()
         if cursorPos < 0:      # cursor set to same distance from right end
@@ -46,7 +50,7 @@ class UnitEdit(QLineEdit):
         if self.text().replace(' ', '') \
                    != self.unitGroup.unitString().replace(' ', ''):
             self.unitGroup.update(self.text(), self.cursorPosition())
-            self.currentChanged.emit()     # update listView
+            self.currentChanged.emit(self)     # update listView
             self.unitUpdate()   # replace text with formatted text
 
     def updateCurrentUnit(self):
@@ -54,25 +58,25 @@ class UnitEdit(QLineEdit):
         """
         self.unitGroup.updateCurrentUnit(self.text(),
                                          self.cursorPosition())
-        self.currentChanged.emit()     # update listView
+        self.currentChanged.emit(self)     # update listView
 
     def keyPressEvent(self, event):
         """Keys for return and up/down.
         """
         if event.key() == Qt.Key_Up:
             self.unitGroup.moveToNext(True)
-            self.currentChanged.emit()     # update listView
+            self.currentChanged.emit(self)     # update listView
             self.unitUpdate()
         elif event.key() == Qt.Key_Down:
             self.unitGroup.moveToNext(False)
-            self.currentChanged.emit()     # update listView
+            self.currentChanged.emit(self)     # update listView
             self.unitUpdate()
         elif event.key() in (Qt.Key_Return, Qt.Key_Enter):
             self.unitGroup.completePartial()
-            self.currentChanged.emit()     # update listView
+            self.currentChanged.emit(self)     # update listView
             self.unitUpdate()
         else:
-            QLineEdit.keyPressEvent(self, event)
+            super().keyPressEvent(event)
 
     def event(self, event):
         """Catch tab press to complete unit.
@@ -80,6 +84,20 @@ class UnitEdit(QLineEdit):
         if event.type() == QEvent.KeyPress and \
                  event.key() == Qt.Key_Tab:
             self.unitGroup.completePartial()
-            self.currentChanged.emit()     # update listView
+            self.currentChanged.emit(self)     # update listView
             self.unitUpdate()
-        return QLineEdit.event(self, event)
+        return super().event(event)
+
+    def setInactive(self):
+        """Set inactive based on a signal from another editor.
+        """
+        self.activeEditor = False;
+
+    def focusInEvent(self, event):
+        """Signal that this unit editor received focus.
+        """
+        super().focusInEvent(event)
+        if not self.activeEditor:
+            self.activeEditor = True
+            self.updateCurrentUnit()
+            self.gotFocus.emit()

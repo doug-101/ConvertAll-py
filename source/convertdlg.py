@@ -17,8 +17,9 @@ import os.path
 from PyQt5.QtCore import (QPoint, Qt)
 from PyQt5.QtGui import (QColor, QFont, QPalette)
 from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
-                             QFrame, QGroupBox, QHBoxLayout, QLabel, QMenu,
-                             QMessageBox, QPushButton, QVBoxLayout, QWidget)
+                             QFrame, QGridLayout, QGroupBox, QHBoxLayout,
+                             QLabel, QMenu, QMessageBox, QPushButton,
+                             QVBoxLayout, QWidget)
 try:
     from __main__ import __version__, __author__, helpFilePath, iconPath
     from __main__ import lang
@@ -47,7 +48,7 @@ class ConvertDlg(QWidget):
     """
     unitData = unitdata.UnitData()
     def __init__(self, parent=None):
-        QWidget.__init__(self, parent)
+        super().__init__(parent)
         self.setWindowTitle('ConvertAll')
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
@@ -85,67 +86,69 @@ class ConvertDlg(QWidget):
 
         topLayout = QHBoxLayout(self)    # divide main, buttons
         mainLayout = QVBoxLayout()
+        mainLayout.setSpacing(10)
         topLayout.addLayout(mainLayout)
-        unitLayout = QHBoxLayout()       # unit selection
+        unitLayout = QGridLayout()       # unit selection
+        unitLayout.setVerticalSpacing(3)
+        unitLayout.setHorizontalSpacing(20)
         mainLayout.addLayout(unitLayout)
 
-        fromBox = QGroupBox(_('From Unit'))
-        unitLayout.addWidget(fromBox)
-        fromLayout = QVBoxLayout(fromBox)
-        fromLayout.setSpacing(3)
+        fromLabel = QLabel(_('From Unit'))
+        unitLayout.addWidget(fromLabel, 0, 0)
         self.fromUnitEdit = unitedit.UnitEdit(self.fromGroup)
-        fromLayout.addWidget(self.fromUnitEdit)
+        unitLayout.addWidget(self.fromUnitEdit, 1, 0)
         self.fromUnitEdit.setFocus()
-        self.fromUnitListView = unitlistview.UnitListView(self.fromGroup, 0)
-        fromLayout.addWidget(self.fromUnitListView)
-        self.fromUnitEdit.currentChanged.connect(self.fromUnitListView.
-                                                 updateSelection)
-        self.fromUnitListView.unitChanged.connect(self.fromUnitEdit.unitUpdate)
-        self.fromUnitListView.setFocusProxy(self.fromUnitEdit)
-        self.addButtons(self.fromGroup, self.fromUnitListView, fromLayout)
+        # self.addButtons(self.fromGroup, self.fromUnitListView, fromLayout)
 
-        toBox = QGroupBox(_('To Unit'))
-        unitLayout.addWidget(toBox)
-        toLayout = QVBoxLayout(toBox)
-        toLayout.setSpacing(3)
+        toLabel = QLabel(_('To Unit'))
+        unitLayout.addWidget(toLabel, 0, 1)
         self.toUnitEdit = unitedit.UnitEdit(self.toGroup)
-        toLayout.addWidget(self.toUnitEdit)
-        self.toUnitListView = unitlistview.UnitListView(self.toGroup, 1)
-        toLayout.addWidget(self.toUnitListView)
-        self.toUnitEdit.currentChanged.connect(self.toUnitListView.
-                                               updateSelection)
-        self.toUnitListView.unitChanged.connect(self.toUnitEdit.unitUpdate)
-        self.toUnitListView.setFocusProxy(self.toUnitEdit)
-        self.addButtons(self.toGroup, self.toUnitListView, toLayout)
+        unitLayout.addWidget(self.toUnitEdit, 1, 1)
+        self.fromUnitEdit.gotFocus.connect(self.toUnitEdit.setInactive)
+        self.toUnitEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
+        # self.addButtons(self.toGroup, self.toUnitListView, toLayout)
         self.showHideButtons()
 
-        numberLayout = QHBoxLayout()
+        self.unitListView = unitlistview.UnitListView()
+        mainLayout.addWidget(self.unitListView)
+        self.fromUnitEdit.currentChanged.connect(self.unitListView.
+                                                 updateSelection)
+        self.toUnitEdit.currentChanged.connect(self.unitListView.
+                                               updateSelection)
+        self.unitListView.unitChanged.connect(self.fromUnitEdit.unitUpdate)
+        self.unitListView.unitChanged.connect(self.toUnitEdit.unitUpdate)
+        self.unitListView.setFocusProxy(self.fromUnitEdit)
+
+        numberLayout = QGridLayout()
+        numberLayout.setVerticalSpacing(3)
         mainLayout.addLayout(numberLayout)
         statusLabel = QLabel(_('Set units'))
         statusLabel.setFrameStyle(QFrame.Panel | QFrame.Sunken)
         mainLayout.addWidget(statusLabel)
 
-        fromNumBox = QGroupBox(_('No Unit Set'))
-        numberLayout.addWidget(fromNumBox)
-        fromNumLayout = QVBoxLayout(fromNumBox)
+        fromNumLabel = QLabel(_('No Unit Set'))
+        numberLayout.addWidget(fromNumLabel, 0, 0)
         self.fromNumEdit = numedit.NumEdit(self.fromGroup, self.toGroup,
-                                           fromNumBox, statusLabel,
+                                           fromNumLabel, statusLabel,
                                            self.recentUnits, True)
-        fromNumLayout.addWidget(self.fromNumEdit)
+        numberLayout.addWidget(self.fromNumEdit, 1, 0)
         self.fromUnitEdit.unitChanged.connect(self.fromNumEdit.unitUpdate)
+        self.fromNumEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
+        self.fromNumEdit.gotFocus.connect(self.toUnitEdit.setInactive)
         self.fromNumEdit.setEnabled(False)
         equalsLabel = QLabel(' = ')
-        equalsLabel.setFont(QFont(self.font().family(), 30))
-        numberLayout.addWidget(equalsLabel)
+        equalsLabel.setFont(QFont(self.font().family(), 20))
+        numberLayout.addWidget(equalsLabel, 0, 1, 2, 1)
 
-        toNumBox = QGroupBox(_('No Unit Set'))
-        numberLayout.addWidget(toNumBox)
-        toNumLayout = QVBoxLayout(toNumBox)
+        toNumLabel = QLabel(_('No Unit Set'))
+        numberLayout.addWidget(toNumLabel, 0, 3)
         self.toNumEdit = numedit.NumEdit(self.toGroup, self.fromGroup,
-                                         toNumBox, statusLabel,
+                                         toNumLabel, statusLabel,
                                          self.recentUnits, False)
-        toNumLayout.addWidget(self.toNumEdit)
+        numberLayout.addWidget(self.toNumEdit, 1, 3)
         self.toUnitEdit.unitChanged.connect(self.toNumEdit.unitUpdate)
+        self.toNumEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
+        self.toNumEdit.gotFocus.connect(self.toUnitEdit.setInactive)
         self.toNumEdit.setEnabled(False)
         self.fromNumEdit.convertNum.connect(self.toNumEdit.setNum)
         self.toNumEdit.convertNum.connect(self.fromNumEdit.setNum)
@@ -187,10 +190,9 @@ class ConvertDlg(QWidget):
         if self.option.boolData('LoadLastUnit') and len(self.recentUnits) > 1:
             self.fromGroup.update(self.recentUnits[0])
             self.fromUnitEdit.unitUpdate()
-            self.fromUnitListView.updateSelection()
             self.toGroup.update(self.recentUnits[1])
             self.toUnitEdit.unitUpdate()
-            self.toUnitListView.updateSelection()
+            self.unitListView.updateSelection(None)
             self.fromNumEdit.setFocus()
             self.fromNumEdit.selectAll()
         if self.option.boolData('ShowStartupTip'):
@@ -252,10 +254,10 @@ class ConvertDlg(QWidget):
         action.unitGroup.update(action.text())
         if action.unitGroup is self.fromGroup:
             self.fromUnitEdit.unitUpdate()
-            self.fromUnitListView.updateSelection()
+            self.fromUnitListView.updateSelection(None)
         else:
             self.toUnitEdit.unitUpdate()
-            self.toUnitListView.updateSelection()
+            self.toUnitListView.updateSelection(None)
 
     def updateColors(self):
         """Adjust the colors to the current option settings.
@@ -418,7 +420,7 @@ class TipDialog(QDialog):
     """Show a static usage tip at startup by default.
     """
     def __init__(self, option, parent=None):
-        QDialog.__init__(self, parent)
+        super().__init__(parent)
         self.option = option
         self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
                             Qt.WindowSystemMenuHint)
@@ -457,4 +459,4 @@ class TipDialog(QDialog):
         """
         if not self.showCheck.isChecked():
             self.option.changeData('ShowStartupTip', 'no', True)
-        QDialog.accept(self)
+        super().accept()
