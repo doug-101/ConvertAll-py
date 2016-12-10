@@ -17,7 +17,7 @@ import copy
 import unitdata
 
 
-class UnitAtom(object):
+class UnitAtom:
     """Reads and stores a single unit conversion.
     """
     partialExp = 1000
@@ -54,8 +54,9 @@ class UnitAtom(object):
                         self.equiv = parts[1]
                     except:
                         pass
-        self.comments = [comm.strip() for comm in dataList]
-        self.comments.extend([''] * (2 - len(self.comments)))
+            self.comments = [comm.strip() for comm in dataList]
+            self.comments.extend([''] * (2 - len(self.comments)))
+            self.keyWords = self.name.lower().split()
         self.exp = 1
         self.viewLink = None
         self.typeName = ''
@@ -89,6 +90,15 @@ class UnitAtom(object):
             return '{0}^'.format(self.name)
         else:
             return '{0}^-'.format(self.name)
+
+    def partialMatch(self, wordList):
+        """Return True if parts of name start with items from wordList.
+        """
+        for word in wordList:
+            for key in self.keyWords:
+                if key.startswith(word):
+                    return True
+        return False
 
     def matchWords(self, wordList):
         """Return True if unit name and comments match word list.

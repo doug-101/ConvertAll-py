@@ -4,7 +4,7 @@
 # unitdata.py, reads unit data from file
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2014, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -14,6 +14,7 @@
 
 import sys
 import os.path
+import collections
 try:
     from __main__ import dataFilePath, lang
 except ImportError:
@@ -28,12 +29,11 @@ class UnitDataError(Exception):
     pass
 
 
-class UnitData(dict):
+class UnitData(collections.OrderedDict):
     """Reads unit data nad stores in a dictionary based on unit name.
     """
     def __init__(self):
         dict.__init__(self)
-        self.sortedKeys = []
         self.typeList = []
 
     def findDataFile(self):
@@ -63,14 +63,12 @@ class UnitData(dict):
         """Read all unit data from file, return number loaded.
         """
         lines = self.findDataFile()
-        for i in range(len(lines)):     # join continuation lines
-            delta = 1
-            while lines[i].rstrip().endswith('\\'):
-                lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+delta]])
-                lines[i+delta] = ''
-                delta += 1
+        for i in range(len(lines) - 2, -1, -1):  # join continuation lines
+            if lines[i].rstrip().endswith('\\'):
+                lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+1]])
+                lines[i+1] = ''
         units = [unitatom.UnitAtom(line) for line in lines if
-                 line.split('#', 1)[0].strip()]   # remove comment lines
+                 line.split('#', 1)[0].strip()]   # remove comment/empty lines
         typeText = ''
         for unit in units:               # find & set headings
             if unit.name.startswith('['):
@@ -78,13 +76,17 @@ class UnitData(dict):
                 self.typeList.append(typeText)
             unit.typeName = typeText
         units = [unit for unit in units if unit.equiv]  # keep valid units
-        for unit in units:
+        for unit in sorted(units):
             self[unit.name.lower().replace(' ', '')] = unit
-        self.sortedKeys = list(self.keys())
-        self.sortedKeys.sort()
-        if len(self.sortedKeys) < len(units):
+        if len(self) < len(units):
             raise UnitDataError(_('Duplicate unit names found'))
         return len(units)
+
+    def partialMatches(self, text):
+        """Return list of units with names starting with parts of text.
+        """
+        textList = text.lower().split()
+        return [unit for unit in self.values() if unit.partialMatch(textList)]
 
     def findPartialMatch(self, text):
         """Return first partially matching unit or None.
@@ -92,7 +94,7 @@ class UnitData(dict):
         text = text.lower().replace(' ', '')
         if not text:
             return None
-        for name in self.sortedKeys:
+        for name in self.keys():
             if name.startswith(text):
                 return self[name]
         return None
@@ -101,10 +103,10 @@ class UnitData(dict):
         """Return unit whose abbrev comes immediately after text.
         """
         text = text.lower().replace(' ', '')
-        for name in self.sortedKeys:
+        for name in self.keys():
             if text <= name:
                 return self[name]
-        return self[self.sortedKeys[-1]]
+        return self[name]
 
     def filteredList(self, type='', srchStr=''):
         """Return list of units matching type and search string,

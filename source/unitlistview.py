@@ -35,8 +35,8 @@ class UnitListView(QTreeWidget):
         """Load unit items.
         """
         self.clear()
-        for name in convertdlg.ConvertDlg.unitData.sortedKeys:
-            UnitListViewItem(convertdlg.ConvertDlg.unitData[name], self)
+        for unit in convertdlg.ConvertDlg.unitData.values():
+            UnitListViewItem(unit, self)
         for col in range(3):
             self.resizeColumnToContents(col)
 
@@ -54,22 +54,22 @@ class UnitListView(QTreeWidget):
         if focusProxy:
             self.setFocusProxy(focusProxy)
         unitGroup = self.focusProxy().unitGroup
+        currentUnit = unitGroup.currentUnit()
+        unitData = convertdlg.ConvertDlg.unitData
         self.blockSignals(True)
-        self.enableButtons(True)
-        self.clearSelection()
-        unit = unitGroup.currentUnit()
-        if unit and unit.equiv:
-            self.setCurrentItem(unit.viewLink)
-            unit.viewLink.setSelected(True)
+        self.clear()
+        if currentUnit and currentUnit.name:
+            for unit in unitData.partialMatches(currentUnit.name):
+                UnitListViewItem(unit, self)
+            # if currentUnit.equiv:
+                # self.setCurrentItem(currentUnit.viewLink)
+                # currentUnit.viewLink.setSelected(True)
+                # self.scrollToItem(currentUnit.viewLink)
+            self.enableButtons(True)
         else:
-            unit = unitGroup.currentPartialUnit()
-            if unit:
-                self.setCurrentItem(unit.viewLink)
-                unit.viewLink.setSelected(False)
-            else:
-                unit = unitGroup.currentSortPos()
-                self.enableButtons(False)
-        self.scrollToCenter(unit)
+            for unit in unitData.values():
+                UnitListViewItem(unit, self)
+            self.enableButtons(False)
         self.blockSignals(False)
 
     def replaceUnit(self):
@@ -87,19 +87,6 @@ class UnitListView(QTreeWidget):
         """
         for button in self.buttonList:
             button.setEnabled(enable)
-
-    def scrollToCenter(self, unit):
-        """Scroll so given unit is in the center of the viewport.
-        """
-        unitItem = unit.viewLink
-        index = self.indexOfTopLevelItem(unitItem)
-        itemHeight = self.visualItemRect(unitItem).height()
-        viewHeight = self.viewport().height()
-        bottomIndex = index + viewHeight / (2 * itemHeight)
-        bottomItem = self.topLevelItem(bottomIndex)
-        if not bottomItem:
-            bottomItem = self.topLevelItem(self.topLevelItemCount() - 1)
-        self.scrollToItem(bottomItem, QAbstractItemView.PositionAtBottom)
 
     def sizeHint(self):
         """Adjust width smaller.

@@ -4,7 +4,7 @@
 # unitgroup.py, provides a group of units and does conversions
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2015, Douglas W. Bell
+# Copyright (C) 2016, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -18,7 +18,7 @@ from unitatom import UnitAtom
 import unitdata
 
 
-class UnitGroup(object):
+class UnitGroup:
     """Stores, updates and converts a group of units.
     """
     maxDecPlcs = 12
@@ -111,7 +111,7 @@ class UnitGroup(object):
         try:
             return self.unitData.findSortPos(self.currentUnit().name)
         except AttributeError:
-            return self.unitData[self.unitData.sortedKeys[0]]
+            return next(iter(self.unitData.values()))  # first item
 
     def replaceCurrent(self, newUnit):
         """Replace the current unit with unit.
@@ -138,9 +138,10 @@ class UnitGroup(object):
         """
         unit = self.currentSortPos()
         name = unit.name.lower().replace(' ', '')
-        num = self.unitData.sortedKeys.index(name) + (upward and -1 or 1)
-        if 0 <= num < len(self.unitData.sortedKeys):
-            self.replaceCurrent(self.unitData[self.unitData.sortedKeys[num]])
+        keys = list(self.unitData.keys())
+        num = keys.index(name) + (upward and -1 or 1)
+        if 0 <= num < len(keys):
+            self.replaceCurrent(self.unitData[keys[num]])
 
     def addOper(self, mult):
         """Add new operator & blank unit after current, * if mult is true.
