@@ -14,7 +14,7 @@
 
 import re
 from math import *
-from unitatom import UnitAtom
+import unitatom
 import unitdata
 
 
@@ -97,67 +97,32 @@ class UnitGroup:
         except IndexError:
             return None
 
-    def currentPartialUnit(self):
-        """Return unit with at least a partial match, o/w None.
-        """
-        currentUnit = self.currentUnit()
-        if not currentUnit:
-            return None
-        return self.unitData.findPartialMatch(currentUnit.name)
-
-    def currentSortPos(self):
-        """Return unit near current unit for sorting.
-        """
-        try:
-            return self.unitData.findSortPos(self.currentUnit().name)
-        except AttributeError:
-            return next(iter(self.unitData.values()))  # first item
-
     def replaceCurrent(self, newUnit):
-        """Replace the current unit with unit.
+        """Replace the current unit with unit datum.
         """
         if self.unitList:
             oldUnit = self.currentUnit()
             group, pos = self.currentGroupPos()
-            group.unitList[pos] = newUnit.copy()
+            group.unitList[pos] = unitatom.UnitAtom('', newUnit)
             group.unitList[pos].exp = oldUnit.exp
-            return
-        self.unitList.append(newUnit.copy())
-
-    def completePartial(self):
-        """Replace a partial unit with a full one.
-        """
-        partUnit = self.currentUnit()
-        if partUnit and not partUnit.equiv:
-            newUnit = self.unitData.findPartialMatch(partUnit.name)
-            if newUnit:
-                self.replaceCurrent(newUnit)
-
-    def moveToNext(self, upward):
-        """Replace unit with adjacent one based on match or sort position.
-        """
-        unit = self.currentSortPos()
-        name = unit.name.lower().replace(' ', '')
-        keys = list(self.unitData.keys())
-        num = keys.index(name) + (upward and -1 or 1)
-        if 0 <= num < len(keys):
-            self.replaceCurrent(self.unitData[keys[num]])
+        else:
+            self.unitList.append(unitatom.UnitAtom('', newUnit))
 
     def addOper(self, mult):
         """Add new operator & blank unit after current, * if mult is true.
         """
         if self.unitList:
-            self.completePartial()
+            # self.completePartial()
             group, pos = self.currentGroupPos()
             self.currentNum += 1
-            group.unitList.insert(pos + 1, UnitAtom(''))
+            group.unitList.insert(pos + 1, unitatom.UnitAtom(''))
             if not mult:
                 self.currentUnit().exp = -1
 
     def changeExp(self, newExp):
         """Change the current unit's exponent.
         """
-        self.completePartial()
+        # self.completePartial()
         currentUnit = self.currentUnit()
         if currentUnit:
             if currentUnit.exp > 0:
@@ -225,20 +190,20 @@ class UnitGroup:
                 exp = int(parts[1])
             except ValueError:
                 if parts[1].lstrip().startswith('-'):
-                    exp = -UnitAtom.partialExp  # tmp invalid exp
+                    exp = -unitatom.UnitAtom.partialExp  # tmp invalid exp
                 else:
-                    exp = UnitAtom.partialExp
+                    exp = unitatom.UnitAtom.partialExp
         unitText = parts[0].strip().lower().replace(' ', '')
         unit = self.unitData.get(unitText, None)
-        if not unit and unitText and unitText[-1] == 's' and not \
-           self.unitData.findPartialMatch(unitText):   # check for plural
+        if (not unit and unitText and unitText[-1] == 's' and not
+            self.unitData.findPartialMatch(unitText)):   # check for plural
             unit = self.unitData.get(unitText[:-1], None)
-        if not unit:
-            unit = UnitAtom('')   # tmp invalid unit
-            unit.name = parts[0].strip()
-        unit = unit.copy()
-        unit.exp = exp
-        return unit
+        if unit:
+            unitAtom = unitatom.UnitAtom('', unit)
+        else:
+            unitAtom = unitatom.UnitAtom(parts[0].strip())  # tmp invalid unit
+        unitAtom.exp = exp
+        return unitAtom
 
     def unitString(self, unitList=None, swapExpSign=False):
         """Return the full string for this group or a given group.
@@ -302,21 +267,23 @@ class UnitGroup:
             if count > 5000:
                 raise unitdata.UnitDataError(_('Circular unit definition'))
             unit = tmpList.pop(0)
-            if unit.equiv.startswith('!'):
-                self.reducedList.append(unit.copy())
-            elif not unit.equiv:
+            if unit.datum.equiv.startswith('!'):
+                newUnit = unitatom.UnitAtom('', unit.datum)
+                newUnit.exp = unit.exp
+                self.reducedList.append(newUnit)
+            elif not unit.datum.equiv:
                 raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
-                                             format(unit.name))
+                                             format(unit.unitName))
             else:
-                if unit.fromEqn:
+                if unit.datum.fromEqn:
                     self.linear = False
                 equivUnit = UnitGroup(self.unitData, self.option)
-                equivUnit.update(unit.equiv)
+                equivUnit.update(unit.datum.equiv)
                 newList = equivUnit.flatUnitList()
                 for newUnit in newList:
                     newUnit.exp *= unit.exp
                 tmpList.extend(newList)
-                self.factor *= unit.factor**unit.exp
+                self.factor *= unit.datum.factor**unit.exp
         self.reducedList.sort()
         tmpList = self.reducedList[:]
         self.reducedList = []
@@ -326,17 +293,17 @@ class UnitGroup:
             else:
                 self.reducedList.append(unit)
         self.reducedList = [unit for unit in self.reducedList if
-                            unit.equiv != '!!' and unit.name != 'unit' and
-                            unit.exp != 0]
+                            unit.datum.equiv != '!!' and
+                            unit.datum.name != 'unit' and unit.exp != 0]
 
     def categoryMatch(self, otherGroup):
         """Return True if unit types are equivalent.
         """
         if not self.checkLinear() or not otherGroup.checkLinear():
             return False
-        return self.reducedList == otherGroup.reducedList and \
-               [unit.exp for unit in self.reducedList] == \
-               [unit.exp for unit in otherGroup.reducedList]
+        return (self.reducedList == otherGroup.reducedList and
+                [unit.exp for unit in self.reducedList] ==
+                [unit.exp for unit in otherGroup.reducedList])
 
     def checkLinear(self):
         """Return True if linear or acceptable non-linear.
@@ -371,11 +338,11 @@ class UnitGroup:
         x = num
         try:
             unit = self.flatUnitList()[0]
-            if unit.toEqn:      # regular equations
+            if unit.datum.toEqn:      # regular equations
                 if isFrom:
-                    return float(eval(unit.fromEqn))
-                return float(eval(unit.toEqn))
-            data = list(eval(unit.fromEqn))  # extrapolation list
+                    return float(eval(unit.datum.fromEqn))
+                return float(eval(unit.datum.toEqn))
+            data = list(eval(unit.datum.fromEqn))  # extrapolation list
             if isFrom:
                 data = [(float(group[0]), float(group[1])) for group in data]
             else:
@@ -394,7 +361,7 @@ class UnitGroup:
             return 1e9999
         except:
             raise unitdata.UnitDataError(_('Bad equation for {0}').
-                                         format(unit.name))
+                                         format(unit.datum.name))
 
     def convertStr(self, num, toGroup):
         """Return formatted string of converted number.

@@ -12,8 +12,10 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtWidgets import (QAbstractItemView, QTreeWidget, QTreeWidgetItem)
+from PyQt5.QtCore import (pyqtSignal, Qt, QItemSelectionModel)
+from PyQt5.QtGui import QPalette
+from PyQt5.QtWidgets import (QAbstractItemView, QApplication, QTreeWidget,
+                             QTreeWidgetItem)
 import convertdlg
 
 
@@ -23,6 +25,7 @@ class UnitListView(QTreeWidget):
     unitChanged = pyqtSignal()
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.highlightNum = 0
         self.buttonList = []
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
@@ -43,11 +46,11 @@ class UnitListView(QTreeWidget):
     def relayChange(self):
         """Update list after buttons changed the unit group.
         """
-        self.updateSelection(None)
+        self.updateFiltering(None)
         self.setFocus()
         self.unitChanged.emit()     # update unitEdit
 
-    def updateSelection(self, focusProxy):
+    def updateFiltering(self, focusProxy=None):
         """Update list after change to line editor.
            Set focus proxy to line editor if given.
         """
@@ -58,18 +61,20 @@ class UnitListView(QTreeWidget):
         unitData = convertdlg.ConvertDlg.unitData
         self.blockSignals(True)
         self.clear()
-        if currentUnit and currentUnit.name:
-            for unit in unitData.partialMatches(currentUnit.name):
+        if currentUnit and currentUnit.unitName:
+            for unit in unitData.partialMatches(currentUnit.unitName):
                 UnitListViewItem(unit, self)
-            # if currentUnit.equiv:
-                # self.setCurrentItem(currentUnit.viewLink)
-                # currentUnit.viewLink.setSelected(True)
-                # self.scrollToItem(currentUnit.viewLink)
+            if currentUnit.datum and currentUnit.datum.viewLink:
+                self.setCurrentItem(currentUnit.datum.viewLink)
+                self.highlightNum = self.indexOfTopLevelItem(currentUnit.
+                                                             datum.viewLink)
             self.enableButtons(True)
         else:
             for unit in unitData.values():
                 UnitListViewItem(unit, self)
             self.enableButtons(False)
+        if not self.currentItem() and self.topLevelItemCount():
+            self.setHighlight(0)
         self.blockSignals(False)
 
     def replaceUnit(self):
@@ -80,7 +85,61 @@ class UnitListView(QTreeWidget):
             selection = selectList[-1]
             self.focusProxy().unitGroup.replaceCurrent(selection.unit)
             self.unitChanged.emit()     # update unitEdit
-            self.enableButtons(True)
+            self.updateFiltering()
+
+    def setHighlight(self, num):
+        """Set the item at row num to be highlighted.
+        """
+        self.clearHighlight()
+        item = self.topLevelItem(num)
+        if item:
+            if [item] != self.selectedItems():
+                pal = QApplication.palette(self)
+                brush = pal.brush(QPalette.Highlight)
+                for col in range(3):
+                    item.setForeground(col, brush)
+            self.scrollToItem(item)
+            self.highlightNum = num
+
+    def clearHighlight(self):
+        """Clear the highlight from currently highlighted item.
+        """
+        item = self.topLevelItem(self.highlightNum)
+        if item and [item] != self.selectedItems():
+            pal = QApplication.palette(self)
+            brush = pal.brush(QPalette.Text)
+            for col in range(3):
+                item.setForeground(col, brush)
+
+    def handleKeyPress(self, key):
+        """Handle up/down, page up/down and enter key presses.
+        """
+        if key == Qt.Key_Up:
+            pos = self.highlightNum - 1
+        elif key == Qt.Key_Down:
+            pos = self.highlightNum + 1
+        elif key == Qt.Key_PageUp:
+            ht = self.viewport().height()
+            numVisible = (self.indexOfTopLevelItem(self.itemAt(0, ht)) -
+                          self.indexOfTopLevelItem(self.itemAt(0, 0)))
+            pos = self.highlightNum - numVisible
+        elif key == Qt.Key_PageDown:
+            ht = self.viewport().height()
+            numVisible = (self.indexOfTopLevelItem(self.itemAt(0, ht)) -
+                          self.indexOfTopLevelItem(self.itemAt(0, 0)))
+            pos = self.highlightNum + numVisible
+        elif key in (Qt.Key_Return, Qt.Key_Enter):
+            item = self.topLevelItem(self.highlightNum)
+            if item:
+                self.setCurrentItem(item)
+            return
+        else:
+            return
+        if pos < 0:
+            pos = 0
+        if pos >= self.topLevelItemCount():
+            pos = self.topLevelItemCount() - 1
+        self.setHighlight(pos)
 
     def enableButtons(self, enable=True):
         """Enable unit modification buttons for valid unit.

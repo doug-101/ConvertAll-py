@@ -36,7 +36,6 @@ import unitedit
 import unitlistview
 import numedit
 from modbutton import ModButton
-import finddlg
 import icondict
 import optiondefaults
 import helpview
@@ -70,8 +69,7 @@ class ConvertDlg(QWidget):
             num = ConvertDlg.unitData.readData()
         except unitdata.UnitDataError as text:
             QMessageBox.warning(self, 'ConvertAll',
-                                      _('Error in unit data - {0}').
-                                      format(text))
+                                _('Error in unit data - {0}').  format(text))
             sys.exit(1)
         try:
             print(_('{0} units loaded').format(num))
@@ -112,9 +110,11 @@ class ConvertDlg(QWidget):
         self.unitListView = unitlistview.UnitListView()
         mainLayout.addWidget(self.unitListView)
         self.fromUnitEdit.currentChanged.connect(self.unitListView.
-                                                 updateSelection)
+                                                 updateFiltering)
         self.toUnitEdit.currentChanged.connect(self.unitListView.
-                                               updateSelection)
+                                               updateFiltering)
+        self.fromUnitEdit.keyPressed.connect(self.unitListView.handleKeyPress)
+        self.toUnitEdit.keyPressed.connect(self.unitListView.handleKeyPress)
         self.unitListView.unitChanged.connect(self.fromUnitEdit.unitUpdate)
         self.unitListView.unitChanged.connect(self.toUnitEdit.unitUpdate)
         self.unitListView.setFocusProxy(self.fromUnitEdit)
@@ -163,10 +163,6 @@ class ConvertDlg(QWidget):
         buttonLayout.addWidget(closeButton)
         closeButton.setFocusPolicy(Qt.NoFocus)
         closeButton.clicked.connect(self.close)
-        finderButton = QPushButton(_('&Unit Finder...'))
-        buttonLayout.addWidget(finderButton)
-        finderButton.setFocusPolicy(Qt.NoFocus)
-        finderButton.clicked.connect(self.showFinder)
         optionsButton = QPushButton(_('&Options...'))
         buttonLayout.addWidget(optionsButton)
         optionsButton.setFocusPolicy(Qt.NoFocus)
@@ -192,7 +188,7 @@ class ConvertDlg(QWidget):
             self.fromUnitEdit.unitUpdate()
             self.toGroup.update(self.recentUnits[1])
             self.toUnitEdit.unitUpdate()
-            self.unitListView.updateSelection(None)
+            self.unitListView.updateFiltering()
             self.fromNumEdit.setFocus()
             self.fromNumEdit.selectAll()
         if self.option.boolData('ShowStartupTip'):
@@ -254,10 +250,9 @@ class ConvertDlg(QWidget):
         action.unitGroup.update(action.text())
         if action.unitGroup is self.fromGroup:
             self.fromUnitEdit.unitUpdate()
-            self.fromUnitListView.updateSelection(None)
         else:
             self.toUnitEdit.unitUpdate()
-            self.toUnitListView.updateSelection(None)
+        self.unitListView.updateFiltering()
 
     def updateColors(self):
         """Adjust the colors to the current option settings.
@@ -266,18 +261,9 @@ class ConvertDlg(QWidget):
             pal = self.origPal
         else:
             pal = QPalette()
-            pal.setColor(QPalette.Base,
-                         self.getOptionColor('Background'))
-            pal.setColor(QPalette.Text,
-                         self.getOptionColor('Foreground'))
+            pal.setColor(QPalette.Base, self.getOptionColor('Background'))
+            pal.setColor(QPalette.Text, self.getOptionColor('Foreground'))
         QApplication.setPalette(pal)
-
-    def showFinder(self):
-        """Show dialog for searhing and filtering units.
-        """
-        if not self.findDlg:
-            self.findDlg = finddlg.FindDlg(self)
-        self.findDlg.show()
 
     def changeOptions(self):
         """Show dialog for option changes.
@@ -323,8 +309,8 @@ class ConvertDlg(QWidget):
         """Return a color from option storage.
         """
         return QColor(self.option.intData(rootName + 'R', 0, 255),
-                            self.option.intData(rootName + 'G', 0, 255),
-                            self.option.intData(rootName + 'B', 0, 255))
+                      self.option.intData(rootName + 'G', 0, 255),
+                      self.option.intData(rootName + 'B', 0, 255))
 
     def setOptionColor(self, rootName, color):
         """Store given color in options.
@@ -385,7 +371,7 @@ class ConvertDlg(QWidget):
             path = self.findHelpFile()
             if not path:
                 QMessageBox.warning(self, 'ConvertAll',
-                                          _('Read Me file not found'))
+                                    _('Read Me file not found'))
                 return
             self.helpView = helpview.HelpView(path,
                                               _('ConvertAll README File'),
@@ -396,8 +382,8 @@ class ConvertDlg(QWidget):
         """Show about info.
         """
         QMessageBox.about(self, 'ConvertAll',
-                                _('ConvertAll Version {0}\nby {1}').
-                                format(__version__, __author__))
+                          _('ConvertAll Version {0}\nby {1}').
+                          format(__version__, __author__))
 
     def closeEvent(self, event):
         """Save window data on close.

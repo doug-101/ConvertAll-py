@@ -67,7 +67,7 @@ class UnitData(collections.OrderedDict):
             if lines[i].rstrip().endswith('\\'):
                 lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+1]])
                 lines[i+1] = ''
-        units = [unitatom.UnitAtom(line) for line in lines if
+        units = [unitatom.UnitDatum(line) for line in lines if
                  line.split('#', 1)[0].strip()]   # remove comment/empty lines
         typeText = ''
         for unit in units:               # find & set headings
@@ -98,28 +98,3 @@ class UnitData(collections.OrderedDict):
             if name.startswith(text):
                 return self[name]
         return None
-
-    def findSortPos(self, text):
-        """Return unit whose abbrev comes immediately after text.
-        """
-        text = text.lower().replace(' ', '')
-        for name in self.keys():
-            if text <= name:
-                return self[name]
-        return self[name]
-
-    def filteredList(self, type='', srchStr=''):
-        """Return list of units matching type and search string,
-           if given.
-        """
-        units = list(self.values())
-        if type:
-            units = [unit for unit in units if unit.typeName == type]
-        if srchStr.strip():
-            srchWords = [word.lower() for word in srchStr.split()]
-            srchUnits = []
-            for unit in units:
-                if unit.matchWords(srchWords):
-                    srchUnits.append(unit)
-            units = srchUnits
-        return units

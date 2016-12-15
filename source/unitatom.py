@@ -17,13 +17,14 @@ import copy
 import unitdata
 
 
-class UnitAtom:
-    """Reads and stores a single unit conversion.
+class UnitDatum:
+    """Reads and stores data for a single unit, without an exponent.
     """
-    partialExp = 1000
     badOpRegEx = re.compile(r'[^\d\.eE\+\-\*/]')
     eqnRegEx = re.compile(r'\[(.*?)\](.*)')
     def __init__(self, dataStr):
+        """Initialize with a string from the data file.
+        """
         dataList = dataStr.split('#')
         unitList = dataList.pop(0).split('=', 1)
         self.name = unitList.pop(0).strip()
@@ -35,8 +36,8 @@ class UnitAtom:
             self.equiv = unitList[0].strip()
             if self.equiv[0] == '[':   # used only for non-linear units
                 try:
-                    self.equiv, self.fromEqn = UnitAtom.eqnRegEx.\
-                                               match(self.equiv).groups()
+                    self.equiv, self.fromEqn = (UnitDatum.eqnRegEx.
+                                                match(self.equiv).groups())
                     if ';' in self.fromEqn:
                         self.fromEqn, self.toEqn = self.fromEqn.split(';', 1)
                         self.toEqn = self.toEqn.strip()
@@ -46,8 +47,8 @@ class UnitAtom:
                                                  format(self.name))
             else:                # split factor and equiv unit for linear
                 parts = self.equiv.split(None, 1)
-                if len(parts) > 1 and \
-                         UnitAtom.badOpRegEx.search(parts[0]) == None:
+                if (len(parts) > 1 and
+                    UnitDatum.badOpRegEx.search(parts[0]) == None):
                                       # only allowed digits and operators
                     try:
                         self.factor = float(eval(parts[0]))
@@ -57,7 +58,6 @@ class UnitAtom:
             self.comments = [comm.strip() for comm in dataList]
             self.comments.extend([''] * (2 - len(self.comments)))
             self.keyWords = self.name.lower().split()
-        self.exp = 1
         self.viewLink = None
         self.typeName = ''
 
@@ -68,29 +68,6 @@ class UnitAtom:
             return '{0}  ({1})'.format(self.name, self.comments[0])
         return self.name
 
-    def unitValid(self):
-        """Return True if unit and exponent are valid.
-        """
-        if self.equiv and \
-                -UnitAtom.partialExp < self.exp < UnitAtom.partialExp:
-            return True
-        return False
-
-    def unitText(self, absExp=False):
-        """Return text for unit name with exponent or absolute value of exp.
-        """
-        exp = self.exp
-        if absExp:
-            exp = abs(self.exp)
-        if exp == 1:
-            return self.name
-        if -UnitAtom.partialExp < exp < UnitAtom.partialExp:
-            return '{0}^{1}'.format(self.name, exp)
-        if exp > 1:
-            return '{0}^'.format(self.name)
-        else:
-            return '{0}^-'.format(self.name)
-
     def partialMatch(self, wordList):
         """Return True if parts of name start with items from wordList.
         """
@@ -99,21 +76,6 @@ class UnitAtom:
                 if key.startswith(word):
                     return True
         return False
-
-    def matchWords(self, wordList):
-        """Return True if unit name and comments match word list.
-        """
-        dataStr = ' '.join((self.name, self.comments[0],
-                             self.comments[1])).lower()
-        for word in wordList:
-            if dataStr.find(word) == -1:
-                return False
-        return True
-
-    def copy(self):
-        """Return a copy of the unit so the exponent can be changed.
-        """
-        return copy.copy(self)
 
     def __lt__(self, other):
         """Less than comparison for sorting.
@@ -124,3 +86,51 @@ class UnitAtom:
         """Equality test.
         """
         return self.name.lower() == other.name.lower()
+
+
+class UnitAtom:
+    """Stores a unit datum or a temporary name with an exponent.
+    """
+    partialExp = 1000
+    def __init__(self, name='', unitDatum = None):
+        """Initialize with either a text name or a unitDatum.
+        """
+        self.datum = None
+        self.unitName = name
+        self.exp = 1
+        if unitDatum:
+            self.datum = unitDatum
+            self.unitName = unitDatum.name
+
+    def unitValid(self):
+        """Return True if unit and exponent are valid.
+        """
+        if (self.datum and self.datum.equiv and
+            -UnitAtom.partialExp < self.exp < UnitAtom.partialExp):
+            return True
+        return False
+
+    def unitText(self, absExp=False):
+        """Return text for unit name with exponent or absolute value of exp.
+        """
+        exp = self.exp
+        if absExp:
+            exp = abs(self.exp)
+        if exp == 1:
+            return self.unitName
+        if -UnitAtom.partialExp < exp < UnitAtom.partialExp:
+            return '{0}^{1}'.format(self.unitName, exp)
+        if exp > 1:
+            return '{0}^'.format(self.unitName)
+        else:
+            return '{0}^-'.format(self.unitName)
+
+    def __lt__(self, other):
+        """Less than comparison for sorting.
+        """
+        return self.unitName.lower() < other.unitName.lower()
+
+    def __eq__(self, other):
+        """Equality test.
+        """
+        return self.unitName.lower() == other.unitName.lower()

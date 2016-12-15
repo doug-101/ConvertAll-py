@@ -21,6 +21,7 @@ class UnitEdit(QLineEdit):
     """
     unitChanged = pyqtSignal()
     currentChanged = pyqtSignal(QWidget) # pass line edit for focus proxy
+    keyPressed = pyqtSignal(int) # pass key to list view for some key presses
     gotFocus = pyqtSignal()
     def __init__(self, unitGroup, parent=None):
         super().__init__(parent)
@@ -47,8 +48,8 @@ class UnitEdit(QLineEdit):
     def updateGroup(self):
         """Update unit based on edit text change (except spacing change).
         """
-        if self.text().replace(' ', '') \
-                   != self.unitGroup.unitString().replace(' ', ''):
+        if (self.text().replace(' ', '') !=
+            self.unitGroup.unitString().replace(' ', '')):
             self.unitGroup.update(self.text(), self.cursorPosition())
             self.currentChanged.emit(self)     # update listView
             self.unitUpdate()   # replace text with formatted text
@@ -63,27 +64,18 @@ class UnitEdit(QLineEdit):
     def keyPressEvent(self, event):
         """Keys for return and up/down.
         """
-        if event.key() == Qt.Key_Up:
-            self.unitGroup.moveToNext(True)
-            self.currentChanged.emit(self)     # update listView
-            self.unitUpdate()
-        elif event.key() == Qt.Key_Down:
-            self.unitGroup.moveToNext(False)
-            self.currentChanged.emit(self)     # update listView
-            self.unitUpdate()
-        elif event.key() in (Qt.Key_Return, Qt.Key_Enter):
-            self.unitGroup.completePartial()
-            self.currentChanged.emit(self)     # update listView
-            self.unitUpdate()
+        if event.key() in (Qt.Key_Up, Qt.Key_Down, Qt.Key_PageUp,
+                           Qt.Key_PageDown, Qt.Key_Return, Qt.Key_Enter):
+            self.keyPressed.emit(event.key())
         else:
             super().keyPressEvent(event)
 
     def event(self, event):
         """Catch tab press to complete unit.
         """
-        if event.type() == QEvent.KeyPress and \
-                 event.key() == Qt.Key_Tab:
-            self.unitGroup.completePartial()
+        if (event.type() == QEvent.KeyPress and
+            event.key() == Qt.Key_Tab):
+            # self.unitGroup.completePartial()
             self.currentChanged.emit(self)     # update listView
             self.unitUpdate()
         return super().event(event)
