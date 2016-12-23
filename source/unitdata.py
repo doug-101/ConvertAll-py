@@ -82,6 +82,15 @@ class UnitData(collections.OrderedDict):
             raise UnitDataError(_('Duplicate unit names found'))
         return len(units)
 
+    def sortUnits(self, colNum, ascend=True):
+        """Sort units using key from given column.
+        """
+        unitDict = self.copy()
+        self.clear()
+        self.update(sorted(unitDict.items(),
+                           key=lambda u: u[1].columnText(colNum).lower(),
+                           reverse=not ascend))
+
     def partialMatches(self, text):
         """Return list of units with names starting with parts of text.
         """

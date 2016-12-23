@@ -68,6 +68,15 @@ class UnitDatum:
             return '{0}  ({1})'.format(self.name, self.comments[0])
         return self.name
 
+    def columnText(self, colNum):
+        """Return text for given column number in the list view.
+        """
+        if colNum == 0:
+            return self.description()
+        if colNum == 1:
+            return self.typeName
+        return self.comments[1]
+
     def partialMatch(self, wordList):
         """Return True if parts of name start with items from wordList.
         """

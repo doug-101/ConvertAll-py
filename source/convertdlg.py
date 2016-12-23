@@ -107,7 +107,7 @@ class ConvertDlg(QWidget):
         # self.addButtons(self.toGroup, self.toUnitListView, toLayout)
         self.showHideButtons()
 
-        self.unitListView = unitlistview.UnitListView()
+        self.unitListView = unitlistview.UnitListView(ConvertDlg.unitData)
         mainLayout.addWidget(self.unitListView)
         self.fromUnitEdit.currentChanged.connect(self.unitListView.
                                                  updateFiltering)
