@@ -16,17 +16,20 @@ from PyQt5.QtCore import (pyqtSignal, Qt, QItemSelectionModel)
 from PyQt5.QtGui import QPalette
 from PyQt5.QtWidgets import (QAbstractItemView, QApplication, QTreeWidget,
                              QTreeWidgetItem)
+import re
 
 
 class UnitListView(QTreeWidget):
     """ListView of units available.
     """
     unitChanged = pyqtSignal()
+    haveCurrentUnit = pyqtSignal(bool, bool)
+    # pass True if unitEdit active, then True if have unit text, o/w False
     def __init__(self, unitData, parent=None):
         super().__init__(parent)
         self.unitData = unitData
         self.highlightNum = 0
-        self.buttonList = []
+        self.typeFilter = ''
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
         self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
@@ -47,38 +50,47 @@ class UnitListView(QTreeWidget):
         for col in range(3):
             self.resizeColumnToContents(col)
 
-    def relayChange(self):
-        """Update list after buttons changed the unit group.
-        """
-        self.updateFiltering(None)
-        self.setFocus()
-        self.unitChanged.emit()     # update unitEdit
-
     def updateFiltering(self, focusProxy=None):
         """Update list after change to line editor.
-           Set focus proxy to line editor if given.
+           Set focus proxy to line editor if given (no change if None).
         """
         if focusProxy:
             self.setFocusProxy(focusProxy)
-        unitGroup = self.focusProxy().unitGroup
-        currentUnit = unitGroup.currentUnit()
+        if self.focusProxy():
+            currentUnit = self.focusProxy().unitGroup.currentUnit()
+        else:
+            currentUnit = None
         self.blockSignals(True)
         self.clear()
         if currentUnit and currentUnit.unitName:
             for unit in self.unitData.partialMatches(currentUnit.unitName):
-                UnitListViewItem(unit, self)
+                if not self.typeFilter or unit.typeName == self.typeFilter:
+                    UnitListViewItem(unit, self)
+                else:
+                    unit.viewLink = None
             if currentUnit.datum and currentUnit.datum.viewLink:
                 self.setCurrentItem(currentUnit.datum.viewLink)
                 self.highlightNum = self.indexOfTopLevelItem(currentUnit.
                                                              datum.viewLink)
-            self.enableButtons(True)
         else:
             for unit in self.unitData.values():
-                UnitListViewItem(unit, self)
-            self.enableButtons(False)
-        if not self.currentItem() and self.topLevelItemCount():
+                if not self.typeFilter or unit.typeName == self.typeFilter:
+                    UnitListViewItem(unit, self)
+                else:
+                    unit.viewLink = None
+        if (not self.currentItem() and self.focusProxy() and
+            self.topLevelItemCount()):
             self.setHighlight(0)
         self.blockSignals(False)
+        self.haveCurrentUnit.emit(bool(self.focusProxy()),
+                                  bool(currentUnit and currentUnit.unitName))
+
+    def resetFiltering(self):
+        """Clear the focus proxy and remove search filtering.
+        """
+        if self.focusProxy():
+            self.setFocusProxy(None)
+            self.updateFiltering()
 
     def replaceUnit(self):
         """Replace current unit in response to a selection change.
@@ -86,8 +98,38 @@ class UnitListView(QTreeWidget):
         selectList = self.selectedItems()
         if selectList:
             selection = selectList[-1]
-            self.focusProxy().unitGroup.replaceCurrent(selection.unit)
-            self.unitChanged.emit()     # update unitEdit
+            if self.focusProxy():
+                self.focusProxy().unitGroup.replaceCurrent(selection.unit)
+                self.unitChanged.emit()     # update unitEdit
+                self.updateFiltering()
+            else:
+                self.setCurrentItem(None)
+                self.setHighlight(self.indexOfTopLevelItem(selection))
+
+    def addUnitText(self):
+        """Add exponent or operator text from push button to unit group.
+           Autocomplete a highlighted unit if not selected.
+        """
+        if self.focusProxy():
+            button = self.sender()
+            text = re.match(r'.*\((.*?)\)$', button.text()).group(1)
+            if not self.selectedItems():
+                item = self.topLevelItem(self.highlightNum)
+                if item:
+                    self.setCurrentItem(item)
+            if text.startswith('^'):
+                self.focusProxy().unitGroup.changeExp(int(text[1:]))
+            else:
+                self.focusProxy().unitGroup.addOper(text == '*')
+                self.updateFiltering()
+            self.unitChanged.emit()
+
+    def clearUnitText(self):
+        """Remove all unit text.
+        """
+        if self.focusProxy():
+            self.focusProxy().unitGroup.clearUnit()
+            self.unitChanged.emit()
             self.updateFiltering()
 
     def setHighlight(self, num):
@@ -151,12 +193,6 @@ class UnitListView(QTreeWidget):
         if pos >= self.topLevelItemCount():
             pos = self.topLevelItemCount() - 1
         self.setHighlight(pos)
-
-    def enableButtons(self, enable=True):
-        """Enable unit modification buttons for valid unit.
-        """
-        for button in self.buttonList:
-            button.setEnabled(enable)
 
     def sizeHint(self):
         """Adjust width smaller.

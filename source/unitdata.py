@@ -80,6 +80,7 @@ class UnitData(collections.OrderedDict):
             self[unit.name.lower().replace(' ', '')] = unit
         if len(self) < len(units):
             raise UnitDataError(_('Duplicate unit names found'))
+        self.typeList.sort()
         return len(units)
 
     def sortUnits(self, colNum, ascend=True):

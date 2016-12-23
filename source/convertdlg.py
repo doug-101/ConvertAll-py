@@ -18,8 +18,8 @@ from PyQt5.QtCore import (QPoint, Qt)
 from PyQt5.QtGui import (QColor, QFont, QPalette)
 from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
                              QFrame, QGridLayout, QGroupBox, QHBoxLayout,
-                             QLabel, QMenu, QMessageBox, QPushButton,
-                             QVBoxLayout, QWidget)
+                             QLabel, QLayout, QMenu, QMessageBox, QPushButton,
+                             QSizePolicy, QVBoxLayout, QWidget)
 try:
     from __main__ import __version__, __author__, helpFilePath, iconPath
     from __main__ import lang
@@ -35,7 +35,6 @@ import recentunits
 import unitedit
 import unitlistview
 import numedit
-from modbutton import ModButton
 import icondict
 import optiondefaults
 import helpview
@@ -79,12 +78,12 @@ class ConvertDlg(QWidget):
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.origPal = QApplication.palette()
         self.updateColors()
+        self.allUnitButtons = []
         self.textButtons = []
-        self.recentButtons = []
 
         topLayout = QHBoxLayout(self)    # divide main, buttons
         mainLayout = QVBoxLayout()
-        mainLayout.setSpacing(10)
+        mainLayout.setSpacing(8)
         topLayout.addLayout(mainLayout)
         unitLayout = QGridLayout()       # unit selection
         unitLayout.setVerticalSpacing(3)
@@ -96,7 +95,6 @@ class ConvertDlg(QWidget):
         self.fromUnitEdit = unitedit.UnitEdit(self.fromGroup)
         unitLayout.addWidget(self.fromUnitEdit, 1, 0)
         self.fromUnitEdit.setFocus()
-        # self.addButtons(self.fromGroup, self.fromUnitListView, fromLayout)
 
         toLabel = QLabel(_('To Unit'))
         unitLayout.addWidget(toLabel, 0, 1)
@@ -104,8 +102,10 @@ class ConvertDlg(QWidget):
         unitLayout.addWidget(self.toUnitEdit, 1, 1)
         self.fromUnitEdit.gotFocus.connect(self.toUnitEdit.setInactive)
         self.toUnitEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
-        # self.addButtons(self.toGroup, self.toUnitListView, toLayout)
-        self.showHideButtons()
+
+        vertButtonLayout = QVBoxLayout()
+        vertButtonLayout.setSpacing(2)
+        mainLayout.addLayout(vertButtonLayout)
 
         self.unitListView = unitlistview.UnitListView(ConvertDlg.unitData)
         mainLayout.addWidget(self.unitListView)
@@ -117,7 +117,43 @@ class ConvertDlg(QWidget):
         self.toUnitEdit.keyPressed.connect(self.unitListView.handleKeyPress)
         self.unitListView.unitChanged.connect(self.fromUnitEdit.unitUpdate)
         self.unitListView.unitChanged.connect(self.toUnitEdit.unitUpdate)
+        self.unitListView.haveCurrentUnit.connect(self.enableButtons)
         self.unitListView.setFocusProxy(self.fromUnitEdit)
+
+        textButtonLayout = QHBoxLayout()
+        textButtonLayout.setSpacing(6)
+        vertButtonLayout.addLayout(textButtonLayout)
+        textButtonLayout.addStretch(1)
+        self.textButtons.append(QPushButton('{0} (^2)'.format(_('Square'))))
+        self.textButtons.append(QPushButton('{0} (^3)'.format(_('Cube'))))
+        self.textButtons.append(QPushButton('{0} (*)'.format(_('Multiply'))))
+        self.textButtons.append(QPushButton('{0} (/)'.format(_('Divide'))))
+        for button in self.textButtons:
+            button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            button.setFocusPolicy(Qt.NoFocus)
+            textButtonLayout.addWidget(button)
+            button.clicked.connect(self.unitListView.addUnitText)
+        textButtonLayout.addStretch(1)
+        self.allUnitButtons.extend(self.textButtons)
+
+        unitButtonLayout = QHBoxLayout()
+        unitButtonLayout.setSpacing(6)
+        vertButtonLayout.addLayout(unitButtonLayout)
+        unitButtonLayout.addStretch(1)
+        self.clearButton = QPushButton(_('Clear Unit'))
+        self.clearButton.clicked.connect(self.unitListView.clearUnitText)
+        self.recentButton = QPushButton(_('Recent Unit'))
+        self.recentButton.clicked.connect(self.recentMenu)
+        self.filterButton = QPushButton(_('Filter List'))
+        self.filterButton.clicked.connect(self.filterMenu)
+        unitButtons = [self.clearButton, self.recentButton, self.filterButton]
+        for button in unitButtons:
+            button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+            button.setFocusPolicy(Qt.NoFocus)
+            unitButtonLayout.addWidget(button)
+        unitButtonLayout.addStretch(1)
+        self.allUnitButtons.extend(unitButtons)
+        self.showHideButtons()
 
         numberLayout = QGridLayout()
         numberLayout.setVerticalSpacing(3)
@@ -135,6 +171,7 @@ class ConvertDlg(QWidget):
         self.fromUnitEdit.unitChanged.connect(self.fromNumEdit.unitUpdate)
         self.fromNumEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
         self.fromNumEdit.gotFocus.connect(self.toUnitEdit.setInactive)
+        self.fromNumEdit.gotFocus.connect(self.unitListView.resetFiltering)
         self.fromNumEdit.setEnabled(False)
         equalsLabel = QLabel(' = ')
         equalsLabel.setFont(QFont(self.font().family(), 20))
@@ -149,11 +186,10 @@ class ConvertDlg(QWidget):
         self.toUnitEdit.unitChanged.connect(self.toNumEdit.unitUpdate)
         self.toNumEdit.gotFocus.connect(self.fromUnitEdit.setInactive)
         self.toNumEdit.gotFocus.connect(self.toUnitEdit.setInactive)
+        self.toNumEdit.gotFocus.connect(self.unitListView.resetFiltering)
         self.toNumEdit.setEnabled(False)
         self.fromNumEdit.convertNum.connect(self.toNumEdit.setNum)
         self.toNumEdit.convertNum.connect(self.fromNumEdit.setNum)
-        self.fromNumEdit.convertNum.connect(self.setRecentAvail)
-        self.toNumEdit.convertNum.connect(self.setRecentAvail)
         self.fromNumEdit.convertRqd.connect(self.toNumEdit.convert)
         self.toNumEdit.convertRqd.connect(self.fromNumEdit.convert)
 
@@ -196,37 +232,6 @@ class ConvertDlg(QWidget):
             tipDialog = TipDialog(self.option, self)
             tipDialog.exec_()
 
-    def addButtons(self, unitGroup, listView, upperLayout):
-        """Add buttons to unit selector.
-        """
-        buttonLayout = QHBoxLayout()
-        upperLayout.addLayout(buttonLayout)
-        buttons = []
-        buttons.append(ModButton(unitGroup.addOper, 1, 'X'))
-        buttons.append(ModButton(unitGroup.addOper, 0, '/'))
-        buttons.append(ModButton(unitGroup.changeExp, 2, '^2'))
-        buttons.append(ModButton(unitGroup.changeExp, 3, '^3'))
-        for button in buttons:
-            buttonLayout.addWidget(button)
-        listView.buttonList = buttons[:]
-        buttons.append(ModButton(unitGroup.clearUnit, None, _('Clear Unit')))
-        extraLayout = QHBoxLayout()
-        upperLayout.addLayout(extraLayout)
-        extraLayout.addWidget(buttons[-1])
-        for but in buttons:
-            but.stateChg.connect(listView.relayChange)
-            but.setEnabled(False)
-            self.textButtons.append(but)
-        buttons[-1].setEnabled(True)
-        recentButton = QPushButton(_('Recent Unit'))
-        recentButton.setFocusPolicy(Qt.NoFocus)
-        recentButton.unitGroup = unitGroup
-        recentButton.clicked.connect(self.recentMenu)
-        extraLayout.addWidget(recentButton)
-        self.textButtons.append(recentButton)
-        self.recentButtons.append(recentButton)
-        self.setRecentAvail()
-
     def recentMenu(self):
         """Show a menu with recently used units.
         """
@@ -234,25 +239,57 @@ class ConvertDlg(QWidget):
         menu = QMenu()
         for unit in self.recentUnits:
             action = menu.addAction(unit)
-            action.unitGroup = button.unitGroup
-            menu.triggered.connect(self.insertRecent)
+        menu.triggered.connect(self.insertRecent)
         menu.exec_(button.mapToGlobal(QPoint(0, 0)))
-
-    def setRecentAvail(self):
-        """Enable or disable recent unit button.
-        """
-        for button in self.recentButtons:
-            button.setEnabled(len(self.recentUnits))
 
     def insertRecent(self, action):
         """Insert the recent unit from the given action.
         """
-        action.unitGroup.update(action.text())
-        if action.unitGroup is self.fromGroup:
-            self.fromUnitEdit.unitUpdate()
-        else:
-            self.toUnitEdit.unitUpdate()
+        editor = (self.fromUnitEdit if self.fromUnitEdit.activeEditor else
+                  self.toUnitEdit)
+        editor.unitGroup.update(action.text())
+        editor.unitUpdate()
         self.unitListView.updateFiltering()
+
+    def filterMenu(self):
+        """Show a menu with unit types for filtering or clear filter if set.
+        """
+        if self.unitListView.typeFilter:  # clear filter
+            self.unitListView.typeFilter = ''
+            self.unitListView.updateFiltering()
+            self.filterButton.setText(_('Filter List'))
+        else:  # show filter menu
+            button = self.sender()
+            menu = QMenu()
+            for unitType in ConvertDlg.unitData.typeList:
+                action = menu.addAction(unitType)
+            menu.triggered.connect(self.startTypeFilter)
+            menu.exec_(button.mapToGlobal(QPoint(0, 0)))
+
+    def startTypeFilter(self, action):
+        """Start type filter based on the given action.
+        """
+        self.unitListView.typeFilter = action.text()
+        self.unitListView.updateFiltering()
+        self.filterButton.setText(_('Clear Filter'))
+
+    def enableButtons(self, editActive, hasUnit):
+        """Enable text editing buttons if have a current unit.
+        """
+        for button in self.textButtons:
+            button.setEnabled(hasUnit)
+        self.clearButton.setEnabled(editActive)
+        self.recentButton.setEnabled(editActive and len(self.recentUnits))
+
+    def showHideButtons(self):
+        """Show or hide text modify buttons.
+        """
+        visible = self.option.boolData('ShowOpButtons')
+        for button in self.allUnitButtons:
+            if visible:
+                button.show()
+            else:
+                button.hide()
 
     def updateColors(self):
         """Adjust the colors to the current option settings.
@@ -334,16 +371,6 @@ class ConvertDlg(QWidget):
         newColor = QColorDialog.getColor(foreground, self)
         if newColor.isValid() and newColor != foreground:
             self.setOptionColor('Foreground', newColor)
-
-    def showHideButtons(self):
-        """Show or hide text modify buttons.
-        """
-        visible = self.option.boolData('ShowOpButtons')
-        for button in self.textButtons:
-            if visible:
-                button.show()
-            else:
-                button.hide()
 
     def findHelpFile(self):
         """Return the path to the help file.

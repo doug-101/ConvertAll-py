@@ -112,7 +112,6 @@ class UnitGroup:
         """Add new operator & blank unit after current, * if mult is true.
         """
         if self.unitList:
-            # self.completePartial()
             group, pos = self.currentGroupPos()
             self.currentNum += 1
             group.unitList.insert(pos + 1, unitatom.UnitAtom(''))
@@ -122,7 +121,6 @@ class UnitGroup:
     def changeExp(self, newExp):
         """Change the current unit's exponent.
         """
-        # self.completePartial()
         currentUnit = self.currentUnit()
         if currentUnit:
             if currentUnit.exp > 0:
