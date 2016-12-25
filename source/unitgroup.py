@@ -183,14 +183,30 @@ class UnitGroup:
         """
         parts = text.split('^', 1)
         exp = 1
+        partialExp = ''
         if len(parts) > 1:   # has exponent
+            expText = parts[1].strip()
             try:
-                exp = int(parts[1])
+                exp = int(expText)
+                if exp == 1:
+                    partialExp = '^1'  # keep for start of '1.5'
+                elif expText == '-0':
+                    partialExp = '^-0' # keep for start of '-0.5'
             except ValueError:
-                if parts[1].lstrip().startswith('-'):
-                    exp = -unitatom.UnitAtom.partialExp  # tmp invalid exp
-                else:
-                    exp = unitatom.UnitAtom.partialExp
+                try:
+                    exp = float(expText)
+                    if expText.endswith('.'):
+                        partialExp = '^' + expText
+                except ValueError:
+                    if expText == '.':
+                        partialExp = '^0.'
+                    elif expText == '-.':
+                        partialExp = '^-0.'
+                    elif expText.startswith('-'):
+                        partialExp = '^-'
+                    else:
+                        partialExp = '^'
+                    exp = unitatom.UnitAtom.invalidExp
         unitText = parts[0].strip().lower().replace(' ', '')
         unit = self.unitData.get(unitText)
         if not unit and unitText:
@@ -205,6 +221,7 @@ class UnitGroup:
         else:
             unitAtom = unitatom.UnitAtom(parts[0].strip())  # tmp invalid unit
         unitAtom.exp = exp
+        unitAtom.partialExp = partialExp
         return unitAtom
 
     def unitString(self, unitList=None, swapExpSign=False):

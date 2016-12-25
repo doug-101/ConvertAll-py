@@ -100,13 +100,14 @@ class UnitDatum:
 class UnitAtom:
     """Stores a unit datum or a temporary name with an exponent.
     """
-    partialExp = 1000
+    invalidExp = 1000
     def __init__(self, name='', unitDatum = None):
         """Initialize with either a text name or a unitDatum.
         """
         self.datum = None
         self.unitName = name
         self.exp = 1
+        self.partialExp = ''  # starts with '^' for incomplete exp
         if unitDatum:
             self.datum = unitDatum
             self.unitName = unitDatum.name
@@ -114,8 +115,7 @@ class UnitAtom:
     def unitValid(self):
         """Return True if unit and exponent are valid.
         """
-        if (self.datum and self.datum.equiv and
-            -UnitAtom.partialExp < self.exp < UnitAtom.partialExp):
+        if self.datum and self.datum.equiv and self.exp < UnitAtom.invalidExp:
             return True
         return False
 
@@ -125,14 +125,11 @@ class UnitAtom:
         exp = self.exp
         if absExp:
             exp = abs(self.exp)
+        if self.partialExp:
+            return '{0}{1}'.format(self.unitName, self.partialExp)
         if exp == 1:
             return self.unitName
-        if -UnitAtom.partialExp < exp < UnitAtom.partialExp:
-            return '{0}^{1}'.format(self.unitName, exp)
-        if exp > 1:
-            return '{0}^'.format(self.unitName)
-        else:
-            return '{0}^-'.format(self.unitName)
+        return '{0}^{1}'.format(self.unitName, exp)
 
     def __lt__(self, other):
         """Less than comparison for sorting.
