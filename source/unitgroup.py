@@ -192,10 +192,14 @@ class UnitGroup:
                 else:
                     exp = unitatom.UnitAtom.partialExp
         unitText = parts[0].strip().lower().replace(' ', '')
-        unit = self.unitData.get(unitText, None)
-        if (not unit and unitText and unitText[-1] == 's' and not
-            self.unitData.findPartialMatch(unitText)):   # check for plural
-            unit = self.unitData.get(unitText[:-1], None)
+        unit = self.unitData.get(unitText)
+        if not unit and unitText:
+            if unitText[-1] in ('2', '3') and self.unitData.get(unitText[:-1]):
+                unit = self.unitData.get(unitText[:-1])
+                exp = int(unitText[-1])
+            elif (unitText[-1] == 's' and not
+                  self.unitData.findPartialMatch(unitText)): # check for plural
+                unit = self.unitData.get(unitText[:-1])
         if unit:
             unitAtom = unitatom.UnitAtom('', unit)
         else:
