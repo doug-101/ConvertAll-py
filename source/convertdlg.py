@@ -78,7 +78,7 @@ class ConvertDlg(QWidget):
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.origPal = QApplication.palette()
         self.updateColors()
-        self.allUnitButtons = []
+        self.unitButtons = []
         self.textButtons = []
 
         topLayout = QHBoxLayout(self)    # divide main, buttons
@@ -134,7 +134,6 @@ class ConvertDlg(QWidget):
             textButtonLayout.addWidget(button)
             button.clicked.connect(self.unitListView.addUnitText)
         textButtonLayout.addStretch(1)
-        self.allUnitButtons.extend(self.textButtons)
 
         unitButtonLayout = QHBoxLayout()
         unitButtonLayout.setSpacing(6)
@@ -146,13 +145,13 @@ class ConvertDlg(QWidget):
         self.recentButton.clicked.connect(self.recentMenu)
         self.filterButton = QPushButton(_('Filter List'))
         self.filterButton.clicked.connect(self.filterMenu)
-        unitButtons = [self.clearButton, self.recentButton, self.filterButton]
-        for button in unitButtons:
+        self.unitButtons = [self.clearButton, self.recentButton,
+                            self.filterButton]
+        for button in self.unitButtons:
             button.setSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
             button.setFocusPolicy(Qt.NoFocus)
             unitButtonLayout.addWidget(button)
         unitButtonLayout.addStretch(1)
-        self.allUnitButtons.extend(unitButtons)
         self.showHideButtons()
 
         numberLayout = QGridLayout()
@@ -284,9 +283,15 @@ class ConvertDlg(QWidget):
     def showHideButtons(self):
         """Show or hide text modify buttons.
         """
-        visible = self.option.boolData('ShowOpButtons')
-        for button in self.allUnitButtons:
-            if visible:
+        textButtonsVisible = self.option.boolData('ShowOpButtons')
+        unitButtonsVisible = self.option.boolData('ShowUnitButtons')
+        for button in self.textButtons:
+            if textButtonsVisible:
+                button.show()
+            else:
+                button.hide()
+        for button in self.unitButtons:
+            if unitButtonsVisible:
                 button.show()
             else:
                 button.hide()
@@ -323,7 +328,9 @@ class ConvertDlg(QWidget):
                                 _('Load last units at startup'))
         dlg.startGroupBox(_('User Interface'))
         optiondlg.OptionDlgBool(dlg, 'ShowOpButtons',
-                                _('Show operator buttons'))
+                                _('Show operator buttons (1st row)'))
+        optiondlg.OptionDlgBool(dlg, 'ShowUnitButtons',
+                                _('Show unit buttons (2nd row)'))
         optiondlg.OptionDlgBool(dlg, 'ShowStartupTip',
                                 _('Show tip at startup'))
         dlg.startGroupBox(_('Colors'))
