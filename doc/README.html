@@ -8,8 +8,8 @@
 <h2>a unit conversion program</h2>
 
 <p>Written by Doug Bell<br>
-Version 0.6.1<br>
-September 10, 2015</p>
+Version 0.7.0<br>
+December 28, 2016</p>
 </center>
 
 <h2>Contents</h2>
@@ -27,10 +27,9 @@ September 10, 2015</p>
 <li><a href="#using">Using ConvertAll</a>
   <ul><li><a href="#basics">Basics</a></li>
   <li><a href="#combine">Combining Units</a></li>
-  <li><a href="#shortcut">Shortcuts</a></li>
-  <li><a href="#finder">Unit Finder</a></li>
-  <li><a href="#options">Options</a></li>
   <li><a href="#nonlinear">Non-Linear Conversions</a></li>
+  <li><a href="#shortcut">Shortcuts</a></li>
+  <li><a href="#options">Options</a></li>
   <li><a href="#cmdline">Command Line Usage</a></li></ul></li>
 <li><a href="#revs">Revision History</a></li>
 <li><a href="#contact">Questions, Comments, Criticisms?</a></li>
@@ -60,19 +59,21 @@ feel free to let others know about it.  And let me know what you think
   <li>The base units for conversion may be either typed (with
   auto-completion) or selected from a list.</li>
 
-  <li>Units may be selected using either an abbreviation or a full
-  name.</li>
+  <li>As a unit is typed, the unit list is automatically filtered to
+  show only units with matching words.</li>
+
+  <li>In general, either a unit's full name or its abbreviation can be
+  used.</li>
 
   <li>Units may be combined with the "*" and "/" operators.</li>
 
-  <li>Units may be raised to powers with the "^" operator.</li>
+  <li>Units may be raised to powers (squared, cubed, etc.) with the "^"
+  operator.</li>
 
   <li>Units in the denominator may be grouped with parenthesis.</li>
 
   <li>Units with non-linear scales, such as temperature, can also be
   converted.</li>
-
-  <li>A unit list may be filtered and searched.</li>
 
   <li>Recently used unit combinations may be picked from a menu.</li>
 
@@ -114,18 +115,14 @@ this program for more information.</p>
 
 <p>ConvertAll requires the following libraries:
 <ul>
-  <li>Python (Version 3.2 or higher)</li>
-  <li>Qt (Version 4.6, 4.7 or 4.8 - see <a
+  <li>Python (Version 3.4 or higher)</li>
+  <li>Qt (Version 5.4 or higher - see <a
     href="http://qt-project.org">Qt Project</a> for more
   information)</li>
-  <li>PyQt (Version 4.8.x through 4.11.x - see <a
+  <li>PyQt (Version 5.4 or higher - see <a
     href="http://www.riverbankcomputing.co.uk">Riverbank</a>
     for more information)</li>
 </ul></p>
-
-<p>If these libraries are not be available for your distribution, an
-earlier version of ConvertAll (0.5.2) that depends on older libraries is
-still available.</p>
 
 <h3><a name="win-sys"></a>Windows</h3>
 
@@ -142,8 +139,7 @@ installation, simply execute the following command as root:  <tt>python
   install.py</tt></p>
 
 <p>If your distribution defaults to Python 2.x, you may need to
-substitute <tt>python3</tt>, <tt>python3.2</tt> or <tt>python3.3</tt>
-for <tt>python</tt> in these commands.</p>
+substitute <tt>python3</tt> for <tt>python</tt> in these commands.</p>
 
 <p>To see all install options, use: <tt>python install.py -h</tt>.  To
 install ConvertAll with a different prefix (the default is
@@ -167,38 +163,39 @@ and uninstaller tasks, and check the portable config task.</p>
 
 <h3><a name="basics"></a>Basics</h3>
 
-<p>Simply type a unit name in the "From Unit" edit window.  As you
-type, the list below the window will scroll to show unit names which
-are close matches.  Either type the complete unit abbreviation or unit
-name or hit the return key to use the unit highlighted in the list.
-Of course, clicking with the mouse on a unit in the list will also add
-the unit to the edit window.  You may also use the up and down arrow
-keys to select nearby units from the list.</p>
+<p>Simply type a unit name in the "From Unit" edit window.  As you type,
+the list below the window will be filtered to show only matching units.
+Matching unit names contain words starting with the words that are
+typed.  Either type the complete unit name/abbreviation or hit the
+return key to use the unit highlighted (blue letters) in the list.  Of
+course, clicking with the mouse on a unit in the list will also add the
+unit to the edit window.  You may also use the up and down arrow keys to
+highlight nearby units from the list.</p>
 
 <p>Repeat the unit selection in the "To Unit" edit window.  When done,
-if the units are compatible, you will see the numeric edit windows
-below the unit lists activate.  A number may be entered into either
-numeric window and the other window will display the conversion
-result.</p>
+if the units are compatible, the numeric edit windows below the unit
+lists will activate.  A number may be entered into either numeric window
+and the other window will display the conversion result.</p>
 
 <h3><a name="combine"></a>Combining Units</h3>
 
 <p>The real strength of ConvertAll lies in its ability to combine
-multiple units.  Simply type the unit names with an '*' or a '/'
-between them.  This allows the entry of units such as "ft*lbf" or
-"mi/hr".  The '^' symbol may be used for exponents, such as "ft^3" or
-"ft*lbm/sec^2".  Negative exponents are allowed for units such as
-"sec^-1" (per second), but may switch the multiplication or division
-symbol ("ft*sec^-2" becomes "ft/sec^2").</p>
+multiple units.  Simply type the unit names with an '*' or a '/' between
+them.  This allows the entry of units such as "ft * lbf" or "mi / hr".
+The '^' symbol may be used for exponents, such as "ft^3" or "ft * lbm /
+sec^2".  Negative exponents are allowed for units such as "sec^-1" (per
+second), but may switch the multiplication or division symbol ("ft *
+sec^-2" becomes "ft / sec^2").</p>
 
 <p>Multiplication and division have the same precedence, so they are
 evaluated left-to-right.  Parenthesis may also be used to group units in
 the denominator.  So "m / sec / kg" can also be entered as "m / (sec *
 kg)".  The version with parenthesis is probably less confusing.</p>
 
-<p>The buttons below the unit lists ('X', '/', '^2', '^3') will also
-place the operators after the unit nearest to the cursor.  The
-exponent keys will replace the unit's exponent.</p>
+<p>The buttons below the unit text boxes can also be used to add operators to
+the active unit that is closest to the cursor.  The Square and Cube buttons
+will add or replace exponents.  The Multiply and Divide buttons will add "*"
+and "/" operators.</p>
 
 <p>Similarly, clicking on a unit from the list generally replaces the
 unit nearest the cursor.</p>
@@ -206,35 +203,44 @@ unit nearest the cursor.</p>
 <p>The "Clear Unit" button below the operator buttons may be used to
 empty the unit edit window to allow a new unit to be entered.</p>
 
+<p>The "Filter List" button can be used to show only one type of unit in
+the list.  Note that this doesn't show units that could be combined to
+form a type.</p>
+
+<h3><a name="nonlinear"></a>Non-Linear Conversions</h3>
+
+<p>The conversion of some units is non-linear.  Examples of these
+include the Fahrenheit and Celsius temperature scales (due to an
+offset zero point) and the American Wire Gauge (logarithmic).  The
+non-linear units are labeled as such in the comments column.</p>
+
+<p>These units can be converted only when they are not combined with
+other units or used with an exponential operator.  Otherwise the
+conversion would not be meaningful.</p>
+
 <h3><a name="shortcut"></a>Shortcuts</h3>
 
 <p>When typing unit names, spaces are ignored, so they may be skipped.
-It is also generally ignored if a plural form of the unit name is
-typed.  When a partially typed unit is highlighted in the list,
-hitting enter will complete the name.  Also, hitting the tab key will
-complete the name and move to the next entry field.</p>
+It is also generally ignored if a plural form of the unit name is typed.
+For squared and cubed units (positive exponents of 2 or 3) the "^"
+symbol does not need to be typed.</p>
+
+<p>When a partially typed unit is highlighted in the list (blue
+lettering), hitting enter will complete the name.  The up an ddown arrow
+keys can be used to highlight nearby units in the list prior to hitting
+enter.  The unit closet to the cursor will be replaced.</p>
 
 <p>The "Recent Unit" button opens a menu of recently used units and
 unit combinations.  The current unit combination is replaced with any
 selections from this menu.</p>
 
+<p>The tab key can be used to cycle between the "From" and "To" unit test
+boxes and the "From" and "To" number editors.</p>
+
 <p>The number to be converted may be entered in either the "From" or
 "To" unit side.  Standard or scientific notation may be used, or an
 expression including the normal math operators (+, -, *, /, **) and
 parenthesis may be entered.</p>
-
-<h3><a name="finder"></a>Unit Finder</h3>
-
-<p>The unit finder can be used to filter units by type and/or search for
-units using a text string.  It displays a separate unit list in a new
-window.  The list will be updated based on the filter and search string
-entries.</p>
-
-<p>Buttons near the bottom of the finder window add the selected unit to
-the units in the main window.  The "Replace" buttons replace an entire
-combined unit with the selection.  The "Insert" button changes only the
-part of a combined unit that is active (at the cursor in the main
-window).</p>
 
 <h3><a name="options"></a>Options</h3>
 
@@ -252,24 +258,12 @@ places or higher is recommended (eight is the default).</p>
 Setting it to zero will disable the Recent Unit buttons.  Another option
 will automatically load the most recent previous units at startup.</p>
 
-<p>There is an option to hide the operator text option buttons (x, /,
-^2, ^3, Clear Unit and Recent Unit).  These can be hidden to save space
+<p>There are options to hide the operator text buttons (first row), and
+the unit buttons (second row).  These can be hidden to save space
 if the keyboard will be used to enter the operators.</p>
 
 <p>Buttons are also included on the options dialog to control the colors
 of the text fields.</p>
-
-<h3><a name="nonlinear"></a>Non-Linear Conversions</h3>
-
-<p>The conversion of some units is non-linear.  Examples of these
-include the Fahrenheit and Celsius temperature scales (due to an
-offset zero point) and the American Wire Gauge (logarithmic).  The
-non-linear units are labeled as such in the comments column (located
-to the right of the "Type" column).</p>
-
-<p>These units can be converted only when they are not combined with
-other units or used with an exponential operator.  Otherwise the
-conversion would not be meaningful.</p>
 
 <h3><a name="cmdline"></a>Command Line Usage</h3>
 
@@ -289,6 +283,49 @@ conversion, "r" to reverse the conversion or "q" to quit.</p>
 -h" on Linux, "convertall_dos -h" on Windows).</p>
 
 <h2><a name="revs"></a>Revision History</h2>
+
+<h3>December 28, 2016 - Release 0.7.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Dual unit lists have been replaced with a single list that works
+  with the active unit line editor.</li>
+
+  <li>As a unit is typed, the listing of units is reduced to only include
+  units that match the typed words.</li>
+
+  <li>The unit list can be sorted by clicking on the column
+  headings.</li>
+
+  <li>The unit list can be filtered to only show units of a certain
+  type.</li>
+
+  <li>Simple unit exponents (positive 2 and 3) can be typed with just
+  the number (leaving out the "^" character).</li>
+
+  <li>Now permits decimals to be entered for unit exponents, supporting
+  roots of units.</li>
+
+  <li>ConvertAll has been ported from the Qt4 to the Qt5 library.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Since the main unit list can now be searched, sorted and filtered,
+  the Unit Finder Dialog has been removed.</li>
+
+  <li>Added the British Std Wire Gauge non-linear unit.</li>
+
+  <li>Added the ton imnperial unit.</li>
+
+  <li>Added the cable nautical unit.</li>
+
+  <li>Added the MBH (1000 Btu/hr) unit.</li>
+
+  <li>Added Cape foot, square perch and rood units.</li>
+
+</ul>
 
 <h3>September 10, 2015 - Release 0.6.1</h3>
 
