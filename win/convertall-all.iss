@@ -5,12 +5,12 @@
 
 [Setup]
 AppName=ConvertAll
-AppVersion=0.6.1
+AppVersion=0.7.0
 DefaultDirName={pf}\ConvertAll
 DefaultGroupName=ConvertAll
 DisableProgramGroupPage=yes
 OutputDir=.
-OutputBaseFilename=convertall-0.6.1-install-all
+OutputBaseFilename=convertall-0.7.0-install-all
 PrivilegesRequired=poweruser
 SetupIconFile=convertall.ico
 Uninstallable=IsTaskSelected('adduninstall')
