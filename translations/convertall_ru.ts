@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="ru_RU">
+<!DOCTYPE TS><TS version="1.1" language="ru_RU">
 <context>
     <name>cmdline</name>
     <message>
@@ -127,97 +126,97 @@
         <translation type="obsolete">Ошибка в данных величины- %s</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="85"/>
+        <location filename="convertdlg.py" line="93"/>
         <source>From Unit</source>
         <translation>Из величины</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="100"/>
+        <location filename="convertdlg.py" line="99"/>
         <source>To Unit</source>
         <translation>В величину</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="117"/>
+        <location filename="convertdlg.py" line="160"/>
         <source>Set units</source>
         <translation>Задайте величины</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="134"/>
+        <location filename="convertdlg.py" line="179"/>
         <source>No Unit Set</source>
         <translation>Величина не установлена</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="152"/>
+        <location filename="convertdlg.py" line="197"/>
         <source>&amp;Close</source>
         <translation>&amp;Закрыть</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="156"/>
         <source>&amp;Unit Finder...</source>
-        <translation>&amp;Поиск величины...</translation>
+        <translation type="obsolete">&amp;Поиск величины...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="160"/>
+        <location filename="convertdlg.py" line="201"/>
         <source>&amp;Options...</source>
         <translation>&amp;Настройки...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="164"/>
+        <location filename="convertdlg.py" line="205"/>
         <source>&amp;Help...</source>
         <translation>&amp;Справка...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="168"/>
+        <location filename="convertdlg.py" line="209"/>
         <source>&amp;About...</source>
         <translation>&amp;О себе...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="207"/>
+        <location filename="convertdlg.py" line="142"/>
         <source>Clear Unit</source>
         <translation>Очистить величину</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="283"/>
+        <location filename="convertdlg.py" line="320"/>
         <source>Result Display</source>
         <translation>Отображение результата</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="279"/>
+        <location filename="convertdlg.py" line="316"/>
         <source>Result Precision</source>
         <translation>Представление результата</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="280"/>
+        <location filename="convertdlg.py" line="317"/>
         <source>Decimal places</source>
         <translation>Знаков после запятой</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="284"/>
+        <location filename="convertdlg.py" line="321"/>
         <source>Use short representation</source>
         <translation>Короткое представление</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="286"/>
+        <location filename="convertdlg.py" line="323"/>
         <source>Use scientific notation</source>
         <translation>Научное представление</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="285"/>
+        <location filename="convertdlg.py" line="322"/>
         <source>Use fixed decimal places</source>
         <translation>Фиксированное количество знаков</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="287"/>
+        <location filename="convertdlg.py" line="324"/>
         <source>Use engineering notation</source>
         <translation>Инженерное представление</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="291"/>
+        <location filename="convertdlg.py" line="328"/>
         <source>Load last units at startup</source>
         <translation>Загружать последюю использованную величну при запуcке</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="292"/>
+        <location filename="convertdlg.py" line="329"/>
         <source>User Interface</source>
         <translation>Пользовательский интерфейс</translation>
     </message>
@@ -229,40 +228,40 @@
     <message>
         <location filename="convertdlg.py" line="294"/>
         <source>Show operator buttons</source>
-        <translation>Показывать кнопки операторов (Х, /, ^2, ^3)</translation>
+        <translation type="obsolete">Показывать кнопки операторов (Х, /, ^2, ^3)</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="296"/>
+        <location filename="convertdlg.py" line="335"/>
         <source>Show tip at startup</source>
         <translation>Показывать советы при запуске</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="297"/>
+        <location filename="convertdlg.py" line="336"/>
         <source>Colors</source>
         <translation>Цвета</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="299"/>
+        <location filename="convertdlg.py" line="338"/>
         <source>Use default system colors</source>
         <translation>Использовать системные цвета по умолчанию</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="300"/>
+        <location filename="convertdlg.py" line="339"/>
         <source>Set background color</source>
         <translation>Установить цвет фона</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="301"/>
+        <location filename="convertdlg.py" line="340"/>
         <source>Set text color</source>
         <translation>Установить цвет текста</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="379"/>
+        <location filename="convertdlg.py" line="408"/>
         <source>Read Me file not found</source>
         <translation>Файл README не найден</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="382"/>
+        <location filename="convertdlg.py" line="411"/>
         <source>ConvertAll README File</source>
         <translation>ConvertAll README файл</translation>
     </message>
@@ -274,62 +273,101 @@ by %s</source>
 от %s</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="216"/>
+        <location filename="convertdlg.py" line="144"/>
         <source>Recent Unit</source>
         <translation>Недавняя величина</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="288"/>
+        <location filename="convertdlg.py" line="325"/>
         <source>Recent Units</source>
         <translation>Недавнии величины</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="289"/>
+        <location filename="convertdlg.py" line="326"/>
         <source>Number saved</source>
         <translation>Количество сохраненных</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="68"/>
+        <location filename="convertdlg.py" line="71"/>
         <source>Error in unit data - {0}</source>
-        <translatorcomment>Ошибка в данных величины - {0}</translatorcomment>
         <translation></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="71"/>
+        <location filename="convertdlg.py" line="74"/>
         <source>{0} units loaded</source>
         <translation>{0} величины загружены</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="390"/>
+        <location filename="convertdlg.py" line="419"/>
         <source>ConvertAll Version {0}
 by {1}</source>
         <translation>ConvertAll версия {0}
 от {1}</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="418"/>
+        <location filename="convertdlg.py" line="447"/>
         <source>Convertall - Tip</source>
         <translation>Convertall - Совет</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="422"/>
+        <location filename="convertdlg.py" line="451"/>
         <source>Combining Units</source>
         <translation>Комбинирование величин</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="434"/>
+        <location filename="convertdlg.py" line="463"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;Настоящая сила ConvertAll заключается в возможности комбинирования нескольких величин:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Введите &quot;m/s&quot;, чтобы получить метры в секунду&lt;/li&gt;&lt;li&gt;Введите &quot;ft*lbf&quot;, чтобы получить foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Введите &quot;in^2&quot;, чтобы получить дюймы в квадрате&lt;/li&gt;&lt;li&gt;Введите &quot;m^3&quot;, чтобы получить метры в кубе&lt;/li&gt;&lt;li&gt;или любую другую комбинацию которую можете придумать&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="439"/>
+        <location filename="convertdlg.py" line="468"/>
         <source>Show this tip at startup</source>
         <translation>Показывать советы при запуске</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="444"/>
+        <location filename="convertdlg.py" line="473"/>
         <source>&amp;OK</source>
         <translation>&amp;Да</translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="127"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="128"/>
+        <source>Cube</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="129"/>
+        <source>Multiply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="130"/>
+        <source>Divide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="259"/>
+        <source>Filter List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="273"/>
+        <source>Clear Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="331"/>
+        <source>Show operator buttons (1st row)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="333"/>
+        <source>Show unit buttons (2nd row)</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -337,113 +375,113 @@ by {1}</source>
     <message>
         <location filename="finddlg.py" line="28"/>
         <source>Unit Finder</source>
-        <translation>Поиск величины</translation>
+        <translation type="obsolete">Поиск величины</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="35"/>
         <source>&amp;Filter Unit Types</source>
-        <translation>&amp;Фильтр по типу величины</translation>
+        <translation type="obsolete">&amp;Фильтр по типу величины</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="41"/>
         <source>&amp;Search String</source>
-        <translation>&amp;Строка поиска</translation>
+        <translation type="obsolete">&amp;Строка поиска</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="46"/>
         <source>C&amp;lear</source>
-        <translation>&amp;Очистить</translation>
+        <translation type="obsolete">&amp;Очистить</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="55"/>
         <source>From Unit</source>
-        <translation>Из величины</translation>
+        <translation type="obsolete">Из величины</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="58"/>
         <source>&amp;Replace</source>
-        <translation>За&amp;менить</translation>
+        <translation type="obsolete">За&amp;менить</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="61"/>
         <source>&amp;Insert</source>
-        <translation>&amp;Вставить</translation>
+        <translation type="obsolete">&amp;Вставить</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="64"/>
         <source>To Unit</source>
-        <translation>В величину</translation>
+        <translation type="obsolete">В величину</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="67"/>
         <source>Replac&amp;e</source>
-        <translation>Замен&amp;ить</translation>
+        <translation type="obsolete">Замен&amp;ить</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="70"/>
         <source>Inser&amp;t</source>
-        <translation>Вставит&amp;ь</translation>
+        <translation type="obsolete">Вставит&amp;ь</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="76"/>
         <source>&amp;Close</source>
-        <translation>&amp;Закрыть</translation>
+        <translation type="obsolete">&amp;Закрыть</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Unit Name</source>
-        <translation>Имя величины</translation>
+        <translation type="obsolete">Имя величины</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Unit Type</source>
-        <translation>Тип величины</translation>
+        <translation type="obsolete">Тип величины</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Comments</source>
-        <translation>Комментарии</translation>
+        <translation type="obsolete">Комментарии</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="135"/>
         <source>[All]</source>
-        <translation>[Все]</translation>
+        <translation type="obsolete">[Все]</translation>
     </message>
 </context>
 <context>
     <name>helpview</name>
     <message>
-        <location filename="helpview.py" line="43"/>
+        <location filename="helpview.py" line="46"/>
         <source>&amp;Back</source>
         <translation>&amp;Назад</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="51"/>
+        <location filename="helpview.py" line="54"/>
         <source>&amp;Forward</source>
         <translation>&amp;Вперёд</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="59"/>
+        <location filename="helpview.py" line="62"/>
         <source>&amp;Home</source>
         <translation>&amp;Домой</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="67"/>
+        <location filename="helpview.py" line="70"/>
         <source>Find</source>
         <translation>Найти</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="74"/>
+        <location filename="helpview.py" line="77"/>
         <source>Find &amp;Previous</source>
         <translation>Найти &amp;Предыдущий</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="81"/>
+        <location filename="helpview.py" line="84"/>
         <source>Find &amp;Next</source>
         <translation>Найти &amp;Следующий</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="114"/>
+        <location filename="helpview.py" line="117"/>
         <source>Text string not found</source>
         <translation>Текстовая строка не найдена</translation>
     </message>
@@ -456,7 +494,7 @@ by {1}</source>
         <translation type="obsolete">Ошибка в данных величины- %s</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="57"/>
+        <location filename="numedit.py" line="58"/>
         <source>Converting...</source>
         <translation>Конвертирование...</translation>
     </message>
@@ -466,22 +504,22 @@ by {1}</source>
         <translation type="obsolete">Величины несовместимы  (%s  и  %s)</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="76"/>
+        <location filename="numedit.py" line="77"/>
         <source>Set units</source>
         <translation>Задайте величины</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="77"/>
+        <location filename="numedit.py" line="78"/>
         <source>No Unit Set</source>
         <translation>Величина не установлена</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="102"/>
+        <location filename="numedit.py" line="103"/>
         <source>Error in unit data - {0}</source>
         <translation>Ошибка в данных величины - {0}</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="70"/>
+        <location filename="numedit.py" line="71"/>
         <source>Units are not compatible ({0}  vs.  {1})</source>
         <translation>Величины несовместимы  ({0}  и.  {1})</translation>
     </message>
@@ -489,17 +527,17 @@ by {1}</source>
 <context>
     <name>optiondlg</name>
     <message>
-        <location filename="optiondlg.py" line="38"/>
+        <location filename="optiondlg.py" line="42"/>
         <source>&amp;OK</source>
         <translation>&amp;Да</translation>
     </message>
     <message>
-        <location filename="optiondlg.py" line="41"/>
+        <location filename="optiondlg.py" line="45"/>
         <source>&amp;Cancel</source>
         <translation>О&amp;тмена</translation>
     </message>
     <message>
-        <location filename="optiondlg.py" line="44"/>
+        <location filename="optiondlg.py" line="48"/>
         <source>Preferences</source>
         <translation>Настройки</translation>
     </message>
@@ -512,7 +550,7 @@ by {1}</source>
         <translation type="obsolete">Неверное выражение для «%s» </translation>
     </message>
     <message>
-        <location filename="unitatom.py" line="45"/>
+        <location filename="unitatom.py" line="46"/>
         <source>Bad equation for &quot;{0}&quot;</source>
         <translation>Неверное выражение для «{0}»</translation>
     </message>
@@ -525,7 +563,7 @@ by {1}</source>
         <translation>Не могу прочитать файл «units.dat»</translation>
     </message>
     <message>
-        <location filename="unitdata.py" line="86"/>
+        <location filename="unitdata.py" line="82"/>
         <source>Duplicate unit names found</source>
         <translation>Найдено дублирование имён величин</translation>
     </message>
@@ -533,7 +571,7 @@ by {1}</source>
 <context>
     <name>unitgroup</name>
     <message>
-        <location filename="unitgroup.py" line="302"/>
+        <location filename="unitgroup.py" line="287"/>
         <source>Circular unit definition</source>
         <translation>Цикличное определение величины</translation>
     </message>
@@ -543,7 +581,7 @@ by {1}</source>
         <translation type="obsolete">Неверная конвертация для «%s»</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="356"/>
+        <location filename="unitgroup.py" line="343"/>
         <source>Cannot combine non-linear units</source>
         <translation>Невозможно комбинировать нелинейные величины</translation>
     </message>
@@ -553,12 +591,12 @@ by {1}</source>
         <translation type="obsolete">Неверное выражение для %s</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="307"/>
+        <location filename="unitgroup.py" line="294"/>
         <source>Invalid conversion for &quot;{0}&quot;</source>
         <translation>Неверная конвертация для «{0}»</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="395"/>
+        <location filename="unitgroup.py" line="382"/>
         <source>Bad equation for {0}</source>
         <translation>Неверное выражение для {0}</translation>
     </message>
@@ -566,17 +604,17 @@ by {1}</source>
 <context>
     <name>unitlistview</name>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Unit Name</source>
         <translation>Имя величины</translation>
     </message>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Unit Type</source>
         <translation>Тип величины</translation>
     </message>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Comments</source>
         <translation>Комментарии</translation>
     </message>

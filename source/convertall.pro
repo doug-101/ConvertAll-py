@@ -1,10 +1,8 @@
 SOURCES = cmdline.py \
           convertall.py \
           convertdlg.py \
-          finddlg.py \
           helpview.py \
           icondict.py \
-          modbutton.py \
           numedit.py \
           optiondefaults.py \
           optiondlg.py \

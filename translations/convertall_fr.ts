@@ -126,72 +126,72 @@
         <translation type="obsolete">Erreur dans l&apos;unité - %s</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="85"/>
+        <location filename="convertdlg.py" line="93"/>
         <source>From Unit</source>
         <translation>De l&apos;unité</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="100"/>
+        <location filename="convertdlg.py" line="99"/>
         <source>To Unit</source>
         <translation>Vers l&apos;unité</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="117"/>
+        <location filename="convertdlg.py" line="160"/>
         <source>Set units</source>
         <translation>Choisir les unités</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="134"/>
+        <location filename="convertdlg.py" line="179"/>
         <source>No Unit Set</source>
         <translation>Aucune unité choisie</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="152"/>
+        <location filename="convertdlg.py" line="197"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="156"/>
         <source>&amp;Unit Finder...</source>
-        <translation>&amp;Trouver l&apos;unité...</translation>
+        <translation type="obsolete">&amp;Trouver l&apos;unité...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="160"/>
+        <location filename="convertdlg.py" line="201"/>
         <source>&amp;Options...</source>
         <translation>&amp;Options...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="164"/>
+        <location filename="convertdlg.py" line="205"/>
         <source>&amp;Help...</source>
         <translation>&amp;Aide...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="168"/>
+        <location filename="convertdlg.py" line="209"/>
         <source>&amp;About...</source>
         <translation>&amp;à propos...</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="207"/>
+        <location filename="convertdlg.py" line="142"/>
         <source>Clear Unit</source>
         <translation>Effacer l&apos;unité</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="283"/>
+        <location filename="convertdlg.py" line="320"/>
         <source>Result Display</source>
         <translation>Afficher le résultat</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="280"/>
+        <location filename="convertdlg.py" line="317"/>
         <source>Decimal places</source>
         <translation>Décimal</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="286"/>
+        <location filename="convertdlg.py" line="323"/>
         <source>Use scientific notation</source>
         <translation>Utiliser la notation scientifique</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="285"/>
+        <location filename="convertdlg.py" line="322"/>
         <source>Use fixed decimal places</source>
         <translation>Utilisé des décimales fixes</translation>
     </message>
@@ -203,35 +203,35 @@
     <message>
         <location filename="convertdlg.py" line="294"/>
         <source>Show operator buttons</source>
-        <translation>Montrer les bouttons de l&apos;opérateur</translation>
+        <translation type="obsolete">Montrer les bouttons de l&apos;opérateur</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="297"/>
+        <location filename="convertdlg.py" line="336"/>
         <source>Colors</source>
         <translation>Couleurs</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="299"/>
+        <location filename="convertdlg.py" line="338"/>
         <source>Use default system colors</source>
         <translation>Utiliser les couleurs par défaut</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="300"/>
+        <location filename="convertdlg.py" line="339"/>
         <source>Set background color</source>
         <translation>Choisir la couleur de fond</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="301"/>
+        <location filename="convertdlg.py" line="340"/>
         <source>Set text color</source>
         <translation>Choisir la couleur du texte</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="379"/>
+        <location filename="convertdlg.py" line="408"/>
         <source>Read Me file not found</source>
         <translation>Fichier Read Me non trouvé</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="382"/>
+        <location filename="convertdlg.py" line="411"/>
         <source>ConvertAll README File</source>
         <translation>Fichier README de ConvertAll</translation>
     </message>
@@ -243,90 +243,130 @@ by %s</source>
 by %s</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="216"/>
+        <location filename="convertdlg.py" line="144"/>
         <source>Recent Unit</source>
         <translation>Unité récente</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="288"/>
+        <location filename="convertdlg.py" line="325"/>
         <source>Recent Units</source>
         <translation>Unités récentes</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="289"/>
+        <location filename="convertdlg.py" line="326"/>
         <source>Number saved</source>
         <translation>Nombre sauvé</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="68"/>
+        <location filename="convertdlg.py" line="71"/>
         <source>Error in unit data - {0}</source>
         <translation>Erreur dans l&apos;unité - {0}</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="71"/>
+        <location filename="convertdlg.py" line="74"/>
         <source>{0} units loaded</source>
         <translation>{0} unités chargées</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="291"/>
+        <location filename="convertdlg.py" line="328"/>
         <source>Load last units at startup</source>
         <translation>Chargez dernières unités au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="292"/>
+        <location filename="convertdlg.py" line="329"/>
         <source>User Interface</source>
         <translation>Interface utilisateur</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="296"/>
+        <location filename="convertdlg.py" line="335"/>
         <source>Show tip at startup</source>
         <translation>Afficher allusion au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="390"/>
+        <location filename="convertdlg.py" line="419"/>
         <source>ConvertAll Version {0}
 by {1}</source>
         <translation>ConvertAll version {0}
 by {1}</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="418"/>
+        <location filename="convertdlg.py" line="447"/>
         <source>Convertall - Tip</source>
         <translation>ConvertAll</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="444"/>
+        <location filename="convertdlg.py" line="473"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="422"/>
+        <location filename="convertdlg.py" line="451"/>
         <source>Combining Units</source>
         <translation>La combinaison de unités</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="439"/>
+        <location filename="convertdlg.py" line="468"/>
         <source>Show this tip at startup</source>
         <translation>Afficher allusion au démarrage</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="434"/>
+        <location filename="convertdlg.py" line="463"/>
         <source>&lt;p&gt;ConvertAll&apos;s strength is the ability to combine units:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Enter &quot;m/s&quot; to get meters per second&lt;/li&gt;&lt;li&gt;Enter &quot;ft*lbf&quot; to get foot-pounds (torque)&lt;/li&gt;&lt;li&gt;Enter &quot;in^2&quot; to get square inches&lt;/li&gt;&lt;li&gt;Enter &quot;m^3&quot; to get cubic meters&lt;/li&gt;&lt;li&gt;or any other combinations you can imagine&lt;/li&gt;&lt;/ul&gt;</source>
         <translation>&lt;p&gt;La force de ConvertAll est la possibilité de combiner des unités:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Entrez &quot;m / s&quot; pour obtenir mètres par seconde;&lt;/li&gt;&lt;li&gt;Entrez &quot;ft * lbf&quot; pour obtenir pieds-livres (couple);&lt;/li&gt;&lt;li&gt;Enter &quot;in^ 2&quot; pour obtenir pouces carrés;&lt;/li&gt;&lt;li&gt;Enter &quot;m ^ 3 &quot;pour obtenir de mètres cubes&lt;/li&gt;&lt;li&gt;ou toute autre combinaison que vous pouvez imaginer&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="279"/>
+        <location filename="convertdlg.py" line="316"/>
         <source>Result Precision</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="284"/>
+        <location filename="convertdlg.py" line="321"/>
         <source>Use short representation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="convertdlg.py" line="287"/>
+        <location filename="convertdlg.py" line="324"/>
         <source>Use engineering notation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="127"/>
+        <source>Square</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="128"/>
+        <source>Cube</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="129"/>
+        <source>Multiply</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="130"/>
+        <source>Divide</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="259"/>
+        <source>Filter List</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="273"/>
+        <source>Clear Filter</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="331"/>
+        <source>Show operator buttons (1st row)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="convertdlg.py" line="333"/>
+        <source>Show unit buttons (2nd row)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -335,113 +375,113 @@ by {1}</translation>
     <message>
         <location filename="finddlg.py" line="28"/>
         <source>Unit Finder</source>
-        <translation>Chercheur d&apos;unité</translation>
+        <translation type="obsolete">Chercheur d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="35"/>
         <source>&amp;Filter Unit Types</source>
-        <translation>&amp;Filtrer les types d&apos;unité</translation>
+        <translation type="obsolete">&amp;Filtrer les types d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="41"/>
         <source>&amp;Search String</source>
-        <translation>&amp;Recherche de caractère</translation>
+        <translation type="obsolete">&amp;Recherche de caractère</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="46"/>
         <source>C&amp;lear</source>
-        <translation>N&amp;ettoyer</translation>
+        <translation type="obsolete">N&amp;ettoyer</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="55"/>
         <source>From Unit</source>
-        <translation>de l&apos;unité</translation>
+        <translation type="obsolete">de l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="58"/>
         <source>&amp;Replace</source>
-        <translation>&amp;Remplacer</translation>
+        <translation type="obsolete">&amp;Remplacer</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="61"/>
         <source>&amp;Insert</source>
-        <translation>&amp;Insérer</translation>
+        <translation type="obsolete">&amp;Insérer</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="64"/>
         <source>To Unit</source>
-        <translation>Vers l&apos;unité</translation>
+        <translation type="obsolete">Vers l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="67"/>
         <source>Replac&amp;e</source>
-        <translation>Remplac&amp;er</translation>
+        <translation type="obsolete">Remplac&amp;er</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="70"/>
         <source>Inser&amp;t</source>
-        <translation>Insér&amp;er</translation>
+        <translation type="obsolete">Insér&amp;er</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="76"/>
         <source>&amp;Close</source>
-        <translation>&amp;Fermer</translation>
+        <translation type="obsolete">&amp;Fermer</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Unit Name</source>
-        <translation>Nom de l&apos;unité</translation>
+        <translation type="obsolete">Nom de l&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Unit Type</source>
-        <translation>Type d&apos;unité</translation>
+        <translation type="obsolete">Type d&apos;unité</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="194"/>
         <source>Comments</source>
-        <translation>Commentaires</translation>
+        <translation type="obsolete">Commentaires</translation>
     </message>
     <message>
         <location filename="finddlg.py" line="135"/>
         <source>[All]</source>
-        <translation>[Tout]</translation>
+        <translation type="obsolete">[Tout]</translation>
     </message>
 </context>
 <context>
     <name>helpview</name>
     <message>
-        <location filename="helpview.py" line="43"/>
+        <location filename="helpview.py" line="46"/>
         <source>&amp;Back</source>
         <translation>&amp;Retour</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="51"/>
+        <location filename="helpview.py" line="54"/>
         <source>&amp;Forward</source>
         <translation>&amp;Avance</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="59"/>
+        <location filename="helpview.py" line="62"/>
         <source>&amp;Home</source>
         <translation>&amp;Home</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="67"/>
+        <location filename="helpview.py" line="70"/>
         <source>Find</source>
         <translation>Chercher</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="74"/>
+        <location filename="helpview.py" line="77"/>
         <source>Find &amp;Previous</source>
         <translation>Chercher &amp;Précédent</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="81"/>
+        <location filename="helpview.py" line="84"/>
         <source>Find &amp;Next</source>
         <translation>Chercher &amp;Suivant</translation>
     </message>
     <message>
-        <location filename="helpview.py" line="114"/>
+        <location filename="helpview.py" line="117"/>
         <source>Text string not found</source>
         <translation>Chaîne de  caractères non trouvée</translation>
     </message>
@@ -454,7 +494,7 @@ by {1}</translation>
         <translation type="obsolete">Erreur dans l&apos;unité - %s</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="57"/>
+        <location filename="numedit.py" line="58"/>
         <source>Converting...</source>
         <translation>Conversion...</translation>
     </message>
@@ -464,22 +504,22 @@ by {1}</translation>
         <translation type="obsolete">Les unités ne sont pas compatibles (%s  vs.  %s)</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="76"/>
+        <location filename="numedit.py" line="77"/>
         <source>Set units</source>
         <translation>Choisir les unités</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="77"/>
+        <location filename="numedit.py" line="78"/>
         <source>No Unit Set</source>
         <translation>Aucune unité choisie</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="102"/>
+        <location filename="numedit.py" line="103"/>
         <source>Error in unit data - {0}</source>
         <translation>Erreur dans l&apos;unité - {0}</translation>
     </message>
     <message>
-        <location filename="numedit.py" line="70"/>
+        <location filename="numedit.py" line="71"/>
         <source>Units are not compatible ({0}  vs.  {1})</source>
         <translation>Les unités ne sont pas compatibles ({0}  vs.  {1})</translation>
     </message>
@@ -487,17 +527,17 @@ by {1}</translation>
 <context>
     <name>optiondlg</name>
     <message>
-        <location filename="optiondlg.py" line="38"/>
+        <location filename="optiondlg.py" line="42"/>
         <source>&amp;OK</source>
         <translation>&amp;Ok</translation>
     </message>
     <message>
-        <location filename="optiondlg.py" line="41"/>
+        <location filename="optiondlg.py" line="45"/>
         <source>&amp;Cancel</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="optiondlg.py" line="44"/>
+        <location filename="optiondlg.py" line="48"/>
         <source>Preferences</source>
         <translation>Préférences</translation>
     </message>
@@ -510,7 +550,7 @@ by {1}</translation>
         <translation type="obsolete">Mauvaise équation pour &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="unitatom.py" line="45"/>
+        <location filename="unitatom.py" line="46"/>
         <source>Bad equation for &quot;{0}&quot;</source>
         <translation>Mauvaise équation pour &quot;{0}&quot;</translation>
     </message>
@@ -523,7 +563,7 @@ by {1}</translation>
         <translation>Ne peut lire le fichier &quot;units.dat&quot; </translation>
     </message>
     <message>
-        <location filename="unitdata.py" line="86"/>
+        <location filename="unitdata.py" line="82"/>
         <source>Duplicate unit names found</source>
         <translation>Doublons dans les noms d&apos;unités trouvés</translation>
     </message>
@@ -531,7 +571,7 @@ by {1}</translation>
 <context>
     <name>unitgroup</name>
     <message>
-        <location filename="unitgroup.py" line="302"/>
+        <location filename="unitgroup.py" line="287"/>
         <source>Circular unit definition</source>
         <translation>Définition d&apos;unité circulaire</translation>
     </message>
@@ -541,7 +581,7 @@ by {1}</translation>
         <translation type="obsolete">Conversion invalide pour &quot;%s&quot;</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="356"/>
+        <location filename="unitgroup.py" line="343"/>
         <source>Cannot combine non-linear units</source>
         <translation>On ne peut combiner des unités non linéaires</translation>
     </message>
@@ -551,12 +591,12 @@ by {1}</translation>
         <translation type="obsolete">Mauvaise équation pour %s</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="307"/>
+        <location filename="unitgroup.py" line="294"/>
         <source>Invalid conversion for &quot;{0}&quot;</source>
         <translation>Conversion invalide pour &quot;{0}&quot;</translation>
     </message>
     <message>
-        <location filename="unitgroup.py" line="395"/>
+        <location filename="unitgroup.py" line="382"/>
         <source>Bad equation for {0}</source>
         <translation>Mauvaise équation pour {0}</translation>
     </message>
@@ -564,17 +604,17 @@ by {1}</translation>
 <context>
     <name>unitlistview</name>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Unit Name</source>
         <translation>Nom de l&apos;unité</translation>
     </message>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Unit Type</source>
         <translation>Type d&apos;unité</translation>
     </message>
     <message>
-        <location filename="unitlistview.py" line="30"/>
+        <location filename="unitlistview.py" line="35"/>
         <source>Comments</source>
         <translation>Commentaires</translation>
     </message>
