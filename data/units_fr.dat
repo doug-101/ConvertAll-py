@@ -302,7 +302,7 @@ kmol         = kilomole    # kilomole
 livre mole   = mol*lbm/gramme
 lbmol        = livre mole  # mole-livres
 [nombre d'atomes]
-avogadro     = gramme/amu*mol
+avogadro     = gramme/(amu*mol)
 
 
 #
@@ -322,9 +322,9 @@ footcandle   = lumen/ft^2
 mètrecandle  = lumen/m^2
 
 [luminance]
-lambert      = cd/pi*cm^2
+lambert      = cd/(pi*cm^2)
 millilambert = 0.001 lambert
-footlambert  = cd/pi*ft^2
+footlambert  = cd/(pi*ft^2)
 
 
 #
@@ -728,7 +728,7 @@ millirem        = 0.001 rem     # # roentgen equiv mammal
 # viscosity
 #
 [viscosite]
-poise        = g/cm*s
+poise        = g/(cm*s)
 P            = poise       # poise
 centipoise   = 0.01 poise
 cP           = centipoise  # centipoise
@@ -747,7 +747,7 @@ cSt          = centistokes # centistokes
 acceleration gravitationnelle                = 9.80665 m/s^2
 [constante]
 constante de gravite       = 6.673e-11 N*m^2/kg^2
-constante des gaz           = 8.314472 J/mol*K     # R
+constante des gaz           = 8.314472 J/(mol*K)     # R
 [consommation d'essence]
 mpg                    = mi/gal               # milles/gallon
 mpg imp                = mi/gallon impérial   # milles/gallon imp.
