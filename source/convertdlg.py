@@ -60,7 +60,6 @@ class ConvertDlg(QWidget):
         except KeyError:
             pass
         self.helpView = None
-        self.findDlg = None
         self.option = Option('convertall', 20)
         self.option.loadAll(optiondefaults.defaultList)
         self.recentUnits = recentunits.RecentUnits(self.option)
@@ -426,11 +425,6 @@ class ConvertDlg(QWidget):
         self.option.changeData('MainDlgYSize', self.height(), True)
         self.option.changeData('MainDlgXPos', self.x(), True)
         self.option.changeData('MainDlgYPos', self.y(), True)
-        if self.findDlg:
-            self.option.changeData('FinderXSize', self.findDlg.width(), True)
-            self.option.changeData('FinderYSize', self.findDlg.height(), True)
-            self.option.changeData('FinderXPos', self.findDlg.x(), True)
-            self.option.changeData('FinderYPos', self.findDlg.y(), True)
         self.recentUnits.writeList()
         self.option.writeChanges()
         event.accept()
