@@ -42,7 +42,8 @@ class UnitData(collections.OrderedDict):
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
             modPath = os.path.dirname(modPath)
-        pathList = [dataFilePath, os.path.join(modPath, '../data/'), modPath]
+        pathList = [dataFilePath, os.path.join(modPath, '../data/'),
+                    os.path.join(modPath, 'data/'), modPath]
         fileList = ['units.dat']
         if lang and lang != 'C':
             fileList[0:0] = ['units_{0}.dat'.format(lang),

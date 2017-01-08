@@ -26,9 +26,11 @@ Name: "portable"; Description: "Use portable config file"; Flags: unchecked
 
 [Files]
 Source: "convertall.exe"; DestDir: "{app}"
-Source: "library.zip"; DestDir: "{app}"
+Source: "python35.zip"; DestDir: "{app}"
 Source: "*.dll"; DestDir: "{app}"
 Source: "*.pyd"; DestDir: "{app}"
+Source: "imageformats\*.dll"; DestDir: "{app}\imageformats"
+Source: "platforms\*.dll"; DestDir: "{app}\platforms"
 Source: "data\*.dat"; DestDir: "{app}\data"
 Source: "doc\*.html"; DestDir: "{app}\doc"
 Source: "doc\LICENSE"; DestDir: "{app}\doc"
