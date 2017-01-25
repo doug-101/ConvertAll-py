@@ -4,7 +4,7 @@
 ****************************************************************************
  install.py, Linux install script for ConvertAll
 
- Copyright (C) 2015, Douglas W. Bell
+ Copyright (C) 2017, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -192,31 +192,30 @@ def main():
         print('Checking dependencies...')
         pyVersion = sys.version_info[:3]
         pyVersion = '.'.join([str(num) for num in pyVersion])
-        if cmpVersions(pyVersion, (3, 2)):
+        if cmpVersions(pyVersion, (3, 4)):
             print('  Python Version {0} -> OK'.format(pyVersion))
         else:
-            print('  Python Version {0} -> Sorry, 3.2 or higher is required'
+            print('  Python Version {0} -> Sorry, 3.4 or higher is required'
                   .format(pyVersion))
             sys.exit(3)
         try:
-            from PyQt4 import QtCore, QtGui
+            from PyQt5 import QtCore, QtWidgets
         except:
-            print('  PyQt not found -> Sorry, PyQt 4.x is required'
+            print('  PyQt not found -> Sorry, PyQt 5.4 or higher is required'
                   ' and must be built for Python 3')
             sys.exit(3)
         qtVersion = QtCore.qVersion()
-        if cmpVersions(qtVersion, (4, 6)) and not qtVersion.startswith('5'):
+        if cmpVersions(qtVersion, (5, 4)):
             print('  Qt Version {0} -> OK'.format(qtVersion))
         else:
-            print('  Qt Version {0} -> Sorry, 4.6, 4.7 or 4.8 is required'
+            print('  Qt Version {0} -> Sorry, 5.4 or higher is required'
                   .format(qtVersion))
             sys.exit(3)
         pyqtVersion = QtCore.PYQT_VERSION_STR
-        if (cmpVersions(pyqtVersion, (4, 8)) and
-            not pyqtVersion.startswith('5')):
+        if cmpVersions(pyqtVersion, (5, 4)):
             print('  PyQt Version {0} -> OK'.format(pyqtVersion))
         else:
-            print('  PyQt Version {0} -> Sorry, 4.8 through 4.11 is required'
+            print('  PyQt Version {0} -> Sorry, 5.4 or higher is required'
                   .format(pyqtVersion))
             sys.exit(3)
 
