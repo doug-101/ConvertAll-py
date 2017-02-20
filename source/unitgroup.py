@@ -4,7 +4,7 @@
 # unitgroup.py, provides a group of units and does conversions
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2016, Douglas W. Bell
+# Copyright (C) 2017, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -235,7 +235,7 @@ class UnitGroup:
             for unit in unitList:
                 if not firstUnit:
                     if hasattr(unit, 'exp'):
-                        expSign = unit.exp > 0
+                        expSign = unit.exp >= 0
                     else:
                         expSign = unit.unitGroupExpSign()
                     if swapExpSign:

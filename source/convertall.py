@@ -4,7 +4,7 @@
  convertall.py, the main program file
 
  ConvertAll, a units conversion program
- Copyright (C) 2016, Douglas W. Bell
+ Copyright (C) 2017, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -14,7 +14,7 @@
 """
 
 __progname__ = 'ConvertAll'
-__version__ = '0.7.0'
+__version__ = '0.7.2'
 __author__ = 'Doug Bell'
 
 dataFilePath = None    # modified by install script if required

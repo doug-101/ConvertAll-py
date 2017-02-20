@@ -4,7 +4,7 @@
 # unitatom.py, provides class to hold data on each available unit
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2016, Douglas W. Bell
+# Copyright (C) 2017, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -115,7 +115,8 @@ class UnitAtom:
     def unitValid(self):
         """Return True if unit and exponent are valid.
         """
-        if self.datum and self.datum.equiv and self.exp < UnitAtom.invalidExp:
+        if (self.datum and self.datum.equiv and
+            abs(self.exp) < UnitAtom.invalidExp):
             return True
         return False
 
