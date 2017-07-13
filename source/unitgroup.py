@@ -397,7 +397,10 @@ class UnitGroup:
         if notation == 'scientific':
             return '{0:0.{prec}E}'.format(num, prec = decPlcs)
         if notation == 'engineering':
-            exp = 3 * (floor(log10(abs(num))) // 3)
+            try:
+                exp = 3 * (floor(log10(abs(num))) // 3)
+            except ValueError:  # log10 of zero is undefined
+                exp = 0
             num = round(num / 10**exp, decPlcs)
             # check if rounding bumps exponent
             if abs(num) >= 1000.0:
