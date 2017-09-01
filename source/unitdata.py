@@ -33,7 +33,7 @@ class UnitData(collections.OrderedDict):
     """Reads unit data nad stores in a dictionary based on unit name.
     """
     def __init__(self):
-        dict.__init__(self)
+        super().__init__()
         self.typeList = []
 
     def findDataFile(self):
