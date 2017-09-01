@@ -735,6 +735,7 @@ hp                = horsepower      # horsepower
 metric horsepower = 75 kgf*m/s
 ton refrigeration = 12000 Btu/hr
 MBH               = 1000 Btu/hr     # 1000 Btu/hr
+boiler horsepower = 33475 Btu/hr
 
 
 #
