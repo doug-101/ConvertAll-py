@@ -870,7 +870,8 @@ Gaskonstante           = 8.314472 J/(mol*K)     # R
 Meilen pro Gallone     = mi/gal
 mpg                    = Meilen pro Gallone   # Meilen pro Gallone
 mpg imp                = mi/gallon imperial   # Meilen pro Gallone (brit.)
-Liter pro 100 km       = 1/100.0 l/km
+Liter pro 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
+                         3.785411784 / (x * 0.01609344) # # non-linear
 
 [Permeabilität]
 Darcy                  = 1 cm^2*Zentipoise/atm/s
