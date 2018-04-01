@@ -4,7 +4,7 @@
 # convertdlg.py, provides the main dialog and GUI interface
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2016, Douglas W. Bell
+# Copyright (C) 2018, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -211,12 +211,13 @@ class ConvertDlg(QWidget):
         aboutButton.clicked.connect(self.about)
         buttonLayout.addStretch()
 
-        xSize = self.option.intData('MainDlgXSize', 0, 10000)
-        ySize = self.option.intData('MainDlgYSize', 0, 10000)
-        if xSize and ySize:
-            self.resize(xSize, ySize)
-        self.move(self.option.intData('MainDlgXPos', 0, 10000),
-                  self.option.intData('MainDlgYPos', 0, 10000))
+        if self.option.boolData('RemenberDlgPos'):
+            xSize = self.option.intData('MainDlgXSize', 0, 10000)
+            ySize = self.option.intData('MainDlgYSize', 0, 10000)
+            if xSize and ySize:
+                self.resize(xSize, ySize)
+            self.move(self.option.intData('MainDlgXPos', 0, 10000),
+                      self.option.intData('MainDlgYPos', 0, 10000))
         if self.option.boolData('LoadLastUnit') and len(self.recentUnits) > 1:
             self.fromGroup.update(self.recentUnits[0])
             self.fromUnitEdit.unitUpdate()
@@ -332,6 +333,8 @@ class ConvertDlg(QWidget):
                                 _('Show unit buttons (2nd row)'))
         optiondlg.OptionDlgBool(dlg, 'ShowStartupTip',
                                 _('Show tip at startup'))
+        optiondlg.OptionDlgBool(dlg, 'RemenberDlgPos',
+                                _('Remember window position'))
         dlg.startGroupBox(_('Colors'))
         optiondlg.OptionDlgBool(dlg, 'UseDefaultColors',
                                 _('Use default system colors'))
@@ -421,10 +424,11 @@ class ConvertDlg(QWidget):
     def closeEvent(self, event):
         """Save window data on close.
         """
-        self.option.changeData('MainDlgXSize', self.width(), True)
-        self.option.changeData('MainDlgYSize', self.height(), True)
-        self.option.changeData('MainDlgXPos', self.x(), True)
-        self.option.changeData('MainDlgYPos', self.y(), True)
+        if self.option.boolData('RemenberDlgPos'):
+            self.option.changeData('MainDlgXSize', self.width(), True)
+            self.option.changeData('MainDlgYSize', self.height(), True)
+            self.option.changeData('MainDlgXPos', self.x(), True)
+            self.option.changeData('MainDlgYPos', self.y(), True)
         self.recentUnits.writeList()
         self.option.writeChanges()
         event.accept()
