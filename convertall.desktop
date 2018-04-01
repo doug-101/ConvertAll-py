@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Version=1.1
+Name=ConvertAll
+GenericName=Unit Converter
+Comment=a flexible unit converter
+Exec=convertall
+Icon=convertall-icon
+StartupNotify=true
+Terminal=false
+Categories=Science;Math;
