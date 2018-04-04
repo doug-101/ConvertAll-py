@@ -274,6 +274,13 @@ def main():
                     'iconPath = None',
                     'iconPath =  \'{0}\'   # modified by install script\n'
                     .format(iconPrefixDir))
+    if os.path.isfile(progName + '.desktop'):
+        desktopPrefixDir = os.path.join(prefixDir, 'share', 'applications')
+        desktopBuildDir = os.path.join(buildRoot, desktopPrefixDir[1:])
+        print('  Copying desktop file to {0}'.format(desktopBuildDir))
+        if not os.path.isdir(desktopBuildDir):
+            os.makedirs(desktopBuildDir)
+        shutil.copy2(progName + '.desktop', desktopBuildDir)
 
     if os.path.isdir('source'):
         createWrapper(pythonPrefixDir, progName)
