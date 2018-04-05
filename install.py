@@ -274,6 +274,15 @@ def main():
                     'iconPath = None',
                     'iconPath =  \'{0}\'   # modified by install script\n'
                     .format(iconPrefixDir))
+        if os.path.isfile(os.path.join('icons', progName + '-icon.svg')):
+            svgIconPrefixDir = os.path.join(prefixDir, 'share', 'icons',
+                                            'hicolor', 'scalable', 'apps')
+            svgIconBuildDir = os.path.join(buildRoot, svgIconPrefixDir[1:])
+            print('  Copying app icon files to {0}'.format(svgIconBuildDir))
+            if not os.path.isdir(svgIconBuildDir):
+                os.makedirs(svgIconBuildDir)
+            shutil.copy2(os.path.join('icons', progName + '-icon.svg'),
+                         svgIconBuildDir)
     if os.path.isfile(progName + '.desktop'):
         desktopPrefixDir = os.path.join(prefixDir, 'share', 'applications')
         desktopBuildDir = os.path.join(buildRoot, desktopPrefixDir[1:])
