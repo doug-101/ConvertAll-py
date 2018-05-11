@@ -85,12 +85,13 @@ pennyweight         = 24 grain
 hundredweight long  = 112 lb             # # Imperial
 hundredweight short = 100 lb             # # US & Канада
 solar mass          = 1.9891e30 kg
-кг		    = kg                 # килограмм
+
+кг                  = kg                 # килограмм
 килограмм           = kg
-грамм		    = gram
-г		    = gram               # грамм
-мг		    = milligram          # миллиграмм
-миллиграмм	    = milligram
+грамм               = gram
+г                   = gram               # грамм
+мг                  = milligram          # миллиграмм
+миллиграмм          = milligram
 тонна               = tonne              # # метрическая
 карат               = carat
 фунт                = pound
@@ -146,28 +147,28 @@ cable                    = 0.1 nautical mile
 rod                      = 5.5 yard
 furlong                  = 40 rod
 hand                     = 4 inch
-cubit                    = 21.8 inch                  # локоть # библейская величина
-point                    = 1/72.0 inch                # точка  # desktop publishing point
+cubit                    = 21.8 inch                  # локоть  # библейская величина
+point                    = 1/72.0 inch                # точка   # точка на экране компьютера
 pica                     = 12 point
-caliber                  = 1.0 inch                   # # размер пули
-rack unit                = 1.75 in                    # # computing
+caliber                  = 1.0 inch                   #         # размер пули
+rack unit                = 1.75 in                    #         # computing
 smoot                    = 67 inch
-football field           = 100 yd	                  # # футбольное поле
+football field           = 100 yd                     #         # футбольное поле
 marathon                 = 46145 yd
 mil Swedish              = 10 km
-versta                   = 3500 ft                    # # Русская величина
-au                       = 1.49597870691e11 m         # астрономическая величина
+versta                   = 3500 ft                    #         # Русская величина
+au                       = 1.49597870691e11 m         #         # астрономическая величина
 astronomical unit        = au
 LD                       = 384400 km                  # расстояние до луны # астрономическая
-lunar distance           = LD                         # # астрономическое расстояние
+lunar distance           = LD                         #         # астрономическое расстояние
 light year               = 365.25 light speed * day   # световой год
 light minute             = light speed * min
 light second             = light speed * s
-parsec                   = 3.0856775813e16 m   # парсек
+parsec                   = 3.0856775813e16 m          # парсек
 kiloparsec               = 1000 parsec
 megaparsec               = 1000 kiloparsec
 screw size               = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
-                           # # Unified diameters, нелинейная
+                           # # Стандартные диаметры, нелинейная
 AWG Dia                  = [in] pow(92.0,(36-x)/39.0)/200.0 ; \
                            36 - 39.0*log(200.0*x)/log(92.0) \
                            # American Wire Gauge \
@@ -190,11 +191,11 @@ zinc gauge               = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
                            (23, .1), (24, .125), (27, .5), (28, 1)]  \
                            # # sheet metal thickness, нелинейная
 ring size                = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
-                           # # US size, circum., нелинейная
+                           # # US размер, circum., нелинейная
 shoe size mens           = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
-                           # # US sizes, нелинейная
+                           # # US размеры, нелинейная
 shoe size womens         = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
-                           # # US sizes, нелинейная
+                           # # US размеры, нелинейная
 drill bit size           = [in] [(104,0.0031), (103,0.0035), (102,0.0039), \
                            (101,0.0043), (100,0.0047), (99,0.0051), \
                            (98,0.0055), (97,0.0059), (96,0.0063), \
@@ -234,15 +235,15 @@ drill bit size           = [in] [(104,0.0031), (103,0.0035), (102,0.0039), \
 
 верста        = versta         # # Русская величина
 метр          = m
-м	          = m              # метр
-см		      = cm             # сантиметр
-мм	          = mm             # миллиметр
+м             = m              # метр
+см            = cm             # сантиметр
+мм            = mm             # миллиметр
 км            = km             # километр
 дюйм          = inch
-фут		      = foot
-нм		      = nanometer      # нанометр
+фут           = foot
+нм            = nanometer      # нанометр
 ангстрем      = angstrom
-ярд	          = yard
+ярд           = yard
 миля          = mile
 
 #
@@ -261,7 +262,7 @@ minute        = 60 s
 min           = minute            # минута
 hour          = 60 min
 hr            = hour              # час
-bell          = 30 min            #  # naval definition
+bell          = 30 min            #     # naval definition
 watch         = 4 hour
 watches       = watch
 day           = 24 hr
@@ -298,8 +299,8 @@ K                 = !     # Кельвин
 Kelvin            = K
 deg K             = K     # Кельвин
 degree Kelvin     = K
-К		  = K     # Кельвин
-Кельвин		  = K
+К                 = K     # Кельвин
+Кельвин           = K
 
 C                 = [K] x + 273.15 ; x - 273.15  # Цельсий  # нелинейная
 Celsius           = [K] x + 273.15 ; x - 273.15  #          # нелинейная
@@ -331,15 +332,17 @@ amp            = A
 milliampere    = 0.001 A
 milliamp       = milliampere
 mA             = milliampere    # миллиампер
-мА	       = milliampere    # миллиампер
+мА             = milliampere    # миллиампер
 microampere    = 0.001 mA
 kiloampere     = 1000 A
 kA             = kiloampere     # килоампер
+
 [заряд]
 coulomb        = A*s
 amp hour       = A*hr
 mAh            = 0.001 amp hour # миллиампер час
 milliamp hour  = mAh
+
 [напряжение]
 volt           = W/A
 V              = volt           # вольт
@@ -347,13 +350,15 @@ millivolt      = 0.001 volt
 mV             = millivolt      # милливольт
 kilovolt       = 1000 volt
 kV             = kilovolt       # киловольт
+
 [сопротивление]
-ohm            = V/A
+ohm            = V/A            # Ом
 milliohm       = 0.001 ohm
 microhm        = 0.001 milliohm
 kilohm         = 1000 ohm
 [проводимость]
 siemens        = A/V
+
 [ёмкость]
 farad          = coulomb/V
 millifarad     = 0.001 farad
@@ -364,12 +369,14 @@ picofarad      = 1e-12 farad
 weber          = V*s
 Wb             = weber          # Вебер
 maxwell        = 1e-8 Wb
+
 [индуктивность]
 henry          = Wb/A
 H              = henry          # Генри
 millihenry     = 0.001 henry
 mH             = millihenry     # миллигенри
 microhenry     = 0.001 mH
+
 [плотность потока]
 tesla          = Wb/m^2
 T              = tesla          # Тесла
@@ -380,13 +387,14 @@ gauss          = maxwell/cm^2
 # Раздел МОЛЕКУЛЯРНЫЙ
 #
 [количество вещества]
-mol          = !           # моль       # gram mole
-mole         = mol         #            # gram mole
+mol          = !                # моль       # gram mole
+mole         = mol              #            # gram mole
 gram mole    = mol
 kilomole     = 1000 mol
-kmol         = kilomole    # киломоль
+kmol         = kilomole         # киломоль
 pound mole   = mol*lbm/gram
-lbmol        = pound mole  # pound mole
+lbmol        = pound mole       # pound mole
+
 [размер моля]
 avogadro     = gram/(amu*mol)
 авогадро     = avogadro
@@ -402,6 +410,7 @@ candela     = cd
 [световой поток]
 lumen        = cd * sr
 lm           = lumen     # люмен
+люмен        = lumen
 
 [освещенность]
 lux          = lumen/m^2
@@ -419,20 +428,20 @@ footlambert  = cd/(pi*ft^2)
 #
 [угол]
 radian      = !
-rad         = radian         # # радиан
+rad         = radian            # радиан
 circle      = 2 pi*radian
 turn        = circle
 revolution  = circle
-rev         = revolution     # revolution
+rev         = revolution        # revolution
 degree      = 1/360.0 circle
-deg         = degree         # градус
-arc min     = 1/60.0 degree  # минута
+deg         = degree            # градус
+arc min     = 1/60.0 degree     # минута
 arc minute  = arc min
-min arc     = arc min        # минута
+min arc     = arc min           # минута
 minute arc  = arc min
-arc sec     = 1/60.0 arc min # секунда
+arc sec     = 1/60.0 arc min    # секунда
 arc second  = arc sec
-sec arc     = arc sec        # секунда
+sec arc     = arc sec           # секунда
 second arc  = arc sec
 quadrant    = 1/4.0 circle
 right angle = quadrant
@@ -443,7 +452,7 @@ gradian     = 0.01 quadrant
 # Раздел УГЛЫ пространственные
 #
 [пространственный угол]
-sr         = !      # стерадиан
+sr         = !                  # стерадиан
 steradian  = sr
 sphere     = 4 pi*sr
 hemisphere = 1/2.0 sphere
@@ -495,7 +504,7 @@ PiB              = pebibyte          # pebibyte
 
 [передача данных]
 bps              = bit/sec           # бит / сек.
-kbps             = 1000 bps          # кбит / сек.  # based on power of 10
+kbps             = 1000 bps          # кбит / сек.      # based on power of 10
 
 
 #
@@ -505,14 +514,14 @@ kbps             = 1000 bps          # кбит / сек.  # based on power of 1
 unit               = !!
 1                  = unit            # unit
 pi                 = 3.14159265358979323846 unit
-ПИ		   = pi
-pair               = 2 unit	     # пара
-hat trick          = 3 unit          # 		# спорт
+ПИ                 = pi
+pair               = 2 unit	         # пара
+hat trick          = 3 unit          #          # спорт
 dozen              = 12 unit
 doz                = dozen           # дюжина
-дюжина		   = dozen
-bakers dozen       = 13 unit	     # # чёртова дюжина
-чёртова дюжина	   = bakers dozen
+дюжина             = dozen
+bakers dozen       = 13 unit         #          # чёртова дюжина
+чёртова дюжина     = bakers dozen
 score              = 20 unit
 gross              = 144 unit
 great gross        = 12 gross
@@ -525,15 +534,15 @@ mill               = 0.001 unit
 APR                = [unit] log(1 + x/100) ;  (exp(x) - 1)*100 \
                      # annual % rate # based on continuous compounding
 [концентрация]
-proof              = 1/200.0 unit    # # содержание алкоголя
+proof              = 1/200.0 unit    #                      # содержание алкоголя
 ppm                = 1e-6 unit       # частиц на миллион
 parts per million  = ppm
 ppb                = 1e-9 unit       # частиц на биллион
 parts per billion  = ppb
 ppt                = 1e-12 unit      # частиц на триллион
 parts per trillion = ppt
-karat              = 1/24.0 unit     # # чистота золота
-carat gold         = karat           # # чистота золота
+karat              = 1/24.0 unit     #                      # чистота золота
+carat gold         = karat           #                      # чистота золота
 
 
 #
@@ -541,28 +550,30 @@ carat gold         = karat           # # чистота золота
 #
 [сила]
 newton         = kg*m/s^2
-N              = newton           # Ньютон
-Н	       = newton           # Ньютон
+N              = newton             # Ньютон
 dekanewton     = 10 newton
 kilonewton     = 1000 N
-kN             = kilonewton       # килоньютон
+kN             = kilonewton         # килоньютон
 meganewton     = 1000 kN
 millinewton    = 0.001 N
 dyne           = cm*g/s^2
-kg force       = kg * gravity     # килограм силы
-kgf            = kg force         # килограм силы
+kg force       = kg * gravity       # килограм силы
+kgf            = kg force           # килограм силы
 kilogram force = kg force
-kp             = kg force         # kilopond
+kp             = kg force           # килограм силы
 kilopond       = kg force
 gram force     = g * gravity
-pound force    = lbm * gravity    #             # вес
-lbf            = pound force      # pound force # вес
+pound force    = lbm * gravity      #                 # вес
+lbf            = pound force        # pound force     # вес
 ton force      = ton * gravity
 ounce force    = ounce * gravity
-ozf            = ounce force      # ounce force
-tonne force    = tonne * gravity  #         # метрическая
-pdl            = lbm * ft / sec^2 # poundal # Imperial force
-poundal        = pdl              # # Imperial force
+ozf            = ounce force        # ounce force
+tonne force    = tonne * gravity    #                 # метрическая
+pdl            = lbm * ft / sec^2   # poundal         # Imperial force
+poundal        = pdl                #                 # Imperial force
+
+Н              = newton             # Ньютон
+кгс            = kgf                # килограм силы
 
 
 #
@@ -637,14 +648,14 @@ imperial fluid ounce = 1/160.0 imp gal
 imp fl oz            = imperial fluid ounce # imperial fluid ounce
 imperial fluid dram  = 1/8.0 imp fl oz
 imperial minim       = 1/480.0 imp fl oz
-cup                  = 8 fl oz
+cup                  = 8 fl oz              # чашка
 tablespoon           = 1/16.0 cup
 tbsp                 = tablespoon           # столовая ложка
 teaspoon             = 1/3.0 tbsp
 tsp                  = teaspoon             # чайная ложка
 barrel               = 42 gallon
 bbl                  = barrel               # баррель
-shot                 = 1.5 fl oz
+shot                 = 1.5 fl oz                          # алкоголь
 fifth                = 1/5.0 gallon         #             # алкоголь
 wine bottle          = 750 ml
 magnum               = 1.5 liter            #             # алкоголь
@@ -656,9 +667,10 @@ peck                 = 1/4.0 bushel
 cord                 = 128 ft^3
 board foot           = ft^2*in
 board feet           = board foot
-литр                 = liter
-мл		             = milliliter           # миллилитр
 
+литр                 = liter
+л                    = liter                # литр
+мл                   = milliliter           # миллилитр
 
 #
 # Раздел СКОРОСТЬ
@@ -669,10 +681,11 @@ kt          = knot             # узел
 light speed = 2.99792458e8 m/s
 mph         = mi/hr            # миль в час
 kph         = km/hr            # километров в час
-mach        = 340.29 m/s       # # скорость звука
+mach        = 340.29 m/s       #                    # скорость маха
+
 [количество оборотов]
-rpm         = rev/min          # rev/min
-rps         = rev/sec          # rev/sec
+rpm         = rev/min          # оборотов в минуту
+rps         = rev/sec          # оборотов в секунду
 
 
 #
@@ -684,6 +697,7 @@ gpm         = gal/min          # gallons/minute
 cfs         = ft^3/sec         # cu ft/second
 cfm         = ft^3/min         # cu ft/minute
 lpm         = l/min            # liter/min
+
 [поток газа]
 sccm        = atm*cc/min       # std cc/min      # pressure * flow
 sccs        = atm*cc/sec       # std cc/sec      # pressure * flow
@@ -738,10 +752,10 @@ pound per sq inch     = psi
 ksi                   = 1000 psi                 # 1000 lb / кв. дюйм
 
 Па                    = Pa                       # паскаль
-кПа		              = kPa                      # килопаскаль
-МПа                   = MPa			             # мегапаскаль
-бар		              = bar
-атм		              = atm                      # атмосфера
+кПа                   = kPa                      # килопаскаль
+МПа                   = MPa                      # мегапаскаль
+бар                   = bar
+атм                   = atm                      # атмосфера
 
 
 #
@@ -784,7 +798,7 @@ kilocalorie           = 1000 cal
 kcal                  = kilocalorie       # килокалория
 calorie food          = kilocalorie
 thermie               = 1000 kcal
-Btu                   = cal*lb*R/(g*K)    # британская тепловая единица
+Btu                   = cal*lb*R/(g*K)    # # британская тепловая единица
 British thermal unit  = Btu
 therm                 = 100000 Btu
 erg                   = cm*dyne
@@ -822,14 +836,14 @@ boiler horsepower = 33475 Btu/hr
 #
 [частота]
 hertz       = unit/sec
-Hz          = hertz      # герц
+Hz          = hertz             # герц
 millihertz  = 0.001 Hz
 kilohertz   = 1000 Hz
-kHz         = kilohertz  # килогерц
+kHz         = kilohertz         # килогерц
 megahertz   = 1000 kHz
-MHz         = megahertz  # мегагерц
+MHz         = megahertz         # мегагерц
 gigahertz   = 1000 MHz
-GHz         = gigahertz  # гигагерц
+GHz         = gigahertz         # гигагерц
 
 
 #
@@ -841,16 +855,17 @@ Bq              = becquerel     # беккерель
 curie           = 3.7e10 Bq
 millicurie      = 0.001 curie
 roentgen        = 2.58e-4 coulomb/kg
+
 [доза радиации]
 gray            = J/kg
-Gy              = gray          # Грей # единица измерения поглощённой дозы
+Gy              = gray          # Грей      # единица измерения поглощённой дозы
 centigray       = 0.01 Gy
-rad. abs. dose  = 0.01 Gy       # # commonly rad
-sievert         = J/kg          # # equiv. dose
-millisievert    = 0.001 sievert # # equiv. dose
-Sv              = sievert       # sievert # equiv. dose
-rem             = 0.01 Sv       # # roentgen equiv mammal
-millirem        = 0.001 rem     # # roentgen equiv mammal
+rad. abs. dose  = 0.01 Gy       #           # commonly rad
+sievert         = J/kg          #           # equiv. dose
+millisievert    = 0.001 sievert #           # equiv. dose
+Sv              = sievert       # sievert   # equiv. dose
+rem             = 0.01 Sv       #           # roentgen equiv mammal
+millirem        = 0.001 rem     #           # roentgen equiv mammal
 
 
 #
@@ -858,15 +873,15 @@ millirem        = 0.001 rem     # # roentgen equiv mammal
 #
 [вязкость (динамическая)]
 poise        = g/(cm*s)
-P            = poise       # пуаз # единица вязкости
+P            = poise            # пуаз       # единица вязкости
 centipoise   = 0.01 poise
-cP           = centipoise  # сентипауаз # единица абсолютной вязкости
+cP           = centipoise       # сентипауаз # единица абсолютной вязкости
 
 [вязкость (кинематическая)]
 stokes       = cm^2/s
-St           = stokes      # стокс
+St           = stokes           # стокс
 centistokes  = 0.01 stokes
-cSt          = centistokes # сентистокс
+cSt          = centistokes      # сентистокс
 
 
 #
