@@ -7,7 +7,7 @@ With ConvertAll, you can combine the units any way you want. If you want to
 convert from inches per decade, that's fine. Or from meter-pounds. Or from
 cubic nautical miles. The units don't have to make sense to anyone else.
 
-#More Info
+# More Info
 
 See the [ConvertAll homepage](http://convertall.bellz.org) for more info.
 
