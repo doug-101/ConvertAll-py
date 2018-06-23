@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS><TS version="1.1" language="ru_RU">
+<!DOCTYPE TS>
+<TS version="2.1" language="ru_RU">
 <context>
     <name>cmdline</name>
     <message>
@@ -332,42 +333,42 @@ by {1}</source>
     <message>
         <location filename="convertdlg.py" line="127"/>
         <source>Square</source>
-        <translation type="unfinished"></translation>
+        <translation>Квадрат</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="128"/>
         <source>Cube</source>
-        <translation type="unfinished"></translation>
+        <translation>Куб</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="129"/>
         <source>Multiply</source>
-        <translation type="unfinished"></translation>
+        <translation>Умножить</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="130"/>
         <source>Divide</source>
-        <translation type="unfinished"></translation>
+        <translation>Разделить</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="259"/>
         <source>Filter List</source>
-        <translation type="unfinished"></translation>
+        <translation>Фильтровать список</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="273"/>
         <source>Clear Filter</source>
-        <translation type="unfinished"></translation>
+        <translation>Очистить фильтр</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="331"/>
         <source>Show operator buttons (1st row)</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать кнопи операторов (первая строка)</translation>
     </message>
     <message>
         <location filename="convertdlg.py" line="333"/>
         <source>Show unit buttons (2nd row)</source>
-        <translation type="unfinished"></translation>
+        <translation>Показывать кнопки величин (вторая строка)</translation>
     </message>
 </context>
 <context>
