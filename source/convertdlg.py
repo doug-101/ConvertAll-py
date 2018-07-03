@@ -117,7 +117,7 @@ class ConvertDlg(QWidget):
         self.unitListView.unitChanged.connect(self.fromUnitEdit.unitUpdate)
         self.unitListView.unitChanged.connect(self.toUnitEdit.unitUpdate)
         self.unitListView.haveCurrentUnit.connect(self.enableButtons)
-        self.unitListView.setFocusProxy(self.fromUnitEdit)
+        self.unitListView.setFocusPolicy(Qt.NoFocus)
 
         textButtonLayout = QHBoxLayout()
         textButtonLayout.setSpacing(6)
