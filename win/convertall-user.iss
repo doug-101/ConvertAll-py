@@ -5,12 +5,12 @@
 
 [Setup]
 AppName=ConvertAll
-AppVersion=0.7.4
+AppVersion=0.7.5
 DefaultDirName={userappdata}\ConvertAll
 DefaultGroupName=ConvertAll
 DisableProgramGroupPage=yes
 OutputDir=.
-OutputBaseFilename=convertall-0.7.4-install-user
+OutputBaseFilename=convertall-0.7.5-install-user
 PrivilegesRequired=lowest
 SetupIconFile=convertall.ico
 Uninstallable=IsTaskSelected('adduninstall')
