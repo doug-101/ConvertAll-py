@@ -1,0 +1,188 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="default.css" />
+
+    <title>Convertall - How to Use</title>
+</head>
+
+<body>
+
+    <div class="interior">
+
+        <div class="title">
+            <img src="logo.png" alt="Convertall" />
+        </div>
+
+        <div class="toplinks">
+            <p>Version 0.7.5<p>
+            <p><a href="http://www.bellz.org/progs.html">Other Programs</a></p>
+            <p><a href="http://www.bellz.org/contact.html">Contact Info</a></p>
+        </div>
+
+        <div class="navigation">
+            <a href="index.html">Home&nbsp;/&nbsp;News</a>
+            <a href="feature.html">Features</a>
+            <a href="scrnsht.html">Screenshots</a>
+            <a href="require.html">Requirements</a>
+            <a href="download.html">Downloads</a>
+            <a href="install.html">Installation</a>
+            <span class="current-nav">How&nbsp;to&nbsp;Use</span>
+        </div>
+
+        <div class="content">
+
+            <h1>How to Use ConvertAll</h1>
+
+            <h2>Contents</h2>
+
+            <ul>
+                <li><a href="#basics">Basics</a></li>
+                <li><a href="#combine">Combining Units</a></li>
+                <li><a href="#nonlinear">Non-Linear Conversions</a></li> 
+                <li><a href="#shortcut">Shortcuts</a></li>
+                <li><a href="#options">Options</a></li>
+                <li><a href="#cmdline">Command Line Usage</a></li>
+            </ul>
+
+            <h2><a name="basics"></a>Basics</h2>
+
+            <p>Simply type a unit name in the "From Unit" edit window.  As you
+            type, the list below the window will be filtered to show only
+            matching units.  Matching unit names contain words starting with
+            the words that are typed.  Either type the complete unit
+            name/abbreviation or hit the return key to use the unit
+            highlighted (blue letters) in the list.  Of course, clicking with
+            the mouse on a unit in the list will also add the unit to the edit
+            window.  You may also use the up and down arrow keys to highlight
+            nearby units from the list.</p>
+
+            <p>Repeat the unit selection in the "To Unit" edit window.  When
+            done, if the units are compatible, the numeric edit windows below
+            the unit lists will activate.  A number may be entered into either
+            numeric window and the other window will display the conversion
+            result.</p>
+
+            <h2><a name="combine"></a>Combining Units</h2>
+
+            <p>The real strength of ConvertAll lies in its ability to combine
+            multiple units.  Simply type the unit names with an '*' or a '/'
+            between them.  This allows the entry of units such as "ft * lbf"
+            or "mi / hr".  The '^' symbol may be used for exponents, such as
+            "ft^3" or "ft * lbm / sec^2".  Negative exponents are allowed for
+            units such as "sec^-1" (per second), but may switch the
+            multiplication or division symbol ("ft * sec^-2" becomes "ft /
+            sec^2").</p>
+
+            <p>Multiplication and division have the same precedence, so they
+            are evaluated left-to-right.  Parenthesis may also be used to
+            group units in the denominator.  So "m / sec / kg" can also be
+            entered as "m / (sec * kg)".  The version with parenthesis is
+            probably less confusing.</p>
+
+            <p>The buttons below the unit text boxes can also be used to add
+            operators to the active unit that is closest to the cursor.  The
+            Square and Cube buttons will add or replace exponents.  The
+            Multiply and Divide buttons will add "*" and "/" operators.</p>
+
+            <p>Similarly, clicking on a unit from the list generally replaces
+            the unit nearest the cursor.</p>
+
+            <p>The "Clear Unit" button below the operator buttons may be used
+            to empty the unit edit window to allow a new unit to be
+            entered.</p>
+
+            <p>The "Filter List" button can be used to show only one type of
+            unit in the list.  Note that this doesn't show units that could be
+            combined to form a type.</p>
+
+            <h2><a name="nonlinear"></a>Non-Linear Conversions</h2>
+
+            <p>The conversion of some units is non-linear.  Examples of these
+            include the Fahrenheit and Celsius temperature scales (due to an
+            offset zero point) and the American Wire Gauge (logarithmic).  The
+            non-linear units are labeled as such in the comments column.</p>
+
+            <p>These units can be converted only when they are not combined
+            with other units or used with an exponential operator.  Otherwise
+            the conversion would not be meaningful.</p>
+
+            <h2><a name="shortcut"></a>Shortcuts</h2>
+
+            <p>When typing unit names, spaces are ignored, so they may be
+            skipped.  It is also generally ignored if a plural form of the
+            unit name is typed.  For squared and cubed units (positive
+            exponents of 2 or 3) the "^" symbol does not need to be typed.</p>
+
+            <p>When a partially typed unit is highlighted in the list (blue
+            lettering), hitting enter will complete the name.  The up an ddown
+            arrow keys can be used to highlight nearby units in the list prior
+            to hitting enter.  The unit closet to the cursor will be
+            replaced.</p>
+
+            <p>The "Recent Unit" button opens a menu of recently used units
+            and unit combinations.  The current unit combination is replaced
+            with any selections from this menu.</p>
+
+            <p>The tab key can be used to cycle between the "From" and "To"
+            unit test boxes and the "From" and "To" number editors.</p>
+
+            <p>The number to be converted may be entered in either the "From"
+            or "To" unit side.  Standard or scientific notation may be used,
+            or an expression including the normal math operators (+, -, *, /,
+            **) and parenthesis may be entered.</p>
+
+            <h2><a name="options"></a>Options</h2>
+
+            <p>The "Options..." button allows for changing several default
+            settings.  These settings are automatically stored so that
+            ConvertAll will re-start with the settings last used.</p>
+
+            <p>The first options control the display of numerical results,
+            including the use of scientific notation and the number of decimal
+            places.  Be cautious about setting the number of decimal places to
+            a low value, which can result in a significant loss of accuracy.
+            Six places or higher is recommended (eight is the default).</p>
+
+            <p>There is an option to set the number of recent units to be
+            saved.  Setting it to zero will disable the Recent Unit buttons.
+            Another option will automatically load the most recent previous
+            units at startup.</p>
+
+            <p>There are options to hide the operator text buttons (first
+            row), and the unit buttons (second row).  These can be hidden to
+            save space if the keyboard will be used to enter the
+            operators.</p>
+
+            <p>Buttons are also included on the options dialog to control the
+            colors of the text fields.</p>
+
+            <h2><a name="cmdline"></a>Command Line Usage</h2>
+
+            <p>Conversions may be done from the command line (Linux or DOS
+            console) without invoking the graphical interface.  Enter the
+            command ("convertall" on Linux, "convertall_dos" from the Windows
+            binary), the number, the from unit and the to unit (separated by
+            spaces) to do the conversion.  Unit names containing spaces should
+            be surrounded by quotes.  Or, to be prompted for each unit entry,
+            use the "-i" option ("convertall -i" on Linux, "convertall_dos -i"
+            from Windows).</p>
+
+            <p>After the conversion is done, ConvertAll will prompt for a new
+            number to do the same conversion.  Or "n" can be entered to start
+            a new conversion, "r" to reverse the conversion or "q" to
+            quit.</p>
+
+            <p>For a more detailed list of options, use the "-h" option
+            ("convertall -h" on Linux, "convertall_dos -h" on Windows).</p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

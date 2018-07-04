@@ -1,0 +1,927 @@
+<html>
+<head>
+<title>ConvertAll ReadMe</title>
+</head>
+<body>
+<center>
+<h1>ReadMe file for ConvertAll</h1>
+<h2>a unit conversion program</h2>
+
+<p>Written by Doug Bell<br>
+Version 0.7.5<br>
+July 4, 2018</p>
+</center>
+
+<h2>Contents</h2>
+
+<ul>
+<li><a href="#background">Background</a></li>
+<li><a href="#features">Features</a></li>
+<li><a href="#legal">Legal Issues</a>
+<li><a href="#sysreq">System Requirements</a>
+  <ul><li><a href="#linux-sys">Linux</a></li>
+  <li><a href="#win-sys">Windows</a></li></ul></li>
+<li><a href="#install">Installation</a>
+  <ul><li><a href="#linux-inst">Linux</a></li>
+  <li><a href="#win-inst">Windows</a></li></ul></li>
+<li><a href="#using">Using ConvertAll</a>
+  <ul><li><a href="#basics">Basics</a></li>
+  <li><a href="#combine">Combining Units</a></li>
+  <li><a href="#nonlinear">Non-Linear Conversions</a></li>
+  <li><a href="#shortcut">Shortcuts</a></li>
+  <li><a href="#options">Options</a></li>
+  <li><a href="#cmdline">Command Line Usage</a></li></ul></li>
+<li><a href="#revs">Revision History</a></li>
+<li><a href="#contact">Questions, Comments, Criticisms?</a></li>
+</ul>
+
+<h2><a name="background"></a>Background</h2>
+
+<p>Why write another unit converter?  There are plenty of them out
+there.  Well, I couldn't find one that worked quite the way I
+wanted.</p>
+
+<p>With ConvertAll, you can combine the units any way you want.  If
+you want to convert from inches per decade, that's fine.  Or from
+meter-pounds.  Or from cubic nautical miles.  The units don't have to
+make sense to anyone else.</p>
+
+<p>Since I'm not in the software business, I'm making this program
+free for anyone to use, distribute and modify, as long as it is not
+incorporated into any proprietary programs.  If you like the software,
+feel free to let others know about it.  And let me know what you think
+- my email address is doug101 AT bellz DOT org</p>
+
+<h2><a name="features"></a>Features</h2>
+
+<ul>
+
+  <li>The base units for conversion may be either typed (with
+  auto-completion) or selected from a list.</li>
+
+  <li>As a unit is typed, the unit list is automatically filtered to
+  show only units with matching words.</li>
+
+  <li>In general, either a unit's full name or its abbreviation can be
+  used.</li>
+
+  <li>Units may be combined with the "*" and "/" operators.</li>
+
+  <li>Units may be raised to powers (squared, cubed, etc.) with the "^"
+  operator.</li>
+
+  <li>Units in the denominator may be grouped with parenthesis.</li>
+
+  <li>Units with non-linear scales, such as temperature, can also be
+  converted.</li>
+
+  <li>Recently used unit combinations may be picked from a menu.</li>
+
+  <li>Numbers may be entered on either the "From" or the "To" units
+  side, for conversions in both directions.</li>
+
+  <li>Basic mathematical expressions may be entered in place of
+  numbers.</li>
+
+  <li>Options control the formatting of numerical results.</li>
+
+  <li>The unit data includes over 500 units.</li>
+
+  <li>The format of the unit data file makes it easy to add additional
+  units.</li>
+
+  <li>Command line options are available to do conversions without the
+  GUI.</li>
+
+  <li>The user interface and the unit data are available in English,
+  French, German, Russian and Spanish.</li>
+
+</ul>
+
+<h2><a name="legal"></a>Legal Issues</h2>
+
+<p>ConvertAll is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either Version 2 of the License, or (at
+your option) any later version.</p>
+
+<p>This program is distributed in the hope that it will be useful, but
+WITHOUT ANY WARRANTY.  See the <tt>LICENSE</tt> file provided with
+this program for more information.</p>
+
+<h2><a name="sysreq"></a>System Requirements</h2>
+
+<h3><a name="linux-sys"></a>Linux</h3>
+
+<p>ConvertAll requires the following libraries:
+<ul>
+  <li>Python (Version 3.4 or higher)</li>
+  <li>Qt (Version 5.4 or higher - see <a
+    href="http://qt-project.org">Qt Project</a> for more
+  information)</li>
+  <li>PyQt (Version 5.4 or higher - see <a
+    href="http://www.riverbankcomputing.co.uk">Riverbank</a>
+    for more information)</li>
+</ul></p>
+
+<h3><a name="win-sys"></a>Windows</h3>
+
+<p>Using the files provided in the binary distribution, ConvertAll
+should run on any computer running Windows XP, Vista, 7, 8 or 10.</p>
+
+<h2><a name="install"></a>Installation</h2>
+
+<h3><a name="linux-inst"></a>Linux</h3>
+
+<p>Extract the source files from the convertall tar file, then change to
+the <tt>ConvertAll</tt> directory in a terminal.  For a basic
+installation, simply execute the following command as root:  <tt>python
+  install.py</tt></p>
+
+<p>If your distribution defaults to Python 2.x, you may need to
+substitute <tt>python3</tt> for <tt>python</tt> in these commands.</p>
+
+<p>To see all install options, use: <tt>python install.py -h</tt>.  To
+install ConvertAll with a different prefix (the default is
+<tt>/usr/local</tt>), use:  <tt>python install.py -p
+  /prefix/path</tt></p>
+
+<h3><a name="win-inst"></a>Windows</h3>
+
+<p>To install for all users, execute the
+<tt>ConvertAll-x.x.x-install-all.exe</tt> file.  Administrator
+permissions are required.</p>
+
+<p>To install for a single user (administrator rights are not required),
+execute the <tt>ConvertAll-x.x.x-install-user.exe</tt> file.</p>
+
+<p>For a portable install, execute the
+<tt>ConvertAll-x.x.x-install-user.exe</tt> file, uncheck the shortcuts
+and uninstaller tasks, and check the portable config task.</p>
+
+<h2><a name="using"></a>Using ConvertAll</h2>
+
+<h3><a name="basics"></a>Basics</h3>
+
+<p>Simply type a unit name in the "From Unit" edit window.  As you type,
+the list below the window will be filtered to show only matching units.
+Matching unit names contain words starting with the words that are
+typed.  Either type the complete unit name/abbreviation or hit the
+return key to use the unit highlighted (blue letters) in the list.  Of
+course, clicking with the mouse on a unit in the list will also add the
+unit to the edit window.  You may also use the up and down arrow keys to
+highlight nearby units from the list.</p>
+
+<p>Repeat the unit selection in the "To Unit" edit window.  When done,
+if the units are compatible, the numeric edit windows below the unit
+lists will activate.  A number may be entered into either numeric window
+and the other window will display the conversion result.</p>
+
+<h3><a name="combine"></a>Combining Units</h3>
+
+<p>The real strength of ConvertAll lies in its ability to combine
+multiple units.  Simply type the unit names with an '*' or a '/' between
+them.  This allows the entry of units such as "ft * lbf" or "mi / hr".
+The '^' symbol may be used for exponents, such as "ft^3" or "ft * lbm /
+sec^2".  Negative exponents are allowed for units such as "sec^-1" (per
+second), but may switch the multiplication or division symbol ("ft *
+sec^-2" becomes "ft / sec^2").</p>
+
+<p>Multiplication and division have the same precedence, so they are
+evaluated left-to-right.  Parenthesis may also be used to group units in
+the denominator.  So "m / sec / kg" can also be entered as "m / (sec *
+kg)".  The version with parenthesis is probably less confusing.</p>
+
+<p>The buttons below the unit text boxes can also be used to add operators to
+the active unit that is closest to the cursor.  The Square and Cube buttons
+will add or replace exponents.  The Multiply and Divide buttons will add "*"
+and "/" operators.</p>
+
+<p>Similarly, clicking on a unit from the list generally replaces the
+unit nearest the cursor.</p>
+
+<p>The "Clear Unit" button below the operator buttons may be used to
+empty the unit edit window to allow a new unit to be entered.</p>
+
+<p>The "Filter List" button can be used to show only one type of unit in
+the list.  Note that this doesn't show units that could be combined to
+form a type.</p>
+
+<h3><a name="nonlinear"></a>Non-Linear Conversions</h3>
+
+<p>The conversion of some units is non-linear.  Examples of these
+include the Fahrenheit and Celsius temperature scales (due to an
+offset zero point) and the American Wire Gauge (logarithmic).  The
+non-linear units are labeled as such in the comments column.</p>
+
+<p>These units can be converted only when they are not combined with
+other units or used with an exponential operator.  Otherwise the
+conversion would not be meaningful.</p>
+
+<h3><a name="shortcut"></a>Shortcuts</h3>
+
+<p>When typing unit names, spaces are ignored, so they may be skipped.
+It is also generally ignored if a plural form of the unit name is typed.
+For squared and cubed units (positive exponents of 2 or 3) the "^"
+symbol does not need to be typed.</p>
+
+<p>When a partially typed unit is highlighted in the list (blue
+lettering), hitting enter will complete the name.  The up an down arrow
+keys can be used to highlight nearby units in the list prior to hitting
+enter.  The unit closet to the cursor will be replaced.</p>
+
+<p>The "Recent Unit" button opens a menu of recently used units and
+unit combinations.  The current unit combination is replaced with any
+selections from this menu.</p>
+
+<p>The tab key can be used to cycle between the "From" and "To" unit test
+boxes and the "From" and "To" number editors.</p>
+
+<p>The number to be converted may be entered in either the "From" or
+"To" unit side.  Standard or scientific notation may be used, or an
+expression including the normal math operators (+, -, *, /, **) and
+parenthesis may be entered.</p>
+
+<h3><a name="options"></a>Options</h3>
+
+<p>The "Options..." button allows for changing several default
+settings.  These settings are automatically stored so that ConvertAll
+will re-start with the settings last used.</p>
+
+<p>The first options control the display of numerical results,
+including the use of scientific notation and the number of decimal
+places.  Be cautious about setting the number of decimal places to a
+low value, which can result in a significant loss of accuracy.  Six
+places or higher is recommended (eight is the default).</p>
+
+<p>There is an option to set the number of recent units to be saved.
+Setting it to zero will disable the Recent Unit buttons.  Another option
+will automatically load the most recent previous units at startup.</p>
+
+<p>There are options to hide the operator text buttons (first row), and
+the unit buttons (second row).  These can be hidden to save space
+if the keyboard will be used to enter the operators.</p>
+
+<p>Buttons are also included on the options dialog to control the colors
+of the text fields.</p>
+
+<h3><a name="cmdline"></a>Command Line Usage</h3>
+
+<p>Conversions may be done from the command line (Linux or DOS console)
+without invoking the graphical interface.  Enter the command
+("convertall" on Linux, "convertall_dos" from the Windows binary), the
+number, the from unit and the to unit (separated by spaces) to do the
+conversion.  Unit names containing spaces should be surrounded by
+quotes.  Or, to be prompted for each unit entry, use the "-i" option
+("convertall -i" on Linux, "convertall_dos -i" from Windows).</p>
+
+<p>After the conversion is done, ConvertAll will prompt for a new number
+to do the same conversion.  Or "n" can be entered to start a new
+conversion, "r" to reverse the conversion or "q" to quit.</p>
+
+<p>For a more detailed list of options, use the "-h" option ("convertall
+-h" on Linux, "convertall_dos -h" on Windows).</p>
+
+<h2><a name="revs"></a>Revision History</h2>
+
+<h3>July 4, 2018 - Release 0.7.5</h3>
+
+<ul><b>Updates:</b>
+
+    <li>Updated the Russian GUI and unit translation (thanks to Ivan /
+    vantu5z).</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+    <li>Fix the tab sequence to allow tabbing between the unit edit boxes and
+    the numeric edit boxes.</li>
+
+</ul>
+
+<h3>April 4, 2018 - Release 0.7.4</h3>
+
+<ul><b>New Features:</b>
+
+    <li>Added a desktop file to the Linux version to provide menu
+        entries.</li>
+
+    <li>Added an option to disable saving the window position and size at
+        startup.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+    <li>Added US drill bit gauge sizes as a non-linear unit.</li>
+
+    <li>Added gigabit and terabit data units.</li>
+
+    <li>Adjusted the liter per 100 km fuel economy unit definition in the
+        German translation to match the English version.</li>
+
+</ul>
+
+<h3>October 15, 2017 - Release 0.7.3</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added the boiler horsepower unit.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed a crash if a zero value is entered when the engineering notation
+  option is enabled.</li>
+
+  <li>Fixed an initialization issue that caused problems with some versions of
+  Python.</li>
+
+</ul>
+
+<h3>February 20, 2017 - Release 0.7.2</h3>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fix a crash due to an overflow error when typing part of an exponent in
+    the denominator of the second unit.</li>
+
+  <li>Avoid flipping the preceding operator between multiplication and
+    division as a unit exponent of 0.5 is typed.</li>
+
+</ul>
+
+<h3>February 4, 2017 - Release 0.7.1 (Linux only)</h3>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Replaced outdated dependency checks in the Linux installer - it now
+    runs checks for Qt5 libraries.</li>
+
+  <li>Fixed a timing issue in the Linux installer so that byte-compiled files
+    do not have old timestamps.</li>
+
+</ul>
+
+<h3>January 8, 2017 - Release 0.7.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Dual unit lists have been replaced with a single list that works
+  with the active unit line editor.</li>
+
+  <li>As a unit is typed, the listing of units is reduced to only include
+  units that match the typed words.</li>
+
+  <li>The unit list can be sorted by clicking on the column
+  headings.</li>
+
+  <li>The unit list can be filtered to only show units of a certain
+  type.</li>
+
+  <li>Simple unit exponents (positive 2 and 3) can be typed with just
+  the number (leaving out the "^" character).</li>
+
+  <li>Now permits decimals to be entered for unit exponents, supporting
+  roots of units.</li>
+
+  <li>ConvertAll has been ported from the Qt4 to the Qt5 library.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Since the main unit list can now be searched, sorted and filtered,
+  the Unit Finder Dialog has been removed.</li>
+
+  <li>Added the British Std Wire Gauge non-linear unit.</li>
+
+  <li>Added the ton imperial unit.</li>
+
+  <li>Added the cable nautical unit.</li>
+
+  <li>Added the MBH (1000 Btu/hr) unit.</li>
+
+  <li>Added Cape foot, square perch and rood units.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Corrected some unit definitions in the French translation,
+  including avogadro's number, lambert, poise and the gravitational
+  constant.</li>
+
+</ul>
+
+<h3>September 10, 2015 - Release 0.6.1</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Added an option to output results in engineering notation (a
+  version of scientific notation with exponents divisible by
+  three).</li>
+
+  <li>A Russian translation was added.  Thanks to vantu5z for
+  translating.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added the dram mass unit.</li>
+
+  <li>Added the fluid dram and the minim volume units, in both US and
+  Imperial versions.</li>
+
+  <li>Added the smoot length unit.</li>
+
+  <li>Added "dm" as an abbreviation for the decimeter length unit.</li>
+
+  <li>Added "avoirdupois" to the comment column for applicable mass and
+  weight units.</li>
+
+  <li>Added "fresh water" to the comment column for applicable
+  depth-based pressure units.</li>
+
+  <li>The German translation was updated.  Thanks to Thomas Helmke for
+  translating.
+
+  <li>Added some MSVC runtime DLL files to the Windows installers to
+  avoid problems on PCs that do not already have them.</li>
+
+  <li>Clarified some dependency checker error messages in the Linux
+  installer.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed an error in the unit data formula for the AWG area
+  unit.</li>
+
+  <li>Changed the value of the caliber unit to be equivalent to inches
+  (typical written usage), not hundredths of an inch (typical verbal
+  usage).</li>
+
+</ul>
+
+<h3>February 1, 2014 - Release 0.6.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>ConvertAll has been ported from Python 2 to Python 3.  This
+  porting includes some code cleanup.</li>
+
+  <li>Added an option to automatically load the last used units at
+  startup.</li>
+
+  <li>Added an introductory tip dialog box that explains combined units.
+  There is also an option to hide this dialog.</li>
+
+  <li>There is an additional Windows installer for users without
+  administrator rights and for portable installations.</li>
+
+  <li>Added a Windows installer option to add a config file to the
+  program's directory for portable installations.  If that file is
+  present, no config files will be written to users' directories.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>The Windows binaries are built using more recent Python, Qt and
+  PyQt libraries.</li>
+
+  <li>The user interface and unit data language translations are now
+  included in the main installation files.</li>
+
+  <li>Added the long ton unit (Imperial version of the ton).</li>
+
+  <li>Added the kilopond unit as a synonym of kilogram-force.</li>
+
+  <li>Added the micron of Hg pressure unit.</li>
+
+  <li>Added the lunar distance (LD) astronomical distance unit.</li>
+
+  <li>Added the rack unit (height of an electrical rack).</li>
+
+  <li>Added the versta Russian length unit.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed the operation of the "Clear" button in the Unit Finder
+  dialog.</li>
+
+  <li>Fixed a problem with the definition of the BTU unit in the French
+  translation.</li>
+
+</ul>
+
+<h3>November 2, 2011 - Release 0.5.2</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added the microliter volume unit.</li>
+
+  <li>Added the galileo acceleration unit.</li>
+
+  <li>Added the stremma land area unit.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Changed the method of identifying a "unitless" portion of a unit
+  to avoid falsely reporting incompatibility between some units when
+  using language translations.</li>
+
+</ul>
+
+<h3>March 31, 2011 - Release 0.5.1</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added the link length unit.</li>
+
+  <li>Added US survey variations of the mile and chain length
+  units.</li>
+
+  <li>Added the centigray radiation dose unit.</li>
+
+  <li>Use DOS newline characters in the Windows version of the unit data
+  file for easier editing by users.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed incorrect definition of the rad radiation dose unit (it was
+  off by a factor of 10).</li>
+
+</ul>
+
+<h3>May 2, 2010 - Translation Update 0.5.0b</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added a Spanish translation.  The French and German translations
+  remain unchanged.</li>
+
+</ul>
+
+<h3>April 23, 2010 - Release 0.5.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Multiplication and division operators now have the same
+  precedence.  In previous versions of ConvertAll, a series of units
+  after a division symbol were assumed to be in the denominator.  Now, a
+  division operator only affects the unit (or the unit group in
+  parenthesis) immediately after the operator.</li>
+
+  <li>Parenthesis are now supported to group units in the denominator of
+  a combined unit.  For example, ""m / sec / kg" can also be entered as
+  "m / (sec * kg)".</li>
+
+  <li>"Recent Unit" buttons have been added that open a menu of recently
+  used units and unit combinations.  A unit selected from the menu will
+  replace the current unit combination.  There is also a new option
+  dialog entry that controls the maximum length of this menu.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added the tonne force metric force unit.</li>
+
+  <li>Added hundredweight long and hundredweight short mass units.</li>
+
+  <li>Added an American Wire Gauge (AWG) area unit in addition to the
+  existing AWG diameter unit.</li>
+
+  <li>Added the tonne oil equivalent and the tonne coal equivalent
+  energy units.</li>
+
+  <li>Added the ton refrigeration power unit.</li>
+
+  <li>Added the darcy and millidarcy permeability units.</li>
+
+  <li>French and German translations have been added for the user
+  interface and the unit data.  To use them, download  and install the
+  "convertall-i18n..." file for your platform (in addition to installing
+  the standard ConvertAll package).</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed problems with running in the command line mode from Linux
+  consoles without X11 present.</li>
+
+</ul>
+
+<h3>September 24, 2009 - Release 0.4.3</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Prepared ConvertAll for translation efforts by properly handling
+  Unicode characters in unit data and by marking internal program
+  strings for translation.  Volunteers for translating ConvertAll into
+  other languages are welcome.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added solar mass and pennyweight mass units.</li>
+
+  <li>Added therm and thermie energy units.</li>
+
+  <li>Added gauss and maxwell magnetic units.</li>
+
+  <li>Added the US survey foot length unit.</li>
+
+  <li>Added the mpg imp mileage unit.</li>
+
+  <li>Changed the value of the point unit from the old American point to
+  the more modern desktop publishing point.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>A critical QString conversion bug that caused ConvertAll to not
+  run with the latest version of PyQt (4.5.4) was fixed.</li>
+
+  <li>Command line quiet mode was fixed to avoid an interactive prompt
+  when bad unit data is entered.</li>
+
+</ul>
+
+<h3>May 28, 2008 - Release 0.4.2</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added the "liter per 100 km" unit for fuel consumption.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Changed the "mach" unit from 331.46 m/s to 340.29 m/s.  It is now
+  correct for STP conditions (15 degrees C).  The previous value was for
+  0 degrees C.</li>
+
+  <li>Fixed a bug that could hide messages about errors in a manually
+  edited unit data file.</li>
+
+</ul>
+
+<h3>January 22, 2008 - Release 0.4.1</h3>
+
+<ul><b>New Features:</b>
+
+  <li>An optional command line mode was added to do conversions without
+  the graphical interface.  Enter the command ("convertall"), the
+  number, the from unit and the to unit (separated by spaces) to do the
+  conversion.  For a more detailed list of options, enter "convertall
+  -h" on the command line.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>The icon used for ConvertAll has been updated.  Thanks to Ricardo
+  Berlasso for the new artwork.</li>
+
+  <li>Alternate units have been added for kilobyte, megabyte, etc.,
+  marked "IEC std".  These convert using powers of 10, rather than
+  powers of 2.</li>
+
+  <li>Troy pounds and troy ounces have been added.</li>
+
+  <li>Gigapascal, hectopascal and megabar have been added.</li>
+
+  <li>Hogshead units for wine and beer have been added.</li>
+
+  <li>The Swedish mil unit of distance has been added.</li>
+
+  <li>The Thai rai and ngaan units of land area have been added.</li>
+
+</ul>
+
+<h3>October 5, 2006 - Release 0.4.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>ConvertAll was ported to the Qt4 library. This involved a
+  significant rewrite of the code.  The previous versions used Qt3.x on
+  Linux and Qt2.3 on Windows.  Benefits include updated widgets and
+  removal of the non-commercial license exception in Windows.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>On Windows, the ConvertAll.ini file has been moved from the
+  installation directory to a location under the "Documents and
+  Settings" folder.  This avoids problems on multi-user systems and for
+  users with limited access rights.</li>
+
+</ul>
+
+<h3>October 5, 2006 - Release 0.3.2</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added Imperial (UK) gallons, quarts, pints and fluid ounces.</li>
+
+  <li>Added gigagram and teragram units.</li>
+
+  <li>Added the pound-mole unit and clarified that the existing mole is
+  a gram-mole.</li>
+
+</ul>
+
+<h3>February 14, 2005 - Release 0.3.1</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Added the decare unit for land area.</li>
+
+  <li>The Linux installer has been updated to be more robust and give
+  more install directory options.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>The barn unit, used in particle physics, was corrected.  It had
+  been incorrectly listed as a length unit instead of an area unit.</li>
+
+</ul>
+
+<h3>March 11, 2004 - Release 0.3.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>A unit finder window was added to allow the unit list to be
+  filtered and searched.</li>
+
+  <li>The size and position of the main and finder windows are now saved
+  at exit.</li>
+
+  <li>A new option allows the operator text entry buttons (x, /, ^2, ^3
+  and Clear Unit) to be hidden.</li>
+
+  <li>An install program has been added for windows.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed Linux install script problems with certain versions of
+  Python.</li>
+
+</ul>
+
+<h3>November 18, 2003 - Release 0.2.4</h3>
+
+<ul><b>Updates:</b>
+
+  <li>Keyboard shortcuts and tab-focus order for the main dialog have
+  been improved.</li>
+
+  <li>An install script was added for Linux and Unix systems.</li>
+
+  <li>The windows build now uses Python version 2.3 and PyQt version
+  3.8.</li>
+
+</ul>
+
+<h3>March 24, 2003 - Release 0.2.3</h3>
+
+<ul><b>Updates:</b>
+
+  <li>When an expression using division is entered for the number to be
+  converted, floating point division is now used even if the entries are
+  integers (Python 2.2 or greater only).</li>
+
+  <li>Mouse wheels are now supported in the unit lists.</li>
+
+  <li>Icon files are now provided with the distribution files.</li>
+
+</ul>
+
+<h3>May 28, 2002 - Release 0.2.2a</h3>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>A fix of the Windows binary only.  Fixes major problems by
+  upgrading the library version to PyQt 3.2.4.</li>
+
+</ul>
+
+<h3>May 16, 2002 - Release 0.2.2</h3>
+
+<ul><b>Updates:</b>
+
+  <li>ConvertAll has been ported to Qt 3.x.  It now works with both Qt
+  2.x and 3.x using the same source code.</li>
+
+  <li>The help/readme file has been rewritten and now includes section
+  links.</li>
+
+  <li>The binaries for windows have been updated to Python 2.2 and PyQt
+  3.2 (but are still using Qt 2.3 Non-commercial).</li>
+
+</ul>
+
+<h3>September 17, 2001 - Release 0.2.1</h3>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Some window captions and icons were corrected.</li>
+
+  <li>A window maximizing bug was fixed.</li>
+
+</ul>
+
+<h3>August 20, 2001 - Release 0.2.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>A major rewrite was done of the conversion engine.</li>
+
+  <li>A new data file format makes it easier to add and verify
+  units.</li>
+
+  <li>The unit name and abbreviation are now listed separately for
+  better sorting and searching.</li>
+
+  <li>Entering of units has been improved by changing operator
+  precedence, by ignoring spaces and plurals, and by changing the
+  partial selection list highlight.</li>
+
+  <li>An expression can now be used for the number to be
+  converted.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Many additional units were added to the database.</li>
+
+  <li>For MS Windows users, the binary files were upgraded to PyQt
+  Version 2.5.</li>
+
+</ul>
+
+<h3>August 10, 2001 - Release 0.1.1</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Added color controls to the options dialog.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>The convertall.ini file on windows was moved to the program
+  directory.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+  <li>Fixed problems with using the same unit twice in a combined
+  unit.</li>
+
+  <li>Fixed an occasional shutdown when auto-completing.</li>
+
+  <li>Fixed a problem with the updating of the unit label.</li>
+
+</ul>
+
+<h3>July 28, 2001 - Release 0.1.0</h3>
+
+<ul>
+
+  <p>Initial release.</p>
+
+</ul>
+
+<h2><a name="contact"></a>Questions, Comments, Criticisms?</h2>
+
+<p>I can be contacted by email at: doug101 AT bellz DOT org<br> I
+welcome any feedback, including reports of any bugs you find.  Also, you
+can periodically check back to <a
+  href="http://www.bellz.org">www.bellz.org</a> for any updates.</p>
+
+</body>
+</html>
