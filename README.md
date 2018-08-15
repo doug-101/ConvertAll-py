@@ -11,5 +11,5 @@ cubic nautical miles. The units don't have to make sense to anyone else.
 
 See the [ConvertAll homepage](http://convertall.bellz.org) for more info.
 
-There is also an [online version](http://convertall.bellz.org/js), written in
+There is also an [online version](http://convertall-js.bellz.org), written in
 JavaScript (see the doug-101/ConvertAll-js repository for the source code).
