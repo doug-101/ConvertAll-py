@@ -4,7 +4,7 @@
 # convertdlg.py, provides the main dialog and GUI interface
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2018, Douglas W. Bell
+# Copyright (C) 2019, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -39,6 +39,7 @@ import icondict
 import optiondefaults
 import helpview
 import optiondlg
+import bases
 
 
 class ConvertDlg(QWidget):
@@ -60,6 +61,8 @@ class ConvertDlg(QWidget):
         except KeyError:
             pass
         self.helpView = None
+        self.basesDialog = None
+        self.fractionDialog = None
         self.option = Option('convertall', 20)
         self.option.loadAll(optiondefaults.defaultList)
         self.recentUnits = recentunits.RecentUnits(self.option)
@@ -201,6 +204,14 @@ class ConvertDlg(QWidget):
         buttonLayout.addWidget(optionsButton)
         optionsButton.setFocusPolicy(Qt.NoFocus)
         optionsButton.clicked.connect(self.changeOptions)
+        basesButton = QPushButton(_('&Bases...'))
+        buttonLayout.addWidget(basesButton)
+        basesButton.setFocusPolicy(Qt.NoFocus)
+        basesButton.clicked.connect(self.showBases)
+        fractionsButton = QPushButton(_('&Fractions...'))
+        buttonLayout.addWidget(fractionsButton)
+        fractionsButton.setFocusPolicy(Qt.NoFocus)
+        fractionsButton.clicked.connect(self.showFractions)
         helpButton = QPushButton(_('&Help...'))
         buttonLayout.addWidget(helpButton)
         helpButton.setFocusPolicy(Qt.NoFocus)
@@ -380,6 +391,20 @@ class ConvertDlg(QWidget):
         newColor = QColorDialog.getColor(foreground, self)
         if newColor.isValid() and newColor != foreground:
             self.setOptionColor('Foreground', newColor)
+
+    def showBases(self):
+        """Show the dialog for base conversions.
+        """
+        if not self.basesDialog:
+            self.basesDialog = bases.BasesDialog()
+        self.basesDialog.show()
+
+    def showFractions(self):
+        """Show the dialog for fraction conversions.
+        """
+        if not self.fractionDialog:
+            self.fractionDialog = bases.FractionDialog()
+        self.fractionDialog.show()
 
     def findHelpFile(self):
         """Return the path to the help file.
