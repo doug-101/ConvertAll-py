@@ -15,9 +15,11 @@
 import math
 from PyQt5.QtCore import Qt, QRegularExpression
 from PyQt5.QtGui import QRegularExpressionValidator
-from PyQt5.QtWidgets import (QCheckBox, QDialog, QHBoxLayout, QLabel,
-                             QLineEdit, QMessageBox, QPushButton, QSpinBox,
+from PyQt5.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
+                             QLabel, QLineEdit, QMessageBox, QPushButton,
+                             QSpinBox, QTreeWidget, QTreeWidgetItem,
                              QVBoxLayout)
+import numedit
 
 
 class BasesDialog(QDialog):
@@ -34,7 +36,6 @@ class BasesDialog(QDialog):
         self.twosComplement = False
         layout = QVBoxLayout(self)
         layout.setSpacing(0)
-        layout.addSpacing(3)
         decimalLabel = QLabel(_('&Decmal'))
         layout.addWidget(decimalLabel)
         decimalEdit = QLineEdit()
@@ -79,7 +80,6 @@ class BasesDialog(QDialog):
         closeButton = QPushButton(_('&Close'))
         layout.addWidget(closeButton)
         closeButton.clicked.connect(self.close)
-        layout.addSpacing(3)
         self.editors = (decimalEdit, hexEdit, octalEdit, binaryEdit)
         for editor in self.editors:
             editor.textEdited.connect(self.updateValue)
@@ -158,10 +158,63 @@ class FractionDialog(QDialog):
     """
     def __init__(self, parent=None):
         super().__init__(parent)
+        self.setAttribute(Qt.WA_QuitOnClose, False)
         self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
                             Qt.WindowSystemMenuHint)
         self.setWindowTitle(_('Fraction Conversions'))
         layout = QVBoxLayout(self)
+        layout.setSpacing(0)
+        expLabel = QLabel(_('&Expression'))
+        layout.addWidget(expLabel)
+        horizLayout = QHBoxLayout()
+        layout.addLayout(horizLayout)
+        horizLayout.setSpacing(5)
+        self.exprEdit = QLineEdit()
+        expLabel.setBuddy(self.exprEdit)
+        horizLayout.addWidget(self.exprEdit)
+        self.exprEdit.setValidator(numedit.FloatExprValidator(self))
+        self.exprEdit.returnPressed.connect(self.calcFractions)
+        enterButton = QPushButton(_('E&nter'))
+        horizLayout.addWidget(enterButton)
+        enterButton.setAutoDefault(False)
+        enterButton.clicked.connect(self.calcFractions)
+        layout.addSpacing(10)
+        self.resultView = QTreeWidget()
+        self.resultView.setColumnCount(2)
+        self.resultView.setHeaderLabels([_('Fraction'), _('Decimal')])
+        layout.addWidget(self.resultView)
+        layout.addSpacing(10)
+        self.powerTwoCtrl = QCheckBox(_('Limit denominators to powers of two'))
+        layout.addWidget(self.powerTwoCtrl)
+        layout.addSpacing(10)
+        closeButton = QPushButton(_('&Close'))
+        layout.addWidget(closeButton)
+        closeButton.setAutoDefault(False)
+        closeButton.clicked.connect(self.close)
+
+    def calcFractions(self):
+        """Find fractions from the expression in the editor.
+        """
+        self.resultView.clear()
+        text = self.exprEdit.text()
+        try:
+            num = float(text)
+        except ValueError:
+            try:
+                num = float(eval(text))
+                output = [_('Entry'), '{0}'.format(num)]
+                self.resultView.addTopLevelItem(QTreeWidgetItem(output))
+            except:
+                QMessageBox.warning(self, 'ConvertAll',
+                                    _('Invalid expresssion'))
+                return
+        QApplication.setOverrideCursor(Qt.WaitCursor)
+        powerOfTwo = self.powerTwoCtrl.isChecked()
+        for numer, denom in listFractions(num, powerOfTwo):
+            output = ['{0}/{1}'.format(numer, denom),
+                      '{0}'.format(numer / denom)]
+            self.resultView.addTopLevelItem(QTreeWidgetItem(output))
+        QApplication.restoreOverrideCursor()
 
 
 def baseNumStr(number, base, numBits=32, twosComplement=False):
@@ -215,56 +268,32 @@ def baseNum(numStr, base, numBits=32, twosComplement=False):
     return num
 
 
-def calcFraction(num, precision, powerOfTwo=False):
-    """Return a tuple of mixed number, numerator and denominator.
-
-    Raise a ValueError if no fraction is found.
-    Arguments:
-        precision -- num of decimal places for result accuracy
-        powerOfTwo -- if True, restrict the denominator to powers of 2
-    """
-    isNegative = num < 0
-    num = math.fabs(num)
-    mixed = math.floor(num)
-    num -= mixed
-    denom = 2
-    denomLimit = 10**precision
-    accuracy = 0.6 / 10**precision
-    while denom < denomLimit:
-        numer = round(num * denom)
-        if numer > 0 and abs(num - numer / denom) < accuracy:
-            if isNegative:
-                mixed = -mixed
-                numer = -numer
-            return (mixed, numer, denom)
-        denom = denom + 1 if not powerOfTwo else denom * 2
-    raise ValueError
-
-def listFractions(decimal):
+def listFractions(decimal, powerOfTwo=False):
     """Return a list of numerator, denominator tuples.
 
     The tuples approximate the decimal, becoming more accurate.
     Arguments:
         decimal -- a real number to approximate as a fraction
+        powerOfTwo -- if True, restrict the denominator to powers of 2
     """
     results = []
     denom = 2
-    denomLimit = 1000000
+    denomLimit = 10**9
     minDelta = denomLimit
     numer = round(decimal * denom)
     delta = abs(decimal - numer / denom)
     while denom < denomLimit:
-        if numer != 0:
-            nextNumer = round(decimal * (denom + 1))
-            nextDelta = abs(decimal - nextNumer / (denom + 1))
-            if delta < minDelta and delta <= nextDelta:
-                results.append((numer, denom))
-                if delta == 0.0:
-                    break
-                minDelta = delta
-            numer = nextNumer
-            delta = nextDelta
-        denom += 1
+        nextDenom = denom + 1 if not powerOfTwo else denom * 2
+        nextNumer = round(decimal * nextDenom)
+        nextDelta = abs(decimal - nextNumer / nextDenom)
+        if numer != 0 and delta < minDelta and delta <= nextDelta:
+            results.append((numer, denom))
+            if delta == 0.0:
+                break
+            minDelta = delta
+        denom = nextDenom
+        numer = nextNumer
+        delta = nextDelta
     if results:  # handle when first result is a whole num (2/2, 4/2, etc.)
         numer, denom = results[0]
         if denom == 2 and numer / denom == round(numer / denom):

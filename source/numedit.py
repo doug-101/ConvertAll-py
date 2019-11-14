@@ -4,7 +4,7 @@
 # numedit.py, provides a number entry editor
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2016, Douglas W. Bell
+# Copyright (C) 2019, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -123,7 +123,7 @@ class NumEdit(QLineEdit):
 class FloatExprValidator(QValidator):
     """Validator for float python expressions typed into NumEdit.
     """
-    invalidRe = re.compile(r'[^\d\.eE\+\-\*/\(\)]')
+    invalidRe = re.compile(r'[^\d\.eE\+\-\*/\(\) ]')
     def __init__(self, parent):
         super().__init__(parent)
 
