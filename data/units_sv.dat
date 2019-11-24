@@ -1,0 +1,848 @@
+#*****************************************************************************
+#enheters.dat, the enheters data file, version 0.7.3
+#
+# ConvertAll, a enheters conversion program
+# Copyright (C) 2017, Douglas W. Bell
+#
+# This is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License, Version 2.  This program is
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+#*****************************************************************************
+#
+# Units are defined by an optional quantity and an equivalent enheter or enheter
+# combination.  A Python expression may be used for the quantity, but is
+# restricted to using only the following operators: *, /, +, -.
+# Beware of integer division truncation: be sure to use a float for at least
+# one of the values.
+#
+# The enheter type must be placed in square brackets before a set of enheters.  The
+# first comment after the equivalent enheter will be put in parenthesis after the
+# enheter name (usually used to give the full name of an abbreviated enheter).  The
+# next comment will be used in the program list's comment column; later
+# comments and full line comments are ignored.
+#
+# Non-linear enheters are indicated with an equivalent enheter in square brackets,
+# followed by either equations or equivalency lists for the definition.  For
+# equations, two are given, separated by a ';'.  Both are functions of "x", the
+# first going from the enheter to the equivalent enheter and the second one in
+# reverse.  Any valid Python expression returning a float (including the
+# functions in the math module) should work.  The equivalency list is a Python
+# list of tuples giving points for linear interpolation.
+#
+# All enheters must reduce to primitive enheters, which are indicated by an
+# equivalent enheter starting with '!'.  A special "enheterless" primitve enheter
+# (usualty called "enheter") has '!!' for an equivalent enheter.  Circular references
+# must also be avoided.
+#
+# Primitive enheters:  kg, m, s, K, A, mol, cd, rad, sr, bit, enheter
+#
+##############################################################################
+
+#
+# mass enheters
+#
+[massa]
+kg                  = !                  # kilogram
+kilogram            = kg
+key                 = kg                 # # drogslang
+hektogram           = 100 gram
+dekagram            = 10 gram
+gram                = 0.001 kg
+g                   = gram               # gram
+decigram            = 0.1 gram
+centigram           = 0.01 gram
+milligram           = 0.001 gram
+mg                  = milligram          # milligram
+mikrogram           = 0.001 mg
+ton                 = 1000 kg          # # metriskt
+metriskt ton        = ton
+megagram            = ton
+kiloton             = 1000 ton         # # metriskt
+gigagram            = 1e9 gram
+teragram            = 1e12 gram
+carat               = 0.2 gram
+ct                  = karat              # karat
+amu                 = 1.66053873e-27 kg  # atommassa
+atommasseenhet       = amu
+pound               = 0.45359237 kg      #        # avoirdupois
+lb                  = pound              # pound  # avoirdupois
+lbm                 = pound              # pound  # avoirdupois
+ounce               = 1/16.0 pound       #        # avoirdupois
+oz                  = ounce              # ounce  # avoirdupois
+lid                 = ounce              #        # drogslang
+dram                = 1/16.0 ounce       #        # avoirdupois
+pound troy          = 5760 grain
+lb troy             = pound troy         # pound troy
+ounce troy          = 1/12.0 lb troy
+oz troy             = ounce troy         # ounce troy
+ton*                = 2000 lb            # # icke-metriskt
+kiloton*            = 1000 ton           # # icke-metriskt
+long ton            = 2240 lb            # # Imperial
+ton imperial        = long ton
+slug                = lbf*s^2/ft
+stone               = 14 lb
+grain               = 1/7000.0 lb
+pennyweight         = 24 grain
+hundredweight long  = 112 lb             # # Imperial
+hundredweight short = 100 lb             # # US & Canada
+solmassa            = 1.9891e30 kg
+
+
+#
+# length / distance enheters
+#
+[längd]
+m                        = !              # meter
+meter                    = m
+metre                    = m
+dm                       = 0.1 m          # decimeter
+decimeter                = dm
+cm                       = 0.01 m         # centimeter
+centimeter               = cm
+mm                       = 0.001 m        # millimeter
+millimeter               = mm
+mikrometer               = 1e-6 m
+mikron                   = mikrometer
+nanometer                = 1e-9 m
+nm                       = nanometer      # nanometer
+dekameter                = 10 m
+hectometer               = 100 m
+km                       = 1000 m         # kilometer
+kilometer                = km
+megameter                = 1000 km
+ångstrom                 = 1e-10 m
+fermi                    = 1e-15 m        # # atomkärnestorlek
+inch                     = 2.54 cm
+in                       = inch           # inch
+inches                   = inch
+mil                      = 0.001 inch
+microinch                = 1e-6 inch
+microinches              = microinch
+foot                     = 12 inch
+ft                       = foot           # foot
+feet                     = foot
+foot US survey           = 1200/3937.0 m
+Cape foot                = 1.033 foot
+yard                     = 3 ft
+yd                       = yard           # yard
+mile                     = 5280 ft        # # stadgad mile
+mi                       = mile           # mile # stadgad mile
+nautisk mil              = 1852 m
+nmi                      = nautisk mil    # nautisk mil
+mile US survey           = 5280 foot US survey
+league                   = 3 mile
+chain                    = 66 ft
+chain US survey          = 66 foot US survey
+link                     = 0.01 chain
+fathom                   = 6 ft
+cable                    = 0.1 nautical mile
+rod                      = 5.5 yard
+furlong                  = 40 rod
+hand                     = 4 inch
+cubit                    = 21.8 inch      # # biblisk enhet
+point                    = 1/72.0 inch    # # desktop publishing point
+pica                     = 12 point
+kaliber                  = 1.0 inch       # # kulstorlekar
+rackenheter              = 1.75 in        # # datormontage
+smoot                    = 67 inch
+fotbollsplan             = 100 yd
+maraton                  = 46145 yd
+mil Svensk               = 10 km
+versta                   = 3500 ft        # # Rysk enhet
+au                       = 1.49597870691e11 m   # astronomisk enhet
+astronomisk enhet        = au
+LD                       = 384400 km      # månavstånd # astronomisk
+månavstånd               = LD             # # astronomiskt avstånd
+ljusår                   = 365.25 ljusets hastighet * dag
+ljusminut                = ljusets hastighet * min
+ljussekund               = ljusets hastighet * s
+parsec                   = 3.0856775813e16 m
+kiloparsec               = 1000 parsec
+megaparsec               = 1000 kiloparsec
+skruvstorlek             = [in] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
+                           # # enhetliga diametrar, icke-linjär
+AWG Dia                  = [in] pow(92.0,(36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           # Amerikanskt vajermått \
+                           # använd -1, -2 för 00, 000; icke-linjärt
+American Wire Gauge Dia  = [in] pow(92.0,(36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           #  # använd -1, -2 för 00, 000; icke-linjärt
+British Std Wire Gauge   = [in] [(-6, .500), (-5, .464), (-3, .400), \
+                           (-2, .372), (3, .252), (6, .192), (10, .128), \
+                           (14, .080), (19, .040), (23, .024), (26, .018), \
+                           (28, .0148), (30, .0124), (39, .0052), \
+                           (49, .0012), (50, .001)] \
+                           #  # använd -1, -2 för 2/0, 3/0; icke-linjärt
+standardmått           = [in] [(-5, .448350), (1, .269010), (14, .0747250), \
+                           (16, .0597800), (17, .0538020), (20, .0358680), \
+                           (26, .0179340), (31, .0104615), (36, .00672525), \
+                           (38, .00597800)] # stål \
+                           # Tillverkares standardmått, icke-linjärt
+zinkmått               = [in] [(1, .002), (10, .02), (15, .04), (19, .06), \
+                           (23, .1), (24, .125), (27, .5), (28, 1)]  \
+                           # # plåttjocklek, icke-linjärt
+ringstorlek                = [in] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
+                           # # US storlekar, circum., icke-linjär
+skostorlek män           = [in] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+                           # # US storlekar, icke-linjärt
+skostorlek kvinnor       = [in] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+                           # # US storlekar, icke-linjärt
+borrstorlek           = [in] [(104,0.0031), (103,0.0035), (102,0.0039), \
+                           (101,0.0043), (100,0.0047), (99,0.0051), \
+                           (98,0.0055), (97,0.0059), (96,0.0063), \
+                           (95,0.0067), (94,0.0071), (93,0.0075), \
+                           (92,0.0079), (91,0.0083), (90,0.0087), \
+                           (89,0.0091), (88,0.0095), (87,0.01), \
+                           (86,0.0105), (85,0.011), (84,0.0115), \
+                           (83,0.012), (82,0.0125), (81,0.013), \
+                           (80,0.0135), (79,0.0145), (78,0.016), \
+                           (77,0.018), (76,0.02), (75,0.021), \
+                           (74,0.0225), (73,0.024), (72,0.025), \
+                           (71,0.026), (70,0.028), (69,0.0292), \
+                           (68,0.031), (67,0.032), (66,0.033), \
+                           (65,0.035), (64,0.036), (63,0.037), \
+                           (62,0.038), (61,0.039), (60,0.04), \
+                           (59,0.041), (58,0.042), (57,0.043), \
+                           (56,0.0465), (55,0.052), (54,0.055), \
+                           (53,0.0595), (52,0.0635), (51,0.067), \
+                           (50,0.07), (49,0.073), (48,0.076), \
+                           (47,0.0785), (46,0.081), (45,0.082), \
+                           (44,0.086), (43,0.089), (42,0.0935), \
+                           (41,0.096), (40,0.098), (39,0.0995), \
+                           (38,0.1015), (37,0.104), (36,0.1065), \
+                           (35,0.11), (34,0.111), (33,0.113), \
+                           (32,0.116), (31,0.12), (30,0.1285), \
+                           (29,0.136), (28,0.1405), (27,0.144), \
+                           (26,0.147), (25,0.1495), (24,0.152), \
+                           (23,0.154), (22,0.157), (21,0.159), \
+                           (20,0.161), (19,0.166), (18,0.1695), \
+                           (17,0.173), (16,0.177), (15,0.18), \
+                           (14,0.182), (13,0.185), (12,0.189), \
+                           (11,0.191), (10,0.1935), (9,0.196), \
+                           (8,0.199), (7,0.201), (6,0.204), \
+                           (5,0.2055), (4,0.209), (3,0.213), \
+                           (2,0.221), (1,0.228)] \
+                           # # Amerikanska borrstorlekar, icke-linjärt
+
+
+#
+# time enheters
+#
+[tid]
+s             = !                 # sekund
+sek           = s                 # sekund
+sekund        = s
+ms            = 0.001 s           # millisekund
+millisekund   = ms
+mikrosekund   = 1e-6 s
+ns            = 1e-9 s            # nanosekund
+nanosekund    = ns
+minut         = 60 s
+min           = minut             # minut
+timma         = 60 min
+tim            = timma            # timma
+bell          = 30 min            #  # marin definition
+watch         = 4 tim
+watches       = watch
+dag           = 24 tim
+vecka         = 7 dagar
+wk            = vecka             # vecka
+fortnight     = 14 dagar
+månad         = 1/12.0 år
+år            = 365.242198781 dagar
+yr            = år                # år
+kalenderår    = 365 dagar
+decennium     = 10 år
+sekel         = 100 år
+centuries     = sekel
+millennium    = 1000 år
+millennia     = millennium
+[schemaläggning]
+man hour      = 168/40.0 hour
+man week      = 40 man hour
+man month     = 1/12.0 man year
+man year      = 52 man week
+
+
+#
+# temperature
+#
+[temperatur]
+K                 = !     # Kelvin
+Kelvin            = K
+deg K             = K     # Kelvin
+grader Kelvin     = K
+
+C                 = [K] x + 273.15 ; x - 273.15  # Celsius  # icke-linjärt
+Celsius           = [K] x + 273.15 ; x - 273.15  #          # icke-linjärt
+deg C             = [K] x + 273.15 ; x - 273.15  # Celsius  # icke-linjärt
+grader Celsius    = [K] x + 273.15 ; x - 273.15  #          # icke-linjärt
+
+R                 = 5/9.0 K     # Rankine
+Rankine           = R
+deg R             = R           # Rankine
+F                 = [R] x + 459.67 ; x - 459.67  # Fahrenheit  # icke-linjärt
+Fahrenheit        = [R] x + 459.67 ; x - 459.67  #             # icke-linjärt
+deg F             = [R] x + 459.67 ; x - 459.67  # Fahrenheit  # icke-linjärt
+grader Fahrenheit = [R] x + 459.67 ; x - 459.67  #             # icke-linjärt
+
+[temperaturdifferens]
+C deg             = K        # Celsius grader
+Celsius grader    = C deg
+F deg             = R        # Fahrenheit deg.
+Fahrenheit grader = F deg
+
+
+#
+# electrical enheters
+#
+[elektrisk ström]
+A              = !              # ampere
+ampere         = A
+amp            = A
+milliampere    = 0.001 A
+milliamp       = milliampere
+mA             = milliampere    # milliampere
+mikroampere    = 0.001 mA
+kiloampere     = 1000 A
+kA             = kiloampere     # kiloampere
+[laddning]
+coulomb        = A*s
+amp hour       = A*tim
+mAh            = 0.001 amperetimmar # milliamperetimmar
+milliamp hour  = mAh
+[spänning]
+volt           = W/A
+V              = volt           # volt
+millivolt      = 0.001 volt
+mV             = millivolt      # millivolt
+kilovolt       = 1000 volt
+kV             = kilovolt       # kilovolt
+[resistans]
+ohm            = V/A
+milliohm       = 0.001 ohm
+mikrohm        = 0.001 milliohm
+kilohm         = 1000 ohm
+[konduktans]
+siemens        = A/V
+[kapacitans]
+farad          = coulomb/V
+millifarad     = 0.001 farad
+mikrofarad     = 0.001 millifarad
+nanofarad      = 1e-9 farad
+picofarad      = 1e-12 farad
+[magnetiskt flöde]
+weber          = V*s
+Wb             = weber          # weber
+maxwell        = 1e-8 Wb
+[induktans]
+henry          = Wb/A
+H              = henry          # henry
+millihenry     = 0.001 henry
+mH             = millihenry     # millihenry
+mikrohenry     = 0.001 mH
+[flödestäthet]
+tesla          = Wb/m^2
+T              = tesla          # tesla
+gauss          = maxwell/cm^2
+
+
+#
+# molecular enheters
+#
+[molekylär kvalitet]
+mol          = !           # mole       # gram mole
+mole         = mol         #            # gram mole
+gram mole    = mol
+kilomole     = 1000 mol
+kmol         = kilomole    # kilomole
+pound mole   = mol*lbm/gram
+lbmol        = pound mole  # pound mole
+[molekylstorlek]
+avogadro     = gram/(amu*mol)
+
+
+#
+# Illumination enheters
+#
+[ljusintensitet]
+cd          = !          # candela
+candela     = cd
+
+[ljusföde]
+lumen        = cd * sr
+lm           = lumen     # lumen
+
+[belysning]
+lux          = lumen/m^2
+footcandle   = lumen/ft^2
+metercandle  = lumen/m^2
+
+[ljusstyrka]
+lambert      = cd/(pi*cm^2)
+millilambert = 0.001 lambert
+footlambert  = cd/(pi*ft^2)
+
+
+#
+# angular enheters
+#
+[vinkel]
+radie       = !
+rad         = radie         # radie
+circle      = 2 pi*radie
+turn        = cirkel
+revolution  = cirkel
+rev         = revolution     # revolution
+grader      = 1/360.0 circle
+deg         = grader         # degree
+arc min     = 1/60.0 grader  # minut
+arc minut  = arc min
+min arc     = arc min        # minut
+minut arc  = arc min
+arc sec     = 1/60.0 arc min # sekund
+arc second  = arc sek
+sek arc     = arc sek        # sekund
+seckund arc  = arc sek
+kvadrant    = 1/4.0 cirkel
+right angle = kvadrant
+gradian     = 0.01 kvadrant
+
+
+#
+# solid angle enheters
+#
+[fast vinkel]
+sr         = !      # steradian
+steradian  = sr
+sfär       = 4 pi*sr
+hemisfär = 1/2.0 sfär
+
+
+#
+# information enheters
+#
+[data]
+bit              = !
+kilobit          = 1000 bit          #                  # baserat på effekten av 10
+megabit          = 1000 kilobit      #                  # baserat på effekten av 10
+gigabit          = 1000 megabit      #                  # baserat på effekten av 10
+terabit          = 1000 gigabit      #                  # baserat på effekten av 10
+byte             = 8 bit
+B                = byte              # byte
+kilobyte         = 1024 byte         #                  # baserat på effekten av 2
+kB               = kilobyte          # kilobyte         # baserat på effekten av 2
+megabyte         = 1024 kB           #                  # baserat på effekten av 2
+MB               = megabyte          # megabyte         # baserat på effekten av 2
+gigabyte         = 1024 MB           #                  # baserat på effekten av 2
+GB               = gigabyte          # gigabyte         # baserat på effekten av 2
+terabyte         = 1024 GB           #                  # baserat på effekten av 2
+TB               = terabyte          # terabyte         # baserat på effekten av 2
+petabyte         = 1024 TB           #                  # baserat på effekten av 2
+PB               = petabyte          # petabyte         # baserat på effekten av 2
+
+kilobyte IEC std = 1000 byte         #                  # baserat på effekten av 10
+kB IEC std       = kilobyte IEC std  # kilobyte         # baserat på effekten av 10
+megabyte IEC std = 1000 kB IEC std   #                  # baserat på effekten av 10
+MB IEC std       = megabyte IEC std  # megabyte         # baserat på effekten av 10
+gigabyte IEC std = 1000 MB IEC std   #                  # baserat på effekten av 10
+GB IEC std       = gigabyte IEC std  # gigabyte         # baserat på effekten av 10
+terabyte IEC std = 1000 GB IEC std   #                  # baserat på effekten av 10
+TB IEC std       = terabyte IEC std  # terabyte         # baserat på effekten av 10
+petabyte IEC std = 1000 TB IEC std   #                  # baserat på effekten av 10
+PB IEC std       = petabyte IEC std  # petabyte         # baserat på effekten av 10
+
+kibibyte         = 1024 byte
+KiB              = kibibyte          # kibibyte
+mebibyte         = 1024 KiB
+MiB              = mebibyte          # mebibyte
+gibibyte         = 1024 MiB
+GiB              = gibibyte          # gibibyte
+tebibyte         = 1024 GiB
+TiB              = tebibyte          # tebibyte
+pebibyte         = 1024 TiB
+PiB              = pebibyte          # pebibyte
+
+[dataöverföring]
+bps              = bit/sek           # bitar / sekund
+kbps             = 1000 bps          # kilobit / sek.  # baserat på effekten av 10
+
+
+#
+# Unitless numbers
+#
+[kvantitet]
+enhet               = !!
+1                  = enhet            # enhet
+pi                 = 3.14159265358979323846 enheter
+par                = 2 enheter
+hat trick          = 3 enheter          # # sport
+dussin              = 12 enheter
+doz                = dussin           # dussin
+bageridussin       = 13 enheter
+score              = 20 enheter
+gross              = 144 enheter
+stort gross        = 12 gross
+ream               = 500 enheter
+procent            = 0.01 enheter
+%                  = procent
+mill               = 0.001 enheter
+[ränta]
+APR                = [enheter] log(1 + x/100) ;  (exp(x) - 1)*100 \
+                     # årlig % ränta # baserat på kontinuerlig sammansättning
+[koncentration]
+proof              = 1/200.0 enheter    # # alkoholinnehåll
+ppm                = 1e-6 enheter       # delar per miljon
+parts per million  = ppm
+ppb                = 1e-9 enheter       # delar per miljard
+parts per billion  = ppb
+ppt                = 1e-12 enheter      # delar per biljon
+parts per trillion = ppt
+karat              = 1/24.0 enheter     # # gulds renhet
+karat guld         = karat           # # gulds renhet
+
+
+#
+# force units
+#
+[kraft]
+newton         = kg*m/s^2
+N              = newton           # newton
+dekanewton     = 10 newton
+kilonewton     = 1000 N
+kN             = kilonewton       # kilonewton
+meganewton     = 1000 kN
+millinewton    = 0.001 N
+dyne           = cm*g/s^2
+kg kraft       = kg * gravitation     # kilogram f
+kgf            = kg kraft         # kilogram kraft
+kilogram kraft = kg kraft
+kp             = kg kraft         # kilopond
+kilopond       = kg kraft
+gram kraft     = g * gravitation
+pound kraft    = lbm * gravitation    #              # avoirdupois
+lbf            = pound kraft      # pound kraft  # avoirdupois
+ton kraft      = ton * gravitation
+ounce kraft    = ounce * gravitation
+ozf            = ounce force      # ounce kraft
+tonne kraft    = tonne * gravitation  # # metriskt
+pdl            = lbm * ft / sek^2 # poundal # Imperial kraft
+poundal        = pdl              # # Imperial kraft
+
+
+#
+# area units
+#
+[area]
+barn                     = 1e-28 m^2       # # partikelfysik
+are                      = 100 m^2
+decare                   = 10 are
+dekare                   = 10 are
+hectare                  = 100 are
+stremma                  = 1000 m^2
+acre                     = 10 chain^2
+section                  = mile^2
+township                 = 36 section
+homestead                = 160 acre
+square perch             = 30.25 yd^2
+rood                     = 0.25 acre
+rai                      = 1600 m^2        # # Thai
+ngaan                    = 400 m^2         # # Thai
+circular inch            = 1/4.0 pi*in^2   # # område på 1 tums cirkel
+circular mil             = 1/4.0 pi*mil^2  # # område på 1 mils cirkel
+AWG Area                 = [in^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
+                           # Amerikanskt vajermått \
+                           # använd -1, -2 för 00, 000; icke-linjärt
+American Wire Gauge Area = [in^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
+                           #  # använd -1, -2 för 00, 000; icke-linjärt
+
+
+#
+# volume units
+#
+[volym]
+cc                   = cm^3                 # kubikcentimeter
+kubikcentimeter     = cc
+liter                = 1000 cc
+l                    = liter                # liter
+litre                = liter
+deciliter            = 0.1 liter
+centiliter           = 0.01 liter
+milliliter           = cc
+ml                   = milliliter           # milliliter
+mikroliter           = 1e-6 liter
+dekaliter            = 10 liter
+hectoliter           = 100 liter
+kiloliter            = 1000 liter
+kl                   = kiloliter            # kiloliter
+megaliter            = 1000 kiloliter
+gallon               = 231 in^3             #             # US vätska
+gal                  = gallon               # gallon      # US vätska
+quart                = 1/4.0 gallon         #             # US vätska
+qt                   = quart                # quart       # US vätska
+pint                 = 1/2.0 quart          #             # US vätska
+pt                   = pint                 # pint        # US vätska
+fluid ounce          = 1/16.0 pint          #             # US
+fl oz                = fluid ounce          # fluid ounce # US
+ounce fluid          = fluid ounce          #             # US
+fluid dram           = 1/8.0 fluid ounce    #             # US
+minim                = 1/480.0 fluid ounce  #             # US
+imperial gallon      = 4.54609 liter
+imp gal              = imperial gallon      # imperial gallon
+gallon imperial      = imperial gallon
+imperial quart       = 1/4.0 imp gal
+imp qt               = imperial quart       # imperial quart
+quart imperial       = imperial quart
+imperial pint        = 1/8.0 imp gal
+imp pt               = imperial pint        # imperial pint
+pint imperial        = imperial pint
+imperial fluid ounce = 1/160.0 imp gal
+imp fl oz            = imperial fluid ounce # imperial fluid ounce
+imperial fluid dram  = 1/8.0 imp fl oz
+imperial minim       = 1/480.0 imp fl oz
+kaffekopp            = 8 fl oz
+matsked              = 1/16.0 kaffekopp
+msk                  = matsked           # matsked
+tesked               = 1/3.0 matsked
+tsk                  = tesked             # tesked
+barrel               = 42 gallon
+bbl                  = barrel               # barrel
+shot                 = 1.5 fl oz
+fifth                = 1/5.0 gallon         #             # alkohol
+vinflaska            = 750 ml
+magnum               = 1.5 liter            #             # alkohol
+keg                  = 15.5 gallon          #             # öl
+hogshead wine        = 63 gal
+hogshead beer        = 54 gal
+bushel               = 2150.42 in^3
+peck                 = 1/4.0 bushel
+cord                 = 128 ft^3
+board foot           = ft^2*in
+board feet           = board foot
+
+
+#
+# velocity enheters
+#
+[hastighet]
+knop        = nmi/tim
+kt          = knop             # knot
+light speed = 2.99792458e8 m/s
+mph         = mi/hr            # miles/timma
+kph         = km/t            # kilometer/timma
+mach        = 340.29 m/s       # # ljudhastighet vid STP
+[rotationshastighet]
+rpm         = varv/min          # varv/min
+rps         = varv/sek          # varv/sek
+
+
+#
+# flow rate enheters
+#
+[vätskeflöde]
+gph         = gal/tim          # gallons/timma
+gpm         = gal/min          # gallons/minut
+cfs         = ft^3/sek         # cu ft/sekund
+cfm         = ft^3/min         # cu ft/minut
+lpm         = l/min            # liter/min
+[gasflöde]
+sccm        = atm*cc/min       # std cc/min      # tryck * flöde
+sccs        = atm*cc/sek       # std cc/sec      # tryck * flöde
+slpm        = atm*l/min        # std liter/min   # tryck * flöde
+slph        = atm*l/tim        # std liter/tim   # tryck * flöde
+scfh        = atm*ft^3/tim     # std cu ft/tim   # tryck * flöde
+scfm        = atm*ft^3/min     # std cu ft/min   # tryck * flöde
+
+
+#
+# pressure enheters
+#
+[tryck]
+Pa                    = N/m^2                    # pascal
+pascal                = Pa
+hPa                   = 100 Pa                   # hektopascal
+hectopascal           = hPa
+kPa                   = 1000 Pa                  # kilopascal
+kilopascal            = kPa
+MPa                   = 1000 kPa                 # megapascal
+megapascal            = MPa
+GPa                   = 1000 MPa                 # gigapascal
+gigapascal            = GPa
+atm                   = 101325 Pa                # atmosfär
+atmosfär              = atm
+bar                   = 1e5 Pa
+mbar                  = 0.001 bar                # millibar
+millibar              = mbar
+mikrobar              = 0.001 mbar
+decibar               = 0.1 bar
+kilobar               = 1000 bar
+megabar               = 1000 kilobar
+mm Hg                 = mm*densitet Hg*gravitation
+millimeter of Hg      = mm Hg
+torr                  = mm Hg
+micron of Hg          = micron*densitet Hg*gravitation
+i Hg                  = in*densitet Hg*gravitation  # inch Hg
+inch Hg               = i Hg
+m vatten              = m*densitet vatten*gravitation  # meter H2O # färskvatten
+m H2O                 = m vatten                 # meter of H2O    # färskvatten
+meter vatten          = m vatten                 #                 # färskvatten
+in vatten             = in*densitet vatten*gravitation # inch H2O  # färskvatten
+i H2O                 = i vatten                 # inch of H2O     # färskvatten
+inch vatten           = i vatten                 #                 # färskvatten
+ft vatten             = ft*densitet vatten*gravitation # feet H2O  # färskvatten
+ft H2O                = ft vatten                # feet of H20     # färskvatten
+feet vatten           = ft vatten                #                 # färskvatten
+foot of head          = ft vatten                #                 # färskvatten
+ft hd                 = ft vatten                # foot of head    # färskvatten
+psi                   = lbf/in^2                 # pound / sq inch
+pound per sq inch     = psi
+ksi                   = 1000 psi                 # 1000 lb / sq inch
+
+
+#
+# densitet enheters
+#
+[densitet]
+densitet vatten       = gram/cm^3
+densitet sjövatten    = 1.025 gram/cm^3
+densitet Hg           = 13.5950981 gram/cm^3
+densitet luft         = 1.293 kg/m^3          # # at STP
+densitet stål         = 0.283 lb/in^3         # # kolstål
+densitet aluminum     = 0.098 lb/in^3
+densitet zink         = 0.230 lb/in^3
+densitet mässing      = 0.310 lb/in^3         # # 80Cu-20Zn
+densitet koppar       = 0.295 lb/in^3
+densitet järn         = 0.260 lb/in^3         # # gjutjärn
+densitet nickel       = 0.308 lb/in^3
+densitet tenn         = 0.275 lb/in^3
+densitet titanium     = 0.170 lb/in^3
+densitet silver       = 0.379 lb/in^3
+densitet nylon        = 0.045 lb/in^3
+densitet polykarbonat = 0.045 lb/in^3
+
+
+#
+# energy enheters
+#
+[energi]
+joule                 = N*m
+J                     = joule             # joule
+kilojoule             = 1000 joule
+kJ                    = kilojoule         # kilojoule
+megajoule             = 1000 kilojoule
+gigajoule             = 1000 megajoule
+millijoule            = 0.001 joule
+mJ                    = millijoule        # millijoule
+kalori                = 4.1868 J
+cal                   = calorie           # kalori
+kilocalori            = 1000 cal
+kcal                  = kilokalori        # kilokalori
+calorie food          = kilokalori 
+thermie               = 1000 kcal
+Btu                   = cal*lb*R/(g*K)    # British thermal enheter
+British thermal enheter  = Btu
+therm                 = 100000 Btu
+erg                   = cm*dyne
+electronvolt          = 1.602176462e-19 J
+eV                    = electronvolt      # electronvolt
+kWh                   = kW*hour           # kilowatt-hour
+kilowatt hour         = kWh
+ton TNT               = 4.184e9 J
+tonne oil equivalent  = 41.868 gigajoule
+tonne coal equivalent = 7000000 kcal
+
+
+#
+# power enheters
+#
+[kraft]
+watt              = J/s
+W                 = watt            # watt
+kilowatt          = 1000 W
+kW                = kilowatt        # kilowatt
+megawatt          = 1000 kW
+MW                = megawatt        # megawatt
+gigawatt          = 1000 MW
+GW                = gigawatt        # gigawatt
+milliwatt         = 0.001 W
+hästkraft         = 550 ft*lbf/sec
+hp                = hästkraft       # hästkraft
+metrisk hästkraft = 75 kgf*m/s
+ton refrigeration = 12000 Btu/hr
+MBH               = 1000 Btu/hr     # 1000 Btu/hr
+boiler horsepower = 33475 Btu/hr
+
+
+#
+# frequency
+#
+[frekvens]
+hertz       = enheter/sec
+Hz          = hertz      # hertz
+millihertz  = 0.001 Hz
+kilohertz   = 1000 Hz
+kHz         = kilohertz  # kilohertz
+megahertz   = 1000 kHz
+MHz         = megahertz  # megahertz
+gigahertz   = 1000 MHz
+GHz         = gigahertz  # gigahertz
+
+
+#
+# radioactivity
+#
+[radioaktivitet]
+becquerel       = enheter/sek
+Bq              = becquerel     # becquerel
+curie           = 3.7e10 Bq
+millicurie      = 0.001 curie
+röntgen        = 2.58e-4 coulomb/kg
+[stråldos]
+gray            = J/kg
+Gy              = gray          # gray
+centigray       = 0.01 Gy
+rad. abs. dose  = 0.01 Gy       # # commonly rad
+sievert         = J/kg          # # equiv. dose
+millisievert    = 0.001 sievert # # equiv. dose
+Sv              = sievert       # sievert # equiv. dose
+rem             = 0.01 Sv       # # roentgen equiv mammal
+millirem        = 0.001 rem     # # roentgen equiv mammal
+
+
+#
+# viscosity
+#
+[dynamisk viskositet]
+poise        = g/(cm*s)
+P            = poise       # poise
+centipoise   = 0.01 poise
+cP           = centipoise  # centipoise
+
+[kinematisk viskositet]
+stokes       = cm^2/s
+St           = stokes      # stokes
+centistokes  = 0.01 stokes
+cSt          = centistokes # centistokes
+
+
+#
+# misc. enheters
+#
+[acceleration]
+gravitation                = 9.80665 m/s^2
+galileo                = cm/s^2
+[konstant]
+gravitationskonstant       = 6.673e-11 N*m^2/kg^2
+gaskonstant           = 8.314472 J/(mol*K)   # R
+[bränsleförbrukning]
+mpg                    = mi/gal               # miles/gallon
+mpg imp                = mi/gallon imperial   # miles/gallon imp
+liter per 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
+                         3.785411784 / (x * 0.01609344) # # icke-linjärt
+[permeabilitet]
+darcy                  = 1 cm^2*centipoise/atm/s
+millidarcy             = 0.001 darcy
+
