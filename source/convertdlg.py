@@ -39,6 +39,7 @@ import icondict
 import optiondefaults
 import helpview
 import optiondlg
+import colorset
 import bases
 
 
@@ -63,8 +64,11 @@ class ConvertDlg(QWidget):
         self.helpView = None
         self.basesDialog = None
         self.fractionDialog = None
-        self.option = Option('convertall', 20)
+        self.option = Option('convertall', 25)
         self.option.loadAll(optiondefaults.defaultList)
+        self.colorSet = colorset.ColorSet(self.option)
+        if not self.option.boolData('UseDefaultColors'):
+            self.colorSet.setAppColors()
         self.recentUnits = recentunits.RecentUnits(self.option)
         try:
             num = ConvertDlg.unitData.readData()
@@ -78,8 +82,6 @@ class ConvertDlg(QWidget):
             print('{0} units loaded'.format(num))
         self.fromGroup = UnitGroup(ConvertDlg.unitData, self.option)
         self.toGroup = UnitGroup(ConvertDlg.unitData, self.option)
-        self.origPal = QApplication.palette()
-        self.updateColors()
         self.unitButtons = []
         self.textButtons = []
 
@@ -307,22 +309,9 @@ class ConvertDlg(QWidget):
             else:
                 button.hide()
 
-    def updateColors(self):
-        """Adjust the colors to the current option settings.
-        """
-        if self.option.boolData('UseDefaultColors'):
-            pal = self.origPal
-        else:
-            pal = QPalette()
-            pal.setColor(QPalette.Base, self.getOptionColor('Background'))
-            pal.setColor(QPalette.Text, self.getOptionColor('Foreground'))
-        QApplication.setPalette(pal)
-
     def changeOptions(self):
         """Show dialog for option changes.
         """
-        origBackground = self.getOptionColor('Background')
-        origForeground = self.getOptionColor('Foreground')
         dlg = optiondlg.OptionDlg(self.option, self)
         dlg.startGroupBox(_('Result Precision'))
         optiondlg.OptionDlgInt(dlg, 'DecimalPlaces', _('Decimal places'),
@@ -347,50 +336,18 @@ class ConvertDlg(QWidget):
         optiondlg.OptionDlgBool(dlg, 'RemenberDlgPos',
                                 _('Remember window position'))
         dlg.startGroupBox(_('Colors'))
-        optiondlg.OptionDlgBool(dlg, 'UseDefaultColors',
-                                _('Use default system colors'))
-        optiondlg.OptionDlgPush(dlg, _('Set background color'), self.backColor)
-        optiondlg.OptionDlgPush(dlg, _('Set text color'), self.textColor)
+        optiondlg.OptionDlgPush(dlg, _('Set GUI Colors'), self.showColorDlg)
         if dlg.exec_() == QDialog.Accepted:
             self.option.writeChanges()
             self.recentUnits.updateQuantity()
-            self.updateColors()
             self.showHideButtons()
             self.fromNumEdit.unitUpdate()
             self.toNumEdit.unitUpdate()
-        else:
-            self.setOptionColor('Background', origBackground)
-            self.setOptionColor('Foreground', origForeground)
 
-    def getOptionColor(self, rootName):
-        """Return a color from option storage.
+    def showColorDlg(self):
+        """Show the color change dialog.
         """
-        return QColor(self.option.intData(rootName + 'R', 0, 255),
-                      self.option.intData(rootName + 'G', 0, 255),
-                      self.option.intData(rootName + 'B', 0, 255))
-
-    def setOptionColor(self, rootName, color):
-        """Store given color in options.
-        """
-        self.option.changeData(rootName + 'R', repr(color.red()), True)
-        self.option.changeData(rootName + 'G', repr(color.green()), True)
-        self.option.changeData(rootName + 'B', repr(color.blue()), True)
-
-    def backColor(self):
-        """Allow user to set control background color.
-        """
-        background = self.getOptionColor('Background')
-        newColor = QColorDialog.getColor(background, self)
-        if newColor.isValid() and newColor != background:
-            self.setOptionColor('Background', newColor)
-
-    def textColor(self):
-        """Allow user to set control text color.
-        """
-        foreground = self.getOptionColor('Foreground')
-        newColor = QColorDialog.getColor(foreground, self)
-        if newColor.isValid() and newColor != foreground:
-            self.setOptionColor('Foreground', newColor)
+        self.colorSet.showDialog(self)
 
     def showBases(self):
         """Show the dialog for base conversions.
