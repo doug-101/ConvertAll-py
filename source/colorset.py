@@ -12,10 +12,11 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
+import enum
 from collections import OrderedDict
 from PyQt5.QtCore import pyqtSignal, Qt, QEvent, QObject
 from PyQt5.QtGui import QColor, QFontMetrics, QPalette, QPixmap
-from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
+from PyQt5.QtWidgets import (QApplication, QColorDialog, QComboBox, QDialog,
                              QFrame, QGroupBox, QHBoxLayout, QLabel,
                              QGridLayout, QPushButton, QVBoxLayout, qApp)
 
@@ -30,6 +31,13 @@ roles = OrderedDict([('Window', _('Dialog background color')),
                      ('Text-Disabled', _('Disabled text foreground color')),
                      ('ButtonText-Disabled', _('Disabled button text color'))])
 
+ThemeSetting = enum.IntEnum('ThemeSetting', 'system dark custom')
+
+darkColors = {'Window': '#353535', 'WindowText': '#ffffff',
+              'Base': '#191919', 'Text': '#ffffff',
+              'Highlight': '#2a82da', 'HighlightedText': '#000000',
+              'Button': '#353535', 'ButtonText': '#ffffff',
+              'Text-Disabled': '#808080', 'ButtonText-Disabled': '#808080'}
 
 class ColorSet:
     """Stores color settings and provides dialogs for user changes.
@@ -38,10 +46,13 @@ class ColorSet:
         self.option = option
         self.sysPalette = QApplication.palette()
         self.colors = [Color(roleKey) for roleKey in roles.keys()]
+        self.theme = ThemeSetting[self.option.strData('ColorTheme')]
         for color in self.colors:
-            color.colorChanged.connect(self.endSystemSetting)
+            color.colorChanged.connect(self.setCustomTheme)
             color.setFromPalette(self.sysPalette)
-            if not self.option.boolData('UseDefaultColors'):
+            if self.theme == ThemeSetting.dark:
+                color.setFromTheme(darkColors)
+            elif self.theme == ThemeSetting.custom:
                 color.setFromOption(self.option)
 
     def setAppColors(self):
@@ -64,13 +75,18 @@ class ColorSet:
         dialog.setWindowTitle(_('Color Settings'))
         topLayout = QVBoxLayout(dialog)
         dialog.setLayout(topLayout)
-        systemBox = QGroupBox(_('System Colors'), dialog)
-        topLayout.addWidget(systemBox)
-        systemLayout = QVBoxLayout(systemBox)
-        self.systemControl = QCheckBox(_('Use default system colors'), dialog)
-        self.systemControl.setChecked(self.option.boolData('UseDefaultColors'))
-        self.systemControl.stateChanged.connect(self.updateSystemSetting)
-        systemLayout.addWidget(self.systemControl)
+        themeBox = QGroupBox(_('Color Theme'), dialog)
+        topLayout.addWidget(themeBox)
+        themeLayout = QVBoxLayout(themeBox)
+        self.themeControl = QComboBox(dialog)
+        self.themeControl.addItem(_('Default system theme'),
+                                  ThemeSetting.system)
+        self.themeControl.addItem(_('Dark theme'), ThemeSetting.dark)
+        self.themeControl.addItem(_('Custom theme'), ThemeSetting.custom)
+        self.themeControl.setCurrentIndex(self.themeControl.
+                                          findData(self.theme))
+        self.themeControl.currentIndexChanged.connect(self.updateThemeSetting)
+        themeLayout.addWidget(self.themeControl)
         self.groupBox = QGroupBox(dialog)
         self.setBoxTitle()
         topLayout.addWidget(self.groupBox)
@@ -90,35 +106,42 @@ class ColorSet:
         ctrlLayout.addWidget(cancelButton)
         cancelButton.clicked.connect(dialog.reject)
         if dialog.exec_() == QDialog.Accepted:
-            if self.systemControl.isChecked():
-                self.option.changeData('UseDefaultColors', 'yes', True)
+            self.theme = ThemeSetting(self.themeControl.currentData())
+            self.option.changeData('ColorTheme', self.theme.name, True)
+            if self.theme == ThemeSetting.system:
                 qApp.setPalette(self.sysPalette)
-            else:
-                self.option.changeData('UseDefaultColors', 'no', True)
-                for color in self.colors:
-                    color.updateOption(self.option)
+            else:   # dark theme or custom
+                if self.theme == ThemeSetting.custom:
+                    for color in self.colors:
+                        color.updateOption(self.option)
                 self.setAppColors()
         else:
             for color in self.colors:
                 color.setFromPalette(self.sysPalette)
-                if not self.option.boolData('UseDefaultColors'):
+                if self.theme == ThemeSetting.dark:
+                    color.setFromTheme(darkColors)
+                elif self.theme == ThemeSetting.custom:
                     color.setFromOption(self.option)
 
     def setBoxTitle(self):
         """Set title of group box to standard or custom.
         """
-        if self.systemControl.isChecked():
-            title = _('Default Colors')
-        else:
+        if self.themeControl.currentData() == ThemeSetting.custom:
             title = _('Custom Colors')
+        else:
+            title = _('Theme Colors')
         self.groupBox.setTitle(title)
 
-    def updateSystemSetting(self):
-        """Update the colors based on a system color control change.
+    def updateThemeSetting(self):
+        """Update the colors based on a theme control change.
         """
-        if self.systemControl.isChecked():
+        if self.themeControl.currentData() == ThemeSetting.system:
             for color in self.colors:
                 color.setFromPalette(self.sysPalette)
+                color.changeSwatchColor()
+        elif self.themeControl.currentData() == ThemeSetting.dark:
+            for color in self.colors:
+                color.setFromTheme(darkColors)
                 color.changeSwatchColor()
         else:
             for color in self.colors:
@@ -126,13 +149,13 @@ class ColorSet:
                 color.changeSwatchColor()
         self.setBoxTitle()
 
-    def endSystemSetting(self):
-        """Set to custom color setting after user color change.
+    def setCustomTheme(self):
+        """Set to custom theme setting after user color change.
         """
-        if self.systemControl.isChecked():
-            self.systemControl.blockSignals(True)
-            self.systemControl.setChecked(False)
-            self.systemControl.blockSignals(False)
+        if self.themeControl.currentData != ThemeSetting.custom:
+            self.themeControl.blockSignals(True)
+            self.themeControl.setCurrentIndex(2)
+            self.themeControl.blockSignals(False)
             self.setBoxTitle()
 
 
@@ -168,6 +191,11 @@ class Color(QObject):
         color = QColor(colorStr)
         if color.isValid():
             self.currentColor = color
+
+    def setFromTheme(self, theme):
+        """Set color based on the given theme dictionary.
+        """
+        self.currentColor = QColor(theme[self.roleKey])
 
     def updateOption(self, option):
         """Set the option to the current color.

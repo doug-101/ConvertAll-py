@@ -67,7 +67,7 @@ class ConvertDlg(QWidget):
         self.option = Option('convertall', 25)
         self.option.loadAll(optiondefaults.defaultList)
         self.colorSet = colorset.ColorSet(self.option)
-        if not self.option.boolData('UseDefaultColors'):
+        if self.option.strData('ColorTheme') != 'system':
             self.colorSet.setAppColors()
         self.recentUnits = recentunits.RecentUnits(self.option)
         try:
@@ -335,7 +335,7 @@ class ConvertDlg(QWidget):
                                 _('Show tip at startup'))
         optiondlg.OptionDlgBool(dlg, 'RemenberDlgPos',
                                 _('Remember window position'))
-        dlg.startGroupBox(_('Colors'))
+        dlg.startGroupBox(_('Appearance'))
         optiondlg.OptionDlgPush(dlg, _('Set GUI Colors'), self.showColorDlg)
         if dlg.exec_() == QDialog.Accepted:
             self.option.writeChanges()
