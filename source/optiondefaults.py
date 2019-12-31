@@ -31,6 +31,7 @@ defaultList = [
     "ButtonTextColor          ",
     "Text-DisabledColor       ",
     "ButtonText-DisabledColor ",
+    "GuiFont                  ",
     "#",
     "DecimalPlaces            8",
     "Notation                 general",

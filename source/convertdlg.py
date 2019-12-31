@@ -40,6 +40,7 @@ import optiondefaults
 import helpview
 import optiondlg
 import colorset
+import fontset
 import bases
 
 
@@ -69,6 +70,14 @@ class ConvertDlg(QWidget):
         self.colorSet = colorset.ColorSet(self.option)
         if self.option.strData('ColorTheme') != 'system':
             self.colorSet.setAppColors()
+        self.sysFont = self.font()
+        self.guiFont = None
+        fontStr = self.option.strData('GuiFont', True)
+        if fontStr:
+            guiFont = self.font()
+            if guiFont.fromString(fontStr):
+                QApplication.setFont(guiFont)
+                self.guiFont = guiFont
         self.recentUnits = recentunits.RecentUnits(self.option)
         try:
             num = ConvertDlg.unitData.readData()
@@ -337,6 +346,7 @@ class ConvertDlg(QWidget):
                                 _('Remember window position'))
         dlg.startGroupBox(_('Appearance'))
         optiondlg.OptionDlgPush(dlg, _('Set GUI Colors'), self.showColorDlg)
+        optiondlg.OptionDlgPush(dlg, _('Set GUI Fonts'), self.showFontDlg)
         if dlg.exec_() == QDialog.Accepted:
             self.option.writeChanges()
             self.recentUnits.updateQuantity()
@@ -348,6 +358,21 @@ class ConvertDlg(QWidget):
         """Show the color change dialog.
         """
         self.colorSet.showDialog(self)
+
+    def showFontDlg(self):
+        """Show the custom font dialog.
+        """
+        dialog = fontset.CustomFontDialog(self.sysFont, self.guiFont, self)
+        if dialog.exec_() == QDialog.Accepted:
+            newFont = dialog.resultingFont()
+            if newFont:
+                self.option.changeData('GuiFont', newFont.toString(), True)
+                self.guiFont = newFont
+            else:   # use system font
+                self.option.changeData('GuiFont', '', True)
+                self.guiFont = None
+                newFont = self.sysFont
+            QApplication.setFont(newFont)
 
     def showBases(self):
         """Show the dialog for base conversions.
