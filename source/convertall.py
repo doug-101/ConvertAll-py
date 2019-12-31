@@ -4,7 +4,7 @@
  convertall.py, the main program file
 
  ConvertAll, a units conversion program
- Copyright (C) 2018, Douglas W. Bell
+ Copyright (C) 2019, Douglas W. Bell
 
  This is free software; you can redistribute it and/or modify it under the
  terms of the GNU General Public License, either Version 2 or any later
@@ -132,8 +132,8 @@ def main():
     app = QApplication(sys.argv)
     setupTranslator(app)  # must be before importing any convertall modules
     import convertdlg
-    if not userStyle and not sys.platform.startswith('win'):
-        QApplication.setStyle('plastique')
+    if not userStyle:
+        QApplication.setStyle('fusion')
     win = convertdlg.ConvertDlg()
     win.show()
     signal.signal(signal.SIGINT, signal.SIG_IGN)
