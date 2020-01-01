@@ -277,8 +277,11 @@ def listFractions(decimal, powerOfTwo=False):
         powerOfTwo -- if True, restrict the denominator to powers of 2
     """
     results = []
+    if decimal == 0.0:
+        return results
     denom = 2
     denomLimit = 10**9
+    minOffset = 10**-10
     minDelta = denomLimit
     numer = round(decimal * denom)
     delta = abs(decimal - numer / denom)
@@ -286,7 +289,8 @@ def listFractions(decimal, powerOfTwo=False):
         nextDenom = denom + 1 if not powerOfTwo else denom * 2
         nextNumer = round(decimal * nextDenom)
         nextDelta = abs(decimal - nextNumer / nextDenom)
-        if numer != 0 and delta < minDelta and delta <= nextDelta:
+        if numer != 0 and (delta == 0.0 or (delta < minDelta - minOffset and
+                                            delta <= nextDelta)):
             results.append((numer, denom))
             if delta == 0.0:
                 break
