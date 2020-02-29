@@ -4,7 +4,7 @@
 # optiondefaults.py, provides defaults for program options
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2019, Douglas W. Bell
+# Copyright (C) 2020, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -46,6 +46,8 @@ defaultList = [
     "MainDlgYSize             0",
     "MainDlgXPos              0",
     "MainDlgYPos              0",
+    "MainDlgTopMargin         0",
+    "MainDlgOtherMargin       0",
     "#",
     "RecentUnit1               ",
     "RecentUnit2               ",

@@ -4,7 +4,7 @@
 # convertdlg.py, provides the main dialog and GUI interface
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2019, Douglas W. Bell
+# Copyright (C) 2020, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, either Version 2 or any later
@@ -14,7 +14,7 @@
 
 import sys
 import os.path
-from PyQt5.QtCore import (QPoint, Qt)
+from PyQt5.QtCore import (QPoint, QRect, Qt)
 from PyQt5.QtGui import (QColor, QFont, QPalette)
 from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
                              QFrame, QGridLayout, QGroupBox, QHBoxLayout,
@@ -234,12 +234,25 @@ class ConvertDlg(QWidget):
         buttonLayout.addStretch()
 
         if self.option.boolData('RemenberDlgPos'):
-            xSize = self.option.intData('MainDlgXSize', 0, 10000)
-            ySize = self.option.intData('MainDlgYSize', 0, 10000)
-            if xSize and ySize:
-                self.resize(xSize, ySize)
-            self.move(self.option.intData('MainDlgXPos', 0, 10000),
-                      self.option.intData('MainDlgYPos', 0, 10000))
+            rect = QRect(self.option.intData('MainDlgXPos', 0, 10000),
+                         self.option.intData('MainDlgYPos', 0, 10000),
+                         self.option.intData('MainDlgXSize', 0, 10000),
+                         self.option.intData('MainDlgYSize', 0, 10000))
+            if rect.isValid():
+                availRect = (QApplication.primaryScreen().
+                             availableVirtualGeometry())
+                topMargin = self.option.intData('MainDlgTopMargin', 0, 1000)
+                otherMargin = self.option.intData('MainDlgOtherMargin', 0,
+                                                  1000)
+                # remove frame space from available rect
+                availRect.adjust(otherMargin, topMargin,
+                                 -otherMargin, -otherMargin)
+                finalRect = rect.intersected(availRect)
+                if finalRect.isEmpty():
+                    rect.moveTo(0, 0)
+                    finalRect = rect.intersected(availRect)
+                if finalRect.isValid():
+                    self.setGeometry(finalRect)
         if self.option.boolData('LoadLastUnit') and len(self.recentUnits) > 1:
             self.fromGroup.update(self.recentUnits[0])
             self.fromUnitEdit.unitUpdate()
@@ -432,10 +445,16 @@ class ConvertDlg(QWidget):
         """Save window data on close.
         """
         if self.option.boolData('RemenberDlgPos'):
-            self.option.changeData('MainDlgXSize', self.width(), True)
-            self.option.changeData('MainDlgYSize', self.height(), True)
-            self.option.changeData('MainDlgXPos', self.x(), True)
-            self.option.changeData('MainDlgYPos', self.y(), True)
+            contentsRect = self.geometry()
+            frameRect = self.frameGeometry()
+            self.option.changeData('MainDlgXSize', contentsRect.width(), True)
+            self.option.changeData('MainDlgYSize', contentsRect.height(), True)
+            self.option.changeData('MainDlgXPos', contentsRect.x(), True)
+            self.option.changeData('MainDlgYPos', contentsRect.y(), True)
+            self.option.changeData('MainDlgTopMargin',
+                                   contentsRect.y() - frameRect.y(), True)
+            self.option.changeData('MainDlgOtherMargin',
+                                   contentsRect.x() - frameRect.x(), True)
         self.recentUnits.writeList()
         self.option.writeChanges()
         event.accept()
