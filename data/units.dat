@@ -2,7 +2,7 @@
 #units.dat, the units data file, version 0.7.3
 #
 # ConvertAll, a units conversion program
-# Copyright (C) 2017, Douglas W. Bell
+# Copyright (C) 2020, Douglas W. Bell
 #
 # This is free software; you can redistribute it and/or modify it under the
 # terms of the GNU General Public License, Version 2.  This program is
@@ -62,8 +62,10 @@ gigagram            = 1e9 gram
 teragram            = 1e12 gram
 carat               = 0.2 gram
 ct                  = carat              # carat
-amu                 = 1.66053873e-27 kg  # atomic mass
+amu                 = 1.660539066605e-27 kg  # atomic mass
 atomic mass unit    = amu
+dalton              = amu                # # atomic mass
+Da                  = amu                # dalton # atomic mass
 pound               = 0.45359237 kg      #        # avoirdupois
 lb                  = pound              # pound  # avoirdupois
 lbm                 = pound              # pound  # avoirdupois
