@@ -630,15 +630,17 @@ board feet           = board foot
 # velocity units
 #
 [velocity]
-knot        = nmi/hr
-kt          = knot             # knot
-light speed = 2.99792458e8 m/s
-mph         = mi/hr            # miles/hour
-kph         = km/hr            # kilometers/hour
-mach        = 340.29 m/s       # # speed sound at STP
+knot          = nmi/hr
+kt            = knot             # knot
+light speed   = 2.99792458e8 m/s
+mph           = mi/hr            # miles/hour
+kph           = km/hr            # kilometers/hour
+mach          = 340.29 m/s       # # speed sound at STP
+Beaufort wind = [m/s] 0.836 * x**1.5 ; (x / 0.836)**(2/3) \
+                # # wind speed, non-linear
 [rot. velocity]
-rpm         = rev/min          # rev/min
-rps         = rev/sec          # rev/sec
+rpm           = rev/min          # rev/min
+rps           = rev/sec          # rev/sec
 
 
 #
