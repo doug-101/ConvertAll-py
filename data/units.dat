@@ -844,6 +844,7 @@ galileo                = cm/s^2
 [constant]
 gravity constant       = 6.673e-11 N*m^2/kg^2
 gas constant           = 8.314472 J/(mol*K)   # R
+Planck constant        = 6.62607015e-34 J*s
 [fuel consumpt.]
 mpg                    = mi/gal               # miles/gallon
 mpg imp                = mi/gallon imperial   # miles/gallon imp
