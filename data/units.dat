@@ -856,4 +856,7 @@ dioptre                = diopter              # # British spelling
 [permeability]
 darcy                  = 1 cm^2*centipoise/atm/s
 millidarcy             = 0.001 darcy
-
+[thermal resistance]
+Rvalue                 = R*ft^2*hr/Btu
+RSI                    = K*m^2/W              # R-value SI
+Rvalue SI              = RSI
