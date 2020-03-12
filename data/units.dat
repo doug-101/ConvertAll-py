@@ -444,16 +444,16 @@ TB               = terabyte          # terabyte         # based on power of 2
 petabyte         = 1024 TB           #                  # based on power of 2
 PB               = petabyte          # petabyte         # based on power of 2
 
-kilobyte IEC std = 1000 byte         #                  # based on power of 10
-kB IEC std       = kilobyte IEC std  # kilobyte         # based on power of 10
-megabyte IEC std = 1000 kB IEC std   #                  # based on power of 10
-MB IEC std       = megabyte IEC std  # megabyte         # based on power of 10
-gigabyte IEC std = 1000 MB IEC std   #                  # based on power of 10
-GB IEC std       = gigabyte IEC std  # gigabyte         # based on power of 10
-terabyte IEC std = 1000 GB IEC std   #                  # based on power of 10
-TB IEC std       = terabyte IEC std  # terabyte         # based on power of 10
-petabyte IEC std = 1000 TB IEC std   #                  # based on power of 10
-PB IEC std       = petabyte IEC std  # petabyte         # based on power of 10
+kilobyte SI std  = 1000 byte         #                  # based on power of 10
+kB SI std        = kilobyte SI std   # kilobyte         # based on power of 10
+megabyte SI std  = 1000 kB SI std    #                  # based on power of 10
+MB SI std        = megabyte SI std   # megabyte         # based on power of 10
+gigabyte SI std  = 1000 MB SI std    #                  # based on power of 10
+GB SI std        = gigabyte SI std   # gigabyte         # based on power of 10
+terabyte SI std  = 1000 GB SI std    #                  # based on power of 10
+TB SI std        = terabyte SI std   # terabyte         # based on power of 10
+petabyte SI std  = 1000 TB SI std    #                  # based on power of 10
+PB SI std        = petabyte SI std   # petabyte         # based on power of 10
 
 kibibyte         = 1024 byte
 KiB              = kibibyte          # kibibyte
