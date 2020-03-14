@@ -1,0 +1,885 @@
+#*****************************************************************************
+#units.dat, the units data file, version 0.7.3
+#
+# ConvertAll, a units conversion program
+# Copyright (C) 2017, Douglas W. Bell
+# Copyright (C) 2019, Pere Orga <pere@orga.cat>, per la versió catalana.
+#
+# This is free software; you can redistribute it and/or modify it under the
+# terms of the GNU General Public License, Version 2.  This program is
+# distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY.
+#*****************************************************************************
+#
+# Units are defined by an optional quantity and an equivalent unit or unit
+# combination.  A Python expression may be used for the quantity, but is
+# restricted to using only the following operators: *, /, +, -.
+# Beware of integer division truncation: be sure to use a float for at least
+# one of the values.
+#
+# The unit type must be placed in square brackets before a set of units.  The
+# first comment after the equivalent unit will be put in parenthesis after the
+# unit name (usually used to give the full name of an abbreviated unit).  The
+# next comment will be used in the program list's comment column; later
+# comments and full line comments are ignored.
+#
+# Non-linear units are indicated with an equivalent unit in square brackets,
+# followed by either equations or equivalency lists for the definition.  For
+# equations, two are given, separated by a ';'.  Both are functions of "x", the
+# first going from the unit to the equivalent unit and the second one in
+# reverse.  Any valid Python expression returning a float (including the
+# functions in the math module) should work.  The equivalency list is a Python
+# list of tuples giving points for linear interpolation.
+#
+# All units must reduce to primitive units, which are indicated by an
+# equivalent unit starting with '!'.  A special "unitless" primitve unit
+# (usualty called "unit") has '!!' for an equivalent unit.  Circular references
+# must also be avoided.
+#
+# Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
+#
+##############################################################################
+
+#
+# unitats de massa
+#
+[massa]
+kg                      = !                  # kilogram
+quilogram               = kg                 # kilogram
+kilogram                = kg
+quilo                   = kg                 # kilogram
+key                     = kg                 # # argot de drogues
+hectogram               = 100 gram
+decagram                = 10 gram
+gram                    = 0.001 kg
+g                       = gram               # gram
+decigram                = 0.1 gram
+centigram               = 0.01 gram
+mil·ligram              = 0.001 gram
+mg                      = mil·ligram         # mil·ligram
+microgram               = 0.001 mg
+tona                    = 1000 kg            # # mètrica
+tona mètrica            = tona
+megagram                = tona
+kilotona                = 1000 tona          # # mètrica
+quilotona               = kilotona           # kilotona
+gigagram                = 1e9 gram
+teragram                = 1e12 gram
+quirat                  = 0.2 gram
+ct                      = quirat             # quirat
+amu                     = 1.66053873e-27 kg  #        # massa atòmica
+u                       = amu                #        # massa atòmica
+dalton                  = amu                #        # massa atòmica
+Da                      = amu                # dalton
+unitat de massa atòmica = amu                #        # massa atòmica
+lliura                  = 0.45359237 kg      #        # Països anglosaxons
+lb                      = lliura             # lliura # avoirdupois
+lbm                     = lliura             # lliura # avoirdupois
+unça                    = 1/16.0 lliura      #        # avoirdupois
+oz                      = unça               # unça   # avoirdupois
+lid                     = unça               #        # argot de drogues
+dram                    = 1/16.0 unça        #        # avoirdupois
+lliura troy             = 5760 gra
+lb troy                 = lliura troy        # lliura troy
+unça troy               = 1/12.0 lb troy
+oz troy                 = unça troy          # unça troy
+tona no mètrica         = 2000 lliura
+kilotona no mètrica     = 1000 ton
+tona llarga             = 2240 lliura        # # imperial
+tona imperial           = tona llarga
+slug                    = lbf*s^2/ft
+stone                   = 14 lliura
+gra                     = 1/7000.0 lliura
+pennyweight             = 24 gra
+hundredweight llarg     = 112 lliura         # # Imperial
+hundredweight curt      = 100 lliura         # # Estats Units i Canadà
+massa solar             = 1.9891e30 kg
+lliura catalana         = 0.4 kg             #        # Catalunya
+terça                   = lliura catalana    #        # Catalunya, carn
+arrova                  = 26 lliura catalana #        # Catalunya, Balears
+unça catalana           = 1/12.0 lliura catalana   #  # Catalunya
+argenç                  = 1/16.0 unça        #        # Països Catalans
+
+
+#
+# unitats de longitud
+#
+[longitud]
+m                        = !              # metre
+metre                    = m
+dm                       = 0.1 m          # decímetre
+decímetre                = dm
+cm                       = 0.01 m         # centímetre
+centímetre               = cm
+mm                       = 0.001 m        # mil·límetre
+mil·límetre              = mm
+micròmetre               = 1e-6 m
+micra                    = micròmetre     # micròmetre
+micró                    = micròmetre     # micròmetre
+nanòmetre                = 1e-9 m
+nm                       = nanòmetre      # nanòmetre
+decàmetre                = 10 m
+hectòmetre               = 100 m
+km                       = 1000 m         # kilòmetre
+quilòmetre               = km             # kilòmetre
+kilòmetre                = km
+megàmetre                = 1000 km
+angstrom                 = 1e-10 m
+fermi                    = 1e-15 m        # # mides nuclears
+polzada                  = 2.54 cm        # ”
+in                       = polzada        # polzada
+mil                      = 0.001 polzada  # polzada
+micropolzada             = 1e-6 polzada
+peu                      = 12 polzada     # '
+peu romà                 = 29.57 cm
+ft                       = peu            # peu
+peu americà              = 1200/3937.0 m
+Cape foot                = 1.033 peu
+iarda                    = 3 peu
+vara anglesa             = iarda          # iarda
+yd                       = iarda          # iarda
+milla                    = 5280 peu       # # milla actual
+mi                       = milla          # milla # milla actual
+milla marina             = 1852 m
+milla nàutica            = milla marina
+nmi                      = milla marina   # milla marina
+milla americana          = 5280 peu americà
+llegua                   = 3 milla
+cadena                   = 66 peu
+cadena americana         = 66 peu americà
+link                     = 0.01 cadena
+fathom                   = 6 peu
+cable                    = 0.1 milla marina
+rod                      = 5.5 iarda
+furlong                  = 40 rod
+estadi                   = furlong
+mà                       = 4 polzada         # # Països anglosaxons
+colze                    = 21.8 polzada      # # unitat bíblica
+punt                     = 1/72.0 polzada    # # punt (publicació)
+pica                     = 12 punt
+calibre                  = 1.0 polzada       # # mida de les bales
+unitat rack              = 1.75 polzada      # # computació
+smoot                    = 67 polzada
+camp de futbol           = 100 yd
+marató                   = 46145 yd
+mil sueca                = 10 km
+versta                   = 3500 peu          # # Unitat russa
+au                       = 1.49597870691e11 m  # unitat astronòmica
+unitat astronòmica       = au
+LD                       = 384400 km         # distància lunar # astronòmica
+distància lunar          = LD                # # distància astronòmica
+any llum                 = 365.25 velocitat de la llum * dia
+minut llum               = velocitat de la llum * min
+segon llum               = velocitat de la llum * s
+parsec                   = 3.0856775813e16 m
+kiloparsec               = 1000 parsec
+quiloparsec              = kiloparsec        # kiloparsec
+megaparsec               = 1000 kiloparsec
+mida del caragol         = [polzada] 0.013*x + 0.06 ; (x - 0.06) / 0.013 \
+                           # # diàmetres unificats, no lineal
+AWG Dia                  = [polzada] pow(92.0,(36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           # galga cable americà \
+                           # feu servir -1, -2 per 00, 000; no lineal
+galga cable americà      = [polzada] pow(92.0,(36-x)/39.0)/200.0 ; \
+                           36 - 39.0*log(200.0*x)/log(92.0) \
+                           #  # feu servir -1, -2 per 00, 000; no lineal
+galga cable estàndard britànic = [polzada] [(-6, .500), (-5, .464), (-3, .400), \
+                           (-2, .372), (3, .252), (6, .192), (10, .128), \
+                           (14, .080), (19, .040), (23, .024), (26, .018), \
+                           (28, .0148), (30, .0124), (39, .0052), \
+                           (49, .0012), (50, .001)] \
+                           #  # feu servir -1, -2 per 2/0, 3/0; no lineal
+ample ferroviari estàndard = [polzada] [(-5, .448350), (1, .269010), (14, .0747250), \
+                           (16, .0597800), (17, .0538020), (20, .0358680), \
+                           (26, .0179340), (31, .0104615), (36, .00672525), \
+                           (38, .00597800)] # acer \
+                           # estàndard dels fabricants, no lineal
+galga zinc                 = [polzada] [(1, .002), (10, .02), (15, .04), (19, .06), \
+                           (23, .1), (24, .125), (27, .5), (28, 1)]  \
+                           # # gruix de xapa, no lineal
+mida de l'anell            = [polzada] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
+                           # # Mida circum., Estats Units, no lineal
+mida de sabata d'home (Estats Units) = [polzada] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+                           # # Mides d'Estats Units, no lineals
+mida de sabata de dona (Estats Units) = [polzada] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+                           # # Mides d'Estats Units, no lineals
+mida de broca            = [polzada] [(104,0.0031), (103,0.0035), (102,0.0039), \
+                           (101,0.0043), (100,0.0047), (99,0.0051), \
+                           (98,0.0055), (97,0.0059), (96,0.0063), \
+                           (95,0.0067), (94,0.0071), (93,0.0075), \
+                           (92,0.0079), (91,0.0083), (90,0.0087), \
+                           (89,0.0091), (88,0.0095), (87,0.01), \
+                           (86,0.0105), (85,0.011), (84,0.0115), \
+                           (83,0.012), (82,0.0125), (81,0.013), \
+                           (80,0.0135), (79,0.0145), (78,0.016), \
+                           (77,0.018), (76,0.02), (75,0.021), \
+                           (74,0.0225), (73,0.024), (72,0.025), \
+                           (71,0.026), (70,0.028), (69,0.0292), \
+                           (68,0.031), (67,0.032), (66,0.033), \
+                           (65,0.035), (64,0.036), (63,0.037), \
+                           (62,0.038), (61,0.039), (60,0.04), \
+                           (59,0.041), (58,0.042), (57,0.043), \
+                           (56,0.0465), (55,0.052), (54,0.055), \
+                           (53,0.0595), (52,0.0635), (51,0.067), \
+                           (50,0.07), (49,0.073), (48,0.076), \
+                           (47,0.0785), (46,0.081), (45,0.082), \
+                           (44,0.086), (43,0.089), (42,0.0935), \
+                           (41,0.096), (40,0.098), (39,0.0995), \
+                           (38,0.1015), (37,0.104), (36,0.1065), \
+                           (35,0.11), (34,0.111), (33,0.113), \
+                           (32,0.116), (31,0.12), (30,0.1285), \
+                           (29,0.136), (28,0.1405), (27,0.144), \
+                           (26,0.147), (25,0.1495), (24,0.152), \
+                           (23,0.154), (22,0.157), (21,0.159), \
+                           (20,0.161), (19,0.166), (18,0.1695), \
+                           (17,0.173), (16,0.177), (15,0.18), \
+                           (14,0.182), (13,0.185), (12,0.189), \
+                           (11,0.191), (10,0.1935), (9,0.196), \
+                           (8,0.199), (7,0.201), (6,0.204), \
+                           (5,0.2055), (4,0.209), (3,0.213), \
+                           (2,0.221), (1,0.228)] \
+                           # # Calibre de broca americà, no lineal
+pam                      = 194.5 cm               # # mesura aproximativa, Corona d'Aragó
+cana                     = 8 pam                  # # mesura aproximativa, Corona d'Aragó
+destre                   = 12 pam                 # # mesura aproximativa, Corona d'Aragó
+alna de València         = 906 mm                 # # mesura aproximativa, Catalunya vella i Regne de València
+colzada                  = 1/2.0 alna de València # # mesura aproximativa, Catalunya vella i Regne de València
+
+#
+# unitats de temps
+#
+[temps]
+s             = !                 # segon
+seg           = s                 # segon
+segon         = s
+ms            = 0.001 s           # mil·lisegon
+mil·lisegon   = ms
+microsegon    = 1e-6 s
+ns            = 1e-9 s            # nanosegon
+nanosegon     = ns
+minut         = 60 s
+min           = minut             # minut
+hora          = 60 min
+hr            = hora              # hora
+bell          = 30 min            #  # definició naval
+watch         = 4 hora
+watches       = watch
+dia           = 24 hr
+setmana       = 7 dia
+# wk          = setmana           # setmana
+quinzena      = 15 dia            # 15 dies
+mes           = 1/12.0 any
+any           = 365.242198781 dia # 365.242198781 dies
+# yr          = any               # any
+any civil     = 365 dia           # 365 dies
+dècada        = 10 any
+segle         = 100 any
+mil·lenni     = 1000 any
+[planificació]
+hora persona    = 168/40.0 hora
+setmana persona = 40 hora persona
+mes persona     = 1/12.0 any persona
+any persona     = 52 setmana persona
+
+
+#
+# temperatura
+#
+[temperatura]
+K                 = !     # graus Kelvin
+Kelvin            = K     # graus Kelvin
+graus Kelvin      = K
+
+C                 = [K] x + 273.15 ; x - 273.15  # graus Celsius     # no lineal
+Celsius           = [K] x + 273.15 ; x - 273.15  #                   # no lineal
+graus Celsius     = [K] x + 273.15 ; x - 273.15  #                   # no lineal
+
+R                 = 5/9.0 K     # graus Rankine
+Rankine           = R           # graus Rankine
+graus Rankine     = R
+
+F                 = [R] x + 459.67 ; x - 459.67  # graus Fahrenheit  # no lineal
+Fahrenheit        = [R] x + 459.67 ; x - 459.67  #                   # no lineal
+graus Fahrenheit  = [R] x + 459.67 ; x - 459.67  #                   # no lineal
+
+# [dif. de temp.]
+# C deg             = K        # Celsius degree
+# Celsius degree    = C deg
+# F deg             = R        # Fahrenheit deg.
+# Fahrenheit degree = F deg
+
+
+#
+# unitats elèctriques
+#
+[corrent]
+A              = !              # ampere
+ampere         = A
+mil·liampere   = 0.001 A
+mA             = mil·liampere   # mil·liampere
+microampere    = 0.001 mA
+kiloampere     = 1000 A
+quiloampere    = kiloampere     # kiloampere
+kA             = kiloampere     # kiloampere
+[càrrega]
+coulomb           = A*s
+ampere-hora       = A*hr
+Ah                = ampere-hora       # ampere-hora
+mAh               = 0.001 ampere-hora # mil·liampere-hora
+mil·liampere-hora = mAh
+[potència]
+volt           = W/A
+V              = volt           # volt
+mil·livolt     = 0.001 volt
+mV             = mil·livolt     # mil·livolt
+kilovolt       = 1000 volt
+quilovolt      = kilovolt       # kilovolt
+kV             = kilovolt       # kilovolt
+[resistència]
+ohm            = V/A
+mil·liohm      = 0.001 ohm
+microhm        = 0.001 mil·liohm
+kilohm         = 1000 ohm
+quilohm        = kilohm         # kilohm
+[conductivitat]
+siemens        = A/V
+[capacitança]
+farad          = coulomb/V
+mil·lifarad    = 0.001 farad
+microfarad     = 0.001 mil·lifarad
+nanofarad      = 1e-9 farad
+picofarad      = 1e-12 farad
+[flux magn.]
+weber          = V*s
+Wb             = weber          # weber
+maxwell        = 1e-8 Wb
+[inductància]
+henry          = Wb/A
+H              = henry          # henry
+mil·lihenry    = 0.001 henry
+mH             = mil·lihenry    # mil·lihenry
+microhenry     = 0.001 mH
+
+[densitat de flux]
+tesla          = Wb/m^2
+T              = tesla          # tesla
+gauss          = maxwell/cm^2
+
+
+#
+# unitats moleculars
+#
+[quantitat molecular]
+mol          = !           # # gram mol
+gram mol     = mol
+kilomol      = 1000 mol
+quilomol     = kilomol     # kilomol
+kmol         = kilomol     # kilomol
+lliura mol   = mol*lbm/gram
+lbmol        = lliura mol  # lliura mol
+[pes d'un mol]
+avogadro     = gram/(amu*mol)
+
+
+#
+# unitats d'il·luminació
+#
+[intensitat de llum]
+cd          = !          # candela
+candela     = cd
+
+[flux de llum]
+lumen        = cd * sr
+lm           = lumen     # lumen
+
+[il·luminància]
+lux           = lumen/m^2
+candela-peu   = lumen/peu^2
+candela-metre = lumen/m^2
+
+[luminància]
+lambert       = cd/(pi*cm^2)
+mil·lilambert = 0.001 lambert
+lambert-peu   = cd/(pi*peu^2)
+
+
+#
+# unitats angulars
+#
+[angle]
+radian           = !                          # radiant °
+rad              = radian                     # radiant °
+circumferència   = 2 pi*radian
+volta            = circumferència             # circumferència
+revolució        = circumferència
+rev              = revolució                  # revolució
+grau sexagesimal = 1/360.0 circumferència     # °
+minut d'arc      = 1/60.0 grau sexagesimal    # ′
+segon d'arc      = 1/60.0 minut d'arc         # ′′
+quadrant         = 1/4.0 circumferència
+angle recte      = quadrant
+grau centesimal  = 0.01 quadrant              # °
+
+
+#
+# unitats d'angle sòlid
+#
+[angle sòlid]
+sr             = !              # estereoradian
+estereoradian  = sr             # estereoradiant
+esfera         = 4 pi*sr
+hemisferi      = 1/2.0 esfera
+semiesfera     = hemisferi
+
+
+#
+# unitats d'informació
+#
+[dades]
+bit              = !
+kilobit          = 1000 bit          #                             # basat en potència de 10
+quilobit         = kilobit           # kilobit                     # basat en potència de 10
+megabit          = 1000 kilobit      #                             # basat en potència de 10
+gigabit          = 1000 megabit      #                             # basat en potència de 10
+terabit          = 1000 gigabit      #                             # basat en potència de 10
+byte             = 8 bit             #                             # basat en potència de 2
+octet            = byte              # byte                        # basat en potència de 2
+B                = byte              # byte                        # basat en potència de 2
+kilobyte         = 1024 byte         #                             # basat en potència de 2
+quilooctet       = kilobyte          # kilobyte                    # basat en potència de 2
+kB               = kilobyte          # kilobyte                    # basat en potència de 2
+megabyte         = 1024 kB           #                             # basat en potència de 2
+megaoctet        = megabyte          # megabyte                    # basat en potència de 2
+MB               = megabyte          # megabyte                    # basat en potència de 2
+gigabyte         = 1024 MB           #                             # basat en potència de 2
+gigaoctet        = gigabyte          # gigabyte                    # basat en potència de 2
+GB               = gigabyte          # gigabyte                    # basat en potència de 2
+terabyte         = 1024 GB           #                             # basat en potència de 2
+teraoctet        = terabyte          # terabyte                    # basat en potència de 2
+TB               = terabyte          # terabyte                    # basat en potència de 2
+petabyte         = 1024 TB           #                             # basat en potència de 2
+petaoctet        = petabyte          # petabyte                    # basat en potència de 2
+PB               = petabyte          # petabyte                    # basat en potència de 2
+
+kilobyte estàndard CEI = 1000 byte               #                 # basat en potència de 10
+kB estàndard CEI       = kilobyte estàndard CEI  # kilobyte        # basat en potència de 10
+megabyte estàndard CEI = 1000 kB estàndard CEI   #                 # basat en potència de 10
+MB estàndard CEI       = megabyte estàndard CEI  # megabyte        # basat en potència de 10
+gigabyte estàndard CEI = 1000 MB estàndard CEI   #                 # basat en potència de 10
+GB estàndard CEI       = gigabyte estàndard CEI  # gigabyte        # basat en potència de 10
+terabyte estàndard CEI = 1000 GB estàndard CEI   #                 # basat en potència de 10
+TB estàndard CEI       = terabyte estàndard CEI  # terabyte        # basat en potència de 10
+petabyte estàndard CEI = 1000 TB estàndard CEI   #                 # basat en potència de 10
+PB estàndard CEI       = petabyte estàndard CEI  # petabyte        # basat en potència de 10
+
+kibibyte         = 1024 byte
+KiB              = kibibyte          # kibibyte
+mebibyte         = 1024 KiB
+MiB              = mebibyte          # mebibyte
+gibibyte         = 1024 MiB
+GiB              = gibibyte          # gibibyte
+tebibyte         = 1024 GiB
+TiB              = tebibyte          # tebibyte
+pebibyte         = 1024 TiB
+PiB              = pebibyte          # pebibyte
+
+[transferència de dades]
+bps              = bit/seg           # bits per segon
+kbps             = 1000 bps          # kilobits per segon          # basat en potència de 10
+
+
+#
+# nombres sense unitat
+#
+[quantitat]
+unitat             = !!
+1                  = unitat          # unitat
+pi                 = 3.14159265358979323846 unitat
+parell             = 2 unitat
+hat trick          = 3 unitat        # # esports de pilota
+dotzena            = 12 unitat
+dotzena de forner  = 13 unitat
+vintena            = 20 unitat
+grossa             = 144 unitat
+grossa gran        = 12 grossa
+raima              = 500 unitat
+tant per cent      = 0.01 unitat     # %
+%                  = tant per cent
+mil·lèsima part    = 0.001 unitat
+[tipus d'interès]
+TAE                = [unitat] log(1 + x/100) ;  (exp(x) - 1)*100 \
+                     # taxa anual equivalent, en % # basat en compost continu
+[concentració]
+proof              = 1/200.0 unitat  # # contingut d'alcohol
+ppm                = 1e-6 unitat     # part per milió
+part per milió     = ppm
+ppb                = 1e-9 unitat     # part per bilió
+part per bilió     = ppb
+ppt                = 1e-12 unitat    # part per trilió
+part per trilió    = ppt
+quirat de puresa   = 1/24.0 unitat   # # unitat de puresa de metalls preciosos
+
+
+#
+# unitats de força
+#
+[força]
+newton                = kg*m/s^2
+N                     = newton                      # newton
+decanewton            = 10 newton
+kilonewton            = 1000 N
+quilonewton           = kilonewton                  # kilonewton
+kN                    = kilonewton                  # kilonewton
+meganewton            = 1000 kN
+mil·linewton          = 0.001 N
+dina                  = cm*g/s^2
+kg force              = kg * gravetat               # kilogram f
+kgf                   = kg force                    # kilogram-força
+kilogram-força        = kg force                    # kilopond
+kp                    = kg force                    # kilopond
+kilopond              = kg force                    # kilogram-força
+quilopond             = kilopond                    # kilopond
+gram-força            = g * gravetat
+lliura-força          = lbm * gravetat              #               # avoirdupois
+lbf                   = lliura-força                # lliura-força  # avoirdupois
+tona-força            = tona * gravetat
+unça-força            = unça * gravetat
+ozf                   = unça-força                  # unça-força
+tona no mètrica-força = tona no mètrica * gravetat
+pdl                   = lbm * peu / seg^2           # poundal # Força imperial
+poundal               = pdl                         # # Força imperial
+
+
+#
+# unitats d'àrea
+#
+[àrea]
+barn                     = 1e-28 m^2            # # física de partícules
+àrea                     = 100 m^2
+decàrea                  = 10 àrea
+hectàrea                 = 100 àrea
+stremma                  = 1000 m^2             # # unitat grega
+acre                     = 10 cadena^2          # # Estats Units
+secció                   = milla^2              # # Estats Units
+township                 = 36 section           # # Estats Units
+homestead                = 160 acre             # # Estats Units
+perxa quadrada           = 30.25 yd^2           # # Estats Units
+rood                     = 0.25 acre            # # Estats Units
+rai                      = 1600 m^2             # # Tailàndia
+ngaan                    = 400 m^2              # # Tailàndia
+polzada circular         = 1/4.0 pi*polzada^2   # # àrea d'un cercle d'una polzada
+mil circular             = 1/4.0 pi*mil^2       # # àrea d'un cercle d'un mil
+àrea AWG                 = [polzada^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
+                           # galga cable americà \
+                           # feu servir -1, -2 per 00, 000; no lineal
+àrea galga cable americà = [polzada^2] pi/4*pow(pow(92.0,(36-x)/39.0)/200.0,2) ; \
+                           36 - 39.0*log(200.0*sqrt(x*4.0/pi))/log(92.0) \
+                           #  # feu servir -1, -2 per 00, 000; no lineal
+jornal                   = 4358.3025 m^2        # no estàndard, per terme mitjà # Països Catalans, terrenys de cultiu
+jornal de mida           = 48.96 àrea           # # Besalú, terrenys de cultiu
+jornal de terra          = 29.77 àrea           # # Seu d'Urgell, terrenys de cultiu
+jornal de cavar          = 3.97 àrea            # # Olesa de Montserrat, terrenys de cultiu
+jornal de dallar prat    = 17.43 àrea           # # Vall d'Aran, terrenys de cultiu
+jornal de mula           = 34.22 àrea           # # Igualada, terrenys de cultiu
+jornal petit             = 29.8 àrea            # # Alacant, terrenys de cultiu
+fanecada                 = 833.3 m^2            # # Regne de València, terrenys de cultiu
+cafissada                = 6 fanecada           # # Regne de València, terrenys de cultiu
+hort valencià            = 1.5 fanecada         # # Regne de València, terrenys de cultiu
+jovada valenciana        = 36 fanecada          # # Regne de València, terrenys de cultiu
+quartó de jovada         = 9 fanecada           # # Regne de València, terrenys de cultiu
+quartó valencià          = 1/4.0 fanecada       # # Regne de València, terrenys de cultiu
+braça quadrada           = 4.15548 m^2          # # Regne de València, terrenys de cultiu
+quarterada               = 7103.1 m^2           # # Mallorca, terrenys de cultiu
+quartó                   = 1/4.0 quarterada     # # Mallorca, terrenys de cultiu
+hort                     = 443.94 m^2           # # Mallorca, terrenys de cultiu
+jovada                   = 16 quarterada        # # Mallorca, terrenys de cultiu
+tornall                  = 550 m^2              # # Eivissa, terrenys de cultiu
+
+
+#
+# unitats de volum
+#
+[volum]
+cc                    = cm^3                  # centímetre cúbic
+centímetre cúbic      = cc
+litre                 = 1000 cc
+l                     = litre                 # litre
+decilitre             = 0.1 litre
+centilitre            = 0.01 litre
+mil·lilitre           = cc
+ml                    = mil·lilitre           # mil·lilitre
+microlitre            = 1e-6 litre
+decalitre             = 10 litre
+hectolitre            = 100 litre
+kilolitre             = 1000 litre
+quilolitre            = kilolitre             # kilolitre
+kl                    = kilolitre             # kilolitre
+megalitre             = 1000 kilolitre
+galó                  = 231 in^3              #              # Estats Units, líquid
+gal                   = galó                  # galó         # Estats Units, líquid
+quart                 = 1/4.0 galó            #              # Estats Units, líquid
+qt                    = quart                 # quart        # Estats Units, líquid
+pinta                 = 1/2.0 quart           #              # Estats Units, líquid
+pt                    = pinta                 # pinta        # Estats Units, líquid
+unça líquida          = 1/16.0 pinta          #              # Estats Units, líquid
+fl oz                 = unça líquida          # unça líquida # Estats Units
+dram líquid           = 1/8.0 unça líquida    #              # Estats Units
+minim                 = 1/480.0 unça líquida  #              # Estats Units
+galó imperial         = 4.54609 litre
+imp gal               = galó imperial         # galó imperial
+quart imperial        = 1/4.0 imp gal
+imp qt                = quart imperial        # quart imperial
+pinta imperial        = 1/8.0 imp gal
+imp pt                = pinta imperial        # pinta imperial
+unça líquida imperial = 1/160.0 imp gal
+imp fl oz             = unça líquida imperial # unça líquida imperial
+dram líquid imperial  = 1/8.0 imp fl oz
+minim imperial        = 1/480.0 imp fl oz
+tassa                 = 8 fl oz
+cullerada             = 1/16.0 tassa
+tbsp                  = cullerada             # cullerada
+culleradeta           = 1/3.0 tbsp
+tsp                   = culleradeta           # culleradeta
+barril                = 42 galó               #              # Països anglosaxons
+bbl                   = barril                # barril       # Països anglosaxons
+colpet                = 1.5 fl oz             #              # Països anglosaxons
+fifth                 = 1/5.0 galó            #              # Països anglosaxons, alcohol
+ampolla de vi         = 750 ml
+magnum                = 1.5 litre             #              # Països anglosaxons, alcohol
+keg                   = 15.5 galó             #              # Països anglosaxons, cervesa
+vi hogshead           = 63 gal
+cervesa hogshead      = 54 gal
+bushel                = 2150.42 polzada^3
+peck                  = 1/4.0 bushel
+cord                  = 128 peu^3
+peu-taula             = peu^2*polzada
+quinto                = 1/5.0 l               #              # Països Catalans, cervesa
+mitjana               = 1/3.0 l               #              # Països Catalans, cervesa
+porró                 = l                     # # mesura aproximativa, Països Catalans, líquids
+xau                   = 1/2.0 porró           # # mesura aproximativa, Països Catalans, líquids
+quartí                = 1/4.0 porró           # # mesura aproximativa, Països Catalans, líquids
+petricó               = 1/4.0 porró           # # mesura aproximativa, Països Catalans, líquids
+xicra                 = 1/8.0 porró           # # mesura aproximativa, Països Catalans, líquids
+càntir                = 12 porró              # # mesura aproximativa, Països Catalans, líquids
+
+#
+# unitats de velocitat
+#
+[velocitat]
+nus                  = nmi/hora                   # nuc
+kt                   = nus                        # nus
+velocitat de la llum = 2.99792458e8 m/s
+mph                  = milla/hora                 # milles/hora
+kph                  = km/hora                    # quilòmetres/hora
+mach                 = 340.29 m/s                 # # velocitat del so en condicions estàndard de pressió i temperatura
+[velocitat de rotació]
+rpm                  = rev/min                    # revolucions/minut
+rps                  = rev/seg                    # revolucions/segon
+
+
+#
+# unitats de taxa de flux
+#
+[flux de fluids]
+gph         = gal/hora         # galons/hora
+gpm         = gal/min          # galons/minut
+cfs         = peu^3/seg        # peus cúbics/segon
+cfm         = peu^3/min        # peus cúbics/minut
+lpm         = l/min            # litres/minut
+[flux de gasos]
+sccm        = atm*cc/min       # centímetres cúbics en condicions estàndard de pressió i temperatura/minut   # presió * flux
+sccs        = atm*cc/seg       # centímetres cúbics en condicions estàndard de pressió i temperatura/segon   # presió * flux
+slpm        = atm*l/min        # litres en condicions estàndard de pressió i temperatura/min                 # presió * flux
+slph        = atm*l/hora       # litres en condicions estàndard de pressió i temperatura/hora                # presió * flux
+scfh        = atm*peu^3/hora   # peus cúbics en condicions estàndard de pressió i temperatura/hora           # presió * flux
+scfm        = atm*peu^3/min    # peus cúbics en condicions estàndard de pressió i temperatura/minut          # presió * flux
+
+
+#
+# unitats de pressió
+#
+[pressió]
+Pa                          = N/m^2                           # pascal
+pascal                      = Pa
+hPa                         = 100 Pa                          # hectopascal
+hectopascal                 = hPa
+kPa                         = 1000 Pa                         # kilopascal
+kilopascal                  = kPa
+quilopascal                 = kPa                             # kilopascal
+MPa                         = 1000 kPa                        # megapascal
+megapascal                  = MPa
+GPa                         = 1000 MPa                        # gigapascal
+gigapascal                  = GPa
+atm                         = 101325 Pa                       # atmosfera estàndard
+atmosfera                   = atm                             # atmosfera estàndard
+bar                         = 1e5 Pa
+mbar                        = 0.001 bar                       # mil·libar
+mil·libar                   = mbar
+microbar                    = 0.001 mbar
+decibar                     = 0.1 bar
+kilobar                     = 1000 bar
+quilobar                    = kilobar                         # kilobar
+megabar                     = 1000 kilobar
+mm Hg                       = mm*densitat Hg*gravetat
+mil·límetre d'Hg            = mm Hg
+torr                        = mm Hg
+micró d'Hg                  = micró*densitat Hg*gravetat
+polzada d'Hg                = polzada*densitat Hg*gravetat    # polzada Hg
+m aigua                     = m*densitat aigua*gravetat       # metre H2O
+metre d'aigua               = m aigua                         # metre H2O
+polzada d'aigua             = polzada*densitat aigua*gravetat # polzada H2O
+peu d'aigua                 = peu*densitat aigua*gravetat
+psi                         = lbf/polzada^2                   # lliura / polzada quadrada
+lliura per polzada quadrada = psi
+ksi                         = 1000 psi                        # 1000 lliura / polzada quadrada
+
+
+#
+# unitats de densitat
+#
+[densitat]
+densitat aigua         = gram/cm^3
+densitat aigua de mar  = 1.025 gram/cm^3
+densitat Hg            = 13.5950981 gram/cm^3
+densitat aire          = 1.293 kg/m^3                 # # en condicions estàndard de pressió i temperatura
+densitat acer          = 0.283 lliura/polzada^3       # # acer carboni
+densitat alumini       = 0.098 lliura/polzada^3
+densitat zinc          = 0.230 lliura/polzada^3
+densitat llautó        = 0.310 lliura/polzada^3       # # 80Cu-20Zn
+densitat coure         = 0.295 lliura/polzada^3
+densitat ferro         = 0.260 lliura/polzada^3       # # ferro colat
+densitat níquel        = 0.308 lliura/polzada^3
+densitat estany        = 0.275 lliura/polzada^3
+densitat titani        = 0.170 lliura/polzada^3
+densitat plata         = 0.379 lliura/polzada^3
+densitat niló          = 0.045 lliura/polzada^3
+densitat policarbonat  = 0.045 lliura/polzada^3
+
+
+#
+# unitats d'energia
+#
+[energia]
+joule                      = N*m
+J                          = joule              # joule
+kilojoule                  = 1000 joule
+quilojoule                 = kilojoule          # kilojoule
+kJ                         = kilojoule          # kilojoule
+megajoule                  = 1000 kilojoule
+gigajoule                  = 1000 megajoule
+mil·lijoule                = 0.001 joule
+mJ                         = mil·lijoule        # mil·lijoule
+caloria                    = 4.1868 J
+cal                        = caloria            # caloria
+kilocaloria                = 1000 cal
+quilocaloria               = kilocaloria        # kilocaloria
+kcal                       = kilocaloria        # kilocaloria
+caloria de menjar          = kilocaloria        # kilocaloria
+tèrmia                     = 1000 kcal
+Btu                        = cal*lliura*R/(g*K) # # unitat tèrmica britànica
+unitat tèrmica britànica   = Btu
+therm                      = 100000 Btu         # # 100000 unitats tèrmiques britàniques
+erg                        = cm*dina
+electró-volt               = 1.602176462e-19 J
+eV                         = electró-volt       # electró-volt
+kWh                        = kW*hora            # kilowatt hora
+kilowatt hora              = kWh
+tona TNT                   = 4.184e9 J
+equivalent a tona d'oli    = 41.868 gigajoule
+equivalent a tona de carbó = 7000000 kcal
+
+
+#
+# unitats de potència
+#
+[potència]
+watt                           = J/s
+W                              = watt                 # watt
+kilowatt                       = 1000 W
+quilowatt                      = kilowatt             # kilowatt
+kW                             = kilowatt             # kilowatt
+megawatt                       = 1000 kW
+MW                             = megawatt             # megawatt
+gigawatt                       = 1000 MW
+GW                             = gigawatt             # gigawatt
+mil·liwatt                     = 0.001 W
+cavall de potència             = 550 peu*lbf/seg      # no mètric
+hp                             = cavall de potència   # cavalls de potència
+cavall de vapor                = 75 kgf*m/s           # mètric
+cv                             = cavall de vapor      # cavalls de vapor
+tona de refrigeració           = 12000 Btu/hora       # no mètrica
+MBH                            = 1000 Btu/hora        # 1000 Btu/hora
+cavall de potència de bullició = 33475 Btu/hora
+
+
+#
+# freqüència
+#
+[freqüència]
+hertz       = unitat/seg
+Hz          = hertz      # hertz
+mil·lihertz = 0.001 Hz
+kilohertz   = 1000 Hz
+quilohertz  = kilohertz  # kilohertz
+kHz         = kilohertz  # kilohertz
+megahertz   = 1000 kHz
+MHz         = megahertz  # megahertz
+gigahertz   = 1000 MHz
+GHz         = gigahertz  # gigahertz
+
+
+#
+# radioactivitat
+#
+[radioactivitat]
+becquerel       = unitat/seg
+Bq              = becquerel     # becquerel
+curie           = 3.7e10 Bq
+mil·licurie     = 0.001 curie
+roentgen        = 2.58e-4 coulomb/kg
+[dosi de radiació]
+gray            = J/kg
+Gy              = gray          # gray
+centigray       = 0.01 Gy
+rad. abs. dose  = 0.01 Gy       #         # normalment rad
+sievert         = J/kg          #         # dosi equivalent
+mil·lisievert   = 0.001 sievert #         # dosi equivalent
+Sv              = sievert       # sievert # dosi equivalent
+rem             = 0.01 Sv       #         # dosi equivalent roentgen
+mil·lirem       = 0.001 rem     #         # dosi equivalent roentgen
+
+
+#
+# viscositat
+#
+[viscositat dinàmica]
+poise        = g/(cm*s)
+P            = poise       # poise
+centipoise   = 0.01 poise
+cP           = centipoise  # centipoise
+
+[viscositat cinemàtica]
+stoke        = cm^2/s
+St           = stoke       # stoke
+centistoke   = 0.01 stoke
+cSt          = centistoke  # centistoke
+
+
+#
+# unitats diverses
+#
+[acceleració]
+gravetat               = 9.80665 m/s^2
+galileo                = cm/s^2
+[constant]
+constant gravitacional = 6.673e-11 N*m^2/kg^2
+constant dels gasos    = 8.314472 J/(mol*K)             # R
+[consum de combustible]
+mpg                    = mi/gal                         # miles/galó
+mpg imp                = mi/galó imperial               # miles/galó imp
+litre per 100 km       = [mpg] 3.785411784 / (x * 0.01609344) ; \
+                         3.785411784 / (x * 0.01609344) # # no lineal
+[permeabilitat]
+darcy                  = 1 cm^2*centipoise/atm/s
+mil·lidarcy            = 0.001 darcy
