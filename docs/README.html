@@ -8,8 +8,8 @@
 <h2>a unit conversion program</h2>
 
 <p>Written by Doug Bell<br>
-Version 0.7.5<br>
-July 4, 2018</p>
+Version 0.8.0<br>
+March 15, 2020</p>
 </center>
 
 <h2>Contents</h2>
@@ -29,6 +29,7 @@ July 4, 2018</p>
   <li><a href="#combine">Combining Units</a></li>
   <li><a href="#nonlinear">Non-Linear Conversions</a></li>
   <li><a href="#shortcut">Shortcuts</a></li>
+  <li><a href="#numbering">Numbering System Conversions</a></li>
   <li><a href="#options">Options</a></li>
   <li><a href="#cmdline">Command Line Usage</a></li></ul></li>
 <li><a href="#revs">Revision History</a></li>
@@ -87,14 +88,20 @@ feel free to let others know about it.  And let me know what you think
 
   <li>The unit data includes over 500 units.</li>
 
+  <li>Conversions between various number bases (decimal, hexadecimal,
+  octal and binary) can be done in a separate dialog window.</li>
+
+  <li>A decimal number can be converted to fractional numbers in a
+  separate dialog window.</li>
+
   <li>The format of the unit data file makes it easy to add additional
   units.</li>
 
   <li>Command line options are available to do conversions without the
   GUI.</li>
 
-  <li>The user interface and the unit data are available in English,
-  French, German, Russian and Spanish.</li>
+  <li>The user interface and the unit data are available in Catalan,
+  English, French, German, Russian, Spanish and Swedish.</li>
 
 </ul>
 
@@ -242,6 +249,17 @@ boxes and the "From" and "To" number editors.</p>
 expression including the normal math operators (+, -, *, /, **) and
 parenthesis may be entered.</p>
 
+<h3><a name="numbering"></a>Numbering System Conversions</h3>
+
+<p>The "Bases"  button brings up a dialog that can convert between
+various numbering system bases.  There are entry boxes for decimal,
+hexadecimal, octal and binary entries.  A number can be entered into any
+of the boxes and equivalents will be shown in the others.</p>
+
+<p>The "Fractions" button brings up a dialog that can list fractional
+equivalents for a decimal number.  Type the number and press enter.  The
+fractions are listed in order of increasing accuracy.</p>
+
 <h3><a name="options"></a>Options</h3>
 
 <p>The "Options..." button allows for changing several default
@@ -262,8 +280,9 @@ will automatically load the most recent previous units at startup.</p>
 the unit buttons (second row).  These can be hidden to save space
 if the keyboard will be used to enter the operators.</p>
 
-<p>Buttons are also included on the options dialog to control the colors
-of the text fields.</p>
+<p>Buttons are also included on the options dialog to control GUI colors
+and fonts.  Colors can be selected by theme or individually.  Larger
+fonts can be selected for use on high-resolution displays.</p>
 
 <h3><a name="cmdline"></a>Command Line Usage</h3>
 
@@ -283,6 +302,65 @@ conversion, "r" to reverse the conversion or "q" to quit.</p>
 -h" on Linux, "convertall_dos -h" on Windows).</p>
 
 <h2><a name="revs"></a>Revision History</h2>
+
+<h3>March 15, 2020 - Release 0.8.0</h3>
+
+<ul><b>New Features:</b>
+
+  <li>Added a separate base conversion dialog to convert between different
+  base numbering systems.  It converts from/to decimal, hexadecimal, octal and
+  binary bases.</li>
+
+  <li>Added a separate fraction conversion dialog to convert from decimal to
+  fractional numbers.  It provides a list of fractions in order of increasing
+  accuracy.</li>
+
+  <li>A GUI font selection button was added to the Options dialog.  This
+  allows larger fonts to be used for high resolution displays.</li>
+
+  <li>A new GUI color setting dialog was added to the Options dialog.  It
+  allows a dark theme to be selected, or colors can be selected
+  individually.</li>
+
+</ul>
+
+<ul><b>Updates:</b>
+
+  <li>Added the Beaufort wind speed unit.</li>
+
+  <li>R-value thermal resistance units were added.</li>
+
+  <li>The diopter/dioptre optical power unit was added.</li>
+
+  <li>Added the rydberg and hartree energy units.</li>
+
+  <li>Added the Planck constant as a unit.</li>
+
+  <li>Slightly adjusted the conversion value of the atomic mass unit (amu) and
+  added the dalton synonym.</li>
+
+  <li>Slightly adjusted the conversion value of the astronomical (au) and the
+  parsec units.</li>
+
+  <li>Add Swedish translation (thanks to Ake Engelbrektson).</li>
+
+  <li>Add Catalan translation (thanks to Pere Orga).</li>
+
+  <li>Update the libraries used to build the Windows binaries to Python 3.8
+  and Qt/PyQt 5.14.</li>
+
+</ul>
+
+<ul><b>Bug Fixes:</b>
+
+    <li>Fixed a problem with the ConvertAll window being positioned off the
+    screen after major changes in resolution when using external
+    monitors.</li>
+
+    <li>Clarified the labels for several power-of-10 data units (KB, MB,
+    etc.) to show as "SI standard" rather than "IEC standard".</li>
+
+</ul>
 
 <h3>July 4, 2018 - Release 0.7.5</h3>
 
