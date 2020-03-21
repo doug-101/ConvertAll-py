@@ -19,7 +19,6 @@ defaultList = [
     "# All options are set from within the program,",
     "# editing here is not recommended",
     "#",
-    "UseDefaultColors         yes",
     "ColorTheme               system",
     "WindowColor              ",
     "WindowTextColor          ",
