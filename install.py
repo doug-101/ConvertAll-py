@@ -27,7 +27,6 @@ prefixDir = '/usr/local'
 buildRoot = '/'
 progName = 'convertall'
 docDir = 'share/doc/{0}'.format(progName)
-iconDir = 'share/icons/{0}'.format(progName)
 
 def usage(exitCode=2):
     """Display usage info and exit.
@@ -38,14 +37,13 @@ def usage(exitCode=2):
     global prefixDir
     global buildRoot
     print('Usage:')
-    print('    python install.py [-h] [-p dir] [-d dir] [-i dir] '
+    print('    python install.py [-h] [-p dir] [-d dir] '
           '[-b dir] [-s] [-x]')
     print('where:')
     print('    -h         display this help message')
     print('    -p dir     install prefix [default: {0}]'.format(prefixDir))
     print('    -d dir     documentaion dir [default: <prefix>/{0}]'
           .format(docDir))
-    print('    -i dir     icon dir [default: <prefix>/{0}]'.format(iconDir))
     print('    -b dir     temporary build root for packagers [default: {0}]'
           .format(buildRoot))
     print('    -s         skip language translation files')
@@ -152,14 +150,13 @@ def removeDir(dir):
 def main():
     """Main installer function.
     """
-    optLetters = 'hp:d:i:b:sx'
+    optLetters = 'hp:d:b:sx'
     try:
         opts, args = getopt.getopt(sys.argv[1:], optLetters)
     except getopt.GetoptError:
         usage(2)
     global prefixDir
     global docDir
-    global iconDir
     global buildRoot
     global progName
     depCheck = True
@@ -171,8 +168,6 @@ def main():
             prefixDir = os.path.abspath(val)
         elif opt == '-d':
             docDir = val
-        elif opt == '-i':
-            iconDir = val
         elif opt == '-b':
             buildRoot = val
         elif opt == '-s':
@@ -263,17 +258,10 @@ def main():
                     'dataFilePath =  \'{0}\'   # modified by install script\n'
                     .format(dataPrefixDir))
     if os.path.isdir('icons'):
-        iconPrefixDir = iconDir.replace('<prefix>/', '')
-        if not os.path.isabs(iconPrefixDir):
-            iconPrefixDir = os.path.join(prefixDir, iconPrefixDir)
+        iconPrefixDir = os.path.join(prefixDir, 'share', progName, 'icons')
         iconBuildDir = os.path.join(buildRoot, iconPrefixDir[1:])
         print('  Copying icon files to {0}'.format(iconBuildDir))
         copyDir('icons', iconBuildDir)
-        # update icon location in main python script
-        replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
-                    'iconPath = None',
-                    'iconPath =  \'{0}\'   # modified by install script\n'
-                    .format(iconPrefixDir))
         if os.path.isfile(os.path.join('icons', progName + '-icon.svg')):
             svgIconPrefixDir = os.path.join(prefixDir, 'share', 'icons',
                                             'hicolor', 'scalable', 'apps')
