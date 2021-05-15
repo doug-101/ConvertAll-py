@@ -73,7 +73,6 @@ def main():
     removeAll(os.path.join(prefixDir, 'lib', progName))
     removeAll(os.path.join(prefixDir, 'share', 'doc', progName))
     removeAll(os.path.join(prefixDir, 'share', progName))
-    removeAll(os.path.join(prefixDir, 'share', 'icons', progName))
     removeAll(os.path.join(prefixDir, 'share', 'icons', 'hicolor', 'scalable',
                            'apps', progName + '-icon.svg'))
     removeAll(os.path.join(prefixDir, 'share', 'applications',
