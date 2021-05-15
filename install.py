@@ -283,6 +283,15 @@ def main():
                 os.makedirs(svgIconBuildDir)
             shutil.copy2(os.path.join('icons', progName + '-icon.svg'),
                          svgIconBuildDir)
+        if os.path.isfile(os.path.join('icons', progName + '-icon.png')):
+            sizedIconPrefixDir = os.path.join(prefixDir, 'share', 'icons',
+                                              'hicolor', '64x64', 'apps')
+            sizedIconBuildDir = os.path.join(buildRoot, sizedIconPrefixDir[1:])
+            print('  Copying 64px app icon files to {0}'.format(sizedIconBuildDir))
+            if not os.path.isdir(sizedIconBuildDir):
+                os.makedirs(sizedIconBuildDir)
+            shutil.copy2(os.path.join('icons', progName + '-icon.png'),
+                         sizedIconBuildDir)
     if os.path.isfile(progName + '.desktop'):
         desktopPrefixDir = os.path.join(prefixDir, 'share', 'applications')
         desktopBuildDir = os.path.join(buildRoot, desktopPrefixDir[1:])
