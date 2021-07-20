@@ -25,7 +25,7 @@ def usage(exitCode=2):
     """Display usage info and exit.
 
     Arguments:
-        exitCode -- the code to retuen when exiting.
+        exitCode -- the code to return when exiting.
     """
     global prefixDir
     print('Usage:')
