@@ -1,5 +1,5 @@
 #*****************************************************************************
-#units.dat, the units data file, version 0.7.3
+# units.dat, the units data file, version 0.8.0+
 #
 # ConvertAll, a units conversion program
 # Copyright (C) 2020, Douglas W. Bell
@@ -30,8 +30,8 @@
 # list of tuples giving points for linear interpolation.
 #
 # All units must reduce to primitive units, which are indicated by an
-# equivalent unit starting with '!'.  A special "unitless" primitve unit
-# (usualty called "unit") has '!!' for an equivalent unit.  Circular references
+# equivalent unit starting with '!'.  A special "unitless" primitive unit
+# (usually called "unit") has '!!' for an equivalent unit.  Circular references
 # must also be avoided.
 #
 # Primitive units:  kg, m, s, K, A, mol, cd, rad, sr, bit, unit
@@ -72,6 +72,7 @@ lbm                 = pound              # pound  # avoirdupois
 ounce               = 1/16.0 pound       #        # avoirdupois
 oz                  = ounce              # ounce  # avoirdupois
 lid                 = ounce              #        # drug slang
+teenth              = 1/16.0 ounce       #        # drug slang
 dram                = 1/16.0 ounce       #        # avoirdupois
 pound troy          = 5760 grain
 lb troy             = pound troy         # pound troy
@@ -114,6 +115,7 @@ kilometer                = km
 megameter                = 1000 km
 angstrom                 = 1e-10 m
 fermi                    = 1e-15 m        # # nuclear sizes
+Bohr radius              = 5.291772109038e-11 m
 inch                     = 2.54 cm
 in                       = inch           # inch
 inches                   = inch
@@ -506,6 +508,27 @@ ppt                = 1e-12 unit      # parts per trillion
 parts per trillion = ppt
 karat              = 1/24.0 unit     # # gold purity
 carat gold         = karat           # # gold purity
+[SI prefix]
+yotta              = 1e24 unit
+zetta              = 1e21 unit
+exa                = 1e18 unit
+peta               = 1e15 unit
+tera               = 1e12 unit
+giga               = 1e9 unit
+mega               = 1e6 unit
+kilo               = 1000 unit
+hecto              = 100 unit
+deca               = 10 unit
+deci               = 0.1 unit
+centi              = 0.01 unit
+milli              = 0.001 unit
+micro              = 1e-6 unit
+nano               = 1e-9 unit
+pico               = 1e-12 unit
+femto              = 1e-15 unit
+atto               = 1e-18 unit
+zepto              = 1e-21 unit
+yocto              = 1e-24 unit
 
 
 #
@@ -528,6 +551,7 @@ kilopond       = kg force
 gram force     = g * gravity
 pound force    = lbm * gravity    #              # avoirdupois
 lbf            = pound force      # pound force  # avoirdupois
+kip            = 1000 pound force # kilopound force
 ton force      = ton * gravity
 ounce force    = ounce * gravity
 ozf            = ounce force      # ounce force
@@ -546,6 +570,7 @@ decare                   = 10 are
 dekare                   = 10 are
 hectare                  = 100 are
 stremma                  = 1000 m^2
+dunam                    = 1000 m^2
 acre                     = 10 chain^2
 section                  = mile^2
 township                 = 36 section
@@ -652,9 +677,11 @@ rps           = rev/sec          # rev/sec
 [fluid flow]
 gph         = gal/hr           # gallons/hour
 gpm         = gal/min          # gallons/minute
+MGD         = 1000000 gal/day  # million gallons/day
 cfs         = ft^3/sec         # cu ft/second
 cfm         = ft^3/min         # cu ft/minute
 lpm         = l/min            # liter/min
+MLD         = 1000000 l/day    # million liters/day
 [gas flow]
 sccm        = atm*cc/min       # std cc/min      # pressure * flow
 sccs        = atm*cc/sec       # std cc/sec      # pressure * flow
@@ -696,6 +723,11 @@ inch of Hg            = in Hg
 m water               = m*density water*gravity  # meter of H2O # fresh water
 m H2O                 = m water                  # meter of H2O # fresh water
 meter of water        = m water                  #              # fresh water
+mm H2O                = mm*density water*gravity \
+                        # millimeter of H2O  # fresh water
+mm water              = mm H2O                   \
+                        # millimeter of H2O  # fresh water
+millimeter of water   = mm H2O                                  # fresh water
 in water              = in*density water*gravity # inch of H2O  # fresh water
 in H2O                = in water                 # inch of H2O  # fresh water
 inch of water         = in water                 #              # fresh water
