@@ -1,11 +1,10 @@
 [Desktop Entry]
 Type=Application
-Version=1.1
 Name=ConvertAll
 GenericName=Unit Converter
-Comment=a flexible unit converter
+Comment=Flexible unit converter
 Exec=convertall
 Icon=convertall-icon
 StartupNotify=true
-Terminal=false
-Categories=Math;Science;Education
+Categories=Qt;Math;Science;Education
+Keywords=pound;euro;dollar;yen;meter;metre;mile;gram;inch;litre;ounce;grain;second;minute;hour;degree;celsius;kelvin;fahrenheit;
