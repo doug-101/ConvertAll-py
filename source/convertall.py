@@ -19,7 +19,6 @@ __author__ = 'Doug Bell'
 
 dataFilePath = None    # modified by install script if required
 helpFilePath = None    # modified by install script if required
-iconPath = None        # modified by install script if required
 translationPath = 'translations'
 lang = ''
 

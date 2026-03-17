@@ -21,12 +21,11 @@ from PyQt5.QtWidgets import (QApplication, QCheckBox, QColorDialog, QDialog,
                              QLabel, QLayout, QMenu, QMessageBox, QPushButton,
                              QSizePolicy, QVBoxLayout, QWidget)
 try:
-    from __main__ import __version__, __author__, helpFilePath, iconPath
+    from __main__ import __version__, __author__, helpFilePath
     from __main__ import lang
 except ImportError:
     __version__ = __author__ = '??'
     helpFilePath = None
-    iconPath = None
     lang = ''
 import unitdata
 from unitgroup import UnitGroup
@@ -54,7 +53,7 @@ class ConvertDlg(QWidget):
         modPath = os.path.abspath(sys.path[0])
         if modPath.endswith('.zip'):  # for py2exe
             modPath = os.path.dirname(modPath)
-        iconPathList = [iconPath, os.path.join(modPath, 'icons/'),
+        iconPathList = [os.path.join(modPath, 'icons/'),
                          os.path.join(modPath, '../icons')]
         self.icons = icondict.IconDict()
         self.icons.addIconPath([path for path in iconPathList if path])
