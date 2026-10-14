@@ -1,0 +1,5 @@
+# Production Qt6 profile. Use a dedicated venv; never mix Qt bindings.
+# Supported interpreter policy: Python 3.11–3.14.
+PyQt6==6.11.0
+PyQt6-sip==13.13.0
+PyQt6-Qt6==6.11.2

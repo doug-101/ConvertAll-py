@@ -1,0 +1,21 @@
+{
+  "snapshot_date": "2026-10-10",
+  "architecture": "x86_64",
+  "compression": "zstd",
+  "appimagetool": {
+    "repository": "AppImage/appimagetool",
+    "asset_id": 610035789,
+    "name": "appimagetool-x86_64.AppImage",
+    "tag": "continuous",
+    "published_at": "2026-10-04T14:58:56Z",
+    "sha256": "95cbe7cce9717fce90c484e34052ee7c7f1d7635b33c12525b4776826a7d29b6"
+  },
+  "runtime": {
+    "repository": "AppImage/type2-runtime",
+    "asset_id": 596078161,
+    "name": "runtime-x86_64",
+    "tag": "continuous",
+    "published_at": "2026-09-28T18:16:12Z",
+    "sha256": "156f4bdbde9c52d01814600013e0a273f0118dc2de98975f3c8c63427ec79074"
+  }
+}

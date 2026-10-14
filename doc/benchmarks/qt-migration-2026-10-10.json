@@ -1,0 +1,3576 @@
+{
+  "schema": 1,
+  "method": {
+    "date_utc": "2026-10-10",
+    "runs_per_binding": 40,
+    "locale": "C.UTF-8, LC_MESSAGES=C (English application data)",
+    "order": "alternating Qt5/Qt6, reversed every second pair",
+    "display": "offscreen",
+    "style": "Fusion",
+    "font": "DejaVu Sans 10",
+    "startup": "imports + application + main window + first grab; Python bootstrap excluded",
+    "caches": "warm OS caches; no privileged cache flush",
+    "operations": "20 batches after warm-up, GUI methods followed by processEvents"
+  },
+  "host": {
+    "platform": "Linux-6.1.158+-x86_64-with-glibc2.36",
+    "machine": "x86_64",
+    "driver_python": "3.11.2",
+    "cpu_count": 2
+  },
+  "results": {
+    "qt5": {
+      "startup": {
+        "gui_startup_ms": {
+          "n": 40,
+          "median": 88.0736995,
+          "min": 81.582295,
+          "max": 142.684145,
+          "p95": 110.92758,
+          "samples": [
+            85.93423,
+            85.247338,
+            83.779923,
+            88.302443,
+            103.414477,
+            93.841146,
+            100.102978,
+            94.9922,
+            142.684145,
+            85.592839,
+            88.97078,
+            87.28933,
+            84.213739,
+            82.992494,
+            82.835536,
+            95.642178,
+            88.730135,
+            117.528165,
+            110.745212,
+            106.402158,
+            84.431519,
+            84.206152,
+            110.706702,
+            84.429745,
+            89.494468,
+            110.92758,
+            91.565374,
+            90.630031,
+            110.589753,
+            87.35075,
+            82.63997,
+            88.40482,
+            90.455983,
+            85.179783,
+            87.844956,
+            85.685744,
+            85.206302,
+            81.582295,
+            81.985908,
+            86.740715
+          ]
+        },
+        "binding_import_ms": {
+          "n": 40,
+          "median": 29.712348499999997,
+          "min": 28.14758,
+          "max": 42.660537,
+          "p95": 39.833329,
+          "samples": [
+            29.74307,
+            29.681627,
+            28.743508,
+            29.505859,
+            36.851739,
+            35.874895,
+            36.466559,
+            39.682542,
+            39.845486,
+            29.076656,
+            31.499868,
+            29.750754,
+            29.051602,
+            28.230685,
+            29.023523,
+            33.438307,
+            30.082723,
+            38.420344,
+            32.362951,
+            38.449937,
+            29.574255,
+            29.084165,
+            32.966509,
+            29.406991,
+            28.906125,
+            39.833329,
+            29.034417,
+            29.252309,
+            42.660537,
+            31.69142,
+            28.478246,
+            29.942499,
+            31.426132,
+            29.18618,
+            29.33605,
+            29.046756,
+            29.181318,
+            28.14758,
+            28.20523,
+            30.175343
+          ]
+        },
+        "app_and_modules_ms": {
+          "n": 40,
+          "median": 7.4848254999999995,
+          "min": 6.999117,
+          "max": 12.353505,
+          "p95": 10.69542,
+          "samples": [
+            7.495051,
+            7.225827,
+            7.543877,
+            7.666724,
+            8.802632,
+            9.13896,
+            9.841113,
+            7.525564,
+            12.353505,
+            7.4746,
+            7.891117,
+            7.376732,
+            7.472678,
+            7.215843,
+            7.055021,
+            9.980897,
+            7.942527,
+            11.271294,
+            9.539891,
+            10.33556,
+            7.048468,
+            7.21812,
+            10.267755,
+            7.203955,
+            7.166011,
+            7.957892,
+            7.369863,
+            8.666217,
+            10.69542,
+            7.225618,
+            7.215445,
+            7.269746,
+            8.108134,
+            7.047616,
+            7.473654,
+            7.580148,
+            7.449055,
+            7.153112,
+            6.999117,
+            7.360789
+          ]
+        },
+        "window_and_render_ms": {
+          "n": 40,
+          "median": 49.392189,
+          "min": 46.281603,
+          "max": 90.485154,
+          "p95": 67.836527,
+          "samples": [
+            48.696109,
+            48.339884,
+            47.492538,
+            51.12986,
+            57.760106,
+            48.827291,
+            53.795306,
+            47.784094,
+            90.485154,
+            49.041583,
+            49.579795,
+            50.161844,
+            47.689459,
+            47.545966,
+            46.756992,
+            52.222974,
+            50.704885,
+            67.836527,
+            68.84237,
+            57.616661,
+            47.808796,
+            47.903867,
+            67.472438,
+            47.818799,
+            53.422332,
+            63.136359,
+            55.161094,
+            52.711505,
+            57.233796,
+            48.433712,
+            46.946279,
+            51.192575,
+            50.921717,
+            48.945987,
+            51.035252,
+            49.05884,
+            48.575929,
+            46.281603,
+            46.781561,
+            49.204583
+          ]
+        },
+        "rss_mib": {
+          "n": 40,
+          "median": 60.705078125,
+          "min": 60.60546875,
+          "max": 60.8515625,
+          "p95": 60.79296875,
+          "samples": [
+            60.6484375,
+            60.70703125,
+            60.7578125,
+            60.65625,
+            60.71484375,
+            60.640625,
+            60.64453125,
+            60.66796875,
+            60.75390625,
+            60.73046875,
+            60.70703125,
+            60.6328125,
+            60.68359375,
+            60.69140625,
+            60.7109375,
+            60.70703125,
+            60.69921875,
+            60.77734375,
+            60.69921875,
+            60.625,
+            60.6875,
+            60.69921875,
+            60.60546875,
+            60.7734375,
+            60.6640625,
+            60.76953125,
+            60.70703125,
+            60.70703125,
+            60.66796875,
+            60.72265625,
+            60.75390625,
+            60.8515625,
+            60.70703125,
+            60.71875,
+            60.79296875,
+            60.796875,
+            60.64453125,
+            60.703125,
+            60.6953125,
+            60.6328125
+          ]
+        }
+      },
+      "environment": {
+        "python": "3.11.2",
+        "pyqt": "5.15.11",
+        "qt_runtime": "5.15.19",
+        "qt_compiled": "5.15.14",
+        "platform_plugin": "offscreen",
+        "window_pixels": [
+          1024,
+          640
+        ],
+        "unit_count": 626,
+        "binding_directory_mib": 195.29691982269287
+      },
+      "startup_runs": [
+        {
+          "gui_startup_ms": 85.93423,
+          "binding_import_ms": 29.74307,
+          "app_and_modules_ms": 7.495051,
+          "window_and_render_ms": 48.696109,
+          "rss_mib": 60.6484375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 85.247338,
+          "binding_import_ms": 29.681627,
+          "app_and_modules_ms": 7.225827,
+          "window_and_render_ms": 48.339884,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 83.779923,
+          "binding_import_ms": 28.743508,
+          "app_and_modules_ms": 7.543877,
+          "window_and_render_ms": 47.492538,
+          "rss_mib": 60.7578125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 88.302443,
+          "binding_import_ms": 29.505859,
+          "app_and_modules_ms": 7.666724,
+          "window_and_render_ms": 51.12986,
+          "rss_mib": 60.65625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 103.414477,
+          "binding_import_ms": 36.851739,
+          "app_and_modules_ms": 8.802632,
+          "window_and_render_ms": 57.760106,
+          "rss_mib": 60.71484375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 93.841146,
+          "binding_import_ms": 35.874895,
+          "app_and_modules_ms": 9.13896,
+          "window_and_render_ms": 48.827291,
+          "rss_mib": 60.640625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 100.102978,
+          "binding_import_ms": 36.466559,
+          "app_and_modules_ms": 9.841113,
+          "window_and_render_ms": 53.795306,
+          "rss_mib": 60.64453125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 94.9922,
+          "binding_import_ms": 39.682542,
+          "app_and_modules_ms": 7.525564,
+          "window_and_render_ms": 47.784094,
+          "rss_mib": 60.66796875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 142.684145,
+          "binding_import_ms": 39.845486,
+          "app_and_modules_ms": 12.353505,
+          "window_and_render_ms": 90.485154,
+          "rss_mib": 60.75390625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 85.592839,
+          "binding_import_ms": 29.076656,
+          "app_and_modules_ms": 7.4746,
+          "window_and_render_ms": 49.041583,
+          "rss_mib": 60.73046875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 88.97078,
+          "binding_import_ms": 31.499868,
+          "app_and_modules_ms": 7.891117,
+          "window_and_render_ms": 49.579795,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 87.28933,
+          "binding_import_ms": 29.750754,
+          "app_and_modules_ms": 7.376732,
+          "window_and_render_ms": 50.161844,
+          "rss_mib": 60.6328125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 84.213739,
+          "binding_import_ms": 29.051602,
+          "app_and_modules_ms": 7.472678,
+          "window_and_render_ms": 47.689459,
+          "rss_mib": 60.68359375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 82.992494,
+          "binding_import_ms": 28.230685,
+          "app_and_modules_ms": 7.215843,
+          "window_and_render_ms": 47.545966,
+          "rss_mib": 60.69140625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 82.835536,
+          "binding_import_ms": 29.023523,
+          "app_and_modules_ms": 7.055021,
+          "window_and_render_ms": 46.756992,
+          "rss_mib": 60.7109375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 95.642178,
+          "binding_import_ms": 33.438307,
+          "app_and_modules_ms": 9.980897,
+          "window_and_render_ms": 52.222974,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 88.730135,
+          "binding_import_ms": 30.082723,
+          "app_and_modules_ms": 7.942527,
+          "window_and_render_ms": 50.704885,
+          "rss_mib": 60.69921875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 117.528165,
+          "binding_import_ms": 38.420344,
+          "app_and_modules_ms": 11.271294,
+          "window_and_render_ms": 67.836527,
+          "rss_mib": 60.77734375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.745212,
+          "binding_import_ms": 32.362951,
+          "app_and_modules_ms": 9.539891,
+          "window_and_render_ms": 68.84237,
+          "rss_mib": 60.69921875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 106.402158,
+          "binding_import_ms": 38.449937,
+          "app_and_modules_ms": 10.33556,
+          "window_and_render_ms": 57.616661,
+          "rss_mib": 60.625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 84.431519,
+          "binding_import_ms": 29.574255,
+          "app_and_modules_ms": 7.048468,
+          "window_and_render_ms": 47.808796,
+          "rss_mib": 60.6875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 84.206152,
+          "binding_import_ms": 29.084165,
+          "app_and_modules_ms": 7.21812,
+          "window_and_render_ms": 47.903867,
+          "rss_mib": 60.69921875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.706702,
+          "binding_import_ms": 32.966509,
+          "app_and_modules_ms": 10.267755,
+          "window_and_render_ms": 67.472438,
+          "rss_mib": 60.60546875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 84.429745,
+          "binding_import_ms": 29.406991,
+          "app_and_modules_ms": 7.203955,
+          "window_and_render_ms": 47.818799,
+          "rss_mib": 60.7734375,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 89.494468,
+          "binding_import_ms": 28.906125,
+          "app_and_modules_ms": 7.166011,
+          "window_and_render_ms": 53.422332,
+          "rss_mib": 60.6640625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.92758,
+          "binding_import_ms": 39.833329,
+          "app_and_modules_ms": 7.957892,
+          "window_and_render_ms": 63.136359,
+          "rss_mib": 60.76953125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 91.565374,
+          "binding_import_ms": 29.034417,
+          "app_and_modules_ms": 7.369863,
+          "window_and_render_ms": 55.161094,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 90.630031,
+          "binding_import_ms": 29.252309,
+          "app_and_modules_ms": 8.666217,
+          "window_and_render_ms": 52.711505,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.589753,
+          "binding_import_ms": 42.660537,
+          "app_and_modules_ms": 10.69542,
+          "window_and_render_ms": 57.233796,
+          "rss_mib": 60.66796875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 87.35075,
+          "binding_import_ms": 31.69142,
+          "app_and_modules_ms": 7.225618,
+          "window_and_render_ms": 48.433712,
+          "rss_mib": 60.72265625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 82.63997,
+          "binding_import_ms": 28.478246,
+          "app_and_modules_ms": 7.215445,
+          "window_and_render_ms": 46.946279,
+          "rss_mib": 60.75390625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 88.40482,
+          "binding_import_ms": 29.942499,
+          "app_and_modules_ms": 7.269746,
+          "window_and_render_ms": 51.192575,
+          "rss_mib": 60.8515625,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 90.455983,
+          "binding_import_ms": 31.426132,
+          "app_and_modules_ms": 8.108134,
+          "window_and_render_ms": 50.921717,
+          "rss_mib": 60.70703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 85.179783,
+          "binding_import_ms": 29.18618,
+          "app_and_modules_ms": 7.047616,
+          "window_and_render_ms": 48.945987,
+          "rss_mib": 60.71875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 87.844956,
+          "binding_import_ms": 29.33605,
+          "app_and_modules_ms": 7.473654,
+          "window_and_render_ms": 51.035252,
+          "rss_mib": 60.79296875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 85.685744,
+          "binding_import_ms": 29.046756,
+          "app_and_modules_ms": 7.580148,
+          "window_and_render_ms": 49.05884,
+          "rss_mib": 60.796875,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 85.206302,
+          "binding_import_ms": 29.181318,
+          "app_and_modules_ms": 7.449055,
+          "window_and_render_ms": 48.575929,
+          "rss_mib": 60.64453125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 81.582295,
+          "binding_import_ms": 28.14758,
+          "app_and_modules_ms": 7.153112,
+          "window_and_render_ms": 46.281603,
+          "rss_mib": 60.703125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 81.985908,
+          "binding_import_ms": 28.20523,
+          "app_and_modules_ms": 6.999117,
+          "window_and_render_ms": 46.781561,
+          "rss_mib": 60.6953125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 86.740715,
+          "binding_import_ms": 30.175343,
+          "app_and_modules_ms": 7.360789,
+          "window_and_render_ms": 49.204583,
+          "rss_mib": 60.6328125,
+          "python": "3.11.2",
+          "pyqt": "5.15.11",
+          "qt_runtime": "5.15.19",
+          "qt_compiled": "5.15.14",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 195.29691982269287,
+          "stderr": "This plugin does not support propagateSizeHints()"
+        }
+      ],
+      "operations": {
+        "filter_update_ms": {
+          "n": 20,
+          "median": 2.57513388,
+          "min": 2.3862777299999998,
+          "max": 3.1150276299999997,
+          "p95": 3.0778127299999998,
+          "samples": [
+            3.0778127299999998,
+            2.53362693,
+            2.52900036,
+            2.48567172,
+            2.74483625,
+            3.0228245,
+            2.78264542,
+            2.63729638,
+            2.6126167400000004,
+            2.51217273,
+            2.53765102,
+            2.51059288,
+            2.8049443700000003,
+            3.1150276299999997,
+            2.78404966,
+            2.53542362,
+            2.73637087,
+            2.3862777299999998,
+            2.4416115699999996,
+            2.49780398
+          ]
+        },
+        "engine_conversion_ms": {
+          "n": 20,
+          "median": 0.000150696765,
+          "min": 0.00013803393,
+          "max": 0.00024368955,
+          "p95": 0.00021356732,
+          "samples": [
+            0.00017426164,
+            0.00014719164,
+            0.00014431901,
+            0.00013855777,
+            0.00014640256999999998,
+            0.00014512351,
+            0.00015469155,
+            0.00021356732,
+            0.00020505306,
+            0.00014860012000000002,
+            0.00014976021,
+            0.00016195272,
+            0.00013803393,
+            0.00015386187,
+            0.00024368955,
+            0.00017406942,
+            0.00018850962999999998,
+            0.00014778225,
+            0.00014104385,
+            0.00015163332
+          ]
+        },
+        "gui_conversion_ms": {
+          "n": 20,
+          "median": 0.12878747699999998,
+          "min": 0.122183033,
+          "max": 0.168401898,
+          "p95": 0.14847946299999998,
+          "samples": [
+            0.139869867,
+            0.13862287299999998,
+            0.13299872899999998,
+            0.140105085,
+            0.13600406899999998,
+            0.137944749,
+            0.128268624,
+            0.125156834,
+            0.125616329,
+            0.124743686,
+            0.126569292,
+            0.12930633,
+            0.126577096,
+            0.126355027,
+            0.12622033,
+            0.123998606,
+            0.122183033,
+            0.131067907,
+            0.168401898,
+            0.14847946299999998
+          ]
+        }
+      },
+      "smoke": {
+        "smoke_passed": true,
+        "check_count": 50,
+        "checks": [
+          "No NEW failing unit definitions",
+          "Conversion 1 in -> cm",
+          "Conversion 1 mile -> km",
+          "Conversion 60 mile/hr -> km/hr",
+          "Conversion 36 km/hr -> m/s",
+          "Conversion 1 g -> kg",
+          "Conversion 0 deg C -> deg F",
+          "Conversion 100 deg C -> deg F",
+          "Conversion -40 deg C -> deg F",
+          "Conversion 32 deg F -> deg C",
+          "Conversion 1 m^2 -> cm^2",
+          "Conversion 1 acre -> m^2",
+          "Conversion 1 Planck temperature -> K",
+          "Arithmetic number validator",
+          "Invalid number validator",
+          "Bidirectional GUI number conversion",
+          "Reverse GUI number conversion",
+          "Unit list filtering",
+          "Keyboard unit selection",
+          "Filter reset",
+          "Column sorting",
+          "Modal dialog completed: changeOptions",
+          "Modal dialog completed: showColorDlg",
+          "Dark theme applied",
+          "Modal dialog completed: showColorDlg",
+          "Modal dialog completed: showFontDlg",
+          "Font families populated",
+          "Custom font can be selected",
+          "Base GUI decimal -> hexadecimal",
+          "Base GUI decimal -> binary",
+          "Modal dialog completed: changeBitSettings",
+          "Twos complement base calculation",
+          "Fraction GUI 0.125 -> 1/8",
+          "Power-of-two fraction filter",
+          "HTML help loaded",
+          "Help link hover signal",
+          "Startup-tip dialog",
+          "Existing application .qm loads: ca",
+          "Existing translation context matches: ca",
+          "Existing application .qm loads: de",
+          "Existing translation context matches: de",
+          "Existing application .qm loads: es",
+          "Existing translation context matches: es",
+          "Existing application .qm loads: fr",
+          "Existing translation context matches: fr",
+          "Existing application .qm loads: ru",
+          "Existing translation context matches: ru",
+          "Existing application .qm loads: sv",
+          "Existing translation context matches: sv",
+          "Preference file saved"
+        ],
+        "all_unit_definitions_pass": false,
+        "unit_definition_pass_count": 620,
+        "existing_unit_definition_failures": [
+          {
+            "name": "Boltzmann constant",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "elementary charge",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck length",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck mass",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck time",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "vacuum permittivity",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          }
+        ],
+        "application_translations": [
+          {
+            "language": "ca",
+            "from_unit": "De la unitat"
+          },
+          {
+            "language": "de",
+            "from_unit": "Ausgangseinheit"
+          },
+          {
+            "language": "es",
+            "from_unit": "Desde unidad"
+          },
+          {
+            "language": "fr",
+            "from_unit": "De l'unité"
+          },
+          {
+            "language": "ru",
+            "from_unit": "Из величины"
+          },
+          {
+            "language": "sv",
+            "from_unit": "Från enhet"
+          }
+        ],
+        "localized_unit_data": [
+          {
+            "language": "ca",
+            "unit_count": 600,
+            "definition_failures": [
+              {
+                "name": "kilotona no mètrica",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "township",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              }
+            ]
+          },
+          {
+            "language": "de",
+            "unit_count": 637,
+            "definition_failures": []
+          },
+          {
+            "language": "es",
+            "unit_count": 537,
+            "definition_failures": []
+          },
+          {
+            "language": "fr",
+            "unit_count": 523,
+            "definition_failures": []
+          },
+          {
+            "language": "ru",
+            "unit_count": 612,
+            "definition_failures": []
+          },
+          {
+            "language": "sv",
+            "unit_count": 569,
+            "definition_failures": [
+              {
+                "name": "%",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "APR",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc min",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc minut",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc sec",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc second",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "bageridussin",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "becquerel",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "boiler horsepower",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Bq",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "British thermal enheter",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Btu",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "cable",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "cal",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "calorie food",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "centuries",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circle",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circular inch",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circular mil",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ct",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "curie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "decennium",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "deg",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "doz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "dussin",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "footlambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "fortnight",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "GHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gigahertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "grader",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gradian",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gross",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hat trick",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hemisfär",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hp",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Hz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hästkraft",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "i H2O",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "inch vatten",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kalenderår",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "karat",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "karat guld",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kcal",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilocalori",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilohertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilowatt hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kvadrant",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kWh",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "lambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljusminut",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljussekund",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljusår",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mAh",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man month",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man week",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man year",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "MBH",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "megahertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "MHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "micron of Hg",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mill",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millennia",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millennium",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "milliamp hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millicurie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millihertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millilambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "min arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "minut arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mph",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "månad",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ozf",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "par",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per billion",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per million",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per trillion",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "pi",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppb",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppt",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "procent",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "proof",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ream",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rev",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "revolution",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "right angle",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rpm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rps",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "score",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "seckund arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sek arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sekel",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sfär",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "stort gross",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "therm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "thermie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ton refrigeration",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "tonne coal equivalent",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "tonne kraft",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "turn",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "vecka",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "wk",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "yr",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "år",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              }
+            ]
+          }
+        ]
+      },
+      "engine_sha256": {
+        "unitatom.py": "92d5c696b818a6c29d3184e20829223c9ce75953502b89161715855cdd66d018",
+        "unitdata.py": "8e08ea08f3d5a0e0446ac40d93499a5654604591dcb500ff4f4b77d6c29c4683",
+        "unitgroup.py": "81fcf9eb3578820adcd62e5cda98060fd97ac7d3a50379c8142c219a27fc5295",
+        "cmdline.py": "ab28bc1b6e12a2567b19982db6d4aee6e76c65b8b42db55ea908ab0597628ee3",
+        "option.py": "a7ab69402e34cb178844a1122f3dda398f7095e4e9fe8eb655879504b2c2fe82",
+        "optiondefaults.py": "0f80f6c0b175c831bce3e4dbf3df24dfa60d71e2763e8c88c188b2dee6c087b2",
+        "recentunits.py": "d91bbaac804839f09e25d32ab32c560bc24ce1b1a0a2a29e9b88b018362f7656"
+      },
+      "pip_freeze_all": [
+        "altgraph==0.17.5",
+        "packaging==26.3",
+        "pip==23.0.1",
+        "psutil==7.2.2",
+        "pyinstaller==6.22.3",
+        "pyinstaller-hooks-contrib==2026.8",
+        "PyQt5==5.15.11",
+        "PyQt5-Qt5==5.15.19",
+        "PyQt5_sip==12.20.0",
+        "setuptools==66.1.1"
+      ],
+      "data_sha256": {
+        "units.dat": "117af7e491116faf51252e487a9c73e1d51e57a2e89d258267b22aaaa0af004f",
+        "units_ca.dat": "3a479c57a6c93d8caeeab2aab566b491175a9d30710109ce825ae78de442a50f",
+        "units_de.dat": "5d917547fd819694c6f8c72294132572a05c332fa4453d47044f7dade5cded76",
+        "units_es.dat": "b0af3cff7d745b361bab97b43ddb0ede61955187c09780e7237e142c3b5af9aa",
+        "units_fr.dat": "32c443be19230980dfddf4d52c0e35a3fb7bbb1f2eaab84b4faa4c1dd9b77af1",
+        "units_ru.dat": "8f5f759ab22ee7c3e6e0b3afb1674912a3b45a5d53c54d0c80c2de5875080de1",
+        "units_sv.dat": "2c04fbb22d0eb6ae6a97b68c1075b7d3a409ebeb69780071f28117efe8ec3dbd"
+      }
+    },
+    "qt6": {
+      "startup": {
+        "gui_startup_ms": {
+          "n": 40,
+          "median": 110.855704,
+          "min": 102.91802,
+          "max": 161.227811,
+          "p95": 140.482991,
+          "samples": [
+            112.804383,
+            111.359141,
+            106.767648,
+            114.449608,
+            103.737365,
+            104.253499,
+            140.482991,
+            108.874645,
+            121.344624,
+            111.722266,
+            112.740561,
+            106.817182,
+            104.949906,
+            120.862567,
+            108.839064,
+            106.811362,
+            107.421484,
+            161.227811,
+            114.50745,
+            112.414537,
+            112.029945,
+            116.656718,
+            122.331178,
+            113.023624,
+            108.025536,
+            105.83992,
+            117.273295,
+            110.235903,
+            133.726246,
+            107.89391,
+            105.345042,
+            106.943732,
+            109.528379,
+            102.98832,
+            112.347935,
+            153.267915,
+            110.352267,
+            121.30864,
+            102.91802,
+            107.616425
+          ]
+        },
+        "binding_import_ms": {
+          "n": 40,
+          "median": 23.5971905,
+          "min": 22.526681,
+          "max": 33.646989,
+          "p95": 33.242965,
+          "samples": [
+            24.676231,
+            25.637749,
+            23.513363,
+            24.210994,
+            22.743786,
+            22.609196,
+            29.957392,
+            23.519241,
+            26.965763,
+            23.368836,
+            24.385582,
+            25.431492,
+            22.815891,
+            22.734918,
+            23.49046,
+            22.848452,
+            23.633414,
+            33.483512,
+            23.233875,
+            24.035556,
+            23.179347,
+            24.95765,
+            25.509565,
+            23.163319,
+            23.023079,
+            23.061428,
+            26.860813,
+            23.719845,
+            33.646989,
+            22.821439,
+            22.83625,
+            23.713155,
+            25.272929,
+            22.526681,
+            24.065354,
+            33.242965,
+            23.560967,
+            26.423612,
+            22.772693,
+            23.039139
+          ]
+        },
+        "app_and_modules_ms": {
+          "n": 40,
+          "median": 13.8657425,
+          "min": 12.820907,
+          "max": 23.920432,
+          "p95": 18.804662,
+          "samples": [
+            14.108592,
+            14.711826,
+            13.293053,
+            14.971461,
+            12.93994,
+            13.789632,
+            18.804662,
+            13.752329,
+            13.917156,
+            15.653409,
+            17.363367,
+            13.241248,
+            13.55555,
+            12.942577,
+            13.549337,
+            15.638732,
+            14.23278,
+            21.333826,
+            13.975838,
+            13.961368,
+            13.224489,
+            16.197838,
+            17.741631,
+            13.103453,
+            13.574462,
+            13.814329,
+            17.484929,
+            13.773457,
+            17.984925,
+            13.640801,
+            13.05175,
+            13.084023,
+            14.66601,
+            12.820907,
+            14.013259,
+            23.920432,
+            13.441805,
+            14.271439,
+            12.837997,
+            13.658831
+          ]
+        },
+        "window_and_render_ms": {
+          "n": 40,
+          "median": 72.249644,
+          "min": 67.30733,
+          "max": 106.410473,
+          "p95": 91.720937,
+          "samples": [
+            74.01956,
+            71.009566,
+            69.961232,
+            75.267153,
+            68.053639,
+            67.854671,
+            91.720937,
+            71.603075,
+            80.461705,
+            72.700021,
+            70.991612,
+            68.144442,
+            68.578465,
+            85.185072,
+            71.799267,
+            68.324178,
+            69.55529,
+            106.410473,
+            77.297737,
+            74.417613,
+            75.626109,
+            75.50123,
+            79.079982,
+            76.756852,
+            71.427995,
+            68.964163,
+            72.927553,
+            72.742601,
+            82.094332,
+            71.43167,
+            69.457042,
+            70.146554,
+            69.58944,
+            67.640732,
+            74.269322,
+            96.104518,
+            73.349495,
+            80.613589,
+            67.30733,
+            70.918455
+          ]
+        },
+        "rss_mib": {
+          "n": 40,
+          "median": 63.55859375,
+          "min": 63.46484375,
+          "max": 63.6015625,
+          "p95": 63.59765625,
+          "samples": [
+            63.51953125,
+            63.4921875,
+            63.58984375,
+            63.57421875,
+            63.5703125,
+            63.58203125,
+            63.515625,
+            63.58203125,
+            63.5859375,
+            63.4765625,
+            63.59765625,
+            63.51953125,
+            63.47265625,
+            63.6015625,
+            63.59375,
+            63.55859375,
+            63.52734375,
+            63.48046875,
+            63.546875,
+            63.5234375,
+            63.5703125,
+            63.54296875,
+            63.5859375,
+            63.59765625,
+            63.5234375,
+            63.51953125,
+            63.59765625,
+            63.59375,
+            63.5625,
+            63.52734375,
+            63.51953125,
+            63.5625,
+            63.484375,
+            63.46484375,
+            63.546875,
+            63.59765625,
+            63.54296875,
+            63.58984375,
+            63.55859375,
+            63.58203125
+          ]
+        }
+      },
+      "environment": {
+        "python": "3.11.2",
+        "pyqt": "6.11.0",
+        "qt_runtime": "6.11.2",
+        "qt_compiled": "6.11.0",
+        "platform_plugin": "offscreen",
+        "window_pixels": [
+          1024,
+          640
+        ],
+        "unit_count": 626,
+        "binding_directory_mib": 250.24821376800537
+      },
+      "startup_runs": [
+        {
+          "gui_startup_ms": 112.804383,
+          "binding_import_ms": 24.676231,
+          "app_and_modules_ms": 14.108592,
+          "window_and_render_ms": 74.01956,
+          "rss_mib": 63.51953125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 111.359141,
+          "binding_import_ms": 25.637749,
+          "app_and_modules_ms": 14.711826,
+          "window_and_render_ms": 71.009566,
+          "rss_mib": 63.4921875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 106.767648,
+          "binding_import_ms": 23.513363,
+          "app_and_modules_ms": 13.293053,
+          "window_and_render_ms": 69.961232,
+          "rss_mib": 63.58984375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 114.449608,
+          "binding_import_ms": 24.210994,
+          "app_and_modules_ms": 14.971461,
+          "window_and_render_ms": 75.267153,
+          "rss_mib": 63.57421875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 103.737365,
+          "binding_import_ms": 22.743786,
+          "app_and_modules_ms": 12.93994,
+          "window_and_render_ms": 68.053639,
+          "rss_mib": 63.5703125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 104.253499,
+          "binding_import_ms": 22.609196,
+          "app_and_modules_ms": 13.789632,
+          "window_and_render_ms": 67.854671,
+          "rss_mib": 63.58203125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 140.482991,
+          "binding_import_ms": 29.957392,
+          "app_and_modules_ms": 18.804662,
+          "window_and_render_ms": 91.720937,
+          "rss_mib": 63.515625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 108.874645,
+          "binding_import_ms": 23.519241,
+          "app_and_modules_ms": 13.752329,
+          "window_and_render_ms": 71.603075,
+          "rss_mib": 63.58203125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 121.344624,
+          "binding_import_ms": 26.965763,
+          "app_and_modules_ms": 13.917156,
+          "window_and_render_ms": 80.461705,
+          "rss_mib": 63.5859375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 111.722266,
+          "binding_import_ms": 23.368836,
+          "app_and_modules_ms": 15.653409,
+          "window_and_render_ms": 72.700021,
+          "rss_mib": 63.4765625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 112.740561,
+          "binding_import_ms": 24.385582,
+          "app_and_modules_ms": 17.363367,
+          "window_and_render_ms": 70.991612,
+          "rss_mib": 63.59765625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 106.817182,
+          "binding_import_ms": 25.431492,
+          "app_and_modules_ms": 13.241248,
+          "window_and_render_ms": 68.144442,
+          "rss_mib": 63.51953125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 104.949906,
+          "binding_import_ms": 22.815891,
+          "app_and_modules_ms": 13.55555,
+          "window_and_render_ms": 68.578465,
+          "rss_mib": 63.47265625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 120.862567,
+          "binding_import_ms": 22.734918,
+          "app_and_modules_ms": 12.942577,
+          "window_and_render_ms": 85.185072,
+          "rss_mib": 63.6015625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 108.839064,
+          "binding_import_ms": 23.49046,
+          "app_and_modules_ms": 13.549337,
+          "window_and_render_ms": 71.799267,
+          "rss_mib": 63.59375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 106.811362,
+          "binding_import_ms": 22.848452,
+          "app_and_modules_ms": 15.638732,
+          "window_and_render_ms": 68.324178,
+          "rss_mib": 63.55859375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 107.421484,
+          "binding_import_ms": 23.633414,
+          "app_and_modules_ms": 14.23278,
+          "window_and_render_ms": 69.55529,
+          "rss_mib": 63.52734375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 161.227811,
+          "binding_import_ms": 33.483512,
+          "app_and_modules_ms": 21.333826,
+          "window_and_render_ms": 106.410473,
+          "rss_mib": 63.48046875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 114.50745,
+          "binding_import_ms": 23.233875,
+          "app_and_modules_ms": 13.975838,
+          "window_and_render_ms": 77.297737,
+          "rss_mib": 63.546875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 112.414537,
+          "binding_import_ms": 24.035556,
+          "app_and_modules_ms": 13.961368,
+          "window_and_render_ms": 74.417613,
+          "rss_mib": 63.5234375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 112.029945,
+          "binding_import_ms": 23.179347,
+          "app_and_modules_ms": 13.224489,
+          "window_and_render_ms": 75.626109,
+          "rss_mib": 63.5703125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 116.656718,
+          "binding_import_ms": 24.95765,
+          "app_and_modules_ms": 16.197838,
+          "window_and_render_ms": 75.50123,
+          "rss_mib": 63.54296875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 122.331178,
+          "binding_import_ms": 25.509565,
+          "app_and_modules_ms": 17.741631,
+          "window_and_render_ms": 79.079982,
+          "rss_mib": 63.5859375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 113.023624,
+          "binding_import_ms": 23.163319,
+          "app_and_modules_ms": 13.103453,
+          "window_and_render_ms": 76.756852,
+          "rss_mib": 63.59765625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 108.025536,
+          "binding_import_ms": 23.023079,
+          "app_and_modules_ms": 13.574462,
+          "window_and_render_ms": 71.427995,
+          "rss_mib": 63.5234375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 105.83992,
+          "binding_import_ms": 23.061428,
+          "app_and_modules_ms": 13.814329,
+          "window_and_render_ms": 68.964163,
+          "rss_mib": 63.51953125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 117.273295,
+          "binding_import_ms": 26.860813,
+          "app_and_modules_ms": 17.484929,
+          "window_and_render_ms": 72.927553,
+          "rss_mib": 63.59765625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.235903,
+          "binding_import_ms": 23.719845,
+          "app_and_modules_ms": 13.773457,
+          "window_and_render_ms": 72.742601,
+          "rss_mib": 63.59375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 133.726246,
+          "binding_import_ms": 33.646989,
+          "app_and_modules_ms": 17.984925,
+          "window_and_render_ms": 82.094332,
+          "rss_mib": 63.5625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 107.89391,
+          "binding_import_ms": 22.821439,
+          "app_and_modules_ms": 13.640801,
+          "window_and_render_ms": 71.43167,
+          "rss_mib": 63.52734375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 105.345042,
+          "binding_import_ms": 22.83625,
+          "app_and_modules_ms": 13.05175,
+          "window_and_render_ms": 69.457042,
+          "rss_mib": 63.51953125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 106.943732,
+          "binding_import_ms": 23.713155,
+          "app_and_modules_ms": 13.084023,
+          "window_and_render_ms": 70.146554,
+          "rss_mib": 63.5625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 109.528379,
+          "binding_import_ms": 25.272929,
+          "app_and_modules_ms": 14.66601,
+          "window_and_render_ms": 69.58944,
+          "rss_mib": 63.484375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 102.98832,
+          "binding_import_ms": 22.526681,
+          "app_and_modules_ms": 12.820907,
+          "window_and_render_ms": 67.640732,
+          "rss_mib": 63.46484375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 112.347935,
+          "binding_import_ms": 24.065354,
+          "app_and_modules_ms": 14.013259,
+          "window_and_render_ms": 74.269322,
+          "rss_mib": 63.546875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 153.267915,
+          "binding_import_ms": 33.242965,
+          "app_and_modules_ms": 23.920432,
+          "window_and_render_ms": 96.104518,
+          "rss_mib": 63.59765625,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 110.352267,
+          "binding_import_ms": 23.560967,
+          "app_and_modules_ms": 13.441805,
+          "window_and_render_ms": 73.349495,
+          "rss_mib": 63.54296875,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 121.30864,
+          "binding_import_ms": 26.423612,
+          "app_and_modules_ms": 14.271439,
+          "window_and_render_ms": 80.613589,
+          "rss_mib": 63.58984375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 102.91802,
+          "binding_import_ms": 22.772693,
+          "app_and_modules_ms": 12.837997,
+          "window_and_render_ms": 67.30733,
+          "rss_mib": 63.55859375,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        },
+        {
+          "gui_startup_ms": 107.616425,
+          "binding_import_ms": 23.039139,
+          "app_and_modules_ms": 13.658831,
+          "window_and_render_ms": 70.918455,
+          "rss_mib": 63.58203125,
+          "python": "3.11.2",
+          "pyqt": "6.11.0",
+          "qt_runtime": "6.11.2",
+          "qt_compiled": "6.11.0",
+          "platform_plugin": "offscreen",
+          "window_pixels": [
+            1024,
+            640
+          ],
+          "unit_count": 626,
+          "binding_directory_mib": 250.24821376800537,
+          "stderr": "Detected locale \"C\" with character encoding \"ANSI_X3.4-1968\", which is not UTF-8.\nQt depends on a UTF-8 locale, and has switched to \"C.UTF-8\" instead.\nIf this causes problems, reconfigure your locale. See the locale(1) manual\nfor more information.\nThis plugin does not support propagateSizeHints()"
+        }
+      ],
+      "operations": {
+        "filter_update_ms": {
+          "n": 20,
+          "median": 3.59628057,
+          "min": 3.2474527,
+          "max": 4.03369025,
+          "p95": 3.9882877000000003,
+          "samples": [
+            3.8612228199999996,
+            3.9882877000000003,
+            3.6022700899999998,
+            3.5241432,
+            3.42062575,
+            3.4501446600000003,
+            3.6780900499999998,
+            3.41922342,
+            3.49642942,
+            3.90087533,
+            3.53442819,
+            3.59029105,
+            3.7145809900000004,
+            3.7254873799999997,
+            3.6788239799999998,
+            4.03369025,
+            3.62106307,
+            3.2474527,
+            3.26188165,
+            3.33712937
+          ]
+        },
+        "engine_conversion_ms": {
+          "n": 20,
+          "median": 0.00014908351,
+          "min": 0.00013912348,
+          "max": 0.00029057575000000004,
+          "p95": 0.00028619352,
+          "samples": [
+            0.00017895813999999999,
+            0.00028619352,
+            0.00029057575000000004,
+            0.00017465616,
+            0.00014202893000000001,
+            0.00014375436,
+            0.00014939948999999998,
+            0.00022455274,
+            0.00016220463,
+            0.00016423802,
+            0.00016078765999999998,
+            0.00016084550999999998,
+            0.00014145420999999998,
+            0.00014295327,
+            0.00014381664,
+            0.00013930521999999998,
+            0.00013912348,
+            0.00014442264,
+            0.00014876753,
+            0.00014402369999999998
+          ]
+        },
+        "gui_conversion_ms": {
+          "n": 20,
+          "median": 0.2876894285,
+          "min": 0.278560749,
+          "max": 0.37246247,
+          "p95": 0.33662140500000004,
+          "samples": [
+            0.294215475,
+            0.37246247,
+            0.280007147,
+            0.28171985499999996,
+            0.284443867,
+            0.283863992,
+            0.294689355,
+            0.288024875,
+            0.285265355,
+            0.288260811,
+            0.289344228,
+            0.281848964,
+            0.285067197,
+            0.287353982,
+            0.32076416999999996,
+            0.33662140500000004,
+            0.32585191999999996,
+            0.296487566,
+            0.278716397,
+            0.278560749
+          ]
+        }
+      },
+      "smoke": {
+        "smoke_passed": true,
+        "check_count": 50,
+        "checks": [
+          "No NEW failing unit definitions",
+          "Conversion 1 in -> cm",
+          "Conversion 1 mile -> km",
+          "Conversion 60 mile/hr -> km/hr",
+          "Conversion 36 km/hr -> m/s",
+          "Conversion 1 g -> kg",
+          "Conversion 0 deg C -> deg F",
+          "Conversion 100 deg C -> deg F",
+          "Conversion -40 deg C -> deg F",
+          "Conversion 32 deg F -> deg C",
+          "Conversion 1 m^2 -> cm^2",
+          "Conversion 1 acre -> m^2",
+          "Conversion 1 Planck temperature -> K",
+          "Arithmetic number validator",
+          "Invalid number validator",
+          "Bidirectional GUI number conversion",
+          "Reverse GUI number conversion",
+          "Unit list filtering",
+          "Keyboard unit selection",
+          "Filter reset",
+          "Column sorting",
+          "Modal dialog completed: changeOptions",
+          "Modal dialog completed: showColorDlg",
+          "Dark theme applied",
+          "Modal dialog completed: showColorDlg",
+          "Modal dialog completed: showFontDlg",
+          "Font families populated",
+          "Custom font can be selected",
+          "Base GUI decimal -> hexadecimal",
+          "Base GUI decimal -> binary",
+          "Modal dialog completed: changeBitSettings",
+          "Twos complement base calculation",
+          "Fraction GUI 0.125 -> 1/8",
+          "Power-of-two fraction filter",
+          "HTML help loaded",
+          "Help link hover signal",
+          "Startup-tip dialog",
+          "Existing application .qm loads: ca",
+          "Existing translation context matches: ca",
+          "Existing application .qm loads: de",
+          "Existing translation context matches: de",
+          "Existing application .qm loads: es",
+          "Existing translation context matches: es",
+          "Existing application .qm loads: fr",
+          "Existing translation context matches: fr",
+          "Existing application .qm loads: ru",
+          "Existing translation context matches: ru",
+          "Existing application .qm loads: sv",
+          "Existing translation context matches: sv",
+          "Preference file saved"
+        ],
+        "all_unit_definitions_pass": false,
+        "unit_definition_pass_count": 620,
+        "existing_unit_definition_failures": [
+          {
+            "name": "Boltzmann constant",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "elementary charge",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck length",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck mass",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "Planck time",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          },
+          {
+            "name": "vacuum permittivity",
+            "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+          }
+        ],
+        "application_translations": [
+          {
+            "language": "ca",
+            "from_unit": "De la unitat"
+          },
+          {
+            "language": "de",
+            "from_unit": "Ausgangseinheit"
+          },
+          {
+            "language": "es",
+            "from_unit": "Desde unidad"
+          },
+          {
+            "language": "fr",
+            "from_unit": "De l'unité"
+          },
+          {
+            "language": "ru",
+            "from_unit": "Из величины"
+          },
+          {
+            "language": "sv",
+            "from_unit": "Från enhet"
+          }
+        ],
+        "localized_unit_data": [
+          {
+            "language": "ca",
+            "unit_count": 600,
+            "definition_failures": [
+              {
+                "name": "kilotona no mètrica",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "township",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              }
+            ]
+          },
+          {
+            "language": "de",
+            "unit_count": 637,
+            "definition_failures": []
+          },
+          {
+            "language": "es",
+            "unit_count": 537,
+            "definition_failures": []
+          },
+          {
+            "language": "fr",
+            "unit_count": 523,
+            "definition_failures": []
+          },
+          {
+            "language": "ru",
+            "unit_count": 612,
+            "definition_failures": []
+          },
+          {
+            "language": "sv",
+            "unit_count": 569,
+            "definition_failures": [
+              {
+                "name": "%",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "APR",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc min",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc minut",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc sec",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "arc second",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "bageridussin",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "becquerel",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "boiler horsepower",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Bq",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "British thermal enheter",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Btu",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "cable",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "cal",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "calorie food",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "centuries",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circle",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circular inch",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "circular mil",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ct",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "curie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "decennium",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "deg",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "doz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "dussin",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "footlambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "fortnight",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "GHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gigahertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "grader",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gradian",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "gross",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hat trick",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hemisfär",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hp",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "Hz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "hästkraft",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "i H2O",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "inch vatten",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kalenderår",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "karat",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "karat guld",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kcal",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilocalori",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilohertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kilowatt hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kvadrant",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "kWh",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "lambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljusminut",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljussekund",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ljusår",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mAh",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man month",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man week",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "man year",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "MBH",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "megahertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "MHz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "micron of Hg",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mill",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millennia",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millennium",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "milliamp hour",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millicurie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millihertz",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "millilambert",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "min arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "minut arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "mph",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "månad",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ozf",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "par",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per billion",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per million",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "parts per trillion",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "pi",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppb",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ppt",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "procent",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "proof",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ream",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rev",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "revolution",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "right angle",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rpm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "rps",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "score",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "seckund arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sek arc",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sekel",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "sfär",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "stort gross",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "therm",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "thermie",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "ton refrigeration",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "tonne coal equivalent",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "tonne kraft",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "turn",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "vecka",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "wk",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "yr",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              },
+              {
+                "name": "år",
+                "error": "AttributeError(\"'NoneType' object has no attribute 'equiv'\")"
+              }
+            ]
+          }
+        ]
+      },
+      "engine_sha256": {
+        "unitatom.py": "92d5c696b818a6c29d3184e20829223c9ce75953502b89161715855cdd66d018",
+        "unitdata.py": "8e08ea08f3d5a0e0446ac40d93499a5654604591dcb500ff4f4b77d6c29c4683",
+        "unitgroup.py": "81fcf9eb3578820adcd62e5cda98060fd97ac7d3a50379c8142c219a27fc5295",
+        "cmdline.py": "ab28bc1b6e12a2567b19982db6d4aee6e76c65b8b42db55ea908ab0597628ee3",
+        "option.py": "a7ab69402e34cb178844a1122f3dda398f7095e4e9fe8eb655879504b2c2fe82",
+        "optiondefaults.py": "0f80f6c0b175c831bce3e4dbf3df24dfa60d71e2763e8c88c188b2dee6c087b2",
+        "recentunits.py": "d91bbaac804839f09e25d32ab32c560bc24ce1b1a0a2a29e9b88b018362f7656"
+      },
+      "pip_freeze_all": [
+        "altgraph==0.17.5",
+        "packaging==26.3",
+        "pip==23.0.1",
+        "psutil==7.2.2",
+        "pyinstaller==6.22.3",
+        "pyinstaller-hooks-contrib==2026.8",
+        "PyQt6==6.11.0",
+        "PyQt6-Qt6==6.11.2",
+        "PyQt6_sip==13.13.0",
+        "setuptools==66.1.1"
+      ],
+      "data_sha256": {
+        "units.dat": "117af7e491116faf51252e487a9c73e1d51e57a2e89d258267b22aaaa0af004f",
+        "units_ca.dat": "3a479c57a6c93d8caeeab2aab566b491175a9d30710109ce825ae78de442a50f",
+        "units_de.dat": "5d917547fd819694c6f8c72294132572a05c332fa4453d47044f7dade5cded76",
+        "units_es.dat": "b0af3cff7d745b361bab97b43ddb0ede61955187c09780e7237e142c3b5af9aa",
+        "units_fr.dat": "32c443be19230980dfddf4d52c0e35a3fb7bbb1f2eaab84b4faa4c1dd9b77af1",
+        "units_ru.dat": "8f5f759ab22ee7c3e6e0b3afb1674912a3b45a5d53c54d0c80c2de5875080de1",
+        "units_sv.dat": "2c04fbb22d0eb6ae6a97b68c1075b7d3a409ebeb69780071f28117efe8ec3dbd"
+      }
+    }
+  },
+  "audit": {
+    "source_repository": "jojo8356/ConvertAll-py",
+    "source_commit": "a71219904b6a27e7578744afcfa227b21fc73fb2",
+    "branch": "arena/0adacf84-convertall-py",
+    "application_version": "0.8.0",
+    "source_and_data_unchanged_in_working_application": true,
+    "native_runtime_libraries": [
+      {
+        "name": "libGL.so.1",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/usr/lib/x86_64-linux-gnu/libGL.so.1.0.0",
+        "git_blob": "63abe2ec0f83ece40928ffe7b56943d68adf0da0",
+        "sha256": "9d5d5b0e7691fb158c535d892ceb3efb18101f906bb389ebff3299884a9415c9",
+        "size": 567624
+      },
+      {
+        "name": "libGLX.so.0",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/usr/lib/x86_64-linux-gnu/libGLX.so.0.0.0",
+        "git_blob": "9fa9f8394eee6db7fbce55294341b7af8964e977",
+        "sha256": "49014a53a095e06895628bffb5530dae963ccdc803f8752d587d77e08e793f01",
+        "size": 68144
+      },
+      {
+        "name": "libGLdispatch.so.0",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/usr/lib/x86_64-linux-gnu/libGLdispatch.so.0.0.0",
+        "git_blob": "0887ca59e896478f6dd72a77ee8ea971ece23da9",
+        "sha256": "2ac91fdda3fd504f2368855bb15d9f5a14ed66a3966774c3eb8965bb8e6af7ba",
+        "size": 612792
+      },
+      {
+        "name": "libEGL.so.1",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/usr/lib/x86_64-linux-gnu/libEGL.so.1.0.0",
+        "git_blob": "c6a778c22080f8addb7b975c6faa13c717457b6b",
+        "sha256": "12f84b62738df3a799d85e8b49a0a990526fb2ee86e08fc9e5a8109c73c9c6e1",
+        "size": 80448
+      },
+      {
+        "name": "libxkbcommon.so.0",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/usr/lib/x86_64-linux-gnu/libxkbcommon.so.0.0.0",
+        "git_blob": "4c75e2251b68e714bcda482a16f384d8b101bfdf",
+        "sha256": "9bc7b4d7c398c0ff85568e146eb26c1581686a4569e196b31c3e41b3da1a67ba",
+        "size": 256424
+      },
+      {
+        "name": "libdbus-1.so.3",
+        "repo": "eXtern-OS/eXternOS-Base",
+        "ref": "ec0e026a2b09225b5a85369c3627aedaf6dc2a5f",
+        "path": "squashfs-root/lib/x86_64-linux-gnu/libdbus-1.so.3.19.4",
+        "git_blob": "d9ad0097405bb1ad91d71358a6f6d238e9b454c7",
+        "sha256": "faadeebe757f55c6dc3cf6d859fabc3c3fd06f48b59949a459a23d8b619844f9",
+        "size": 313496
+      }
+    ],
+    "limitations": [
+      "Virtualized Debian 12 x86_64; no native display, GPU or compositor tests.",
+      "Python bootstrap, executable bootloader and cold-cache startup not included in startup timing.",
+      "Windows/macOS executable build and Inno Setup not executed.",
+      "PyInstaller binary build blocked by missing libpython3.11.so in the sandbox.",
+      "Installed binding-directory size is not the size of a frozen executable.",
+      "50 targeted smoke checks passing does not validate the 6 known failing English unit definitions or localized data failures."
+    ],
+    "translation_extraction": {
+      "pylupdate6_unmodified_helper_messages": 0,
+      "experimental_adapter_messages": 147
+    },
+    "qt5_preferences_read_by_qt6": {
+      "serialized_font": "DejaVu Sans,10,-1,5,50,0,0,0,0,0",
+      "fromString": true,
+      "qt6_weight": 400
+    },
+    "entrypoint_event_loop_smoke": {
+      "mode": "offscreen, original main() and application exec, timed quit after 300 ms",
+      "passed": {
+        "qt5": true,
+        "qt6": true
+      }
+    },
+    "original_qt5_installer_smoke": {
+      "passed": true,
+      "prefix": "isolated staging directory",
+      "cli_cases": [
+        "1 in = 2.54 cm",
+        "0 deg C = 32 deg F"
+      ]
+    },
+    "source_release_archive": {
+      "commit": "a71219904b6a27e7578744afcfa227b21fc73fb2",
+      "name": "ConvertAll-0.8.0-qt5-source.tar.gz",
+      "bytes": 417789,
+      "sha256": "9739aa7bb717cf2654541dd2b14a4aa329c2646709eff15d503f961e90af7873",
+      "checksum_verification_passed": true,
+      "archive_contains_no_venvs_caches_or_git_directory": true
+    },
+    "research_tool_unit_tests": {
+      "passed": 8,
+      "failed": 0
+    }
+  }
+}

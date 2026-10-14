@@ -1,0 +1,3 @@
+# Existing Inno Setup recipes use CRLF; retain normal whitespace checks while
+# treating their carriage return as a line ending rather than trailing space.
+win/*.iss whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol

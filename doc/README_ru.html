@@ -21,11 +21,18 @@
 	</style>
 </head>
 <body lang="ru-RU" text="#000000" dir="ltr">
+<p><strong>Python/Qt6 fork 0.9.3 (validation pending):</strong>
+Python 3.11–3.14, PyQt6 6.11.0 / Qt 6.11.2 / PyQt6-sip 13.13.0 (portable profile).
+The small Debian package uses Python/PyQt6/Qt/SIP from apt instead (Qt/PyQt6 >= 6.4.2).
+The pinned profile is in <tt>requirements-qt6.txt</tt>; validation and release
+instructions are in <tt>doc/RELEASE_QT6_FR.md</tt>.
+Historical change logs remain historical. PyQt6 is GPLv3 or commercially
+licensed, not LGPL; see <tt>LICENSE-GPL-3.0</tt> and the distribution notices.</p>
 <h1 align="center">Руководство по ConvertAll</h1>
 <h2 class="western" align="center">программа для
 конвертирования величин</h2>
 <p align="center">Автор Doug Bell<br/>
-Версия 0.8.0</p>
+Версия 0.9.1</p>
 <h2 class="western">Содержание</h2>
 <ul>
 	<li/>
@@ -205,29 +212,16 @@ License , опубликованной Фондом свободного
 для подробной информации.</span></p>
 <h2 class="western"><a name="sysreq"></a><a name="Системные требования|outline"></a>
 Системные требования</h2>
-<h3 class="western"><a name="linux-sys"></a>Linux</h3>
-<p>ConvertAll зависит от следующих библиотек:</p>
-<ul>
-	<li/>
-<p style="margin-bottom: 0cm">Python (Версии 3.4 или
-	выше) 
-	</p>
-	<li/>
-<p style="margin-bottom: 0cm"><span lang="ru-RU">Qt (Версии
-	</span><span lang="ru-RU">5.4 или выше</span><span lang="ru-RU">
-	- смотри <a href="http://qt-project.org/">Qt Project</a> для
-	подробной информации) </span>
-	</p>
-	<li/>
-<p><span lang="ru-RU">PyQt ( Версии </span><span lang="ru-RU">5.4
-	или выше</span><span lang="ru-RU"> - смотри <a href="http://www.riverbankcomputing.co.uk/">Riverbank</a>
-	для подробной информации ) </span>
-	</p>
-</ul>
-<h3 class="western"><a name="win-sys"></a>Windows</h3>
-<p>Используя файлы дистрибутива, ConvertAll
-должен работать на любом компьютере
-под Windows XP, Vista, 7, 8 или 10.</p>
+<h3><a name="linux-sys"></a>Linux</h3>
+<p>Use Python 3.11–3.14 and a dedicated environment installed from
+<tt>requirements-qt6.txt</tt>: PyQt6 6.11.0, Qt 6.11.2 and SIP 13.13.0.
+Normal Qt6 system libraries (GL/EGL, xkbcommon, dbus, fonts and XCB) are required,
+even for offscreen tests. CI targets Ubuntu 24.04 x86-64.</p>
+<h3><a name="win-sys"></a>Windows</h3>
+<p>Qt6 requires Windows 10 version 1809 or later, or Windows 11 (64-bit).
+XP, Vista, Windows 7 and Windows 8 are not supported. Native bundle CI targets
+Windows Server 2022 x64; actual desktop and Inno Setup acceptance remain manual.</p>
+
 <h2 class="western"><a name="Установка|outline"></a>Установка</h2>
 <h3 class="western"><a name="linux-inst"></a>Linux</h3>
 <p style="margin-bottom: 0.2cm"><span lang="ru-RU">Распакуйте
@@ -513,7 +507,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 <p lang="en-US" style="margin-bottom: 0cm">Изменена
 	устаревшая проверка зависимости в
 	установщике для Linux – теперь проверяется
-	наличие Qt5 библиотек. 
+	наличие Qt6 библиотек. 
 	</p>
 	<li/>
 <p lang="en-US">Fixed a timing issue in the Linux installer so
@@ -555,7 +549,7 @@ Linux, &quot;convertall_dos -i&quot; для Windows).</p>
 	</p>
 	<li/>
 <p lang="en-US">ConvertAll переведён с библиотек
-	Qt4 на Qt5. 
+	Qt4 на Qt6. 
 	</p>
 </ul>
 <ul>

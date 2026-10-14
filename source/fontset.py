@@ -12,9 +12,9 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt5.QtCore import (QSize, Qt)
-from PyQt5.QtGui import (QFontDatabase, QFontInfo, QIntValidator)
-from PyQt5.QtWidgets import (QAbstractItemView, QCheckBox, QDialog,
+from PyQt6.QtCore import (QSize, Qt)
+from PyQt6.QtGui import (QFont, QFontDatabase, QFontInfo, QIntValidator)
+from PyQt6.QtWidgets import (QAbstractItemView, QCheckBox, QDialog,
                              QGridLayout, QGroupBox, QHBoxLayout, QLabel,
                              QLineEdit, QListWidget, QPushButton, QVBoxLayout)
 
@@ -26,8 +26,8 @@ class CustomFontDialog(QDialog):
         """Create a font customization dialog.
         """
         super().__init__(parent)
-        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                            Qt.WindowCloseButtonHint)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                            Qt.WindowType.WindowCloseButtonHint)
         self.setWindowTitle(_('Customize Font'))
         self.sysFont = sysFont
         self.currentFont = currentFont
@@ -59,7 +59,7 @@ class CustomFontDialog(QDialog):
         label.setBuddy(self.familyList)
         self.familyEdit.setFocusProxy(self.familyList)
         fontLayout.setColumnMinimumWidth(1, spacing)
-        families = [family for family in QFontDatabase().families()]
+        families = [family for family in QFontDatabase.families()]
         families.sort(key=str.lower)
         self.familyList.addItems(families)
         self.familyList.currentItemChanged.connect(self.updateFamily)
@@ -82,7 +82,7 @@ class CustomFontDialog(QDialog):
         label.setIndent(2)
         self.sizeEdit = QLineEdit()
         fontLayout.addWidget(self.sizeEdit, 1, 4)
-        self.sizeEdit.setFocusPolicy(Qt.ClickFocus)
+        self.sizeEdit.setFocusPolicy(Qt.FocusPolicy.ClickFocus)
         validator = QIntValidator(1, 512, self)
         self.sizeEdit.setValidator(validator)
         self.sizeList = SmallListWidget()
@@ -99,7 +99,7 @@ class CustomFontDialog(QDialog):
         sampleLayout = QVBoxLayout(sampleBox)
         self.sampleEdit = QLineEdit()
         sampleLayout.addWidget(self.sampleEdit)
-        self.sampleEdit.setAlignment(Qt.AlignCenter)
+        self.sampleEdit.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.sampleEdit.setText(_('AaBbCcDdEeFfGg...TtUuVvWvXxYyZz'))
         self.sampleEdit.setFixedHeight(self.sampleEdit.sizeHint().height() * 2)
 
@@ -134,13 +134,13 @@ class CustomFontDialog(QDialog):
         """
         fontInfo = QFontInfo(font)
         family = fontInfo.family()
-        matches = self.familyList.findItems(family, Qt.MatchExactly)
+        matches = self.familyList.findItems(family, Qt.MatchFlag.MatchExactly)
         if matches:
             self.familyList.setCurrentItem(matches[0])
             self.familyList.scrollToItem(matches[0],
-                                         QAbstractItemView.PositionAtTop)
-        style = QFontDatabase().styleString(fontInfo)
-        matches = self.styleList.findItems(style, Qt.MatchExactly)
+                                         QAbstractItemView.ScrollHint.PositionAtTop)
+        style = QFontDatabase.styleString(fontInfo)
+        matches = self.styleList.findItems(style, Qt.MatchFlag.MatchExactly)
         if matches:
             self.styleList.setCurrentItem(matches[0])
             self.styleList.scrollToItem(matches[0])
@@ -148,7 +148,7 @@ class CustomFontDialog(QDialog):
             self.styleList.setCurrentRow(0)
             self.styleList.scrollToItem(self.styleList.currentItem())
         size = repr(fontInfo.pointSize())
-        matches = self.sizeList.findItems(size, Qt.MatchExactly)
+        matches = self.sizeList.findItems(size, Qt.MatchFlag.MatchExactly)
         if matches:
             self.sizeList.setCurrentItem(matches[0])
             self.sizeList.scrollToItem(matches[0])
@@ -160,13 +160,15 @@ class CustomFontDialog(QDialog):
             currentItem -- the new list widget family item
             previousItem -- the previous list widget item
         """
+        if currentItem is None:
+            return
         family = currentItem.text()
         self.familyEdit.setText(family)
         if self.familyEdit.hasFocus():
             self.familyEdit.selectAll()
         prevStyle = self.styleEdit.text()
         prevSize = self.sizeEdit.text()
-        fontDb = QFontDatabase()
+        fontDb = QFontDatabase
         styles = [style for style in fontDb.styles(family)]
         self.styleList.clear()
         self.styleList.addItems(styles)
@@ -177,7 +179,8 @@ class CustomFontDialog(QDialog):
                 num = 0
             self.styleList.setCurrentRow(num)
             self.styleList.scrollToItem(self.styleList.currentItem())
-        sizes = [repr(size) for size in fontDb.pointSizes(family)]
+        pointSizes = fontDb.pointSizes(family) or fontDb.standardSizes()
+        sizes = [repr(size) for size in pointSizes]
         self.sizeList.clear()
         self.sizeList.addItems(sizes)
         if prevSize:
@@ -231,7 +234,7 @@ class CustomFontDialog(QDialog):
         style = self.styleEdit.text()
         size = self.sizeEdit.text()
         if family and style and size:
-            return QFontDatabase().font(family, style, int(size))
+            return QFontDatabase.font(family, style, int(size))
         return None
 
     def resultingFont(self):
@@ -240,6 +243,49 @@ class CustomFontDialog(QDialog):
         if self.defaultCheck.isChecked():
             return None
         return self.readFont()
+
+
+def legacyFontString(font):
+    """Keep GuiFont readable by Qt5, alongside a separate full Qt6 state.
+
+    Qt6's toString() has 16+ fields and OpenType weights; Qt5 expects 10/11
+    fields and weights 0–99. The UI chooses the standard named weights.
+    """
+    steps = [(100, 0), (200, 12), (300, 25), (400, 50), (500, 57),
+             (600, 63), (700, 75), (800, 81), (900, 87)]
+    weight = getattr(font.weight(), 'value', font.weight())
+    legacyWeight = min(steps, key=lambda step: abs(step[0] - weight))[1]
+    styleHint = getattr(font.styleHint(), 'value', font.styleHint())
+    style = getattr(font.style(), 'value', font.style())
+    fields = [font.family(), format(font.pointSizeF(), '.12g'), str(font.pixelSize()),
+              str(styleHint), str(legacyWeight), str(style), str(int(font.underline())),
+              str(int(font.strikeOut())), str(int(font.fixedPitch())), '0']
+    if font.styleName():
+        fields.append(font.styleName())
+    return ','.join(fields)
+
+
+def fontFromOptions(option):
+    """Read full Qt6 state only when the legacy mirror was not changed in Qt5."""
+    legacy = option.strData('GuiFont', True)
+    if not legacy:
+        return None
+    state = option.strData('GuiFontQt6', True)
+    mirror = option.strData('GuiFontQt6Legacy', True)
+    if state and legacy == mirror:
+        font = QFont()
+        if font.fromString(state):
+            return font
+    font = QFont()
+    return font if font.fromString(legacy) else None
+
+
+def storeFontOptions(option, font):
+    """Preserve the old key and full new state; default clears all three keys."""
+    legacy = legacyFontString(font) if font is not None else ''
+    option.changeData('GuiFont', legacy, True)
+    option.changeData('GuiFontQt6', font.toString() if font is not None else '', True)
+    option.changeData('GuiFontQt6Legacy', legacy, True)
 
 
 class SmallListWidget(QListWidget):
@@ -256,5 +302,7 @@ class SmallListWidget(QListWidget):
     def sizeHint(self):
         """Return smaller width.
         """
-        itemHeight = self.visualItemRect(self.item(0)).height()
+        item = self.item(0)
+        itemHeight = self.visualItemRect(item).height() if item else 0
+        itemHeight = max(itemHeight, self.fontMetrics().height() + 2)
         return QSize(100, itemHeight * 6)

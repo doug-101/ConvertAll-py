@@ -10,6 +10,13 @@
 </head>
 
 <body>
+<p><strong>Python/Qt6 fork 0.9.1 (validation pending):</strong>
+Python 3.11–3.14, PyQt6 6.11.0 / Qt 6.11.2 / SIP 13.13.0.
+The pinned profile is in <tt>requirements-qt6.txt</tt>; validation and release
+instructions are in <tt>doc/RELEASE_QT6_FR.md</tt>.
+Historical change logs remain historical. PyQt6 is GPLv3 or commercially
+licensed, not LGPL; see <tt>LICENSE-GPL-3.0</tt> and the distribution notices.</p>
+
 
     <div class="interior">
 
@@ -18,7 +25,7 @@
         </div>
 
         <div class="toplinks">
-            <p>Version 0.8.0<p>
+            <p>Version 0.9.1<p>
             <p><a href="http://www.bellz.org/progs.html">Other Programs</a></p>
             <p><a href="http://www.bellz.org/contact.html">Contact Info</a></p>
         </div>
@@ -48,24 +55,15 @@
 
             <h1>System Requirements</h1>
 
-            <h2>Linux</h2>
-
-            <p>ConvertAll requires the following libraries:
-            <ul>
-              <li>Python (Version 3.4 or higher)</li>
-              <li>Qt (Version 5.4 or higher - see <a
-                href="http://qt-project.org">Qt Project</a> for more
-              information)</li>
-              <li>PyQt (Version 5.4 or higher - see <a
-                href="http://www.riverbankcomputing.co.uk">Riverbank</a>
-                for more information)</li>
-            </ul></p>
-
-            <h2>Windows</h2>
-
-            <p>Using the files provided in the binary distribution,
-            ConvertAll should run on any computer running Windows XP,
-            Vista, 7, 8 or 10.</p>
+<h3><a name="linux-sys"></a>Linux</h3>
+<p>Use Python 3.11–3.14 and a dedicated environment installed from
+<tt>requirements-qt6.txt</tt>: PyQt6 6.11.0, Qt 6.11.2 and SIP 13.13.0.
+Normal Qt6 system libraries (GL/EGL, xkbcommon, dbus, fonts and XCB) are required,
+even for offscreen tests. CI targets Ubuntu 24.04 x86-64.</p>
+<h3><a name="win-sys"></a>Windows</h3>
+<p>Qt6 requires Windows 10 version 1809 or later, or Windows 11 (64-bit).
+XP, Vista, Windows 7 and Windows 8 are not supported. Native bundle CI targets
+Windows Server 2022 x64; actual desktop and Inno Setup acceptance remain manual.</p>
 
         </div>
 

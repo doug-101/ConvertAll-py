@@ -15,6 +15,7 @@
 
 import sys
 import os.path
+import posixpath
 import getopt
 import shutil
 import compileall
@@ -22,6 +23,7 @@ import py_compile
 import glob
 import re
 import subprocess
+import shlex
 
 prefixDir = '/usr/local'
 buildRoot = '/'
@@ -74,8 +76,8 @@ def cmpVersions(versionStr, reqdTuple):
         return True
     return False
 
-def copyDir(srcDir, dstDir):
-    """Copy all regular files from srcDir to dstDir.
+def copyDir(srcDir, dstDir, prefix=None):
+    """Copy regular files, optionally restricted to an application prefix.
 
     dstDir is created if necessary.
     Arguments:
@@ -87,6 +89,8 @@ def copyDir(srcDir, dstDir):
             os.makedirs(dstDir)
         names = os.listdir(srcDir)
         for name in names:
+            if prefix is not None and not name.startswith(prefix):
+                continue
             srcPath = os.path.join(srcDir, name)
             if os.path.isfile(srcPath):
                 shutil.copy2(srcPath, os.path.join(dstDir, name))
@@ -104,10 +108,12 @@ def createWrapper(execDir, execName):
         execDir -- the path where the executable is placed
         execName -- the name for the executable file
     """
-    text = '#!/bin/sh\n\nexec {0} {1}/{2}.py "$@"'.format(sys.executable,
-                                                          execDir,
-                                                          execName)
-    with open(execName, 'w') as f:
+    # This emits a POSIX /bin/sh wrapper, including when its quoting is
+    # tested on Windows. Use the target shell's separators, not the host's.
+    script = posixpath.join(execDir, execName + '.py')
+    text = '#!/bin/sh\n\nexec {0} {1} "$@"\n'.format(
+        shlex.quote(sys.executable), shlex.quote(script))
+    with open(execName, 'w', encoding='utf-8', newline='\n') as f:
         f.write(text)
     os.chmod(execName, 0o755)
 
@@ -119,9 +125,9 @@ def replaceLine(path, origLineStart, newLine):
         origLineStart -- the beginning of the line to be replaced
         newLine -- the replacement line
     """
-    with open(path, 'r') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         lines = f.readlines()
-    with open(path, 'w') as f:
+    with open(path, 'w', encoding='utf-8', newline='\n') as f:
         for line in lines:
             if line.startswith(origLineStart):
                 f.write(newLine)
@@ -192,30 +198,30 @@ def main():
         print('Checking dependencies...')
         pyVersion = sys.version_info[:3]
         pyVersion = '.'.join([str(num) for num in pyVersion])
-        if cmpVersions(pyVersion, (3, 4)):
+        if cmpVersions(pyVersion, (3, 11)):
             print('  Python Version {0} -> OK'.format(pyVersion))
         else:
-            print('  Python Version {0} -> Sorry, 3.4 or higher is required'
+            print('  Python Version {0} -> Sorry, 3.11 or higher is required'
                   .format(pyVersion))
             sys.exit(3)
         try:
-            from PyQt5 import QtCore, QtWidgets
+            from PyQt6 import QtCore, QtWidgets
         except:
-            print('  PyQt not found -> Sorry, PyQt 5.4 or higher is required'
+            print('  PyQt not found -> Sorry, PyQt 6.11.0 or higher is required'
                   ' and must be built for Python 3')
             sys.exit(3)
         qtVersion = QtCore.qVersion()
-        if cmpVersions(qtVersion, (5, 4)):
+        if cmpVersions(qtVersion, (6, 11, 2)):
             print('  Qt Version {0} -> OK'.format(qtVersion))
         else:
-            print('  Qt Version {0} -> Sorry, 5.4 or higher is required'
+            print('  Qt Version {0} -> Sorry, 6.11.2 or higher is required'
                   .format(qtVersion))
             sys.exit(3)
         pyqtVersion = QtCore.PYQT_VERSION_STR
-        if cmpVersions(pyqtVersion, (5, 4)):
+        if cmpVersions(pyqtVersion, (6, 11, 0)):
             print('  PyQt Version {0} -> OK'.format(pyqtVersion))
         else:
-            print('  PyQt Version {0} -> Sorry, 5.4 or higher is required'
+            print('  PyQt Version {0} -> Sorry, 6.11.0 or higher is required'
                   .format(pyqtVersion))
             sys.exit(3)
 
@@ -230,7 +236,8 @@ def main():
     if os.path.isdir('translations') and translated:
         translationDir = os.path.join(pythonBuildDir, 'translations')
         print('  Copying translation files to {0}'.format(translationDir))
-        copyDir('translations', translationDir)
+        # Only application catalogues; widget qtbase files belong to Qt6 itself.
+        copyDir('translations', translationDir, prefix='convertall_')
     if os.path.isdir('doc'):
         docPrefixDir = docDir.replace('<prefix>/', '')
         if not os.path.isabs(docPrefixDir):
@@ -245,7 +252,7 @@ def main():
         # update help file location in main python script
         replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
                     'helpFilePath = None',
-                    'helpFilePath = \'{0}\'   # modified by install script\n'
+                    'helpFilePath = {0!r}   # modified by install script\n'
                     .format(docPrefixDir))
     if os.path.isdir('data'):
         dataPrefixDir = os.path.join(prefixDir, 'share', progName, 'data')
@@ -260,7 +267,7 @@ def main():
         # update data file location in main python script
         replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
                     'dataFilePath = None',
-                    'dataFilePath =  \'{0}\'   # modified by install script\n'
+                    'dataFilePath = {0!r}   # modified by install script\n'
                     .format(dataPrefixDir))
     if os.path.isdir('icons'):
         iconPrefixDir = iconDir.replace('<prefix>/', '')
@@ -272,7 +279,7 @@ def main():
         # update icon location in main python script
         replaceLine(os.path.join(pythonBuildDir, '{0}.py'.format(progName)),
                     'iconPath = None',
-                    'iconPath =  \'{0}\'   # modified by install script\n'
+                    'iconPath = {0!r}   # modified by install script\n'
                     .format(iconPrefixDir))
         if os.path.isfile(os.path.join('icons', progName + '-icon.svg')):
             svgIconPrefixDir = os.path.join(prefixDir, 'share', 'icons',

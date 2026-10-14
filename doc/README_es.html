@@ -4,12 +4,20 @@
 <title>Archivo "léame" para ConvertAll</title>
 </head>
 <body>
+<p><strong>Python/Qt6 fork 0.9.3 (validation pending):</strong>
+Python 3.11–3.14, PyQt6 6.11.0 / Qt 6.11.2 / PyQt6-sip 13.13.0 (portable profile).
+The small Debian package uses Python/PyQt6/Qt/SIP from apt instead (Qt/PyQt6 >= 6.4.2).
+The pinned profile is in <tt>requirements-qt6.txt</tt>; validation and release
+instructions are in <tt>doc/RELEASE_QT6_FR.md</tt>.
+Historical change logs remain historical. PyQt6 is GPLv3 or commercially
+licensed, not LGPL; see <tt>LICENSE-GPL-3.0</tt> and the distribution notices.</p>
+
 <center>
 <h1>Archivo "Léame" para ConvertAll</h1>
 <h2>Un programa para convertir unidades</h2>
 
 <p>Escrito por Doug Bell<br>
-Versión 0.8.0</p>
+Versión 0.9.1</p>
 </center>
 
 <h2>Contenidos</h2>
@@ -114,23 +122,14 @@ mayor información. </p>
 <h2><a name="sysreq"></a>Requerimientos del sistema</h2>
 
 <h3><a name="linux-sys"></a>Linux</h3>
-
-<p>ConvertAll requiere las siguientes librerías:
-<ul>
-  <li>Python (Versión 3.2 o superior)</li>
-  <li>Qt (Versión 4.6 o superior - ver <a
-      href="http://www.trolltech.com">Trolltech</a> para más
-      información)</li>
-  <li>PyQt (Versión 4.8 o superior - ver <a
-    href="http://www.riverbankcomputing.co.uk">Riverbank</a>
-    para más información)</li>
-</ul></p>
-
+<p>Use Python 3.11–3.14 and a dedicated environment installed from
+<tt>requirements-qt6.txt</tt>: PyQt6 6.11.0, Qt 6.11.2 and SIP 13.13.0.
+Normal Qt6 system libraries (GL/EGL, xkbcommon, dbus, fonts and XCB) are required,
+even for offscreen tests. CI targets Ubuntu 24.04 x86-64.</p>
 <h3><a name="win-sys"></a>Windows</h3>
-
-<p>Utilizando los archivos provistos en la distribución binaria, ConvertAll
-debería correr en cualquier computador utilizando Windows 
-XP, Vista, 7 o 8.</p>
+<p>Qt6 requires Windows 10 version 1809 or later, or Windows 11 (64-bit).
+XP, Vista, Windows 7 and Windows 8 are not supported. Native bundle CI targets
+Windows Server 2022 x64; actual desktop and Inno Setup acceptance remain manual.</p>
 
 <h2><a name="install"></a>Instalación</h2>
 

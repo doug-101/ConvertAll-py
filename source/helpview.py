@@ -14,9 +14,9 @@
 import os.path
 import sys
 import webbrowser
-from PyQt5.QtCore import (QUrl, Qt)
-from PyQt5.QtGui import QTextDocument
-from PyQt5.QtWidgets import (QAction, QLabel, QLineEdit, QMainWindow, QMenu,
+from PyQt6.QtCore import (QUrl, Qt)
+from PyQt6.QtGui import (QAction, QTextDocument)
+from PyQt6.QtWidgets import (QLabel, QLineEdit, QMainWindow, QMenu,
                              QStatusBar, QTextBrowser)
 
 
@@ -27,8 +27,8 @@ class HelpView(QMainWindow):
         """Helpview initialize with text.
         """
         QMainWindow.__init__(self, parent)
-        self.setAttribute(Qt.WA_QuitOnClose, False)
-        self.setWindowFlags(Qt.Window)
+        self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
+        self.setWindowFlags(Qt.WindowType.Window)
         self.setStatusBar(QStatusBar())
         self.textView = HelpViewer(self)
         self.setCentralWidget(self.textView)
@@ -36,12 +36,12 @@ class HelpView(QMainWindow):
         if sys.platform.startswith('win'):
             path = path.replace('\\', '/')
         self.textView.setSearchPaths([os.path.dirname(path)])
-        self.textView.setSource(QUrl('file:///{0}'.format(path)))
+        self.textView.setSource(QUrl.fromLocalFile(path))
         self.resize(520, 440)
         self.setWindowTitle(caption)
         tools = self.addToolBar('Tools')
         self.menu = QMenu(self.textView)
-        self.textView.highlighted[str].connect(self.showLink)
+        self.textView.highlighted.connect(self.showLink)
 
         backAct = QAction(_('&Back'), self)
         backAct.setIcon(icons['helpback'])
@@ -88,10 +88,10 @@ class HelpView(QMainWindow):
         self.findNextAct.triggered.connect(self.findNext)
         self.findNextAct.setEnabled(False)
 
-    def showLink(self, text):
+    def showLink(self, url):
         """Send link text to the statusbar.
         """
-        self.statusBar().showMessage(text)
+        self.statusBar().showMessage(url.toString())
 
     def findTextChanged(self, text):
         """Update find controls based on text in text edit.
@@ -103,7 +103,7 @@ class HelpView(QMainWindow):
         """Command to find the previous string.
         """
         if self.textView.find(self.findEdit.text(),
-                              QTextDocument.FindBackward):
+                              QTextDocument.FindFlag.FindBackward):
             self.statusBar().clearMessage()
         else:
             self.statusBar().showMessage(_('Text string not found'))
@@ -123,16 +123,15 @@ class HelpViewer(QTextBrowser):
     def __init__(self, parent=None):
         QTextBrowser.__init__(self, parent)
 
-    def setSource(self, url):
+    def setSource(self, url, resourceType=QTextDocument.ResourceType.UnknownResource):
         """Called when user clicks on a URL.
         """
         name = url.toString()
-        if name.startswith('http'):
+        if url.scheme() in ('http', 'https'):
             webbrowser.open(name, True)
         else:
-            QTextBrowser.setSource(self, QUrl(name))
+            QTextBrowser.setSource(self, url, resourceType)
 
     def contextMenuEvent(self, event):
-        """Init popup menu on right click"".
-        """
-        self.parentWidget().menu.exec_(event.globalPos())
+        """Show the context menu using Qt6's event coordinates."""
+        self.parentWidget().menu.exec(event.globalPos())

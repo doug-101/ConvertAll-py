@@ -12,10 +12,10 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt5.QtCore import (pyqtSignal, Qt, QItemSelectionModel)
-from PyQt5.QtGui import QPalette
-from PyQt5.QtWidgets import (QAbstractItemView, QApplication, QTreeWidget,
-                             QTreeWidgetItem)
+from PyQt6.QtCore import (pyqtSignal, Qt, QItemSelectionModel)
+from PyQt6.QtGui import QPalette
+from PyQt6.QtWidgets import (QAbstractItemView, QApplication, QHeaderView,
+                             QTreeWidget, QTreeWidgetItem)
 import re
 
 
@@ -33,11 +33,19 @@ class UnitListView(QTreeWidget):
         self.setRootIsDecorated(False)
         self.setColumnCount(3)
         self.setHeaderLabels([_('Unit Name'), _('Unit Type'), _('Comments')])
-        self.header().setStretchLastSection(False)
-        self.header().setSortIndicatorShown(True)
-        self.header().setSectionsClickable(True)
-        self.header().setSortIndicator(0, Qt.AscendingOrder)
-        self.header().sectionClicked.connect(self.changeSort)
+        header = self.header()
+        header.setStretchLastSection(False)
+        # The first two columns keep the width of their text; the comments column
+        # takes whatever is left, so the list always fills the dialog at any size
+        # instead of keeping a fixed content width. A comment that no longer fits
+        # is elided, and its full text stays available as a tooltip.
+        header.setSectionResizeMode(0, QHeaderView.ResizeMode.Interactive)
+        header.setSectionResizeMode(1, QHeaderView.ResizeMode.Interactive)
+        header.setSectionResizeMode(2, QHeaderView.ResizeMode.Stretch)
+        header.setSortIndicatorShown(True)
+        header.setSectionsClickable(True)
+        header.setSortIndicator(0, Qt.SortOrder.AscendingOrder)
+        header.sectionClicked.connect(self.changeSort)
         self.itemSelectionChanged.connect(self.replaceUnit)
         self.loadUnits()
 
@@ -47,7 +55,8 @@ class UnitListView(QTreeWidget):
         self.clear()
         for unit in self.unitData.values():
             UnitListViewItem(unit, self)
-        for col in range(3):
+        # Only the two sized columns: the comments column follows the width.
+        for col in (0, 1):
             self.resizeColumnToContents(col)
 
     def updateFiltering(self, focusProxy=None):
@@ -140,7 +149,7 @@ class UnitListView(QTreeWidget):
         if item:
             if [item] != self.selectedItems():
                 pal = QApplication.palette(self)
-                brush = pal.brush(QPalette.Highlight)
+                brush = pal.brush(QPalette.ColorRole.Highlight)
                 for col in range(3):
                     item.setForeground(col, brush)
             self.scrollToItem(item)
@@ -152,7 +161,7 @@ class UnitListView(QTreeWidget):
         item = self.topLevelItem(self.highlightNum)
         if item and [item] != self.selectedItems():
             pal = QApplication.palette(self)
-            brush = pal.brush(QPalette.Text)
+            brush = pal.brush(QPalette.ColorRole.Text)
             for col in range(3):
                 item.setForeground(col, brush)
 
@@ -160,28 +169,28 @@ class UnitListView(QTreeWidget):
         """Change the sort order based on a header click.
         """
         colNum = self.header().sortIndicatorSection()
-        order = self.header().sortIndicatorOrder() == Qt.AscendingOrder
+        order = self.header().sortIndicatorOrder() == Qt.SortOrder.AscendingOrder
         self.unitData.sortUnits(colNum, order)
         self.updateFiltering()
 
     def handleKeyPress(self, key):
         """Handle up/down, page up/down and enter key presses.
         """
-        if key == Qt.Key_Up:
+        if key == Qt.Key.Key_Up:
             pos = self.highlightNum - 1
-        elif key == Qt.Key_Down:
+        elif key == Qt.Key.Key_Down:
             pos = self.highlightNum + 1
-        elif key == Qt.Key_PageUp:
+        elif key == Qt.Key.Key_PageUp:
             ht = self.viewport().height()
             numVisible = (self.indexOfTopLevelItem(self.itemAt(0, ht)) -
                           self.indexOfTopLevelItem(self.itemAt(0, 0)))
             pos = self.highlightNum - numVisible
-        elif key == Qt.Key_PageDown:
+        elif key == Qt.Key.Key_PageDown:
             ht = self.viewport().height()
             numVisible = (self.indexOfTopLevelItem(self.itemAt(0, ht)) -
                           self.indexOfTopLevelItem(self.itemAt(0, 0)))
             pos = self.highlightNum + numVisible
-        elif key in (Qt.Key_Return, Qt.Key_Enter):
+        elif key in (Qt.Key.Key_Return, Qt.Key.Key_Enter):
             item = self.topLevelItem(self.highlightNum)
             if item:
                 self.setCurrentItem(item)
@@ -211,4 +220,8 @@ class UnitListViewItem(QTreeWidgetItem):
         self.unit = unit
         unit.viewLink = self
         for colNum in range(3):
-            self.setText(colNum, unit.columnText(colNum))
+            text = unit.columnText(colNum)
+            self.setText(colNum, text)
+            # The comments column can be narrower than its text.
+            if colNum == 2 and text:
+                self.setToolTip(colNum, text)

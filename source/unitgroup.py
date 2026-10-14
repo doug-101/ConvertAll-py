@@ -286,6 +286,9 @@ class UnitGroup:
             if count > 5000:
                 raise unitdata.UnitDataError(_('Circular unit definition'))
             unit = tmpList.pop(0)
+            if unit.datum is None:
+                raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                             format(unit.unitName))
             if unit.datum.equiv.startswith('!'):
                 newUnit = unitatom.UnitAtom('', unit.datum)
                 newUnit.exp = unit.exp
@@ -299,10 +302,22 @@ class UnitGroup:
                 equivUnit = UnitGroup(self.unitData, self.option)
                 equivUnit.update(unit.datum.equiv)
                 newList = equivUnit.flatUnitList()
+                if not equivUnit.groupValid():
+                    missing = next((item.unitName for item in newList
+                                    if item.datum is None), unit.unitName)
+                    raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                                 format(missing))
                 for newUnit in newList:
                     newUnit.exp *= unit.exp
                 tmpList.extend(newList)
-                self.factor *= unit.datum.factor**unit.exp
+                try:
+                    self.factor *= unit.datum.factor**unit.exp
+                except (OverflowError, ZeroDivisionError) as error:
+                    raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                                 format(unit.unitName)) from error
+                if not isfinite(self.factor) or self.factor <= 0:
+                    raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                                 format(unit.unitName))
         self.reducedList.sort()
         tmpList = self.reducedList[:]
         self.reducedList = []

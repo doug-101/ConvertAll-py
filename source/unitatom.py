@@ -34,6 +34,9 @@ class UnitDatum:
         self.toEqn = ''     # used only for non-linear units
         if unitList:
             self.equiv = unitList[0].strip()
+            if not self.equiv:
+                raise unitdata.UnitDataError(_('Invalid conversion for "{0}"').
+                                             format(self.name))
             if self.equiv[0] == '[':   # used only for non-linear units
                 try:
                     self.equiv, self.fromEqn = (UnitDatum.eqnRegEx.

@@ -14,9 +14,10 @@
 
 import re
 import sys
-from PyQt5.QtCore import pyqtSignal
-from PyQt5.QtGui import QValidator
-from PyQt5.QtWidgets import (QLineEdit, QMessageBox)
+import math
+from PyQt6.QtCore import pyqtSignal
+from PyQt6.QtGui import QValidator
+from PyQt6.QtWidgets import (QLineEdit, QMessageBox)
 import unitdata
 
 
@@ -50,6 +51,9 @@ class NumEdit(QLineEdit):
                     self.thisUnit.reduceGroup()
                     self.otherUnit.reduceGroup()
                 except unitdata.UnitDataError as text:
+                    self.setEnabled(False)
+                    self.convertNum.emit('')
+                    self.status.setText(_('Set units'))
                     QMessageBox.warning(self, 'ConvertAll',
                                               _('Error in unit data - {0}').
                                               format(text))
@@ -92,13 +96,20 @@ class NumEdit(QLineEdit):
             self.recentUnits.addEntry(self.otherUnit.unitString())
         try:
             num = float(eval(self.text()))
+            if not math.isfinite(num):
+                raise ValueError('Number must be finite')
         except:
             self.convertNum.emit('')
             return
         try:
-            numText = self.thisUnit.convertStr(num, self.otherUnit)
+            result = self.thisUnit.convert(num, self.otherUnit)
+            if not math.isfinite(result):
+                self.convertNum.emit('')
+                return
+            numText = self.thisUnit.formatNumStr(result)
             self.convertNum.emit(numText)
-        except unitdata.UnitDataError as text:
+        except (unitdata.UnitDataError, ArithmeticError, ValueError) as text:
+            self.convertNum.emit('')
             QMessageBox.warning(self, 'ConvertAll',
                                       _('Error in unit data - {0}').
                                       format(text))
@@ -131,5 +142,5 @@ class FloatExprValidator(QValidator):
         """Check for valid characters in entry.
         """
         if FloatExprValidator.invalidRe.search(inputStr):
-            return (QValidator.Invalid, inputStr, pos)
-        return (QValidator.Acceptable, inputStr, pos)
+            return (QValidator.State.Invalid, inputStr, pos)
+        return (QValidator.State.Acceptable, inputStr, pos)

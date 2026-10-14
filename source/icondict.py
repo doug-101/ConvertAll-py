@@ -12,7 +12,7 @@
 #*****************************************************************************
 
 import os.path
-from PyQt5.QtGui import (QIcon, QPixmap)
+from PyQt6.QtGui import (QIcon, QPixmap)
 
 class IconDict(dict):
     """Stores icons by name, loads on demand.

@@ -35,6 +35,7 @@ class UnitData(collections.OrderedDict):
     def __init__(self):
         super().__init__()
         self.typeList = []
+        self.filePath = None
 
     def findDataFile(self):
         """Search for data file, return line list or None.
@@ -55,34 +56,57 @@ class UnitData(collections.OrderedDict):
                         with open(os.path.join(path, fileName), 'r',
                                   encoding='utf-8') as f:
                             lineList = f.readlines()
+                        self.filePath = os.path.abspath(os.path.join(path, fileName))
                         return lineList
                     except IOError:
                         pass
         raise UnitDataError(_('Can not read "units.dat" file'))
 
-    def readData(self):
-        """Read all unit data from file, return number loaded.
+    def readData(self, filePath=None):
+        """Read a catalogue atomically; reloading must not accumulate types.
+
+        An explicit path is useful to validate every shipped translation.
+        Without it, the original locale/resource discovery is retained.
         """
-        lines = self.findDataFile()
-        for i in range(len(lines) - 2, -1, -1):  # join continuation lines
+        if filePath is None:
+            lines = self.findDataFile()
+        else:
+            try:
+                with open(filePath, 'r', encoding='utf-8') as stream:
+                    lines = stream.readlines()
+            except (OSError, UnicodeError) as error:
+                raise UnitDataError(_('Can not read "units.dat" file')) from error
+        for i in range(len(lines) - 2, -1, -1):
             if lines[i].rstrip().endswith('\\'):
                 lines[i] = ''.join([lines[i].rstrip()[:-1], lines[i+1]])
                 lines[i+1] = ''
         units = [unitatom.UnitDatum(line) for line in lines if
-                 line.split('#', 1)[0].strip()]   # remove comment/empty lines
+                 line.split('#', 1)[0].strip()]
         typeText = ''
-        for unit in units:               # find & set headings
-            if unit.name.startswith('['):
+        typeList = []
+        definitions = []
+        for unit in units:
+            if unit.name.startswith('[') and unit.name.endswith(']'):
                 typeText = unit.name[1:-1].strip()
-                self.typeList.append(typeText)
-            unit.typeName = typeText
-        units = [unit for unit in units if unit.equiv]  # keep valid units
-        for unit in sorted(units):
-            self[unit.name.lower().replace(' ', '')] = unit
-        if len(self) < len(units):
+                typeList.append(typeText)
+            elif not unit.equiv:
+                raise UnitDataError(_('Invalid conversion for "{0}"').
+                                    format(unit.name))
+            else:
+                unit.typeName = typeText
+                definitions.append(unit)
+        newData = collections.OrderedDict(
+            (unit.name.lower().replace(' ', ''), unit)
+            for unit in sorted(definitions))
+        if len(newData) != len(definitions):
             raise UnitDataError(_('Duplicate unit names found'))
-        self.typeList.sort()
-        return len(units)
+        # Do not change the old catalogue if parsing/validation failed.
+        self.clear()
+        self.update(newData)
+        self.typeList = sorted(set(typeList))
+        if filePath is not None:
+            self.filePath = os.path.abspath(filePath)
+        return len(definitions)
 
     def sortUnits(self, colNum, ascend=True):
         """Sort units using key from given column.

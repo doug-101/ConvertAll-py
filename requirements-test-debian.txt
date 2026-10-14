@@ -1,0 +1,6 @@
+# Native Debian compatibility profile: Qt/PyQt/SIP come ONLY from apt.
+# Do not include requirements-qt6.txt or install a PyQt wheel in this environment.
+pytest==9.1.1
+pytest-qt==4.5.0
+pytest-cov==7.1.0
+coverage==7.16.2

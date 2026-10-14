@@ -12,8 +12,8 @@
 # but WITTHOUT ANY WARRANTY.  See the included LICENSE file for details.
 #*****************************************************************************
 
-from PyQt5.QtCore import (QEvent, Qt, pyqtSignal)
-from PyQt5.QtWidgets import (QLineEdit, QWidget)
+from PyQt6.QtCore import (QEvent, Qt, pyqtSignal)
+from PyQt6.QtWidgets import (QLineEdit, QWidget)
 
 
 class UnitEdit(QLineEdit):
@@ -64,8 +64,8 @@ class UnitEdit(QLineEdit):
     def keyPressEvent(self, event):
         """Keys for return and up/down.
         """
-        if event.key() in (Qt.Key_Up, Qt.Key_Down, Qt.Key_PageUp,
-                           Qt.Key_PageDown, Qt.Key_Return, Qt.Key_Enter):
+        if event.key() in (Qt.Key.Key_Up, Qt.Key.Key_Down, Qt.Key.Key_PageUp,
+                           Qt.Key.Key_PageDown, Qt.Key.Key_Return, Qt.Key.Key_Enter):
             self.keyPressed.emit(event.key())
         else:
             super().keyPressEvent(event)
@@ -73,8 +73,8 @@ class UnitEdit(QLineEdit):
     def event(self, event):
         """Catch tab press to complete unit.
         """
-        if (event.type() == QEvent.KeyPress and
-            event.key() == Qt.Key_Tab):
+        if (event.type() == QEvent.Type.KeyPress and
+            event.key() == Qt.Key.Key_Tab):
             # self.unitGroup.completePartial()
             self.currentChanged.emit(self)     # update listView
             self.unitUpdate()

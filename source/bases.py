@@ -13,9 +13,10 @@
 #*****************************************************************************
 
 import math
-from PyQt5.QtCore import Qt, QRegularExpression
-from PyQt5.QtGui import QRegularExpressionValidator
-from PyQt5.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
+from fractions import Fraction
+from PyQt6.QtCore import Qt, QRegularExpression
+from PyQt6.QtGui import QRegularExpressionValidator
+from PyQt6.QtWidgets import (QApplication, QCheckBox, QDialog, QHBoxLayout,
                              QLabel, QLineEdit, QMessageBox, QPushButton,
                              QSpinBox, QTreeWidget, QTreeWidgetItem,
                              QVBoxLayout)
@@ -27,9 +28,9 @@ class BasesDialog(QDialog):
     """
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setAttribute(Qt.WA_QuitOnClose, False)
-        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                            Qt.WindowSystemMenuHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                            Qt.WindowType.WindowSystemMenuHint)
         self.setWindowTitle(_('Base Conversions'))
         self.value = 0
         self.numBits = 32
@@ -107,8 +108,8 @@ class BasesDialog(QDialog):
         """Show the dialog to update bit settings.
         """
         dlg = QDialog(self)
-        dlg.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                           Qt.WindowSystemMenuHint)
+        dlg.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                           Qt.WindowType.WindowSystemMenuHint)
         dlg.setWindowTitle(_('Bit Settings'))
         topLayout = QVBoxLayout(dlg)
         dlg.setLayout(topLayout)
@@ -137,7 +138,7 @@ class BasesDialog(QDialog):
         cancelButton = QPushButton(_('&Cancel'), dlg)
         ctrlLayout.addWidget(cancelButton)
         cancelButton.clicked.connect(dlg.reject)
-        if dlg.exec_() == QDialog.Accepted:
+        if dlg.exec() == QDialog.DialogCode.Accepted:
             self.numBits = bitSizeBox.value()
             self.twosComplement = twoCompBox.isChecked()
             self.setButtonLabel()
@@ -158,9 +159,9 @@ class FractionDialog(QDialog):
     """
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setAttribute(Qt.WA_QuitOnClose, False)
-        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                            Qt.WindowSystemMenuHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_QuitOnClose, False)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                            Qt.WindowType.WindowSystemMenuHint)
         self.setWindowTitle(_('Fraction Conversions'))
         layout = QVBoxLayout(self)
         layout.setSpacing(0)
@@ -208,7 +209,10 @@ class FractionDialog(QDialog):
                 QMessageBox.warning(self, 'ConvertAll',
                                     _('Invalid expresssion'))
                 return
-        QApplication.setOverrideCursor(Qt.WaitCursor)
+        if not math.isfinite(num):
+            QMessageBox.warning(self, 'ConvertAll', _('Invalid expresssion'))
+            return
+        QApplication.setOverrideCursor(Qt.CursorShape.WaitCursor)
         powerOfTwo = self.powerTwoCtrl.isChecked()
         for numer, denom in listFractions(num, powerOfTwo):
             output = ['{0}/{1}'.format(numer, denom),
@@ -225,6 +229,8 @@ def baseNumStr(number, base, numBits=32, twosComplement=False):
         numBits -- the number of bits available for the result
         twosComplement -- if True, use two's complement for negative numbers
     """
+    if not 2 <= base <= 16 or numBits < 1:
+        raise ValueError('Invalid base or bit limit')
     digits = '0123456789abcdef'
     number = int(round(number))
     result = ''
@@ -236,7 +242,11 @@ def baseNumStr(number, base, numBits=32, twosComplement=False):
                 number < -2**(numBits - 1):
             return 'overflow'
         if number < 0:
-            number = 2**numBits + number
+            if base == 10:  # decimal is always shown with its sign
+                number = abs(number)
+                sign = '-'
+            else:
+                number = 2**numBits + number
     else:
         if number < 0:
             number = abs(number)
@@ -257,49 +267,81 @@ def baseNum(numStr, base, numBits=32, twosComplement=False):
         numBits -- the number of bits available for the numStr
         twosComplement -- if True, use two's complement for negative numbers
     """
+    if not 2 <= base <= 16 or numBits < 1:
+        raise ValueError('Invalid base or bit limit')
     numStr = numStr.replace(' ', '')
     if numStr == '-':
         return 0
     num = int(numStr, base)
-    if num >= 2**numBits:
+    if abs(num) >= 2**numBits:
         raise ValueError
-    if base != 10 and twosComplement and num >= 2**(numBits - 1):
-        num = num - 2**numBits
+    if twosComplement:
+        if base != 10 and num >= 2**(numBits - 1):
+            num = num - 2**numBits
+        if not -2**(numBits - 1) <= num < 2**(numBits - 1):
+            raise ValueError
     return num
 
 
 def listFractions(decimal, powerOfTwo=False):
-    """Return a list of numerator, denominator tuples.
+    """Return increasingly accurate (numerator, denominator) approximations.
 
-    The tuples approximate the decimal, becoming more accurate.
-    Arguments:
-        decimal -- a real number to approximate as a fraction
-        powerOfTwo -- if True, restrict the denominator to powers of 2
+    Denominators are bounded by 10**9. Continued fractions avoid scanning up
+    to a billion denominators for irrational or small decimal inputs. Binary
+    denominators are tried separately (at most 29 powers of two).
     """
-    results = []
+    if not math.isfinite(decimal):
+        raise ValueError('Fraction input must be finite')
     if decimal == 0.0:
-        return results
-    denom = 2
+        return []
+    if decimal == round(decimal):
+        return [(int(decimal), 1)]  # avoid overflowing decimal * denominator
+    results = []
     denomLimit = 10**9
     minOffset = 10**-10
-    minDelta = denomLimit
-    numer = round(decimal * denom)
-    delta = abs(decimal - numer / denom)
-    while denom < denomLimit:
-        nextDenom = denom + 1 if not powerOfTwo else denom * 2
-        nextNumer = round(decimal * nextDenom)
-        nextDelta = abs(decimal - nextNumer / nextDenom)
-        if numer != 0 and (delta == 0.0 or (delta < minDelta - minOffset and
-                                            delta <= nextDelta)):
-            results.append((numer, denom))
-            if delta == 0.0:
+    minDelta = math.inf
+    if powerOfTwo:
+        denom = 2
+        while denom <= denomLimit:
+            numer = round(decimal * denom)
+            delta = abs(decimal - numer / denom)
+            if numer and (delta < minDelta - minOffset or delta < minOffset):
+                results.append((numer, denom))
+                minDelta = delta
+                if delta < minOffset:
+                    break
+            denom *= 2
+    else:
+        best = Fraction(decimal).limit_denominator(denomLimit)
+        if not best.numerator:
+            return []  # no non-zero fraction at the available resolution
+        remaining = abs(decimal)
+        sign = -1 if decimal < 0 else 1
+        prevNumer, numer = 0, 1
+        prevDenom, denom = 1, 0
+        while True:
+            whole = math.floor(remaining)
+            nextNumer = whole * numer + prevNumer
+            nextDenom = whole * denom + prevDenom
+            if nextDenom > denomLimit:
+                delta = abs(decimal - best.numerator / best.denominator)
+                if delta < minDelta:
+                    results.append((best.numerator, best.denominator))
                 break
-            minDelta = delta
-        denom = nextDenom
-        numer = nextNumer
-        delta = nextDelta
-    if results:  # handle when first result is a whole num (2/2, 4/2, etc.)
+            delta = abs(decimal - sign * nextNumer / nextDenom)
+            if nextNumer and (delta < minDelta - minOffset or delta < minOffset):
+                results.append((sign * nextNumer, nextDenom))
+                minDelta = delta
+            if delta < minOffset:
+                break
+            remainder = remaining - whole
+            if not remainder:
+                break
+            remaining = 1 / remainder
+            prevNumer, numer = numer, nextNumer
+            prevDenom, denom = denom, nextDenom
+    if results:
         numer, denom = results[0]
-        if denom == 2 and numer / denom == round(numer / denom):
-            results[0] = (round(numer / denom), 1)
+        if denom == 2 and numer % 2 == 0:
+            results[0] = (numer // 2, 1)
     return results

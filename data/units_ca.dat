@@ -83,7 +83,7 @@ lb troy                 = lliura troy        # lliura troy
 unça troy               = 1/12.0 lb troy
 oz troy                 = unça troy          # unça troy
 tona no mètrica         = 2000 lliura
-kilotona no mètrica     = 1000 ton
+kilotona no mètrica     = 1000 tona no mètrica
 tona llarga             = 2240 lliura        # # imperial
 tona imperial           = tona llarga
 slug                    = lbf*s^2/ft
@@ -199,9 +199,9 @@ galga zinc                 = [polzada] [(1, .002), (10, .02), (15, .04), (19, .0
                            # # gruix de xapa, no lineal
 mida de l'anell            = [polzada] 0.1018*x + 1.4216 ; (x - 1.4216) / 0.1018  \
                            # # Mida circum., Estats Units, no lineal
-mida de sabata d'home (Estats Units) = [polzada] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
+mida de sabata d'home Estats Units = [polzada] x/3.0 + 7 + 1/3.0 ; (x - 7 - 1/3.0) * 3 \
                            # # Mides d'Estats Units, no lineals
-mida de sabata de dona (Estats Units) = [polzada] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
+mida de sabata de dona Estats Units = [polzada] x/3.0 + 6 + 5/6.0 ; (x - 6 - 5/6.0) * 3 \
                            # # Mides d'Estats Units, no lineals
 mida de broca            = [polzada] [(104,0.0031), (103,0.0035), (102,0.0039), \
                            (101,0.0043), (100,0.0047), (99,0.0051), \
@@ -561,7 +561,7 @@ hectàrea                 = 100 àrea
 stremma                  = 1000 m^2             # # unitat grega
 acre                     = 10 cadena^2          # # Estats Units
 secció                   = milla^2              # # Estats Units
-township                 = 36 section           # # Estats Units
+township                 = 36 secció           # # Estats Units
 homestead                = 160 acre             # # Estats Units
 perxa quadrada           = 30.25 yd^2           # # Estats Units
 rood                     = 0.25 acre            # # Estats Units

@@ -3,3 +3,21 @@
 *.swp
 */__pycache__/
 *.hgignore
+
+# Local research environments and generated release/benchmark artifacts
+/.venv/
+/.cache/
+/build/
+/dist/
+
+# Local checkout of an unrelated project: it was accidentally staged as a
+# gitlink (mode 160000, no .gitmodules), which shows up as an unresolvable
+# submodule on GitHub and as an empty folder in the published source archive.
+# Remove this line if that project ever belongs in this repository.
+/schema-pathfinder/
+
+# Release validation output (published by CI, not committed)
+/.pytest_cache/
+/.coverage
+/.coverage.*
+/htmlcov/

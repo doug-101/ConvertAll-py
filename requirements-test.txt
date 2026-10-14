@@ -1,0 +1,5 @@
+-r requirements-qt6.txt
+pytest==9.1.1
+pytest-qt==4.5.0
+pytest-cov==7.1.0
+coverage==7.16.2

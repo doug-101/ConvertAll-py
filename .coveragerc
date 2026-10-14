@@ -1,0 +1,13 @@
+[run]
+branch = True
+source = source
+patch = subprocess
+omit =
+    */source/setup.py
+
+[report]
+show_missing = True
+fail_under = 80
+
+[xml]
+output = build/test-results/coverage.xml

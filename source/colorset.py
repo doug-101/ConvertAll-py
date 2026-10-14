@@ -14,11 +14,11 @@
 
 import enum
 from collections import OrderedDict
-from PyQt5.QtCore import pyqtSignal, Qt, QEvent, QObject
-from PyQt5.QtGui import QColor, QFontMetrics, QPalette, QPixmap
-from PyQt5.QtWidgets import (QApplication, QColorDialog, QComboBox, QDialog,
+from PyQt6.QtCore import pyqtSignal, Qt, QEvent, QObject
+from PyQt6.QtGui import QColor, QFontMetrics, QPalette, QPixmap
+from PyQt6.QtWidgets import (QApplication, QColorDialog, QComboBox, QDialog,
                              QFrame, QGroupBox, QHBoxLayout, QLabel,
-                             QGridLayout, QPushButton, QVBoxLayout, qApp)
+                             QGridLayout, QPushButton, QVBoxLayout)
 
 roles = OrderedDict([('Window', _('Dialog background color')),
                      ('WindowText', _('Dialog text color')),
@@ -61,7 +61,7 @@ class ColorSet:
         newPalette = QApplication.palette()
         for color in self.colors:
             color.updatePalette(newPalette)
-        qApp.setPalette(newPalette)
+        QApplication.setPalette(newPalette)
 
 
     def showDialog(self, parent):
@@ -70,8 +70,8 @@ class ColorSet:
         Return True if changes were made.
         """
         dialog = QDialog(parent)
-        dialog.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                              Qt.WindowSystemMenuHint)
+        dialog.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                              Qt.WindowType.WindowSystemMenuHint)
         dialog.setWindowTitle(_('Color Settings'))
         topLayout = QVBoxLayout(dialog)
         dialog.setLayout(topLayout)
@@ -105,11 +105,11 @@ class ColorSet:
         cancelButton = QPushButton(_('&Cancel'), dialog)
         ctrlLayout.addWidget(cancelButton)
         cancelButton.clicked.connect(dialog.reject)
-        if dialog.exec_() == QDialog.Accepted:
+        if dialog.exec() == QDialog.DialogCode.Accepted:
             self.theme = ThemeSetting(self.themeControl.currentData())
             self.option.changeData('ColorTheme', self.theme.name, True)
             if self.theme == ThemeSetting.system:
-                qApp.setPalette(self.sysPalette)
+                QApplication.setPalette(self.sysPalette)
             else:   # dark theme or custom
                 if self.theme == ThemeSetting.custom:
                     for color in self.colors:
@@ -152,7 +152,7 @@ class ColorSet:
     def setCustomTheme(self):
         """Set to custom theme setting after user color change.
         """
-        if self.themeControl.currentData != ThemeSetting.custom:
+        if self.themeControl.currentData() != ThemeSetting.custom:
             self.themeControl.blockSignals(True)
             self.themeControl.setCurrentIndex(2)
             self.themeControl.blockSignals(False)
@@ -168,18 +168,18 @@ class Color(QObject):
         self.roleKey = roleKey
         if '-' in roleKey:
             roleStr, groupStr = roleKey.split('-')
-            self.group = eval('QPalette.' + groupStr)
+            self.group = getattr(QPalette.ColorGroup, groupStr)
         else:
             roleStr = roleKey
             self.group = None
-        self.role = eval('QPalette.' + roleStr)
+        self.role = getattr(QPalette.ColorRole, roleStr)
         self.currentColor = None
         self.swatch = None
 
     def setFromPalette(self, palette):
         """Set the color based on the given palette.
         """
-        if self.group:
+        if self.group is not None:
             self.currentColor = palette.color(self.group, self.role)
         else:
             self.currentColor = palette.color(self.role)
@@ -207,7 +207,7 @@ class Color(QObject):
     def updatePalette(self, palette):
         """Set the role in the given palette to the current color.
         """
-        if self.group:
+        if self.group is not None:
             palette.setColor(self.group, self.role, self.currentColor)
         else:
             palette.setColor(self.role, self.currentColor)
@@ -222,7 +222,7 @@ class Color(QObject):
         """
         self.swatch = QLabel()
         self.changeSwatchColor()
-        self.swatch.setFrameStyle(QFrame.Panel | QFrame.Raised)
+        self.swatch.setFrameStyle(QFrame.Shape.Panel | QFrame.Shadow.Raised)
         self.swatch.setLineWidth(3)
         self.swatch.installEventFilter(self)
         return self.swatch
@@ -238,7 +238,7 @@ class Color(QObject):
     def eventFilter(self, obj, event):
         """Handle mouse clicks on swatches.
         """
-        if obj == self.swatch and event.type() == QEvent.MouseButtonRelease:
+        if obj == self.swatch and event.type() == QEvent.Type.MouseButtonRelease:
             color = QColorDialog.getColor(self.currentColor,
                                           QApplication.activeWindow(),
                                           _('Select {0} color').

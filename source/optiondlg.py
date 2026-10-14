@@ -12,9 +12,9 @@
 #*****************************************************************************
 
 import sys
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import (QDoubleValidator, QValidator)
-from PyQt5.QtWidgets import (QButtonGroup, QCheckBox, QDialog, QGridLayout,
+from PyQt6.QtCore import (QLocale, Qt)
+from PyQt6.QtGui import (QDoubleValidator, QValidator)
+from PyQt6.QtWidgets import (QButtonGroup, QCheckBox, QDialog, QGridLayout,
                              QGroupBox, QHBoxLayout, QLabel, QLineEdit,
                              QPushButton, QRadioButton, QSpinBox, QVBoxLayout)
 
@@ -24,8 +24,8 @@ class OptionDlg(QDialog):
     """
     def __init__(self, option, parent=None):
         QDialog.__init__(self, parent)
-        self.setWindowFlags(Qt.Dialog | Qt.WindowTitleHint |
-                            Qt.WindowSystemMenuHint)
+        self.setWindowFlags(Qt.WindowType.Dialog | Qt.WindowType.WindowTitleHint |
+                            Qt.WindowType.WindowSystemMenuHint)
         self.option = option
 
         topLayout = QVBoxLayout(self)
@@ -163,6 +163,14 @@ class OptionDlgDbl(OptionDlgItem):
         self.control = QLineEdit(repr(dlg.option.numData(key, min, max)),
                                        dlg.parentGroup())
         valid = QDoubleValidator(min, max, 6, self.control)
+        # This field displays repr() and stores values through float(): use the
+        # same decimal point regardless of the system's language. Otherwise a
+        # French/German validator rejects "2.5", or accepts grouping that
+        # Python cannot parse (e.g. "1,000"). Do not change the app's locale.
+        numberLocale = QLocale.c()
+        numberLocale.setNumberOptions(numberLocale.numberOptions() |
+                                      QLocale.NumberOption.RejectGroupSeparator)
+        valid.setLocale(numberLocale)
         self.control.setValidator(valid)
         dlg.addItem(self, self.control, label)
 
@@ -172,7 +180,7 @@ class OptionDlgDbl(OptionDlgItem):
         text = self.control.text()
         unusedPos = 0
         if self.control.validator().validate(text, unusedPos)[0] != \
-                QValidator.Acceptable:
+                QValidator.State.Acceptable:
             return
         num = float(text)
         if num != self.dlg.option.numData(self.key):

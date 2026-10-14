@@ -4,12 +4,20 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
+<p><strong>Python/Qt6 fork 0.9.3 (validation pending):</strong>
+Python 3.11–3.14, PyQt6 6.11.0 / Qt 6.11.2 / PyQt6-sip 13.13.0 (portable profile).
+The small Debian package uses Python/PyQt6/Qt/SIP from apt instead (Qt/PyQt6 >= 6.4.2).
+The pinned profile is in <tt>requirements-qt6.txt</tt>; validation and release
+instructions are in <tt>doc/RELEASE_QT6_FR.md</tt>.
+Historical change logs remain historical. PyQt6 is GPLv3 or commercially
+licensed, not LGPL; see <tt>LICENSE-GPL-3.0</tt> and the distribution notices.</p>
+
 <center>
 <h1>README-Datei zu ConvertAll</h1>
 <h2>Ein Programm zum Konvertieren von Einheiten</h2>
 
 <p>Geschrieben von Doug Bell<br>
-Version 0.8.0</p>
+Version 0.9.1</p>
 </center>
 
 <h2>Inhalt</h2>
@@ -117,27 +125,14 @@ ausgeliefert wird.</p>
 <h2><a name="sysreq"></a>Systemanforderungen</h2>
 
 <h3><a name="linux-sys"></a>Linux</h3>
-
-<p>ConvertAll ben&ouml;tigt die folgenden Bibliotheken:
-<ul>
-  <li>Python (Version 3.2 oder h&ouml;her)</li>
-  <li>Qt (Version 4.6 oder h&ouml;her - 
-    siehe <a href="http://www.trolltech.com">Trolltech</a> f&uuml;r weitere
-    Informationen)</li>
-  <li>PyQt (Version 4.8 oder h&ouml;her - siehe <a
-    href="http://www.riverbankcomputing.co.uk">Riverbank</a>
-    f&uuml;r weitere Informationen)</li>
-</ul></p>
-
-<p>Diese Libraries sind relativ neu - evtl. gibt es kein Paket f&uuml;r Ihre
-Distribution. In diesem Fall gibt es noch eine fr&uuml;here Version von
-ConvertAll (0.3.2), die von &auml;lteren Versionen der Libraries abh&auml;ngt.
-Diese steht aber leider nur in Englisch zur Verf&uuml;gung.</p>
-
+<p>Use Python 3.11–3.14 and a dedicated environment installed from
+<tt>requirements-qt6.txt</tt>: PyQt6 6.11.0, Qt 6.11.2 and SIP 13.13.0.
+Normal Qt6 system libraries (GL/EGL, xkbcommon, dbus, fonts and XCB) are required,
+even for offscreen tests. CI targets Ubuntu 24.04 x86-64.</p>
 <h3><a name="win-sys"></a>Windows</h3>
-
-<p>Wenn Sie die Dateien aus dem Bin&auml;rpaket nutzen, sollte ConvertAll
-auf jedem Computer mit Windows XP, Vista, 7 oder 8 laufen.</p>
+<p>Qt6 requires Windows 10 version 1809 or later, or Windows 11 (64-bit).
+XP, Vista, Windows 7 and Windows 8 are not supported. Native bundle CI targets
+Windows Server 2022 x64; actual desktop and Inno Setup acceptance remain manual.</p>
 
 <h2><a name="install"></a>Installation</h2>
 

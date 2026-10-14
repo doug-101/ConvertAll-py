@@ -1,0 +1,27 @@
+# .mailmap — canonical display names for this repository's history.
+#
+# A mailmap changes how Git (and GitHub) *display* authorship: it never rewrites
+# a commit, a tag, a release or a SHA. Use it when the goal is that every commit
+# shows the project owner's name without invalidating the published 0.9.1 tag and
+# its CI-validated provenance.
+#
+# To actually rewrite the objects, use tools/rewrite_authors.sh, which applies
+# this same mapping to a branch (and therefore changes every SHA it touches).
+#
+# Syntax:  Canonical Name <canonical@email>  Old Name <old@email>
+
+# Automated tooling commits during the Qt6 port, attributed to the project owner.
+Johan Polsinelli <83455892+jojo8356@users.noreply.github.com> <agent@arena.invalid>
+
+# Same address, but recorded as the account login in older commits: a mailmap
+# entry keyed only on the address would leave the name untouched, so the pair is
+# spelled out here.
+Johan Polsinelli <83455892+jojo8356@users.noreply.github.com> jojo8356 <83455892+jojo8356@users.noreply.github.com>
+
+# The owner's own identities, unified behind the GitHub noreply address so that
+# commits link to the jojo8356 account.
+Johan Polsinelli <83455892+jojo8356@users.noreply.github.com> jojo8356 <polsinelli@gmx.com>
+Johan Polsinelli <83455892+jojo8356@users.noreply.github.com> polsinelli johan <pj509414@S651P06L.campus.unice.fr>
+
+# Douglas W. Bell is the original ConvertAll author: his baseline commit must
+# keep his name, and no mapping is declared for him on purpose.
